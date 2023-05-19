@@ -1,0 +1,30 @@
+[core]
+        editor = /usr/bin/vim
+
+[credential]
+        helper = cache --timeout=360000
+[alias]
+        sclone = clone --recurse-submodules
+        spull = pull --recurse-submodules
+        supdate = submodule update --init
+        sinit = submodule init
+        ssync = submodule sync
+        conflicts = !git ls-files -u | cut -f 2 | sort -u
+        mup = !git pull --recurse-submodules && git submodule update --init --recursive
+        main = !git checkout main && git pull
+        top = !git rev-parse --show-toplevel
+        slist = "!if [ -f `git top`/.gittrees ]; then cat `git top`/.gittrees; fi"
+        sup = "!cd `git rev-parse --show-toplevel`; git mup; if [ -f .gittrees ]; then while read l; do set -- $l; git subtree pull --prefix=$1 $2 main; done < .gittrees; fi;"
+        spush = "!git push; cd `git rev-parse --show-toplevel`; if [ -f .gittrees ]; then while read l; do set -- $l; git subtree push --prefix=$1 $2 main; done < .gittrees; fi;"
+        muplink = "!git mup; for l in $(git submodule status | awk '{print $2}'); do cd $l; git main; cd ../; git add $l; done;"
+        mpush = "!git spush; export SUBM=`basename $PWD`; git rev-parse --show-toplevel; cd ../ ; git rev-parse --show-toplevel; git sup; git add $SUBM; git st; git commit -m \"Updated submodule $SUBM to latest rev\"; git spush; export SUBM= ; "
+        local ="!git show --pretty=\"\" --name-only `git cherry --abbrev=7 -v @{upstream} | awk '{print $2}'`"
+        alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+        br = branch
+        l = log
+        ch = checkout
+        st = status
+        undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
+        cleanup = git remote prune origin && git repack && git prune-packed && git reflog expire --expire=1.month.ago && git gc --aggressive
+[pull]
+        rebase = false
