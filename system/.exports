@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+export PATH=$PATH:~/bin/bin;
+export DOTFILES=~/dotfiles;
+
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000
+export HISTTIMEFORMAT='%F %T '
+
+export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
+#eval "$(dircolors $DOTFILES/system/.dircolors)";
+#export dircolors=$DOT_FILES/system/.dircolors;
+

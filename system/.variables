@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+DOTFILES="$HOME/dotfiles/"
+TMUX_DEP_FILE="system/tmux_plugs.list"
+VIM_DEP_FILE="system/vim_plugs.list"
+
+TMUX_DEP_FILE_PATH=$(realpath ${DOTFILES})/$TMUX_DEP_FILE
+VIM_DEP_FILE_PATH=$(realpath ${DOTFILES})/$VIM_DEP_FILE
+
+echo "DOTFILES:           $DOTFILES"
+echo "TMUX_DEP_FILE_PATH: $TMUX_DEP_FILE_PATH"
+echo "VIM_DEP_FILE_PATH:  $VIM_DEP_FILE_PATH"
+
+VIM_BUNDLE_PATH=$(eval "echo ~/.vim/bundle/")
+VIM_AUTOLOAD_PATH=$(eval "echo ~/.vim/autoload")
+echo "VIM_BUNDLE_PATH:    $VIM_BUNDLE_PATH"
+echo "VIM_AUTOLOAD_PATH:  $VIM_AUTOLOAD_PATH"
+
+
+TMUX_TPM_PATH=$(eval "echo ~/.tmux/plugins/")
+echo "TMUX_TPM_PATH:      $TMUX_TPM_PATH"

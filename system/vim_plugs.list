@@ -1,0 +1,37 @@
+# This file is used to list down dependencies that are required to install are
+# list down.
+
+nord-vim                     https://github.com/arcticicestudio/nord-vim.git
+vim-noctu                    https://github.com/noahfrederick/vim-noctu.git
+vim-rainbow                  https://github.com/frazrepo/vim-rainbow.git
+nerdcommenter                https://github.com/preservim/nerdcommenter.git
+vim-sensible                 https://github.com/tpope/vim-sensible.git
+# syntastic                    https://github.com/vim-syntastic/syntastic.git
+vim-fugitive                 https://github.com/tpope/vim-fugitive.git
+fzf.vim                      https://github.com/junegunn/fzf.vim.git 
+fzf                          https://github.com/junegunn/fzf.git                     fzf CMD=--depth 1
+vim-SystemVerilog            https://github.com/WeiChungWu/vim-SystemVerilog.git
+Fox.vim                      https://github.com/AxolotlC/Fox.vim.git
+vim-material-theme           https://github.com/jdkanani/vim-material-theme.git
+nerdtree                     https://github.com/preservim/nerdtree.git
+gruvbox                      https://github.com/morhetz/gruvbox.git
+Zenburn                      https://github.com/jnurmine/Zenburn.git
+vim-gitgutter                https://github.com/airblade/vim-gitgutter.git
+vim-atom-dark                https://github.com/gosukiwi/vim-atom-dark.git
+vim-airline                  https://github.com/vim-airline/vim-airline.git
+vim-airline-theme            https://github.com/vim-airline/vim-airline-themes
+rust-vim                     https://github.com/rust-lang/rust.vim.git               CMD=--depth=1
+vim-tmux                     https://github.com/tmux-plugins/vim-tmux.git
+vim-autoread                 https://github.com/djoshea/vim-autoread.git   
+nerdfont                     https://github.com/lambdalisue/nerdfont.vim.git
+# vim-devicons                 https://github.com/ryanoasis/vim-devicons.git
+# vim-startify                 https://github.com/mhinz/vim-startify
+# vim-buffet                   https://github.com/bagrat/vim-buffet.git
+# Not Supported below vim 8 fern                         https://github.com/lambdalisue/fern.vim.git
+# Not Supported below vim 8 fern-renderer-nerdfont.vim   https://github.com/lambdalisue/fern-renderer-nerdfont.vim.git
+# glyph-palette.vim            https://github.com/lambdalisue/glyph-palette.vim.git
+# SearchComplete               https://github.com/vim-scripts/SearchComplete.git
+supertab                     https://github.com/ervandew/supertab.git             ~/.vim/pack/plugins/start/supertab CMD=--depth=1
+# YankRing.vim                 https://github.com/vim-scripts/YankRing.vim.git
+easymotion                   https://github.com/easymotion/vim-easymotion.git
+# vim-visual-multi             https://github.com/mg979/vim-visual-multi.git
