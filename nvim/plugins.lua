@@ -33,6 +33,18 @@ local plugins = {
   -- { 'nvim-lua/plenary.nvim' },
   { 'MunifTanjim/nui.nvim' },
   {
+    "numToStr/Comment.nvim",
+    keys = { "gcc", "gbc" },
+    init = function()
+      require("core.utils").load_mappings "comment"
+    end,
+    config = function(_, opts)
+      require("Comment").setup(opts)
+      local ft = require('Comment.ft')
+      ft.systemverilog = {'//%s', '/*%s*/'}
+    end,
+  },
+  {
   "nvim-neo-tree/neo-tree.nvim", lazy = false,
     branch = "v2.x",
     requires = { 
