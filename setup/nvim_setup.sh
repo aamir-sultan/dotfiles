@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+git clone https://github.com/aamir-sultan/NvChad ~/.config/nvim --depth 1
 
 # ln -s /home/r2d2/dotfiles/nvim/chadrc.lua /home/r2d2/.config/nvim/lua/custom/chadrc.lua
 # ln -s /home/r2d2/dotfiles/nvim/init.lua /home/r2d2/.config/nvim/lua/custom/init.lua

@@ -2,19 +2,19 @@ local plugins = {
 
   { "junegunn/fzf", run = ":call fzf#install()", lazy = false },
   { "junegunn/fzf.vim", lazy = false },
-  { 'arcticicestudio/nord-vim' },
-  { 'noahfrederick/vim-noctu' },
+  -- { 'arcticicestudio/nord-vim' },
+  -- { 'noahfrederick/vim-noctu' },
   { 'frazrepo/vim-rainbow' },
   { 'preservim/nerdcommenter', lazy = false },
   { 'tpope/vim-sensible' },
   { 'tpope/vim-fugitive' },
   { 'WeiChungWu/vim-SystemVerilog' },
-  { 'AxolotlC/Fox.vim' },
-  { 'jdkanani/vim-material-theme' },
-  { 'morhetz/gruvbox' },
-  { 'jnurmine/Zenburn' },
+  -- { 'AxolotlC/Fox.vim' },
+  -- { 'jdkanani/vim-material-theme' },
+  -- { 'morhetz/gruvbox' },
+  -- { 'jnurmine/Zenburn' },
   { 'airblade/vim-gitgutter' },
-  { 'gosukiwi/vim-atom-dark' },
+  -- { 'gosukiwi/vim-atom-dark' },
   { 'tmux-plugins/vim-tmux' },
   { 'djoshea/vim-autoread' },
   { 'lambdalisue/nerdfont.vim' },
@@ -30,7 +30,7 @@ local plugins = {
   -- { 'easymotion/vim-easymotion', lazy = false },
   { 'mg979/vim-visual-multi' },
   { 'christoomey/vim-tmux-navigator', lazy = true },
-  { 'nvim-lua/plenary.nvim' },
+  -- { 'nvim-lua/plenary.nvim' },
   { 'MunifTanjim/nui.nvim' },
   {
   "nvim-neo-tree/neo-tree.nvim", lazy = false,
@@ -364,11 +364,11 @@ local plugins = {
   --     })
   --   end,
   -- },
-  { 'echasnovski/mini.animate', version = '*',
-    init = function()
-      require('mini.animate').setup()
-    end,
-  },
+  -- { 'echasnovski/mini.animate', version = '*',
+  --   init = function()
+  --     require('mini.animate').setup()
+  --   end,
+  -- },
   { 'echasnovski/mini.cursorword', version = '*',
     init = function()
       require('mini.cursorword').setup()
