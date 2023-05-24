@@ -364,11 +364,11 @@ local plugins = {
   --     })
   --   end,
   -- },
-  -- { 'echasnovski/mini.animate', version = '*',
-  --   init = function()
-  --     require('mini.animate').setup()
-  --   end,
-  -- },
+  { 'echasnovski/mini.animate', version = '*',
+    init = function()
+      require('mini.animate').setup()
+    end,
+  },
   { 'echasnovski/mini.cursorword', version = '*',
     init = function()
       require('mini.cursorword').setup()
