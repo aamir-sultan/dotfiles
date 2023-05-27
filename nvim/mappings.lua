@@ -21,10 +21,10 @@ M.NeoTree = {
 
 M.hopkeys = {
   n = {
-    ["f"] = {":HopChar2<CR>", "Find and Jump to two consecutive charachter"},
-    ["fs"] = {":HopChar1<CR>", "Find and Jump to single charachter"},
-    ["fw"] = {":HopWord<CR>", "Find and Jump to single word"},
-    ["fa"] = {":HopAnywhere<CR>", "Find and Jump to any single word"},
+    ["<leader><leader>"] = {":HopChar2<CR>", "Find and Jump to two consecutive charachter"},
+    ["<leader><leader>s"] = {":HopChar1<CR>", "Find and Jump to single charachter"},
+    ["<leader><leader>w"] = {":HopWord<CR>", "Find and Jump to single word"},
+    ["<leader><leader>a"] = {":HopAnywhere<CR>", "Find and Jump to any single word"},
   }
 }
 
@@ -33,7 +33,7 @@ M.userkeys = {
     -- opts is an optional parameter
     -- ["keys"] = {"action", "description", opts = {}},
 
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    -- [";"] = { ":", "enter command mode", opts = { nowait = true } },
     -- cycle through buffers
     ["<C-l>"] = {
       function()
@@ -48,20 +48,33 @@ M.userkeys = {
       end,
       "Goto prev buffer",
     },
-    -- cycle through buffers
-    ["<C-S-Right>"] = {
+    ["<C-Left>"] = {
       function()
         require("nvchad_ui.tabufline").tabuflineNext()
       end,
       "Goto next buffer",
     },
 
-    ["<C-S-left>"] = {
+    ["<C-Right>"] = {
       function()
         require("nvchad_ui.tabufline").tabuflinePrev()
       end,
       "Goto prev buffer",
     },
+    -- cycle through buffers
+    -- ["<C-S-Right>"] = {
+    --   function()
+    --     require("nvchad_ui.tabufline").tabuflineNext()
+    --   end,
+    --   "Goto next buffer",
+    -- },
+    --
+    -- ["<C-S-left>"] = {
+    --   function()
+    --     require("nvchad_ui.tabufline").tabuflinePrev()
+    --   end,
+    --   "Goto prev buffer",
+    -- },
   }
 }
 
