@@ -246,7 +246,7 @@ set autoindent
   " map s <Plug>(easymotion-s)
 " Jumping to a specific Word
   " nnoremap <Leader>f <Plug>(easymotion-s)
-  nnoremap f <Plug>(easymotion-s)
+  nnoremap <leader><leader> <Plug>(easymotion-s)
 
 " Unset the undofile to not store the undo information
   set noundofile
