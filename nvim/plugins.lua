@@ -10,33 +10,30 @@ local plugins = {
     priority = 1000,
     opts = {},
   },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
   { 'frazrepo/vim-rainbow' },
   { 'preservim/nerdcommenter', lazy = false },
   { 'tpope/vim-sensible' },
   { 'tpope/vim-fugitive' },
   { 'WeiChungWu/vim-SystemVerilog' },
-  -- { 'AxolotlC/Fox.vim' },
-  -- { 'jdkanani/vim-material-theme' },
-  -- { 'morhetz/gruvbox' },
-  -- { 'jnurmine/Zenburn' },
   { 'airblade/vim-gitgutter' },
-  -- { 'gosukiwi/vim-atom-dark' },
   { 'tmux-plugins/vim-tmux' },
   { 'djoshea/vim-autoread' },
   { 'lambdalisue/nerdfont.vim' },
   { 'ryanoasis/vim-devicons' },
   { 'bagrat/vim-buffet' },
-  --  { 'lambdalisue/fern.vim', lazy = false },
-  --  { 'lambdalisue/fern-renderer-nerdfont.vim' },
-  --  -- { 'yuki-yano/fern-preview.vim' },
-  --  { 'lambdalisue/glyph-palette.vim', lazy = false },
-  --  { 'lambdalisue/fern-hijack.vim', lazy = false },
   { 'vim-scripts/SearchComplete' },
   { 'ervandew/supertab' },
-  -- { 'easymotion/vim-easymotion', lazy = false },
   { 'mg979/vim-visual-multi' },
   { 'christoomey/vim-tmux-navigator', lazy = true },
-  -- { 'nvim-lua/plenary.nvim' },
   { 'MunifTanjim/nui.nvim' },
   {
     "numToStr/Comment.nvim",
@@ -421,49 +418,49 @@ local plugins = {
     },
   },
   -- Added for the setting up of the language server protocol settings. Add a language for installing its server protocol.
---   {
---     "nvim-treesitter/nvim-treesitter",
---     opts = {
---       ensure_installed = {
---         -- defaults 
---         "vim",
---         "lua",
---
---         -- web dev 
---         -- "html",
---         -- "css",
---         -- "javascript",
---         -- "typescript",
---         -- "tsx",
---         "json",
---         -- "vue", "svelte",
---
---        -- low level
---         "c",
---         "rust"
---         -- "zig"
---       },
---     },
---   },
---   -- In order to modify the `lspconfig` configuration:
--- {
---   "neovim/nvim-lspconfig",
---    config = function()
---       require "plugins.configs.lspconfig"
---       require "custom.configs.lspconfig"
---    end,
--- },
---
---    {
---    "williamboman/mason.nvim",
---    opts = {
---       ensure_installed = {
---         "lua-language-server",
---         "prettier",
---         "stylua",
---         "svls"
---       },
---     },
---   },
+  --   {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     opts = {
+  --       ensure_installed = {
+  --         -- defaults 
+  --         "vim",
+  --         "lua",
+  --
+  --         -- web dev 
+  --         -- "html",
+  --         -- "css",
+  --         -- "javascript",
+  --         -- "typescript",
+  --         -- "tsx",
+  --         "json",
+  --         -- "vue", "svelte",
+  --
+  --        -- low level
+  --         "c",
+  --         "rust"
+  --         -- "zig"
+  --       },
+  --     },
+  --   },
+  --   -- In order to modify the `lspconfig` configuration:
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --    config = function()
+  --       require "plugins.configs.lspconfig"
+  --       require "custom.configs.lspconfig"
+  --    end,
+  -- },
+  --
+  --    {
+  --    "williamboman/mason.nvim",
+  --    opts = {
+  --       ensure_installed = {
+  --         "lua-language-server",
+  --         "prettier",
+  --         "stylua",
+  --         "svls"
+  --       },
+  --     },
+  --   },
 
 }return plugins
