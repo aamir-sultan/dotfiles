@@ -4,6 +4,12 @@ local plugins = {
   { "junegunn/fzf.vim", lazy = false },
   -- { 'arcticicestudio/nord-vim' },
   -- { 'noahfrederick/vim-noctu' },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
   { 'frazrepo/vim-rainbow' },
   { 'preservim/nerdcommenter', lazy = false },
   { 'tpope/vim-sensible' },
@@ -45,7 +51,7 @@ local plugins = {
     end,
   },
   {
-  "nvim-neo-tree/neo-tree.nvim", lazy = false,
+    "nvim-neo-tree/neo-tree.nvim", lazy = false,
     branch = "v2.x",
     requires = { 
       "nvim-lua/plenary.nvim",
@@ -170,8 +176,8 @@ local plugins = {
           },
           mappings = {
             ["<space>"] = { 
-                "toggle_node", 
-                nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use 
+              "toggle_node", 
+              nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use 
             },
             ["<2-LeftMouse>"] = "open",
             ["<cr>"] = "open",
@@ -246,15 +252,15 @@ local plugins = {
             },
           },
           follow_current_file = false, -- This will find and focus the file in the active buffer every
-                                       -- time the current file is changed while the tree is open.
+          -- time the current file is changed while the tree is open.
           group_empty_dirs = false, -- when true, empty folders will be grouped together
           hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-                                                  -- in whatever position is specified in window.position
-                                -- "open_current",  -- netrw disabled, opening a directory opens within the
-                                                  -- window like netrw would, regardless of window.position
-                                -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
+          -- in whatever position is specified in window.position
+          -- "open_current",  -- netrw disabled, opening a directory opens within the
+          -- window like netrw would, regardless of window.position
+          -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
           use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
-                                          -- instead of relying on nvim autocmd events.
+          -- instead of relying on nvim autocmd events.
           window = {
             mappings = {
               ["<bs>"] = "navigate_up",
@@ -281,7 +287,7 @@ local plugins = {
         },
         buffers = {
           follow_current_file = true, -- This will find and focus the file in the active buffer every
-                                       -- time the current file is changed while the tree is open.
+          -- time the current file is changed while the tree is open.
           group_empty_dirs = true, -- when true, empty folders will be grouped together
           show_unloaded = true,
           window = {
@@ -310,7 +316,7 @@ local plugins = {
 
       -- vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
     end
-},
+  },
   -- {
   -- "nvim-neo-tree/neo-tree.nvim",
   --   cmd = "Neotree",
@@ -397,22 +403,22 @@ local plugins = {
     end,
   },
   { "nvim-tree/nvim-tree.lua", enabled = false,
-  opts = {
-    git = {
-      enable = true,
-    },
-    renderer = {
-      highlight_git = true,
-      icons = {
-        show = {
-          git = true,
+    opts = {
+      git = {
+        enable = true,
+      },
+      renderer = {
+        highlight_git = true,
+        icons = {
+          show = {
+            git = true,
+          },
         },
       },
-    },
-    view = {
-      side = "right",
+      view = {
+        side = "right",
+      },
     },
   },
-},
 
 }return plugins
