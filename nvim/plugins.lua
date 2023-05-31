@@ -1,7 +1,7 @@
 local plugins = {
 
-  { "junegunn/fzf", run = ":call fzf#install()", lazy = false },
-  { "junegunn/fzf.vim", lazy = false },
+  -- { "junegunn/fzf", run = ":call fzf#install()", lazy = false },
+  -- { "junegunn/fzf.vim", lazy = false },
   -- { 'arcticicestudio/nord-vim' },
   -- { 'noahfrederick/vim-noctu' },
   {
@@ -37,7 +37,7 @@ local plugins = {
   { 'MunifTanjim/nui.nvim' },
   {
     "numToStr/Comment.nvim",
-    keys = { "gcc", "gbc" },
+    -- keys = { "gcc", "gbc" },
     init = function()
       require("core.utils").load_mappings "comment"
     end,
@@ -379,11 +379,11 @@ local plugins = {
   --     })
   --   end,
   -- },
-  { 'echasnovski/mini.animate', version = '*',
-    init = function()
-      require('mini.animate').setup()
-    end,
-  },
+  -- { 'echasnovski/mini.animate', version = '*',
+  --   init = function()
+  --     require('mini.animate').setup()
+  --   end,
+  -- },
   { 'echasnovski/mini.cursorword', version = '*',
     init = function()
       require('mini.cursorword').setup()
