@@ -21,10 +21,10 @@ M.NeoTree = {
 
 M.hopkeys = {
   n = {
-    ["<leader><leader>"] = {":HopChar2<CR>", "Find and Jump to two consecutive charachter"},
-    ["<leader><leader>s"] = {":HopChar1<CR>", "Find and Jump to single charachter"},
-    ["<leader><leader>w"] = {":HopWord<CR>", "Find and Jump to single word"},
-    ["<leader><leader>a"] = {":HopAnywhere<CR>", "Find and Jump to any single word"},
+    ["s"] = {":HopChar2<CR>", "Find and Jump to two consecutive charachter"},
+    ["ss"] = {":HopChar1<CR>", "Find and Jump to single charachter"},
+    ["sw"] = {":HopWord<CR>", "Find and Jump to single word"},
+    ["sa"] = {":HopAnywhere<CR>", "Find and where"},
   }
 }
 

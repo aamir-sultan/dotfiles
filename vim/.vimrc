@@ -155,7 +155,7 @@ endif
 " Setting up the FZF settings
 " This shortcut ctrl+f has a conflict with NERDTreeToggle find. 
     set rtp+=~/.vim/bundle/fzf
-    nnoremap <C-f> :Files<CR>
+    nnoremap <leader>f :Files<CR>
 
 " Settings for the Nerd Commenter
 " Create default mappings
@@ -255,4 +255,11 @@ set autoindent
  nnoremap <leader>bd :bd<cr>
  nnoremap <leader>bD :bd!<cr>
 
+" View scrolling for the buffer
+ nnoremap <C-d> <C-d>zz
+ nnoremap <C-u> <C-u>zz
+
+ " Search and view in the middle
+nnoremap n nzzzv
+nnoremap N Nzzzv
 " =====================================================================================
