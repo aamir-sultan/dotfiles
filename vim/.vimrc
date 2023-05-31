@@ -155,7 +155,7 @@ endif
 " Setting up the FZF settings
 " This shortcut ctrl+f has a conflict with NERDTreeToggle find. 
     set rtp+=~/.vim/bundle/fzf
-    nnoremap <leader>f :Files<CR>
+    nnoremap <leader>fa :Files<CR>
 
 " Settings for the Nerd Commenter
 " Create default mappings
