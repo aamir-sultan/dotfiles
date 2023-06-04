@@ -262,4 +262,37 @@ set autoindent
  " Search and view in the middle
 nnoremap n nzzzv
 nnoremap N Nzzzv
+
+" To set the buffer write when there is a buffer jump from one to another.
+set hidden
+
+" remap the dot command in visual mode also.
+vnoremap . :norm.<CR>
+
+set colorcolumn=110
+
+" disable the arrow keys in vim
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
+" nnoremap j gj
+" nnoremap k gk
+
+" ignorecase and smartcase together make Vim deal with case-sensitive search intelligently. If you search for an all-lowercase string your search will be case-insensitive, but if one or more characters is uppercase the search will be case-sensitive. Most of the time this does what you want.
+set ignorecase
+set smartcase
+
+" undofile tells Vim to create <FILENAME>.un~ files whenever you edit a file. These files contain undo information so you can undo previous actions even after you close and reopen a file.
+set undofile
+
+" I can't remember a time when I didn't want to save a file after tabbing away from my editor (especially with version control and Vim's persistent undo):
+au FocusLost * :wa
+
+" No swapfile since we have unlimited undo file now
+set noswapfile
 " =====================================================================================
