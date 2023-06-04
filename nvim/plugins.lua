@@ -19,6 +19,7 @@ local plugins = {
       -- refer to the configuration section below
     }
   },
+  { 'ThePrimeagen/vim-be-good', lazy = false },
   { 'frazrepo/vim-rainbow' },
   { 'preservim/nerdcommenter', lazy = false },
   { 'tpope/vim-sensible' },
