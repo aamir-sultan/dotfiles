@@ -248,9 +248,6 @@ set autoindent
   " nnoremap <Leader>f <Plug>(easymotion-s)
   nnoremap <leader><leader> <Plug>(easymotion-s)
 
-" Unset the undofile to not store the undo information
-  set noundofile
-
 " Close the current buffer not the tab or window.
  nnoremap <leader>bd :bd<cr>
  nnoremap <leader>bD :bd!<cr>
@@ -289,6 +286,9 @@ set smartcase
 
 " undofile tells Vim to create <FILENAME>.un~ files whenever you edit a file. These files contain undo information so you can undo previous actions even after you close and reopen a file.
 set undofile
+" Unset the undofile to not store the undo information
+" set noundofile
+
 
 " I can't remember a time when I didn't want to save a file after tabbing away from my editor (especially with version control and Vim's persistent undo):
 au FocusLost * :wa
