@@ -48,14 +48,15 @@ M.userkeys = {
       end,
       "Goto prev buffer",
     },
-    ["<C-Left>"] = {
+
+    ["<C-Right>"] = {
       function()
         require("nvchad_ui.tabufline").tabuflineNext()
       end,
       "Goto next buffer",
     },
 
-    ["<C-Right>"] = {
+    ["<C-Left>"] = {
       function()
         require("nvchad_ui.tabufline").tabuflinePrev()
       end,
