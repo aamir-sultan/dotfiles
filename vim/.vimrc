@@ -260,6 +260,11 @@ set autoindent
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
+
 " To set the buffer write when there is a buffer jump from one to another.
 set hidden
 
