@@ -1,10 +1,24 @@
 #!/bin/bash
 
-git clone https://github.com/aamir-sultan/NvChad ~/.config/nvim --depth 1
+NVIM_PATH="$HOME/.config/nvim"
+NVIM_BAK="$HOME/.config/nvim.bak"
+if [ -d $NVIM_PATH ]; then
+  echo $(basename $NVIM_PATH) already available at $(dirname $NVIM_PATH)
+  echo Removing old $NVIM_BAK and Moving $NVIM_PATH to $NVIM_BAK
+  rm -rf $NVIM_BAK
+  mv -f $NVIM_PATH $NVIM_BAK
+  echo Cloning NvChad to $(basename $NVIM_PATH) ...
+  git clone https://github.com/aamir-sultan/NvChad $NVIM_PATH --depth 1
+else
+  echo Cloning NvChad to $(basename $NVIM_PATH) ...
+  git clone https://github.com/aamir-sultan/NvChad $NVIM_PATH --depth 1
+fi
 
 # ln -s /home/r2d2/dotfiles/nvim/chadrc.lua /home/r2d2/.config/nvim/lua/custom/chadrc.lua
-# ln -s /home/r2d2/dotfiles/nvim/init.lua /home/r2d2/.config/nvim/lua/custom/init.lua
+# ln -s /home/r2d2/dotfiles/nvim/init.lua /home/r2d2/.config/nvim/lua/custom/init.lua
 # ln -s /home/r2d2/dotfiles/nvim/plugins.lua /home/r2d2/.config/nvim/lua/custom/plugins.lua
 # ln -s /home/r2d2/dotfiles/nvim/mappings.lua /home/r2d2/.config/nvim/lua/custom/mappings.lua
+echo "Removing the custom dir from the $HOME/.config/nvim/lua/custom/"
 rm -rf $HOME/.config/nvim/lua/custom/
+echo "Symbolic linking $DOTFILES/nvim to $HOME/.config/nvim/lua/custom/"
 ln -s $DOTFILES/nvim $HOME/.config/nvim/lua/custom
