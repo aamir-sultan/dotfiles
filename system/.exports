@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
-export PATH=$PATH:~/bin/bin;
+export PATH=$PATH:$HOME/bin/bin;
+export PATH=$PATH:$HOME/.local/des/bin;
 
 # Check if the DOTFILES is not set
 if [ -z "$DOTFILES" ]; then
