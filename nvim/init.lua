@@ -1,6 +1,6 @@
 -- Lines which load the legacy setting for the vim from old vimrc
 vim.cmd([[
-source ~/dotfiles/vim/.vimrc
+source ~/.vimrc
 ]])
 
 local opt = vim.opt
