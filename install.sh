@@ -1,7 +1,12 @@
 #!/usr/bin/bash
 
+# Check if the DOTFILES is not set
+if [ -z "$DOTFILES" ]; then
+    DOTFILES=`pwd`
+fi
+
 # Setup the initial environment for the total setup
-source ./system/.variables
+source $DOTFILES/system/.variables
 
 #Set the path of the bashrc in the ~/.bashrc if already not exists otherwise print the information
 if grep -q 'source ~/dotfiles/bash/.bashrc'  ~/.bashrc; then
@@ -22,7 +27,7 @@ fi
 # Dependencies installer script run
 #    source ./setup/dependencies_installer.sh
 # Vim plugin installer script run
-    source ./setup/vim_plugin_installer.sh
+    source $DOTFILES/setup/vim_plugin_installer.sh
 
 #Set the path of the bashrc in the ~/.vimrc if already not exists otherwise print the information
 touch ~/.tmux.conf
@@ -40,7 +45,7 @@ source $(realpath ${DOTFILES})"/setup/nvim_setup.sh"
 
 # Setups the git aliases
     touch ~/.gitconfig
-    source ./setup/git_setup.sh
+    source $DOTFILES/setup/git_setup.sh
 
 # Setup the .dircolors file
 DIRCOLORS=.dircolors
@@ -49,5 +54,5 @@ if test -f "$FILE_PATH"; then
     echo "$FILE_PATH exists."
 else
     echo "Copying $DIRCOLORS to $FILE_PATH"
-    cp ./system/$DIRCOLORS ~/
+    cp $DOTFILES/system/$DIRCOLORS ~/
 fi
