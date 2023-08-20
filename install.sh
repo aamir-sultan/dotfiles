@@ -1,10 +1,5 @@
 #!/usr/bin/bash
 
-# Check if the DOTFILES is not set
-if [ -z "$DOTFILES" ]; then
-    DOTFILES=`pwd`
-fi
-
 # Setup the initial environment for the total setup
 source $DOTFILES/system/.variables
 
@@ -13,7 +8,7 @@ if grep -q 'source ~/dotfiles/bash/.bashrc'  ~/.bashrc; then
     echo Path already set in $HOME/.bashrc
 else
     echo Setting the dotfiles bashrc path into ~/.bashrc    
-    echo 'source ~/dotfiles/bash/.bashrc' >> ~/.bashrc
+    echo "source $DOTFILES/bash/.bashrc" >> ~/.bashrc
 fi
 
 #Set the path of the bashrc in the ~/.vimrc if already not exists otherwise print the information

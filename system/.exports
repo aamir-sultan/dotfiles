@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 #
 export PATH=$PATH:~/bin/bin;
-export DOTFILES=~/dotfiles;
+
+# Check if the DOTFILES is not set
+if [ -z "$DOTFILES" ]; then
+# Set the DOTFILES path to the this script and one step beyond.
+    DOTFILES="$(dirname -- "${BASH_SOURCE[0]}")/../"
+fi
 
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000

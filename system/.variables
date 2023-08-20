@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-DOTFILES="$HOME/dotfiles/"
+# Check if the DOTFILES is not set
+if [ -z "$DOTFILES" ]; then
+# Set the DOTFILES path to the this script and one step beyond.
+    DOTFILES="$(dirname -- "${BASH_SOURCE[0]}")/../"
+fi
+
 TMUX_DEP_FILE="system/tmux_plugs.list"
 VIM_DEP_FILE="system/vim_plugs.list"
 
