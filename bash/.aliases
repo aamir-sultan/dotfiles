@@ -5,6 +5,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
@@ -18,14 +19,14 @@ alias g="git"
 # Likewise this, plus I'm always mistyping it...
 alias findy='find . -name'
 alias vb='vim ~/.bashrc'
-alias vd='vim ~/dotfiles'
+alias vd='vim $DOTFILES'
 alias sb='source ~/.bashrc'
 alias ta='tmux a'
 
 # Vim/NeoVim aliases
 alias nv='nvim'
 alias nvb='nvim ~/.bashrc'
-alias nvd='nvim ~/dotfiles'
+alias nvd='nvim $DOTFILES'
 
 # Alias to list all functions loaded into bash (that don't start with _). Also shows file it's defined in.
 alias functions='shopt -s extdebug;declare -F | grep -v "declare -f _" | declare -F $(awk "{print $3}") | column -t;shopt -u extdebug'
