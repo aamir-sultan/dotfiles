@@ -29,5 +29,6 @@
         lol = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
         last = log -1 HEAD --stat
         mergetest = "!f(){ git merge --no-commit --no-ff \"$1\"; git merge --abort; echo \"Merge aborted\"; };f "
+        mupmain=!git pull --recurse-submodules && git submodule update --init --recursive && git submodule foreach 'git checkout main && git pull origin main'
 [pull]
         rebase = false
