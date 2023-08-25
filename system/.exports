@@ -8,6 +8,7 @@ if [ -z "$DOTFILES" ]; then
 # Set the DOTFILES path to the this script and one step beyond.
     DOTFILES="$(dirname -- "${BASH_SOURCE[0]}")/../"
 fi
+export PATH=$PATH:$DOTFILES/bin;
 
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000
