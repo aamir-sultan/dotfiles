@@ -10,12 +10,14 @@ if [ -z "$DOTFILES" ]; then
 # Set the DOTFILES path to this script.
     DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 fi
+source $DOTFILES/system/.variables
 
 rm -rf ~/.config/nvim
 rm -rf ~/.config/nvim.bak
 rm -rf ~/.local/share/nvim
 # rm -rf ~/.gitconfig
 rm -rf ~/.dircolors
+rm -rf ~/.tmux
 
 PATTERN=`echo "source $DOTFILES/vim/.vimrc"`
 ESC_PATTERN=$(printf '%s\n' "$PATTERN" | sed -e 's/[\/&]/\\&/g')
@@ -48,3 +50,39 @@ while IFS= read -r line; do
   escaped_line=$(escape_for_regex "$line")
     sed -i "/$escaped_line/d" "$file_to_modify"
 done < "$file_to_check"
+
+
+cd $VIM_BUNDLE_PATH
+
+while read line
+do
+  if [[ "$line" =~ ^#.*$ ]] || [[ -z "$line" ]]
+  then
+    continue
+  fi
+  PLUGIN_NAME=$(echo $line | awk -F'CMD=' '{print $1}' | awk -F'[[:space:]]' '{print $1}')
+  CLONE_URL=$(echo $line | awk -F'CMD=' '{print $1}' | awk -F'[[:space:]]' '{print $2}')
+  DIR_NAME=$(echo $line | awk -F'CMD=' '{print $1}' | awk -F'[[:space:]]' '{print $3}')
+  CMD=$(echo $line | awk -F'CMD=' '{print $2}')
+  if [ -z "$DIR_NAME" ]; then
+    DIR_NAME=$PLUGIN_NAME
+    CLONE_PATH=$(eval "echo $VIM_BUNDLE_PATH/$DIR_NAME")
+  else
+    if echo $DIR_NAME | grep -q "CMD="; then
+      DIR_NAME=$PLUGIN_NAME
+      CLONE_PATH=$(eval "echo $VIM_BUNDLE_PATH/$DIR_NAME")
+    else
+      CLONE_PATH=$(eval "echo $DIR_NAME")
+    fi
+  fi
+
+  if [ -d $CLONE_PATH ]; then
+echo -------------------------------------------------------------------------------
+    echo Removing $DIR_NAME plugin for Vim
+    rm -rf $CLONE_PATH
+    echo Removed: $CLONE_PATH
+echo -------------------------------------------------------------------------------
+  fi
+done < $VIM_DEP_FILE_PATH
+
+cd -
