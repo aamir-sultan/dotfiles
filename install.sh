@@ -39,14 +39,30 @@ else
     echo "source-file $DOTFILES/tmux/.tmux.conf" >> ~/.tmux.conf
 fi
 
+
 # tmux plugin installer script run
 source $(realpath ${DOTFILES})"/setup/tmux_plugin_installer.sh"
 # Nvim Installation and setup
 source $(realpath ${DOTFILES})"/setup/nvim_setup.sh"
 
+#Set the path of the bashrc in the ~/.vimrc if already not exists otherwise print the information
+touch ~/.gitconfig
+if grep -q "\[include\]" ~/.gitconfig; then
+    echo "[include] already set in $HOME/.gitconfig"
+    if grep -q "  path = $DOTFILES/git/.git_aliases" ~/.gitconfig; then
+        echo Path already set in $HOME/.gitconfig
+    else
+        echo Setting the dotfiles .git_aliases path in ~/.gitconfig
+        echo "  path = $DOTFILES/git/.git_aliases" >> ~/.gitconfig
+    fi
+else
+    echo Setting the dotfiles .git_aliases path in ~/.gitconfig
+    echo -e "\n[include]" >> ~/.gitconfig
+    echo "  path = $DOTFILES/git/.git_aliases" >> ~/.gitconfig
+fi
 # Setups the git aliases
-    touch ~/.gitconfig
-    source $DOTFILES/setup/git_setup.sh
+    # touch ~/.gitconfig
+    # source $DOTFILES/setup/git_setup.sh
 
 # Setup the .dircolors file
 DIRCOLORS=.dircolors
