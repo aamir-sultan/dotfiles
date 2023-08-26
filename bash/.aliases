@@ -22,6 +22,7 @@ alias vb='vim ~/.bashrc'
 alias vd='vim $DOTFILES'
 alias sb='source ~/.bashrc'
 alias ta='tmux a'
+alias tst='tmux source-file ~/.tmux.conf'
 
 # Vim/NeoVim aliases
 alias nv='nvim'
