@@ -22,7 +22,7 @@ vim-airline                  https://github.com/vim-airline/vim-airline.git
 vim-airline-theme            https://github.com/vim-airline/vim-airline-themes
 rust-vim                     https://github.com/rust-lang/rust.vim.git               CMD=--depth=1
 vim-tmux                     https://github.com/tmux-plugins/vim-tmux.git
-vim-autoread                 https://github.com/djoshea/vim-autoread.git   
+# This is causing issues for Nerdtree vim-autoread                 https://github.com/djoshea/vim-autoread.git   
 nerdfont                     https://github.com/lambdalisue/nerdfont.vim.git
 # vim-devicons                 https://github.com/ryanoasis/vim-devicons.git
 # vim-startify                 https://github.com/mhinz/vim-startify
