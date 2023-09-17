@@ -14,7 +14,7 @@ do
   fi
   # echo "$line"
 
-  echo -------------------------------------------------------------------------------
+  c_echo "yellow" "-------------------------------------------------------------------------------"
   # SPLITS=$(echo $line | awk -F'[[:space:]]' '{print "PLUGIN_NAME="$1, "CLONE_URL="$2, "DIR_NAME="$3, "CLONE_PATH="$4}')
   PLUGIN_NAME=$(echo $line | awk -F'CMD=' '{print $1}' | awk -F'[[:space:]]' '{print $1}')
   CLONE_URL=$(echo $line | awk -F'CMD=' '{print $1}' | awk -F'[[:space:]]' '{print $2}')
@@ -56,7 +56,7 @@ do
     echo Working on $(basename $DIR_NAME) ...
     git clone $CMD $CLONE_URL $CLONE_PATH
   fi
-echo -------------------------------------------------------------------------------
+c_echo "yellow" "-------------------------------------------------------------------------------"
 done < $VIM_DEP_FILE_PATH
 
 echo Back to:

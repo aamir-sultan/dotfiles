@@ -6,6 +6,38 @@ if [ -z "$DOTFILES" ]; then
     DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 fi
 
+# Define a function for colored echo
+c_echo() {
+  local color="$1"
+  local message="$2"
+  local reset="\033[0m"  # Reset to default text color
+
+  case "$color" in
+    "red")
+      echo -e "\033[31m$message$reset"
+      ;;
+    "green")
+      echo -e "\033[32m$message$reset"
+      ;;
+    "yellow")
+      echo -e "\033[33m$message$reset"
+      ;;
+    "blue")
+      echo -e "\033[34m$message$reset"
+      ;;
+    "magenta")
+      echo -e "\033[35m$message$reset"
+      ;;
+    "cyan")
+      echo -e "\033[36m$message$reset"
+      ;;
+    *)
+      echo "Invalid color. Usage: colored_echo <color> <message>"
+      return 1
+      ;;
+  esac
+}
+
 # Setup the initial environment for the total setup
 source $DOTFILES/system/.variables
 
