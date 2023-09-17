@@ -40,7 +40,7 @@ else
 fi
 
 # tmux plugin installer script run
-# source $(realpath ${DOTFILES})"/setup/tmux_plugin_installer.sh"
+source $(realpath ${DOTFILES})"/setup/tmux_plugin_installer.sh"
 # Nvim Installation and setup
 source $(realpath ${DOTFILES})"/setup/nvim_setup.sh"
 
