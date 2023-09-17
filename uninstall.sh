@@ -19,6 +19,11 @@ rm -rf ~/.local/share/nvim
 rm -rf ~/.dircolors
 rm -rf ~/.tmux
 
+# Created by .vimrc for backup, undo and swap files.
+rm -rf ~/.vim/backup
+rm -rf ~/.vim/undo
+rm -rf ~/.vim/swp
+
 PATTERN=`echo "source $DOTFILES/vim/.vimrc"`
 ESC_PATTERN=$(printf '%s\n' "$PATTERN" | sed -e 's/[\/&]/\\&/g')
 sed -i "/$ESC_PATTERN/d" ~/.vimrc
