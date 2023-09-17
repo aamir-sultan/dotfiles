@@ -291,9 +291,22 @@ set smartcase
 
 " undofile tells Vim to create <FILENAME>.un~ files whenever you edit a file. These files contain undo information so you can undo previous actions even after you close and reopen a file.
 set undofile
-set undodir=~/.vim/_undo/
+set undodir=.undo/,~/.vim/undo/,/tmp//
+if !isdirectory($HOME . "/.vim/undo")
+    call mkdir($HOME . "/.vim/undo", "p", 0700)
+endif
 " Unset the undofile to not store the undo information
 " set noundofile
+
+if !isdirectory($HOME . "/.vim/backup")
+    call mkdir($HOME . "/.vim/backup", "p", 0700)
+endif
+set backupdir=.backup/,~/.vim/backup/,/tmp//
+
+if !isdirectory($HOME . "/.vim/swp")
+    call mkdir($HOME . "/.vim/swp", "p", 0700)
+endif
+set directory=.swp/,~/.vim/swp/,/tmp//
 
 
 " I can't remember a time when I didn't want to save a file after tabbing away from my editor (especially with version control and Vim's persistent undo):
