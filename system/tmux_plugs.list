@@ -3,10 +3,10 @@
 
 tpm                             https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # tmux                            https://github.com/nordtheme/tmux.git
-tmux-power                      https://github.com/wfxr/tmux-power.git
-tmux-sidebar                    https://github.com/tmux-plugins/tmux-sidebar
-htmux-fzf-session-switch        https://github.com/thuanowa/tmux-fzf-session-switch.git
-tmux-resurrect                  https://github.com/tmux-plugins/tmux-resurrect.git
-tmux-continuum                  https://github.com/tmux-plugins/tmux-continuum.git
-christoomey/vim-tmux-navigator  https://github.com/christoomey/vim-tmux-navigator.git
-dreamsofcode-io/catppuccin-tmux https://github.com/dreamsofcode-io/catppuccin-tmux.git 
+# tmux-power                      https://github.com/wfxr/tmux-power.git
+# tmux-sidebar                    https://github.com/tmux-plugins/tmux-sidebar
+# htmux-fzf-session-switch        https://github.com/thuanowa/tmux-fzf-session-switch.git
+# tmux-resurrect                  https://github.com/tmux-plugins/tmux-resurrect.git
+# tmux-continuum                  https://github.com/tmux-plugins/tmux-continuum.git
+# christoomey/vim-tmux-navigator  https://github.com/christoomey/vim-tmux-navigator.git
+# dreamsofcode-io/catppuccin-tmux https://github.com/dreamsofcode-io/catppuccin-tmux.git 
