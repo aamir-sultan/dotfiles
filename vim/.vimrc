@@ -291,6 +291,7 @@ set smartcase
 
 " undofile tells Vim to create <FILENAME>.un~ files whenever you edit a file. These files contain undo information so you can undo previous actions even after you close and reopen a file.
 set undofile
+set undodir=~/.vim/_undo/
 " Unset the undofile to not store the undo information
 " set noundofile
 
