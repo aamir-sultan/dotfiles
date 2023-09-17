@@ -37,6 +37,9 @@ sed -i "/$ESC_PATTERN/d" ~/.gitconfig
 PATTERN=`echo -e "  path = $DOTFILES/git/.git_aliases\n"`
 ESC_PATTERN=$(escape_for_regex "$PATTERN")
 sed -i "/$ESC_PATTERN/d" ~/.gitconfig
+PATTERN=`echo -e "  excludesfile = $DOTFILES/git/.gitignore\n"`
+ESC_PATTERN=$(escape_for_regex "$PATTERN")
+sed -i "/$ESC_PATTERN/d" ~/.gitconfig
 
 
 file_to_check=`echo "$DOTFILES/git/.git_aliases"`
