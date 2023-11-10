@@ -15,14 +15,20 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
+alias cpr='cp -vr'
+alias cpf='cp -rvf'
 
 # Likewise this, plus I'm always mistyping it...
 alias findy='find . -name'
 alias vb='vim ~/.bashrc'
 alias vd='vim $DOTFILES'
 alias sb='source ~/.bashrc'
+
+# Aliases for tmux - could be moved to separate file
 alias ta='tmux a'
 alias tst='tmux source-file ~/.tmux.conf'
+alias tas='tmux a; tmux source-file ~/.tmux.conf'
+
 
 # Vim/NeoVim aliases
 alias nv='nvim'
