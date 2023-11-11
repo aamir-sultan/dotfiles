@@ -144,7 +144,8 @@ symbolStyle="${bold}${white}"
 # symbolStyle="${bold}${black}"
 
 # Prompt Symbol
-promptSymbol="❯"
+# promptSymbol="❯"
+promptSymbol=">"
 # promptSymbol="\$"
 
 # Set the terminal title and prompt.
