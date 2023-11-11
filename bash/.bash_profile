@@ -6,6 +6,7 @@ export PATH="$HOME/bin:$PATH";
 # * ~/.extra can be used for other settings you don’t want to commit.
 for file in $DOTFILES/*/.{path,bash_prompt,exports,aliases,functions,extra}; do
         [ -r "$file" ] && [ -f "$file" ] && source "$file";
+        # [ -r "$file" ] && [ -f "$file" ] && source "$file" && echo $file;
     done;
     unset file;
 
