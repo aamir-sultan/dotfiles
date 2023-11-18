@@ -138,14 +138,15 @@ fi;
 
 # Prompt Symbol Color
 # symbolStyle="${bold}${orange}"
-symbolStyle="${bold}${white}"
+# symbolStyle="${bold}${white}"
+# symbolStyle="${bold}${green}"
 # symbolStyle="${bold}${violet}"
-# symbolStyle="${bold}${yellow}"
+symbolStyle="${bold}${yellow}"
 # symbolStyle="${bold}${black}"
 
 # Prompt Symbol
 # promptSymbol="❯"
-promptSymbol="${bold}${green}>"
+promptSymbol=">"
 # promptSymbol="\$"
 
 # Set the terminal title and prompt.
@@ -162,7 +163,8 @@ PS1+="\$(prompt_git \"\[${white}\] on \[${orange}\]\" \"\[${cyan}\]\")"; # Git r
 PS1+="\n";
 # PS1+="\[${white}\]${promptSymbol} \[${reset}\]"; # `$` (and reset color)
 PS1+="\[${symbolStyle}\]${promptSymbol} \[${reset}\]"; # `$` (and reset color)
-PS1+="\[${yellow}\]"; # Terminal stdout color
+# PS1+="\[${yellow}\]"; # Terminal stdout color
+PS1+="\[${green}\]"; # Terminal stdout color
 export PS1;
 
 PS2="\[${yellow}\]→ \[${reset}\]";
