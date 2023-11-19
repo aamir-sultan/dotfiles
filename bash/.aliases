@@ -18,6 +18,10 @@ alias g="git"
 alias cpr='cp -vr'
 alias cpf='cp -rvf'
 
+alias mkdir="mkdir -p"
+alias e="$EDITOR"
+alias v="$VISUAL"
+
 # Likewise this, plus I'm always mistyping it...
 alias findy='find . -name'
 alias vb='vim ~/.bashrc'
