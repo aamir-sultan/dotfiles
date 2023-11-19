@@ -1,20 +1,5 @@
 {
-    "git.autofetch": true,
-    "tabnine.experimentalAutoImports": true,
-    "GitLive.Issue tracker integration": "Disabled",
-    "cmake.configureOnOpen": false,
-    "editor.quickSuggestions": {
-        "other": true,
-        "comments": true,
-        "strings": true
-    },
-    
-    "editor.fontSize": 13,
-    "C_Cpp.updateChannel": "Insiders",
-    "remote.SSH.remotePlatform": {
-        "192.168.119.200": "linux"
-    },
-    
+    "editor.fontSize": 13,   
     "editor.largeFileOptimizations": false,
 
     // "workbench.colorCustomizations": {
@@ -181,25 +166,25 @@
 // Liked
 // "workbench.colorCustomizations": {
 //     "terminal.background": "#2E3435",
-//     // "terminal.foreground": "#D5C4A1",
-//     // "terminalCursor.background": "#D5C4A1",
-//     // "terminalCursor.foreground": "#D5C4A1",
-//     // "terminal.ansiBlack": "#282828",
-//     // "terminal.ansiBlue": "#83A598",
-//     // "terminal.ansiBrightBlack": "#665C54",
-//     // "terminal.ansiBrightBlue": "#83A598",
-//     // "terminal.ansiBrightCyan": "#8EC07C",
-//     // "terminal.ansiBrightGreen": "#B8BB26",
-//     // "terminal.ansiBrightMagenta": "#D3869B",
-//     // "terminal.ansiBrightRed": "#FB4934",
-//     // "terminal.ansiBrightWhite": "#FBF1C7",
-//     // "terminal.ansiBrightYellow": "#FABD2F",
-//     // "terminal.ansiCyan": "#8EC07C",
-//     // "terminal.ansiGreen": "#B8BB26",
-//     // "terminal.ansiMagenta": "#D3869B",
-//     // "terminal.ansiRed": "#FB4934",
-//     // "terminal.ansiWhite": "#D5C4A1",
-//     // "terminal.ansiYellow": "#FABD2F"
+//     "terminal.foreground": "#D5C4A1",
+//     "terminalCursor.background": "#D5C4A1",
+//     "terminalCursor.foreground": "#D5C4A1",
+//     "terminal.ansiBlack": "#282828",
+//     "terminal.ansiBlue": "#83A598",
+//     "terminal.ansiBrightBlack": "#665C54",
+//     "terminal.ansiBrightBlue": "#83A598",
+//     "terminal.ansiBrightCyan": "#8EC07C",
+//     "terminal.ansiBrightGreen": "#B8BB26",
+//     "terminal.ansiBrightMagenta": "#D3869B",
+//     "terminal.ansiBrightRed": "#FB4934",
+//     "terminal.ansiBrightWhite": "#FBF1C7",
+//     "terminal.ansiBrightYellow": "#FABD2F",
+//     "terminal.ansiCyan": "#8EC07C",
+//     "terminal.ansiGreen": "#B8BB26",
+//     "terminal.ansiMagenta": "#D3869B",
+//     "terminal.ansiRed": "#FB4934",
+//     "terminal.ansiWhite": "#D5C4A1",
+//     "terminal.ansiYellow": "#FABD2F"
 // },
 
 "terminalThemes.style": "Bespin (base16)",
@@ -289,5 +274,4 @@
     "terminal.ansiWhite": "#8A8986",
     "terminal.ansiYellow": "#F9EE98"
 },
-"git.ignoreLegacyWarning": true
 }
