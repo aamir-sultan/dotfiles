@@ -194,3 +194,6 @@ if ls --color > /dev/null 2>&1; then # GNU `ls`
 
                     # Print each PATH entry on a separate line
                     alias path='echo -e ${PATH//:/\\n}'
+
+# Include custom aliases
+[[ -f ~/.aliases.local ]] && source ~/.aliases.local
