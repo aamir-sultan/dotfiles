@@ -225,7 +225,7 @@ set autoindent
 "Sets the last typed command to appear in the last line of the VIM terminal
  set showcmd
  
- " Split to the right and split to down
+ " Split to the right and split to down -- which feels more natural
  set splitbelow splitright
 
  " Disable automatic commenting on newline:
@@ -256,7 +256,7 @@ set autoindent
  nnoremap <C-d> <C-d>zz
  nnoremap <C-u> <C-u>zz
 
- " Search and view in the middle
+" Search and view in the middle
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
@@ -272,18 +272,6 @@ set hidden
 vnoremap . :norm.<CR>
 
 set colorcolumn=110
-
-" disable the arrow keys in vim
-" nnoremap <up> <nop>
-" nnoremap <down> <nop>
-" nnoremap <left> <nop>
-" nnoremap <right> <nop>
-" inoremap <up> <nop>
-" inoremap <down> <nop>
-" inoremap <left> <nop>
-" inoremap <right> <nop>
-" nnoremap j gj
-" nnoremap k gk
 
 " ignorecase and smartcase together make Vim deal with case-sensitive search intelligently. If you search for an all-lowercase string your search will be case-insensitive, but if one or more characters is uppercase the search will be case-sensitive. Most of the time this does what you want.
 set ignorecase
@@ -314,4 +302,18 @@ au FocusLost * :wa
 
 " No swapfile since we have unlimited undo file now
 set noswapfile
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
+" Get off my lawn --  disable the arrow keys in vim
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+" Local config -- For addtional settings.
+if filereadable($HOME . "/.vimrc.local")
+  source ~/.vimrc.local
+endif
 " =====================================================================================
