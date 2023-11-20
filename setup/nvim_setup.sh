@@ -13,8 +13,10 @@ if [ -d $NVIM_PATH ]; then
   # git clone https://github.com/aamir-sultan/NvChad $NVIM_PATH --depth 1
   echo "Updating the NvChad to latest commit"
   echo "Changing path to $NVIM_PATH"
-  cd $NVIM_PATH; git pull; cd -
-  echo "Back to `pwd`"
+  cd $NVIM_PATH
+  git pull
+  cd -
+  echo "Back to $(pwd)"
 else
   echo Cloning NvChad to $(basename $NVIM_PATH) ...
   git clone https://github.com/aamir-sultan/NvChad $NVIM_PATH --depth 1

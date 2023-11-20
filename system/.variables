@@ -2,7 +2,7 @@
 
 # Check if the DOTFILES is not set
 if [ -z "$DOTFILES" ]; then
-# Set the DOTFILES path to the this script and one step beyond.
+    # Set the DOTFILES path to the this script and one step beyond.
     DOTFILES="$(dirname -- "${BASH_SOURCE[0]}")/../"
 fi
 
@@ -20,7 +20,6 @@ VIM_BUNDLE_PATH=$(eval "echo ~/.vim/bundle/")
 VIM_AUTOLOAD_PATH=$(eval "echo ~/.vim/autoload")
 echo "VIM_BUNDLE_PATH:    $VIM_BUNDLE_PATH"
 echo "VIM_AUTOLOAD_PATH:  $VIM_AUTOLOAD_PATH"
-
 
 TMUX_TPM_PATH=$(eval "echo ~/.tmux/plugins/")
 echo "TMUX_TPM_PATH:      $TMUX_TPM_PATH"

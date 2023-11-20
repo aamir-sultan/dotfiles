@@ -1,13 +1,11 @@
 #!/usr/bin/bash
 
 # Install the tmux plugin manager
-mkdir -p $TMUX_TPM_PATH && \
-cd $TMUX_TPM_PATH 
+mkdir -p $TMUX_TPM_PATH &&
+  cd $TMUX_TPM_PATH
 
-while read line
-do
-  if [[ "$line" =~ ^#.*$ ]] || [[ -z "$line" ]]
-  then
+while read line; do
+  if [[ "$line" =~ ^#.*$ ]] || [[ -z "$line" ]]; then
     continue
   fi
   # echo "$line"
@@ -54,7 +52,7 @@ do
     echo Working on $(basename $DIR_NAME) ...
     git clone $CMD $CLONE_URL $CLONE_PATH
   fi
-echo -------------------------------------------------------------------------------
-done < $TMUX_DEP_FILE_PATH
+  echo -------------------------------------------------------------------------------
+done <$TMUX_DEP_FILE_PATH
 echo Back to:
 cd -

@@ -1,15 +1,13 @@
 #!/usr/bin/bash
 
 # Install the pathogen plugin manager
-mkdir -p $VIM_AUTOLOAD_PATH $VIM_BUNDLE_PATH && \
-curl -LSso $VIM_AUTOLOAD_PATH/pathogen.vim https://tpo.pe/pathogen.vim
+mkdir -p $VIM_AUTOLOAD_PATH $VIM_BUNDLE_PATH &&
+  curl -LSso $VIM_AUTOLOAD_PATH/pathogen.vim https://tpo.pe/pathogen.vim
 
 cd $VIM_BUNDLE_PATH
 
-while read line
-do
-  if [[ "$line" =~ ^#.*$ ]] || [[ -z "$line" ]]
-  then
+while read line; do
+  if [[ "$line" =~ ^#.*$ ]] || [[ -z "$line" ]]; then
     continue
   fi
   # echo "$line"
@@ -56,8 +54,8 @@ do
     echo Working on $(basename $DIR_NAME) ...
     git clone $CMD $CLONE_URL $CLONE_PATH
   fi
-c_echo "yellow" "-------------------------------------------------------------------------------"
-done < $VIM_DEP_FILE_PATH
+  c_echo "yellow" "-------------------------------------------------------------------------------"
+done <$VIM_DEP_FILE_PATH
 
 echo Back to:
 cd -
