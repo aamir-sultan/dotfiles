@@ -26,27 +26,27 @@ rm -rf ~/.vim/swp
 
 PATTERN=$(echo "source $DOTFILES/vim/.vimrc")
 ESC_PATTERN=$(printf '%s\n' "$PATTERN" | sed -e 's/[\/&]/\\&/g')
-sed -i "/$ESC_PATTERN/d" ~/.vimrc
+sed -i "/$ESC_PATTERN/d" $VIMRC_PATH
 
 PATTERN=$(echo "source $DOTFILES/bash/.bashrc")
 ESC_PATTERN=$(printf '%s\n' "$PATTERN" | sed -e 's/[\/&]/\\&/g')
-sed -i "/$ESC_PATTERN/d" ~/.bashrc
+sed -i "/$ESC_PATTERN/d" $BASHRC_PATH
 
 PATTERN=$(echo "source-file $DOTFILES/tmux/.tmux.conf")
 ESC_PATTERN=$(printf '%s\n' "$PATTERN" | sed -e 's/[\/&]/\\&/g')
-sed -i "/$ESC_PATTERN/d" ~/.tmux.conf
+sed -i "/$ESC_PATTERN/d" $TMUXCONF_PATH
 
 PATTERN=$(echo -e "[include]\n")
 ESC_PATTERN=$(escape_for_regex "$PATTERN")
-sed -i "/$ESC_PATTERN/d" ~/.gitconfig
-PATTERN=$(echo -e "  path = $DOTFILES/git/.git_aliases\n")
+sed -i "/$ESC_PATTERN/d" $GITCONFIG_PATH
+PATTERN=$(echo -e "  path = $DOTFILES/git/gitconfig\n")
 ESC_PATTERN=$(escape_for_regex "$PATTERN")
-sed -i "/$ESC_PATTERN/d" ~/.gitconfig
-PATTERN=$(echo -e "  excludesfile = $DOTFILES/git/.gitignore\n")
+sed -i "/$ESC_PATTERN/d" $GITCONFIG_PATH
+PATTERN=$(echo -e "  excludesfile = $DOTFILES/git/gitignore_global\n")
 ESC_PATTERN=$(escape_for_regex "$PATTERN")
-sed -i "/$ESC_PATTERN/d" ~/.gitconfig
+sed -i "/$ESC_PATTERN/d" $GITCONFIG_PATH
 
-file_to_check=$(echo "$DOTFILES/git/.git_aliases")
+file_to_check=$(echo "$DOTFILES/git/gitaliases")
 file_to_modify=$(echo "$HOME/.gitconfig")
 
 while IFS= read -r line; do

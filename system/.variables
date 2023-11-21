@@ -6,6 +6,15 @@ if [ -z "$DOTFILES" ]; then
     DOTFILES="$(dirname -- "${BASH_SOURCE[0]}")/../"
 fi
 
+VIMRC_PATH=$(eval "echo ~/.vimrc")
+BASHRC_PATH=$(eval "echo ~/.bashrc")
+TMUXCONF_PATH=$(eval "echo ~/.tmux.conf")
+GITCONFIG_PATH=$(eval "echo ~/.gitconfig")
+echo "VIMRC_PATH:         $VIMRC_PATH"
+echo "BASHRC_PATH:        $BASHRC_PATH"
+echo "TMUXCONF_PATH:      $TMUXCONF_PATH"
+echo "GITCONFIG_PATH:     $GITCONFIG_PATH"
+
 TMUX_DEP_FILE="system/tmux_plugs.list"
 VIM_DEP_FILE="system/vim_plugs.list"
 

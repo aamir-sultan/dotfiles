@@ -1,0 +1,11 @@
+# Remember global gitignore cant use relatively the other files. It needs to used with absolute path or
+# path extended from home.
+[core]
+  editor = /usr/bin/vim
+
+[credential]
+  helper = cache --timeout=360000
+
+[include]
+  path = gitaliases
+  path = ~/.gitconfig.local
