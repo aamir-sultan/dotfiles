@@ -23,10 +23,10 @@ local function enable_wayland()
     if session == "hyprland" then
         return true
     end
-    -- local wayland = os.getenv("XDG_SESSION_TYPE")
-    -- if wayland == "wayland" then
-    -- 	return true
-    -- end
+    local wayland = os.getenv("XDG_SESSION_TYPE")
+    if wayland == "wayland" then
+    	return true
+    end
     return false
 end
 
@@ -188,6 +188,7 @@ config.check_for_updates = false -- Wezterm checks regularly if there is a new s
 config.use_ime = true --  The Input Method Editor (IME) is useful for inputting kanji or other text.
 config.ime_preedit_rendering = "Builtin" --  (Default) IME preedit is rendered by WezTerm itself
 config.use_dead_keys = false -- Is normally usefull incase of diacritic. Not recommended for vi users.
+config.treat_left_ctrlalt_as_altgr = true -- Windows treat ctrl+alt as altgr -- Test in different conditions.
 config.warn_about_missing_glyphs = false
 config.animation_fps = 1 -- Controls the maximum frame rate used when rendering easing effects for blinking cursors, blinking text and visual bell.
 -- Check for further options https://wezfurlong.org/wezterm/config/lua/config/visual_bell.html
@@ -240,6 +241,8 @@ config.enable_wayland = enable_wayland() -- This option is only considered on X1
 --     break
 --   end
 -- end
+
+config.debug_key_events = true -- Is used for debugging the key events produced by the keys
 
 -- Defines rules to match text from the terminal output and generate clickable links.
 config.hyperlink_rules = { -- Matches: a URL in parens: (URL)
@@ -314,14 +317,10 @@ tmux_keybinds = {
 	{ key = "j", mods = "ALT", action = act({ CloseCurrentTab = { confirm = true } }) },
 	{ key = "h", mods = "ALT", action = act({ ActivateTabRelative = -1 }) },
 	{ key = "l", mods = "ALT", action = act({ ActivateTabRelative = 1 }) },
-	{ key = "h", mods = "ALT|CTRL", action = act({ MoveTabRelative = -1 }) },
-	{ key = "l", mods = "ALT|CTRL", action = act({ MoveTabRelative = 1 }) },
+	-- { key = "h", mods = "ALT|CTRL", action = act({ MoveTabRelative = -1 }) },
+	-- { key = "l", mods = "ALT|CTRL", action = act({ MoveTabRelative = 1 }) },
 	--{ key = "k", mods = "ALT|CTRL", action = act.ActivateCopyMode },
-	{
-		key = "k",
-		mods = "ALT|CTRL",
-		action = act.Multiple({ act.CopyMode("ClearSelectionMode"), act.ActivateCopyMode, act.ClearSelection }),
-	},
+	{ key = "k", mods = "ALT|CTRL", action = act.Multiple({ act.CopyMode("ClearSelectionMode"), act.ActivateCopyMode, act.ClearSelection }) },
 	{ key = "j", mods = "ALT|CTRL", action = act({ PasteFrom = "PrimarySelection" }) },
 	{ key = "1", mods = "ALT", action = act({ ActivateTab = 0 }) },
 	{ key = "2", mods = "ALT", action = act({ ActivateTab = 1 }) },
@@ -406,26 +405,16 @@ default_keybinds = {
 }
 
 key_bindings = { -- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
--- {
---     key = 'LeftArrow',
---     mods = 'OPT',
---     action = act.SendString '\x1bb'
--- }, -- Make Option-Right equivalent to Alt-f; forward-word
--- {
---     key = 'RightArrow',
---     mods = 'OPT',
---     action = act.SendString '\x1bf'
--- },
-{
-    key = 'Backspace',
-    mods = 'CTRL',
-    action = act.SendString '\x7F'
-}}
+-- bashrc has the kill-backward commands now which covers us in most terminals. Should not be made specific to
+-- wezterm. The shortcuts are here incase needed in future.
+-- { key = 'Backspace', mods = 'CTRL', action = act.SendKey {key = 'Backspace', mods = 'ALT'} } -- most Linux shells use Alt + backspace instead for word backspace
+-- { key = 'Backspace', mods = 'CTRL', action = act.SendKey {key = 'w', mods = 'CTRL'} } -- most Linux shells use Alt + backspace instead for word backspace
+}
 
 function create_keybinds()
   local merged_table
 	merged_table = merge_lists(default_keybinds, tmux_keybinds)
-	-- merged_table = merge_lists(merged_table, key_bindings)
+	merged_table = merge_lists(merged_table, key_bindings)
   return merged_table
 end
 
@@ -613,6 +602,7 @@ config.launch_menu = launch_menu
 config.mouse_bindings = mouse_bindings
 config.keys = create_keybinds()
 config.key_tables = key_tables
+-- config.action = act
 
 -- and finally, return the configuration to wezterm
 return config
