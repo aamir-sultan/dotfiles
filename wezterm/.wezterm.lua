@@ -107,7 +107,8 @@ end
 -- config.color_scheme = 'Ayu Dark'
 -- config.color_scheme = 'ayu'
 -- config.color_scheme = 'Batman'
-config.color_scheme = "nordfox"
+-- config.color_scheme = "nordfox"
+config.color_scheme = "Hardcore"
 config.font = wezterm.font_with_fallback {{
     family = 'JetBrains Mono',
     weight = 'Medium',
