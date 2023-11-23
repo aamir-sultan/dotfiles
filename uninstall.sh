@@ -5,6 +5,29 @@ escape_for_regex() {
   echo "$1" | sed -e 's/[][\\/.^$*]/\\&/g'
 }
 
+# Function for the ini file entry like [core] [include] in case there is no line below them
+remove_line_if_trailing_line_is_empty() {
+  pattern="$1"
+  file="$2"
+
+  TMP_FILE=$(mktemp)
+
+  match_pattern=$(grep -i "$pattern" "$file")
+  match_trailing_line=$(grep -A1 "$pattern" "$file" | grep -v "$pattern" | grep -v -E '^$')
+
+  if [ "$match_pattern" != "" ] && [ "$match_trailing_line" == "" ]; then # If pattern matched and next line is empty
+    grep -v "$pattern" "$file" >$TMP_FILE
+    # sed -i -e :a -e '/^\n*$/{$d;N;ba' -e '}' $TMP_FILE # Remove the trailing empty lines in the file.
+    sed -i -e '/^$/N;/^\n$/D' $TMP_FILE # Remove one empty line from two consecutive empty lines
+    mv $TMP_FILE $file
+  fi
+}
+
+reduce_empty_lines() {
+  FILE=$1
+  sed -i -e '/^$/N;/^\n$/D' $FILE # Remove one empty line from two consecutive empty lines
+}
+
 # Check if the DOTFILES is not set
 if [ -z "$DOTFILES" ]; then
   # Set the DOTFILES path to this script.
@@ -36,15 +59,20 @@ PATTERN=$(echo "source-file $DOTFILES/tmux/.tmux.conf")
 ESC_PATTERN=$(printf '%s\n' "$PATTERN" | sed -e 's/[\/&]/\\&/g')
 sed -i "/$ESC_PATTERN/d" $TMUXCONF_PATH
 
-PATTERN=$(echo -e "[include]\n")
-ESC_PATTERN=$(escape_for_regex "$PATTERN")
-sed -i "/$ESC_PATTERN/d" $GITCONFIG_PATH
 PATTERN=$(echo -e "  path = $DOTFILES/git/gitconfig\n")
 ESC_PATTERN=$(escape_for_regex "$PATTERN")
 sed -i "/$ESC_PATTERN/d" $GITCONFIG_PATH
 PATTERN=$(echo -e "  excludesfile = $DOTFILES/git/gitignore_global\n")
 ESC_PATTERN=$(escape_for_regex "$PATTERN")
 sed -i "/$ESC_PATTERN/d" $GITCONFIG_PATH
+
+PATTERN=$(echo -e "[include]\n")
+ESC_PATTERN=$(escape_for_regex "$PATTERN")
+remove_line_if_trailing_line_is_empty $ESC_PATTERN $GITCONFIG_PATH
+
+PATTERN=$(echo -e "[core]\n")
+ESC_PATTERN=$(escape_for_regex "$PATTERN")
+remove_line_if_trailing_line_is_empty $ESC_PATTERN $GITCONFIG_PATH
 
 file_to_check=$(echo "$DOTFILES/git/gitaliases")
 file_to_modify=$(echo "$HOME/.gitconfig")

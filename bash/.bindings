@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+
+# bind '"\C-H":backward-kill-word' # It is such a common binding that almost every program supports it but the
+# emulator has issues with this. This backspace a complete word with ctrl+backspace.
+bind '"\C-H":"\C-w"' # This is a better alternative to above binding. It deletes a complete word till space.
