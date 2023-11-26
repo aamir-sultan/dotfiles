@@ -10,7 +10,6 @@ vim-sensible                 https://github.com/tpope/vim-sensible.git
 vim-fugitive                 https://github.com/tpope/vim-fugitive.git
 fzf.vim                      https://github.com/junegunn/fzf.vim.git 
 fzf                          https://github.com/junegunn/fzf.git                     fzf CMD=--depth 1
-vim-SystemVerilog            https://github.com/WeiChungWu/vim-SystemVerilog.git
 Fox.vim                      https://github.com/AxolotlC/Fox.vim.git
 vim-material-theme           https://github.com/jdkanani/vim-material-theme.git
 nerdtree                     https://github.com/preservim/nerdtree.git
@@ -20,6 +19,7 @@ vim-gitgutter                https://github.com/airblade/vim-gitgutter.git
 vim-atom-dark                https://github.com/gosukiwi/vim-atom-dark.git
 vim-airline                  https://github.com/vim-airline/vim-airline.git
 vim-airline-theme            https://github.com/vim-airline/vim-airline-themes
+vim-SystemVerilog            https://github.com/WeiChungWu/vim-SystemVerilog.git
 rust-vim                     https://github.com/rust-lang/rust.vim.git               CMD=--depth=1
 vim-tmux                     https://github.com/tmux-plugins/vim-tmux.git
 # This is causing issues for Nerdtree vim-autoread                 https://github.com/djoshea/vim-autoread.git   
