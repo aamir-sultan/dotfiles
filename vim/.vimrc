@@ -59,6 +59,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 let NERDTreeMapOpenInTab='<C-t>'
 let NERDTreeMapOpenInTabSilent='<S-t>'
 
+" Position the nerdtree on the right side of the vim window.
 let g:NERDTreeWinPos = "right"
 
  "airline and airline theme settings
@@ -68,12 +69,12 @@ let g:NERDTreeWinPos = "right"
  let g:airline#extensions#branch#enabled=1
  let g:airline_powerline_fonts = 1
  "Futher available list of the themes can be seen from https://github.com/vim-airline/vim-airline-themes/tree/master/autoload/airline/themes
- "let g:airline_theme='cool'
- "let g:airline_theme='deus'
- let g:airline_theme='night_owl'
- "let g:airline_theme='onedark'
+"  let g:airline_theme='cool'
+"  let g:airline_theme='deus'
+"  let g:airline_theme='night_owl'
+"  let g:airline_theme='onedark'
  "let g:airline_theme='papercolor'
- "let g:airline_theme='raven'
+ let g:airline_theme='raven'
  "let g:airline_theme='simple'
  "let g:airline_theme='soda
  "let g:airline_theme='solarized'
