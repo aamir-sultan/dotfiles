@@ -25,6 +25,12 @@
   last = log -1 HEAD --stat
   mergetest = "!f(){ git merge --no-commit --no-ff \"$1\"; git merge --abort; echo \"Merge aborted\"; };f "
   subsyncmain = !git pull --recurse-submodules && git submodule update --init --recursive && git submodule foreach 'git checkout main && git pull origin main'
+  # push new branch - push a branch to origin and set upstream
+  pnb = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
+  # show all deleted files in the repo
+  deleted = "!git log --diff-filter=D --summary | grep delete"
+  # create an empty commit
+  empty = commit --allow-empty
 
 [pull]
   rebase = false
