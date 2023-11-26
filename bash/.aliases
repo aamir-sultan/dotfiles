@@ -30,8 +30,13 @@ alias sb='source ~/.bashrc'
 
 # Aliases for tmux - could be moved to separate file
 alias ta='tmux a'
+# alias ta="tmux attach -t"
 alias tst='tmux source-file ~/.tmux.conf'
 alias tas='tmux a; tmux source-file ~/.tmux.conf'
+alias tn="tmux new -s"
+alias td="tmux detach"
+alias tls='tmux ls'
+alias tk='tmux kill-session -t'
 
 # Vim/NeoVim aliases
 alias nv='nvim'
