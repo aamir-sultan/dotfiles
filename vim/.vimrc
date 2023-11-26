@@ -8,7 +8,46 @@
 " =====================================================================================
 if !has("nvim")
 " ------------------------------------------------------------------------------------- 
-execute pathogen#infect()
+" Plugins installation with vim-plug
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+
+Plug 'arcticicestudio/nord-vim'
+Plug 'noahfrederick/vim-noctu'
+Plug 'frazrepo/vim-rainbow'
+Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-sensible'
+" Plug 'vim-syntastic/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'AxolotlC/Fox.vim'
+Plug 'jdkanani/vim-material-theme'
+Plug 'preservim/nerdtree',
+Plug 'morhetz/gruvbox'
+Plug 'jnurmine/Zenburn'
+Plug 'airblade/vim-gitgutter'
+Plug 'gosukiwi/vim-atom-dark'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'rust-lang/rust.vim'
+Plug 'WeiChungWu/vim-SystemVerilog'
+Plug 'tmux-plugins/vim-tmux'
+" Plug 'djoshea/vim-autoread'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'ervandew/supertab', { 'dir': '~/.vim/pack/plugins/start/supertab' }
+Plug 'easymotion/vim-easymotion'
+" Initialize plugin system
+" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+call plug#end()
+
+" execute pathogen#infect()
 "filetype plugin indent on
  " colorscheme darkblue
  " colorscheme koehler
@@ -24,16 +63,22 @@ execute pathogen#infect()
   let g:gruvbox_contrast_dark = 'medium'
   let g:gruvbox_transparent_bg = '1'
   " let g:gruvbox_italic = '1'
-  colorscheme gruvbox
+  silent! colorscheme gruvbox
 
 " Nerdtree Settings
  let NERDTreeShowHidden=1
-" New Settings for starting Vim with NERDTree
- autocmd StdinReadPre * let s:std_in=1
- autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | 
-       \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | NERDTree |
-             \ elseif argc() > 0 || exists("s:std_in") | wincmd p |
-             \ elseif argc() == 0 && !exists('s:std_in') | NERDTree | endif 
+
+" Start NERDTree when Vim starts with a directory argument.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | NERDTreeFocus | endif
+    
+" " New Settings for starting Vim with NERDTree
+"  autocmd StdinReadPre * let s:std_in=1
+"  autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | 
+"        \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | NERDTree |
+"              \ elseif argc() > 0 || exists("s:std_in") | wincmd p |
+"              \ elseif argc() == 0 && !exists('s:std_in') | NERDTree | endif 
 
        " \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | execute 'NERDTree' argv()[0] |
 " Old Setting for starting vim with NERDTree
