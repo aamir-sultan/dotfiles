@@ -49,7 +49,7 @@ else
   echo "source $DOTFILES/bash/.bashrc" >>~/.bashrc
 fi
 
-#Set the path of the bashrc in the ~/.vimrc if already not exists otherwise print the information
+#Set the path of the dotfiles/.vimrc in the ~/.vimrc if already not exists otherwise print the information
 touch ~/.vimrc
 if grep -q "source $DOTFILES/vim/.vimrc" ~/.vimrc; then
   echo Path already set in $HOME/.vimrc
