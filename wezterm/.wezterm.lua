@@ -100,6 +100,9 @@ local function split_from_url(dir)
     return hostname, cwd
 end
 
+---------------------------------------------------------------
+--- Configurations settings and switches.
+---------------------------------------------------------------
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
@@ -109,75 +112,110 @@ end
 -- config.color_scheme = 'Batman'
 -- config.color_scheme = "nordfox"
 config.color_scheme = "Hardcore"
-config.font = wezterm.font_with_fallback {{
-    family = 'JetBrains Mono',
-    weight = 'Medium',
-    style = 'Italic',
-    harfbuzz_features = {'calt=0', 'clig=0', 'liga=0'}
-}, {
-    family = 'Terminus',
-    weight = 'Bold'
-}, 'Noto Color Emoji'}
+-- config.cell_width	= 1.05  -- Set this to increase the charachter spacing in the terminal.
+config.cell_width	= 1.01  -- Set this to in/decrease the charachter spacing in the terminal.
+config.line_height	= 1.0  -- Set this to in/decrease the charachter height in the terminal.
+config.font_size 	= 11.0
+config.font = wezterm.font_with_fallback {
+	{
+		family = 'Monaspace Argon',
+		weight = 'Medium',
+		-- weight = 'Bold',
+		style = 'Italic',
+		-- stretch = 'UltraExpanded',
+		-- stretch = 'Expanded',
+		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
+	},
+	{
+	    family = 'Monaspace Neon',
+	    weight = 'Medium',
+	    style = 'Italic',
+	    harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
+	},
+	{
+		family = 'Monaspace Xenon',
+		weight = 'Medium',
+		style = 'Italic',
+		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
+	},
+	{
+		family = 'Monaspace Radon',
+		weight = 'Medium',
+		style = 'Italic',
+		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
+	},
+	{
+		family = 'Monaspace Krypton',
+		weight = 'Medium',
+		style = 'Italic',
+		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
+	},
+	{
+		family = 'JetBrains Mono',
+		weight = 'Medium',
+		style = 'Italic',
+		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
+	}, {
+		family = 'Terminus',
+		weight = 'Bold'
+	}, 'Noto Color Emoji'}
 
 -- Background Settings
--- config.window_background_gradient = {
---   -- Can be "Vertical" or "Horizontal".  Specifies the direction
---   -- in which the color gradient varies.  The default is "Horizontal",
---   -- with the gradient going from left-to-right.
---   -- Linear and Radial gradients are also supported; see the other
---   -- examples below
---   orientation = 'Vertical',
-
---   -- Specifies the set of colors that are interpolated in the gradient.
---   -- Accepts CSS style color specs, from named colors, through rgb
---   -- strings and more
---   colors = {
---     '#0f0c29',
---     '#302b63',
---     '#24243e',
---   },
-
---   -- Instead of specifying `colors`, you can use one of a number of
---   -- predefined, preset gradients.
---   -- A list of presets is shown in a section below.
---   -- preset = "Warm",
-
---   -- Specifies the interpolation style to be used.
---   -- "Linear", "Basis" and "CatmullRom" as supported.
---   -- The default is "Linear".
---   interpolation = 'Linear',
-
---   -- How the colors are blended in the gradient.
---   -- "Rgb", "LinearRgb", "Hsv" and "Oklab" are supported.
---   -- The default is "Rgb".
---   blend = 'Rgb',
-
---   -- To avoid vertical color banding for horizontal gradients, the
---   -- gradient position is randomly shifted by up to the `noise` value
---   -- for each pixel.
---   -- Smaller values, or 0, will make bands more prominent.
---   -- The default value is 64 which gives decent looking results
---   -- on a retina macbook pro display.
---   -- noise = 64,
-
---   -- By default, the gradient smoothly transitions between the colors.
---   -- You can adjust the sharpness by specifying the segment_size and
---   -- segment_smoothness parameters.
---   -- segment_size configures how many segments are present.
---   -- segment_smoothness is how hard the edge is; 0.0 is a hard edge,
---   -- 1.0 is a soft edge.
-
---   -- segment_size = 11,
---   -- segment_smoothness = 0.0,
--- }
-
-config.window_background_image = 'D://Mega//backgrounds//2184.jpg' -- Background image path
+-- config.window_background_image = 'D://Mega//backgrounds//2184.jpg' -- Background image path
 config.window_background_opacity = .98 -- Background transparency = 0 and opacity = 1
 config.text_background_opacity = 0.3 -- The image content can have relatively low contrast with respect to the text.
-config.window_background_image_hsb = { -- Will implicitly prepend a layer to the background configuration
-    brightness = 0.1, -- Darken the background image by reducing it to 1/3rd
-    hue = 1.0, -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
-    saturation = 1.0 -- You can adjust the saturation also.
+-- config.window_background_image_hsb = { -- Will implicitly prepend a layer to the background configuration
+--     brightness = 0.1, -- Darken the background image by reducing it to 1/3rd
+--     hue = 1.0, -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
+--     saturation = 1.0 -- You can adjust the saturation also.
+-- }
+local hsb_dimmer = { -- Will implicitly prepend a layer to the background configuration
+brightness = 0.1, -- Darken the background image by reducing it to 1/3rd
+hue = 1.0, -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
+saturation = 1.0 -- You can adjust the saturation also.
+}
+-- config.window_background_image_hsb = hsb_dimmer -- Will implicitly prepend a layer to the background configuration
+
+config.background = {
+	-- This is the deepest/back-most layer. It will be rendered first
+	{
+	  source  = {
+		File    = 'D://Mega//backgrounds//2184.jpg',
+	  },
+	  -- The texture tiles vertically but not horizontally.
+	  -- When we repeat it, mirror it so that it appears "more seamless".
+	  -- An alternative to this is to set `width = "100%"` and have
+	  -- it stretch across the display
+	--   repeat_x 	= 'Mirror',
+		repeat_x 	= 'NoRepeat',
+	  hsb 		  = hsb_dimmer,
+    opacity   = 0.98,
+	  -- When the viewport scrolls, move this layer 10% of the number of
+	  -- pixels moved by the main viewport. This makes it appear to be
+	  -- further behind the text.
+	  attachment = "Fixed",
+	},
+	-- Subsequent layers are rendered over the top of each other
+	{
+	  source  = {
+		File    = 'D://Mega//backgrounds//assets//blob_blue.gif',
+	  },
+	  width 	    = '100%',
+	  repeat_x 	  = 'NoRepeat',
+  
+	  -- position the spins starting at the bottom, and repeating every
+	  -- two screens.
+	  vertical_align 	  = 'Middle',
+	  -- repeat_y_size 	  = '300%',
+	  hsb 				      = hsb_dimmer,
+    opacity           = 0.2,
+    height            = 'Contain',
+  
+	  -- The parallax factor is higher than the background layer, so this
+	  -- one will appear to be closer when we scroll
+	  -- attachment = { Parallax = 0.1 },
+    attachment = "Fixed",
+	},
 }
 
 -- Additional Settings
@@ -190,16 +228,24 @@ config.ime_preedit_rendering = "Builtin" --  (Default) IME preedit is rendered b
 config.use_dead_keys = false -- Is normally usefull incase of diacritic. Not recommended for vi users.
 config.treat_left_ctrlalt_as_altgr = true -- Windows treat ctrl+alt as altgr -- Test in different conditions.
 config.warn_about_missing_glyphs = false
-config.animation_fps = 1 -- Controls the maximum frame rate used when rendering easing effects for blinking cursors, blinking text and visual bell.
 -- Check for further options https://wezfurlong.org/wezterm/config/lua/config/visual_bell.html
+-- config.visual_bell = {
+-- 		fade_in_function = "EaseIn",
+-- 		fade_in_duration_ms = 150,
+-- 		fade_out_function = "EaseOut",
+-- 		fade_out_duration_ms = 150,
+-- 	}
+	
+-- Cursor Settings
+config.default_cursor_style = 'SteadyUnderline' -- Acceptable values are SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, and BlinkingBar
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 0
+config.animation_fps = 1 -- Controls the maximum frame rate used when rendering easing effects for blinking cursors, blinking text and visual bell.
 -- config.visual_bell = {
--- 	fade_in_function = "EaseIn",
--- 	fade_in_duration_ms = 150,
--- 	fade_out_function = "EaseOut",
--- 	fade_out_duration_ms = 150,
+--   fade_in_duration_ms = 75,
+--   fade_out_duration_ms = 75,
+--   target = 'CursorColor',
 -- }
 
 -- config.color_scheme_dirs = { os.getenv("HOME") .. "/.config/wezterm/colors/" }
@@ -218,15 +264,10 @@ config.tab_bar_at_bottom = false -- When true, the tab bar will be rendered at t
 config.window_close_confirmation = "AlwaysPrompt" -- Set this to "NeverPrompt" if you don't like confirming closing windows every time.
 -- config.enable_csi_u_key_encoding = true -- Not recommended to enable this option as it does change the behavior of some keys in backwards incompatible ways
 config.allow_win32_input_mode = true -- Not recommended to enable this option as it does change the behavior of some keys in backwards incompatible ways
-config.leader = { -- leader key is a a modal modifier key. Just like vi/Vim/Nvim.
-    key = "Space",
-    mods = "CTRL|SHIFT"
-}
--- config.keys = keybinds.create_keybinds()
--- config.key_tables = keybinds.key_tables
--- config.mouse_bindings = keybinds.mouse_bindings
--- https://github.com/wez/wezterm/issues/2756
-config.front_end = "WebGpu" -- Other options are CPU based "Software", GPU based "OpenGL".
+
+-- config.front_end = "WebGpu" -- Other options are CPU based "Software", GPU based "OpenGL".
+-- config.front_end = "Software" -- Other options are CPU based "Software", GPU based "OpenGL".
+config.front_end = "OpenGL" -- Other options are CPU based "Software", GPU based "OpenGL".
 config.webgpu_preferred_adapter = gpus[1] -- Specifies which WebGpu adapter should be used. Only applicable when you have configured front_end = "WebGpu"
 config.max_fps = 60 -- Limits the maximum number of frames per second that wezterm will attempt to draw.
 config.enable_wayland = enable_wayland() -- This option is only considered on X11/Wayland systems and has no effect on macOS or Windows.
@@ -242,6 +283,7 @@ config.enable_wayland = enable_wayland() -- This option is only considered on X1
 --   end
 -- end
 
+config.native_macos_fullscreen_mode = true -- Remove the title bar from the top
 config.debug_key_events = true -- Is used for debugging the key events produced by the keys
 
 -- Defines rules to match text from the terminal output and generate clickable links.
@@ -312,11 +354,19 @@ table.insert(launch_menu, {
 ---------------------------------------------------------------
 --- keybinds
 ---------------------------------------------------------------
+config.leader = { -- leader key is a a modal modifier key. Just like vi/Vim/Nvim.
+    key = "Space",
+    mods = "CTRL|SHIFT"
+}
+
 tmux_keybinds = {
-	{ key = "k", mods = "ALT", action = act({ SpawnTab = "CurrentPaneDomain" }) },
-	{ key = "j", mods = "ALT", action = act({ CloseCurrentTab = { confirm = true } }) },
+  -- Idea is to use ALT key with wezterm and CTRL+ALT in TMUX but some exceptions are there.
+	{ key = "j", mods = "ALT", action = act({ SpawnTab = "CurrentPaneDomain" }) }, -- Alternative is ALT+t
+	{ key = "k", mods = "ALT", action = act({ CloseCurrentTab = { confirm = true } }) }, -- k for kill
 	{ key = "h", mods = "ALT", action = act({ ActivateTabRelative = -1 }) },
 	{ key = "l", mods = "ALT", action = act({ ActivateTabRelative = 1 }) },
+	{ key = "LeftArrow", mods = "ALT", action = act({ ActivateTabRelative = -1 }) },
+	{ key = "RightArrow", mods = "ALT", action = act({ ActivateTabRelative = 1 }) },
 	-- { key = "h", mods = "ALT|CTRL", action = act({ MoveTabRelative = -1 }) },
 	-- { key = "l", mods = "ALT|CTRL", action = act({ MoveTabRelative = 1 }) },
 	--{ key = "k", mods = "ALT|CTRL", action = act.ActivateCopyMode },
@@ -343,12 +393,15 @@ tmux_keybinds = {
 	{ key = "j", mods = "ALT|SHIFT|CTRL", action = act({ AdjustPaneSize = { "Down", 1 } }) },
 	{ key = "Enter", mods = "ALT", action = "QuickSelect" },
 	{ key = "/", mods = "ALT", action = act.Search("CurrentSelectionOrEmptyString") },
+	{ key = "m", mods = "ALT", action = act.ToggleFullScreen },
 }
 
 default_keybinds = {
 	{ key = "c", mods = "CTRL|SHIFT", action = act({ CopyTo = "Clipboard" }) },
 	{ key = "v", mods = "CTRL|SHIFT", action = act({ PasteFrom = "Clipboard" }) },
 	{ key = "Insert", mods = "SHIFT", action = act({ PasteFrom = "PrimarySelection" }) },
+  	{ key = 't', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' }, -- CTRL+t is set for fzf
+  	{ key = 'P', mods = 'CTRL|SHIFT', action = act.ActivateCommandPalette},
 	{ key = "=", mods = "CTRL", action = "ResetFontSize" },
 	{ key = "+", mods = "CTRL|SHIFT", action = "IncreaseFontSize" },
 	{ key = "-", mods = "CTRL", action = "DecreaseFontSize" },
@@ -362,33 +415,13 @@ default_keybinds = {
 	{ key = "q", mods = "ALT", action = act({ CloseCurrentPane = { confirm = true } }) },
 	{ key = "x", mods = "ALT", action = act({ CloseCurrentPane = { confirm = true } }) },
 	{ key = "a", mods = "ALT", action = wezterm.action.ShowLauncher },
-	{ key = " ", mods = "ALT", action = wezterm.action.ShowTabNavigator },
+	{ key = "Space", mods = "ALT", action = wezterm.action.ShowTabNavigator },
 	{ key = "d", mods = "ALT|SHIFT", action = wezterm.action.ShowDebugOverlay },
-	{
-		key = "r",
-		mods = "ALT",
-		action = act({
-			ActivateKeyTable = {
-				name = "resize_pane",
-				one_shot = false,
-				timeout_milliseconds = 3000,
-				replace_current = false,
-			},
-		}),
-	},
-	{ key = "s", mods = "ALT", action = act.PaneSelect({
-		alphabet = "1234567890",
-	}) },
-	{
-		key = "`",
-		mods = "ALT",
-		action = act.RotatePanes("CounterClockwise"),
-	},
+	{ key = "r", mods = "ALT", action = act({ ActivateKeyTable = { name = "resize_pane", one_shot = false, timeout_milliseconds = 3000, replace_current = false,},}),},
+	{ key = "s", mods = "ALT", action = act.PaneSelect({alphabet = "1234567890"}) },
+	{ key = "`", mods = "ALT", action = act.RotatePanes("CounterClockwise") },
 	{ key = "`", mods = "ALT|SHIFT", action = act.RotatePanes("Clockwise") },
-	{
-		key = "E",
-		mods = "ALT|SHIFT",
-		action = act.PromptInputLine({
+	{ key = "E", mods = "ALT|SHIFT", action = act.PromptInputLine({
 			description = "Enter new name for tab",
 			-- selene: allow(unused_variable)
 			---@diagnostic disable-next-line: unused-local
@@ -404,7 +437,7 @@ default_keybinds = {
 	},
 }
 
-key_bindings = { -- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
+key_bindings = {
 -- bashrc has the kill-backward commands now which covers us in most terminals. Should not be made specific to
 -- wezterm. The shortcuts are here incase needed in future.
 -- { key = 'Backspace', mods = 'CTRL', action = act.SendKey {key = 'Backspace', mods = 'ALT'} } -- most Linux shells use Alt + backspace instead for word backspace
@@ -432,15 +465,11 @@ key_tables = {
 		{ key = "Escape", action = "PopKeyTable" },
 	},
 	copy_mode = {
-		{
-			key = "Escape",
-			mods = "NONE",
-			action = act.Multiple({
+		{ key = "Escape", mods = "NONE", action = act.Multiple({
 				act.ClearSelection,
 				act.CopyMode("ClearPattern"),
 				act.CopyMode("Close"),
-			}),
-		},
+			}),},
 		{ key = "q", mods = "NONE", action = act.CopyMode("Close") },
 		-- move cursor
 		{ key = "h", mods = "NONE", action = act.CopyMode("MoveLeft") },
@@ -460,11 +489,7 @@ key_tables = {
 		{ key = "b", mods = "ALT", action = act.CopyMode("MoveBackwardWord") },
 		{ key = "\t", mods = "SHIFT", action = act.CopyMode("MoveBackwardWord") },
 		{ key = "b", mods = "NONE", action = act.CopyMode("MoveBackwardWord") },
-		{
-			key = "e",
-			mods = "NONE",
-			action = act({
-				Multiple = {
+		{ key = "e", mods = "NONE", action = act({ Multiple = {
 					act.CopyMode("MoveRight"),
 					act.CopyMode("MoveForwardWord"),
 					act.CopyMode("MoveLeft"),
@@ -602,7 +627,7 @@ config.launch_menu = launch_menu
 config.mouse_bindings = mouse_bindings
 config.keys = create_keybinds()
 config.key_tables = key_tables
--- config.action = act
+-- https://github.com/wez/wezterm/issues/2756
 
 -- and finally, return the configuration to wezterm
 return config
