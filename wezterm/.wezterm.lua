@@ -116,14 +116,18 @@ config.color_scheme = "Hardcore"
 config.cell_width	= 1.01  -- Set this to in/decrease the charachter spacing in the terminal.
 config.line_height	= 1.0  -- Set this to in/decrease the charachter height in the terminal.
 config.font_size 	= 11.0
-local fontstyle = "Italic"
--- local fontstyle = "Normal"
+
+-- local fontStyle = "Italic"
+local fontStyle = "Normal"
+
+-- local fontWeight = "Medium"
+local fontWeight = "Bold"
+
 config.font = wezterm.font_with_fallback {
 	{
 		family = 'Monaspace Argon',
-		weight = 'Medium',
-		-- weight = 'Bold',
-		style = fontstyle,
+		weight = fontWeight,
+		style = fontStyle,
 		-- stretch = 'UltraExpanded',
 		-- stretch = 'Expanded',
 		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
@@ -131,35 +135,35 @@ config.font = wezterm.font_with_fallback {
 	{
 	    family = 'Monaspace Neon',
 	    weight = 'Medium',
-	    style = fontstyle,
+	    style = fontStyle,
 	    harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	},
 	{
 		family = 'Monaspace Xenon',
 		weight = 'Medium',
-		style = fontstyle,
+		style = fontStyle,
 		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	},
 	{
 		family = 'Monaspace Radon',
 		weight = 'Medium',
-		style = fontstyle,
+		style = fontStyle,
 		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	},
 	{
 		family = 'Monaspace Krypton',
 		weight = 'Medium',
-		style = fontstyle,
+		style = fontStyle,
 		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	},
 	{
 		family = 'JetBrains Mono',
 		weight = 'Medium',
-		style = fontstyle,
+		style = fontStyle,
 		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	}, {
 		family = 'Terminus',
-		weight = 'Bold'
+		weight = fontWeight
 	}, 'Noto Color Emoji'}
 
 -- Background Settings
