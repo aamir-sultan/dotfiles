@@ -360,6 +360,13 @@ set autoindent
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
+" Vim Closing shortcuts
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>wq :wq<CR>
+nnoremap <Leader>w<S-q> :wq!<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader><S-q> :q!<CR>
+
 " Fugitive Conflict Resolution
 nnoremap <leader>gd :Gvdiff<CR>
 nnoremap gdh :diffget //2<CR>
