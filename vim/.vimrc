@@ -43,7 +43,7 @@ Plug 'AxolotlC/Fox.vim'
 Plug 'jdkanani/vim-material-theme'
 " Nerdtree + Git plugin (shows git status in nerdtree)
 Plug 'preservim/nerdtree',
-Plug 'xuyuanp/nerdtree-git-plugin'
+" Plug 'xuyuanp/nerdtree-git-plugin' " Creating issue in VIM 7.0
 
 Plug 'morhetz/gruvbox'
 " Plug 'jnurmine/Zenburn'
@@ -78,7 +78,8 @@ call plug#end()
   " let mapleader=","
   let mapleader = "\<Space>"
 
-  set termguicolors
+" Supported in 8.0 or above
+  " set termguicolors
 
 " Gruvbox related settings
   set bg=dark
