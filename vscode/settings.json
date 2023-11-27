@@ -1,384 +1,387 @@
 {
-    //----------------------------------------------------//
-    // Workbench settings like themes and others.
-    //----------------------------------------------------//
-    "workbench.colorTheme": "One Monokai",
-    "workbench.editor.wrapTabs": true,
-    
-    //----------------------------------------------------//
-    // Editor settings like fonts and rulers.
-    //----------------------------------------------------//
+  //----------------------------------------------------//
+  // Workbench settings like themes and others.
+  //----------------------------------------------------//
+  "workbench.colorTheme": "One Monokai",
+  "workbench.editor.wrapTabs": true,
+  
+  //----------------------------------------------------//
+  // Editor settings like fonts and rulers.
+  //----------------------------------------------------//
 
-    // Tab space for different languages
-    "[python]": {
-        "editor.tabSize": 4
-    },
-    "[javascript]": {
-        "editor.tabSize": 2
-    },
-    "[systemverilog]": {
-        "editor.tabSize": 2
-    },
-    "[json]": {
-        "editor.tabSize": 2
-    },
-    "[typescript]": {
-        "editor.tabSize": 2
-    },
-    // insert spaces when pressing Tab
-    "editor.insertSpaces": true,
+  // Tab space for different languages
+  "[python]": {
+      "editor.tabSize": 4
+  },
+  "[javascript]": {
+      "editor.tabSize": 2
+  },
+  "[systemverilog]": {
+      "editor.tabSize": 2
+  },
+  "[json]": {
+      "editor.tabSize": 2
+  },
+  "[typescript]": {
+      "editor.tabSize": 2
+  },
 
-    "editor.largeFileOptimizations": false,
-    
-    // By default the starting font will be set or also try wrapping them in single qoutes to set
-    // "editor.fontFamily": "'Monaspace Neon', 'JetBrainsMono Nerd Font', monospace",
-    "editor.fontFamily": "'Monaspace Argon', 'JetBrainsMono Nerd Font', monospace",
-    // "editor.fontFamily": "'Monaspace Xenon', 'JetBrainsMono Nerd Font', monospace",
-    // "editor.fontFamily": "'Monaspace Radon', 'JetBrainsMono Nerd Font', monospace",
-    // "editor.fontFamily": "'Monaspace Krypton', 'JetBrainsMono Nerd Font', monospace",
-    
-    // Set font size
-    "editor.fontSize": 14, // Font Size
-    
-    // Set font boldness with normal or bold or some number
-    // "editor.fontWeight": "normal", // Font Weight
-    // "editor.fontWeight": "bold", // Font Weight
-    "editor.fontWeight": "700", // Font Weight -- Can use other numbers from 200 to 800
-    
-    // Set letter spacing
-    "editor.letterSpacing": 0.9,
-    
-    // Enable/Disable ligatures -- https://github.com/githubnext/monaspace#coding-ligatures
-    // "editor.fontLigatures": true, // Font ligatures
-    "editor.fontLigatures": "'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'",
-    
-    // Enable smooth scrolling in the editor
-    "editor.smoothScrolling": true,
-    
-    "editor.foldingMaximumRegions": 65000,
-    
-    // Add vertical rulers to the texteditor window with colors
-    "editor.rulers": [
-        {"column": 110, "color": "#4ad17740"},  // extra right rule
-        {"column": 115, "color": "#ff4081"}     // extra right rule
-    ],
+  // Default tabsize
+  "editor.tabSize": 2,
+  // insert spaces when pressing Tab
+  "editor.insertSpaces": true,
 
-    // Customization for Kewords, comments itallic style. VScode do not support automatic itallic.
-    // Further information can be found at below link.
-    // https://thomasventurini.com/articles/setup-firacodeiscript-for-italic-fonts-in-vscode/
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-          {
-            "scope": ["punctuation.definition.comment", "comment"],
-            "settings": {
-              // "foreground": "#0578fc",
-              "fontStyle": "italic"
-            }
-          },
-    
-          {
-            "scope": [
-              //following will be in italic (=FlottFlott)
-              "entity.name.type.class", //class names
-              "keyword", //import, export, return…
-              "storage.modifier", //static keyword
-              "storage.type", //class keyword
-              "support.class.builtin",
-              "keyword.control",
-              "constant.language",
-              "entity.other.attribute-name",
-              "entity.name.method"
-    
-              //make those value bold
-            ],
-            "settings": {
-              "fontStyle": "italic"
-            }
-          },
-          {
-            "scope": [
-              //following will be excluded from italics (VSCode has some defaults for italics)
-              "invalid",
-              "keyword.operator",
-              "constant.numeric.css",
-              "keyword.other.unit.px.css",
-              "constant.numeric.decimal.js",
-              "constant.numeric.json"
-            ],
-            "settings": {
-              "fontStyle": ""
-            }
+  "editor.largeFileOptimizations": false,
+  
+  // By default the starting font will be set or also try wrapping them in single qoutes to set
+  // "editor.fontFamily": "'Monaspace Neon', 'JetBrainsMono Nerd Font', monospace",
+  "editor.fontFamily": "'Monaspace Argon', 'JetBrainsMono Nerd Font', monospace",
+  // "editor.fontFamily": "'Monaspace Xenon', 'JetBrainsMono Nerd Font', monospace",
+  // "editor.fontFamily": "'Monaspace Radon', 'JetBrainsMono Nerd Font', monospace",
+  // "editor.fontFamily": "'Monaspace Krypton', 'JetBrainsMono Nerd Font', monospace",
+  
+  // Set font size
+  "editor.fontSize": 13, // Font Size
+  
+  // Set font boldness with normal or bold or some number
+  // "editor.fontWeight": "normal", // Font Weight
+  // "editor.fontWeight": "bold", // Font Weight
+  "editor.fontWeight": "600", // Font Weight -- Can use other numbers from 200 to 800
+  
+  // Set letter spacing
+  "editor.letterSpacing": 0.9,
+  
+  // Enable/Disable ligatures -- https://github.com/githubnext/monaspace#coding-ligatures
+  // "editor.fontLigatures": true, // Font ligatures
+  "editor.fontLigatures": "'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'",
+  
+  // Enable smooth scrolling in the editor
+  "editor.smoothScrolling": true,
+  
+  "editor.foldingMaximumRegions": 65000,
+  
+  // Add vertical rulers to the texteditor window with colors
+  "editor.rulers": [
+      {"column": 110, "color": "#4ad17740"},  // extra right rule
+      {"column": 115, "color": "#ff4081"}     // extra right rule
+  ],
+
+  // Customization for Kewords, comments itallic style. VScode do not support automatic itallic.
+  // Further information can be found at below link.
+  // https://thomasventurini.com/articles/setup-firacodeiscript-for-italic-fonts-in-vscode/
+  "editor.tokenColorCustomizations": {
+      "textMateRules": [
+        {
+          "scope": ["punctuation.definition.comment", "comment"],
+          "settings": {
+            // "foreground": "#0578fc",
+            "fontStyle": "italic"
           }
-        ]
-      },
-    
-    
-    //----------------------------------------------------//
-    // VSCode Terminal Settings like fonts and themes.
-    //----------------------------------------------------//
-    
-    // Scrollback history of temminal.
-    "terminal.integrated.scrollback": 100000,
-    
-    // By default the starting font will be set or also try wrapping them in single qoutes to set
-    // "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font, OverpassMono Nerd Font, JetBrainsMono Nerd Font Mono",
-    // "terminal.integrated.fontFamily": "'Monaspace Neon', 'JetBrainsMono Nerd Font'",
-    "terminal.integrated.fontFamily": "'Monaspace Argon', 'JetBrainsMono Nerd Font'",
-    // "terminal.integrated.fontFamily": "'Monaspace Xenon', 'JetBrainsMono Nerd Font'",
-    // "terminal.integrated.fontFamily": "'Monaspace Radon', 'JetBrainsMono Nerd Font'",
-    // "terminal.integrated.fontFamily": "'Monaspace Krypton', 'JetBrainsMono Nerd Font'",
-    
-    "terminal.integrated.letterSpacing": 1,     // Number of pixels to be added between charachters.
-    "terminal.integrated.lineHeight": 1.2,      // Line height for the terminal charachters.
-    "terminal.integrated.fontSize": 14,         // Fonts size of terminal charachters.
-    "terminal.integrated.fontWeight": "700",    // Weight of terminals characters -- bold, normal, or number between 200 to 800.
-    
-    // Terminal Cursor Settings
-    "terminal.integrated.cursorStyle": "block",         // Can be block, line, underline
-    "terminal.integrated.cursorWidth": 2,               // Width in pixels when the cursor style is set to line
-    "terminal.integrated.cursorStyleInactive": "none",  // Can be outline, block, line, underline, none
-    // "terminal.integrated.cursorBlinking": "True",    // Cursor should blink when the terminal is focused
+        },
+  
+        {
+          "scope": [
+            //following will be in italic (=FlottFlott)
+            "entity.name.type.class", //class names
+            "keyword", //import, export, return…
+            "storage.modifier", //static keyword
+            "storage.type", //class keyword
+            "support.class.builtin",
+            "keyword.control",
+            "constant.language",
+            "entity.other.attribute-name",
+            "entity.name.method"
+  
+            //make those value bold
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            //following will be excluded from italics (VSCode has some defaults for italics)
+            "invalid",
+            "keyword.operator",
+            "constant.numeric.css",
+            "keyword.other.unit.px.css",
+            "constant.numeric.decimal.js",
+            "constant.numeric.json"
+          ],
+          "settings": {
+            "fontStyle": ""
+          }
+        }
+      ]
+    },
+  
+  
+  //----------------------------------------------------//
+  // VSCode Terminal Settings like fonts and themes.
+  //----------------------------------------------------//
+  
+  // Scrollback history of temminal.
+  "terminal.integrated.scrollback": 100000,
+  
+  // By default the starting font will be set or also try wrapping them in single qoutes to set
+  // "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font, OverpassMono Nerd Font, JetBrainsMono Nerd Font Mono",
+  // "terminal.integrated.fontFamily": "'Monaspace Neon', 'JetBrainsMono Nerd Font'",
+  "terminal.integrated.fontFamily": "'Monaspace Argon', 'JetBrainsMono Nerd Font'",
+  // "terminal.integrated.fontFamily": "'Monaspace Xenon', 'JetBrainsMono Nerd Font'",
+  // "terminal.integrated.fontFamily": "'Monaspace Radon', 'JetBrainsMono Nerd Font'",
+  // "terminal.integrated.fontFamily": "'Monaspace Krypton', 'JetBrainsMono Nerd Font'",
+  
+  "terminal.integrated.letterSpacing": 1,     // Number of pixels to be added between charachters.
+  "terminal.integrated.lineHeight": 1.2,      // Line height for the terminal charachters.
+  "terminal.integrated.fontSize": 14,         // Fonts size of terminal charachters.
+  "terminal.integrated.fontWeight": "700",    // Weight of terminals characters -- bold, normal, or number between 200 to 800.
+  
+  // Terminal Cursor Settings
+  "terminal.integrated.cursorStyle": "block",         // Can be block, line, underline
+  "terminal.integrated.cursorWidth": 2,               // Width in pixels when the cursor style is set to line
+  "terminal.integrated.cursorStyleInactive": "none",  // Can be outline, block, line, underline, none
+  // "terminal.integrated.cursorBlinking": "True",    // Cursor should blink when the terminal is focused
 
-    // Terminal Colors
+  // Terminal Colors
 
-    // "workbench.colorCustomizations": {
-    // "terminal.background": "#28211C",
-    // "terminal.foreground": "#8A8986",
-    // "terminalCursor.background": "#8A8986",
-    // "terminalCursor.foreground": "#8A8986",
-    // "terminal.ansiBlack": "#28211C",
-    // "terminal.ansiBlue": "#5EA6EA",
-    // "terminal.ansiBrightBlack": "#666666",
-    // "terminal.ansiBrightBlue": "#5EA6EA",
-    // "terminal.ansiBrightCyan": "#AFC4DB",
-    // "terminal.ansiBrightGreen": "#54BE0D",
-    // "terminal.ansiBrightMagenta": "#9B859D",
-    // "terminal.ansiBrightRed": "#CF6A4C",
-    // "terminal.ansiBrightWhite": "#BAAE9E",
-    // "terminal.ansiBrightYellow": "#F9EE98",
-    // "terminal.ansiCyan": "#AFC4DB",
-    // "terminal.ansiGreen": "#54BE0D",
-    // "terminal.ansiMagenta": "#9B859D",
-    // "terminal.ansiRed": "#CF6A4C",
-    // "terminal.ansiWhite": "#8A8986",
-    // "terminal.ansiYellow": "#F9EE98"
-    // },
+  // "workbench.colorCustomizations": {
+  // "terminal.background": "#28211C",
+  // "terminal.foreground": "#8A8986",
+  // "terminalCursor.background": "#8A8986",
+  // "terminalCursor.foreground": "#8A8986",
+  // "terminal.ansiBlack": "#28211C",
+  // "terminal.ansiBlue": "#5EA6EA",
+  // "terminal.ansiBrightBlack": "#666666",
+  // "terminal.ansiBrightBlue": "#5EA6EA",
+  // "terminal.ansiBrightCyan": "#AFC4DB",
+  // "terminal.ansiBrightGreen": "#54BE0D",
+  // "terminal.ansiBrightMagenta": "#9B859D",
+  // "terminal.ansiBrightRed": "#CF6A4C",
+  // "terminal.ansiBrightWhite": "#BAAE9E",
+  // "terminal.ansiBrightYellow": "#F9EE98",
+  // "terminal.ansiCyan": "#AFC4DB",
+  // "terminal.ansiGreen": "#54BE0D",
+  // "terminal.ansiMagenta": "#9B859D",
+  // "terminal.ansiRed": "#CF6A4C",
+  // "terminal.ansiWhite": "#8A8986",
+  // "terminal.ansiYellow": "#F9EE98"
+  // },
 
-    // "workbench.colorCustomizations": {
-    // "terminal.background": "#1E1423",
-    // "terminal.foreground": "#737DA0",
-    // "terminalCursor.background": "#1f586a",
-    // "terminalCursor.foreground": "#2DB9E6",
-    // "terminal.ansiBlack": "#28211C",
-    // "terminal.ansiBlue": "#5EA6EA",
-    // "terminal.ansiBrightBlack": "#666666",
-    // "terminal.ansiBrightBlue": "#5EA6EA",
-    // "terminal.ansiBrightCyan": "#AFC4DB",
-    // "terminal.ansiBrightGreen": "#54BE0D",
-    // "terminal.ansiBrightMagenta": "#9B859D",
-    // "terminal.ansiBrightRed": "#CF6A4C",
-    // "terminal.ansiBrightWhite": "#BAAE9E",
-    // "terminal.ansiBrightYellow": "#F9EE98",
-    // "terminal.ansiCyan": "#AFC4DB",
-    // "terminal.ansiGreen": "#54BE0D",
-    // "terminal.ansiMagenta": "#9B859D",
-    // "terminal.ansiRed": "#CF6A4C",
-    // "terminal.ansiWhite": "#8A8986",
-    // "terminal.ansiYellow": "#F9EE98"
-    // },
+  // "workbench.colorCustomizations": {
+  // "terminal.background": "#1E1423",
+  // "terminal.foreground": "#737DA0",
+  // "terminalCursor.background": "#1f586a",
+  // "terminalCursor.foreground": "#2DB9E6",
+  // "terminal.ansiBlack": "#28211C",
+  // "terminal.ansiBlue": "#5EA6EA",
+  // "terminal.ansiBrightBlack": "#666666",
+  // "terminal.ansiBrightBlue": "#5EA6EA",
+  // "terminal.ansiBrightCyan": "#AFC4DB",
+  // "terminal.ansiBrightGreen": "#54BE0D",
+  // "terminal.ansiBrightMagenta": "#9B859D",
+  // "terminal.ansiBrightRed": "#CF6A4C",
+  // "terminal.ansiBrightWhite": "#BAAE9E",
+  // "terminal.ansiBrightYellow": "#F9EE98",
+  // "terminal.ansiCyan": "#AFC4DB",
+  // "terminal.ansiGreen": "#54BE0D",
+  // "terminal.ansiMagenta": "#9B859D",
+  // "terminal.ansiRed": "#CF6A4C",
+  // "terminal.ansiWhite": "#8A8986",
+  // "terminal.ansiYellow": "#F9EE98"
+  // },
 
-    // "workbench.colorCustomizations": {
-    // "terminal.background":"#1D2021",
-    // "terminal.foreground":"#A89984",
-    // "terminalCursor.background":"#A89984",
-    // "terminalCursor.foreground":"#A89984",
-    // "terminal.ansiBlack":"#1D2021",
-    // "terminal.ansiBlue":"#0D6678",
-    // "terminal.ansiBrightBlack":"#665C54",y
-    // "terminal.ansiBrightBlue":"#0D6678",
-    // "terminal.ansiBrightCyan":"#8BA59B",
-    // "terminal.ansiBrightGreen":"#95C085",
-    // "terminal.ansiBrightMagenta":"#8F4673",
-    // "terminal.ansiBrightRed":"#FB543F",
-    // "terminal.ansiBrightWhite":"#FDF4C1",
-    // "terminal.ansiBrightYellow":"#FAC03B",
-    // "terminal.ansiCyan":"#8BA59B",
-    // "terminal.ansiGreen":"#95C085",
-    // "terminal.ansiMagenta":"#8F4673",
-    // "terminal.ansiRed":"#FB543F",
-    // "terminal.ansiWhite":"#A89984",
-    // "terminal.ansiYellow":"#FAC03B"
-    // },
-    
-    // "workbench.colorCustomizations": {
-    // "terminal.background":"#090300",
-    // "terminal.foreground":"#A5A2A2",
-    // "terminalCursor.background":"#A5A2A2",
-    // "terminalCursor.foreground":"#A5A2A2",
-    // "terminal.ansiBlack":"#090300",
-    // "terminal.ansiBlue":"#01A0E4",
-    // "terminal.ansiBrightBlack":"#5C5855",
-    // "terminal.ansiBrightBlue":"#01A0E4",
-    // "terminal.ansiBrightCyan":"#B5E4F4",
-    // "terminal.ansiBrightGreen":"#01A252",
-    // "terminal.ansiBrightMagenta":"#A16A94",
-    // "terminal.ansiBrightRed":"#DB2D20",
-    // "terminal.ansiBrightWhite":"#F7F7F7",
-    // "terminal.ansiBrightYellow":"#FDED02",
-    // "terminal.ansiCyan":"#B5E4F4",
-    // "terminal.ansiGreen":"#01A252",
-    // "terminal.ansiMagenta":"#A16A94",
-    // "terminal.ansiRed":"#DB2D20",
-    // "terminal.ansiWhite":"#A5A2A2",
-    // "terminal.ansiYellow":"#FDED02"
-    // },
-    
-    // "workbench.colorCustomizations": {
-    // "terminal.background":"#F7F3F7",
-    // "terminal.foreground":"#695D69",
-    // "terminalCursor.background":"#695D69",
-    // "terminalCursor.foreground":"#695D69",
-    // "terminal.ansiBlack":"#F7F3F7",
-    // "terminal.ansiBlue":"#516AEC",
-    // "terminal.ansiBrightBlack":"#9E8F9E",
-    // "terminal.ansiBrightBlue":"#516AEC",
-    // "terminal.ansiBrightCyan":"#159393",
-    // "terminal.ansiBrightGreen":"#918B3B",
-    // "terminal.ansiBrightMagenta":"#7B59C0",
-    // "terminal.ansiBrightRed":"#CA402B",
-    // "terminal.ansiBrightWhite":"#1B181B",
-    // "terminal.ansiBrightYellow":"#BB8A35",
-    // "terminal.ansiCyan":"#159393",
-    // "terminal.ansiGreen":"#918B3B",
-    // "terminal.ansiMagenta":"#7B59C0",
-    // "terminal.ansiRed":"#CA402B",
-    // "terminal.ansiWhite":"#695D69",
-    // "terminal.ansiYellow":"#BB8A35"
-    // },
-    
-    // "workbench.colorCustomizations": {
-    // "terminal.background":"#282936",
-    // "terminal.foreground":"#E9E9F4",
-    // "terminalCursor.background":"#E9E9F4",
-    // "terminalCursor.foreground":"#E9E9F4",
-    // "terminal.ansiBlack":"#282936",
-    // "terminal.ansiBlue":"#62D6E8",
-    // "terminal.ansiBrightBlack":"#626483",
-    // "terminal.ansiBrightBlue":"#62D6E8",
-    // "terminal.ansiBrightCyan":"#A1EFE4",
-    // "terminal.ansiBrightGreen":"#EBFF87",
-    // "terminal.ansiBrightMagenta":"#B45BCF",
-    // "terminal.ansiBrightRed":"#EA51B2",
-    // "terminal.ansiBrightWhite":"#F7F7FB",
-    // "terminal.ansiBrightYellow":"#00F769",
-    // "terminal.ansiCyan":"#A1EFE4",
-    // "terminal.ansiGreen":"#EBFF87",
-    // "terminal.ansiMagenta":"#B45BCF",
-    // "terminal.ansiRed":"#EA51B2",
-    // "terminal.ansiWhite":"#E9E9F4",
-    // "terminal.ansiYellow":"#00F769"
-    // },
-    
-    // "workbench.colorCustomizations": {
-    // "terminal.background":"#161B1D",
-    // "terminal.foreground":"#7EA2B4",
-    // "terminalCursor.background":"#7EA2B4",
-    // "terminalCursor.foreground":"#7EA2B4",
-    // "terminal.ansiBlack":"#161B1D",
-    // "terminal.ansiBlue":"#257FAD",
-    // "terminal.ansiBrightBlack":"#5A7B8C",
-    // "terminal.ansiBrightBlue":"#257FAD",
-    // "terminal.ansiBrightCyan":"#2D8F6F",
-    // "terminal.ansiBrightGreen":"#568C3B",
-    // "terminal.ansiBrightMagenta":"#6B6BB8",
-    // "terminal.ansiBrightRed":"#D22D72",
-    // "terminal.ansiBrightWhite":"#EBF8FF",
-    // "terminal.ansiBrightYellow":"#8A8A0F",
-    // "terminal.ansiCyan":"#2D8F6F",
-    // "terminal.ansiGreen":"#568C3B",
-    // "terminal.ansiMagenta":"#6B6BB8",
-    // "terminal.ansiRed":"#D22D72",
-    // "terminal.ansiWhite":"#7EA2B4",
-    // "terminal.ansiYellow":"#8A8A0F"
-    // },
-    
-    // "workbench.colorCustomizations": {
-    // "terminal.background":"#FBF1C7",
-    // "terminal.foreground":"#504945",
-    // "terminalCursor.background":"#504945",
-    // "terminalCursor.foreground":"#504945",
-    // "terminal.ansiBlack":"#FBF1C7",
-    // "terminal.ansiBlue":"#076678",
-    // "terminal.ansiBrightBlack":"#BDAE93",
-    // "terminal.ansiBrightBlue":"#076678",
-    // "terminal.ansiBrightCyan":"#427B58",
-    // "terminal.ansiBrightGreen":"#79740E",
-    // "terminal.ansiBrightMagenta":"#8F3F71",
-    // "terminal.ansiBrightRed":"#9D0006",
-    // "terminal.ansiBrightWhite":"#282828",
-    // "terminal.ansiBrightYellow":"#B57614",
-    // "terminal.ansiCyan":"#427B58",
-    // "terminal.ansiGreen":"#79740E",
-    // "terminal.ansiMagenta":"#8F3F71",
-    // "terminal.ansiRed":"#9D0006",
-    // "terminal.ansiWhite":"#504945",
-    // "terminal.ansiYellow":"#B57614"
-    // },
-    
-    // "workbench.colorCustomizations": {
-    // "terminal.background": "#282828",
-    // "terminal.foreground": "#D5C4A1",
-    // "terminalCursor.background": "#D5C4A1",
-    // "terminalCursor.foreground": "#D5C4A1",
-    // "terminal.ansiBlack": "#282828",
-    // "terminal.ansiBlue": "#83A598",
-    // "terminal.ansiBrightBlack": "#665C54",
-    // "terminal.ansiBrightBlue": "#83A598",
-    // "terminal.ansiBrightCyan": "#8EC07C",
-    // "terminal.ansiBrightGreen": "#B8BB26",
-    // "terminal.ansiBrightMagenta": "#D3869B",
-    // "terminal.ansiBrightRed": "#FB4934",
-    // "terminal.ansiBrightWhite": "#FBF1C7",
-    // "terminal.ansiBrightYellow": "#FABD2F",
-    // "terminal.ansiCyan": "#8EC07C",
-    // "terminal.ansiGreen": "#B8BB26",
-    // "terminal.ansiMagenta": "#D3869B",
-    // "terminal.ansiRed": "#FB4934",
-    // "terminal.ansiWhite": "#D5C4A1",
-    // "terminal.ansiYellow": "#FABD2F"
-    // },
-    
-    // Liked
-    // "workbench.colorCustomizations": {
-    // "terminal.background": "#2E3435",
-    // "terminal.foreground": "#D5C4A1",
-    // "terminalCursor.background": "#D5C4A1",
-    // "terminalCursor.foreground": "#D5C4A1",
-    // "terminal.ansiBlack": "#282828",
-    // "terminal.ansiBlue": "#83A598",
-    // "terminal.ansiBrightBlack": "#665C54",
-    // "terminal.ansiBrightBlue": "#83A598",
-    // "terminal.ansiBrightCyan": "#8EC07C",
-    // "terminal.ansiBrightGreen": "#B8BB26",
-    // "terminal.ansiBrightMagenta": "#D3869B",
-    // "terminal.ansiBrightRed": "#FB4934",
-    // "terminal.ansiBrightWhite": "#FBF1C7",
-    // "terminal.ansiBrightYellow": "#FABD2F",
-    // "terminal.ansiCyan": "#8EC07C",
-    // "terminal.ansiGreen": "#B8BB26",
-    // "terminal.ansiMagenta": "#D3869B",
-    // "terminal.ansiRed": "#FB4934",
-    // "terminal.ansiWhite": "#D5C4A1",
-    // "terminal.ansiYellow": "#FABD2F"
-    // },
+  // "workbench.colorCustomizations": {
+  // "terminal.background":"#1D2021",
+  // "terminal.foreground":"#A89984",
+  // "terminalCursor.background":"#A89984",
+  // "terminalCursor.foreground":"#A89984",
+  // "terminal.ansiBlack":"#1D2021",
+  // "terminal.ansiBlue":"#0D6678",
+  // "terminal.ansiBrightBlack":"#665C54",y
+  // "terminal.ansiBrightBlue":"#0D6678",
+  // "terminal.ansiBrightCyan":"#8BA59B",
+  // "terminal.ansiBrightGreen":"#95C085",
+  // "terminal.ansiBrightMagenta":"#8F4673",
+  // "terminal.ansiBrightRed":"#FB543F",
+  // "terminal.ansiBrightWhite":"#FDF4C1",
+  // "terminal.ansiBrightYellow":"#FAC03B",
+  // "terminal.ansiCyan":"#8BA59B",
+  // "terminal.ansiGreen":"#95C085",
+  // "terminal.ansiMagenta":"#8F4673",
+  // "terminal.ansiRed":"#FB543F",
+  // "terminal.ansiWhite":"#A89984",
+  // "terminal.ansiYellow":"#FAC03B"
+  // },
+  
+  // "workbench.colorCustomizations": {
+  // "terminal.background":"#090300",
+  // "terminal.foreground":"#A5A2A2",
+  // "terminalCursor.background":"#A5A2A2",
+  // "terminalCursor.foreground":"#A5A2A2",
+  // "terminal.ansiBlack":"#090300",
+  // "terminal.ansiBlue":"#01A0E4",
+  // "terminal.ansiBrightBlack":"#5C5855",
+  // "terminal.ansiBrightBlue":"#01A0E4",
+  // "terminal.ansiBrightCyan":"#B5E4F4",
+  // "terminal.ansiBrightGreen":"#01A252",
+  // "terminal.ansiBrightMagenta":"#A16A94",
+  // "terminal.ansiBrightRed":"#DB2D20",
+  // "terminal.ansiBrightWhite":"#F7F7F7",
+  // "terminal.ansiBrightYellow":"#FDED02",
+  // "terminal.ansiCyan":"#B5E4F4",
+  // "terminal.ansiGreen":"#01A252",
+  // "terminal.ansiMagenta":"#A16A94",
+  // "terminal.ansiRed":"#DB2D20",
+  // "terminal.ansiWhite":"#A5A2A2",
+  // "terminal.ansiYellow":"#FDED02"
+  // },
+  
+  // "workbench.colorCustomizations": {
+  // "terminal.background":"#F7F3F7",
+  // "terminal.foreground":"#695D69",
+  // "terminalCursor.background":"#695D69",
+  // "terminalCursor.foreground":"#695D69",
+  // "terminal.ansiBlack":"#F7F3F7",
+  // "terminal.ansiBlue":"#516AEC",
+  // "terminal.ansiBrightBlack":"#9E8F9E",
+  // "terminal.ansiBrightBlue":"#516AEC",
+  // "terminal.ansiBrightCyan":"#159393",
+  // "terminal.ansiBrightGreen":"#918B3B",
+  // "terminal.ansiBrightMagenta":"#7B59C0",
+  // "terminal.ansiBrightRed":"#CA402B",
+  // "terminal.ansiBrightWhite":"#1B181B",
+  // "terminal.ansiBrightYellow":"#BB8A35",
+  // "terminal.ansiCyan":"#159393",
+  // "terminal.ansiGreen":"#918B3B",
+  // "terminal.ansiMagenta":"#7B59C0",
+  // "terminal.ansiRed":"#CA402B",
+  // "terminal.ansiWhite":"#695D69",
+  // "terminal.ansiYellow":"#BB8A35"
+  // },
+  
+  // "workbench.colorCustomizations": {
+  // "terminal.background":"#282936",
+  // "terminal.foreground":"#E9E9F4",
+  // "terminalCursor.background":"#E9E9F4",
+  // "terminalCursor.foreground":"#E9E9F4",
+  // "terminal.ansiBlack":"#282936",
+  // "terminal.ansiBlue":"#62D6E8",
+  // "terminal.ansiBrightBlack":"#626483",
+  // "terminal.ansiBrightBlue":"#62D6E8",
+  // "terminal.ansiBrightCyan":"#A1EFE4",
+  // "terminal.ansiBrightGreen":"#EBFF87",
+  // "terminal.ansiBrightMagenta":"#B45BCF",
+  // "terminal.ansiBrightRed":"#EA51B2",
+  // "terminal.ansiBrightWhite":"#F7F7FB",
+  // "terminal.ansiBrightYellow":"#00F769",
+  // "terminal.ansiCyan":"#A1EFE4",
+  // "terminal.ansiGreen":"#EBFF87",
+  // "terminal.ansiMagenta":"#B45BCF",
+  // "terminal.ansiRed":"#EA51B2",
+  // "terminal.ansiWhite":"#E9E9F4",
+  // "terminal.ansiYellow":"#00F769"
+  // },
+  
+  // "workbench.colorCustomizations": {
+  // "terminal.background":"#161B1D",
+  // "terminal.foreground":"#7EA2B4",
+  // "terminalCursor.background":"#7EA2B4",
+  // "terminalCursor.foreground":"#7EA2B4",
+  // "terminal.ansiBlack":"#161B1D",
+  // "terminal.ansiBlue":"#257FAD",
+  // "terminal.ansiBrightBlack":"#5A7B8C",
+  // "terminal.ansiBrightBlue":"#257FAD",
+  // "terminal.ansiBrightCyan":"#2D8F6F",
+  // "terminal.ansiBrightGreen":"#568C3B",
+  // "terminal.ansiBrightMagenta":"#6B6BB8",
+  // "terminal.ansiBrightRed":"#D22D72",
+  // "terminal.ansiBrightWhite":"#EBF8FF",
+  // "terminal.ansiBrightYellow":"#8A8A0F",
+  // "terminal.ansiCyan":"#2D8F6F",
+  // "terminal.ansiGreen":"#568C3B",
+  // "terminal.ansiMagenta":"#6B6BB8",
+  // "terminal.ansiRed":"#D22D72",
+  // "terminal.ansiWhite":"#7EA2B4",
+  // "terminal.ansiYellow":"#8A8A0F"
+  // },
+  
+  // "workbench.colorCustomizations": {
+  // "terminal.background":"#FBF1C7",
+  // "terminal.foreground":"#504945",
+  // "terminalCursor.background":"#504945",
+  // "terminalCursor.foreground":"#504945",
+  // "terminal.ansiBlack":"#FBF1C7",
+  // "terminal.ansiBlue":"#076678",
+  // "terminal.ansiBrightBlack":"#BDAE93",
+  // "terminal.ansiBrightBlue":"#076678",
+  // "terminal.ansiBrightCyan":"#427B58",
+  // "terminal.ansiBrightGreen":"#79740E",
+  // "terminal.ansiBrightMagenta":"#8F3F71",
+  // "terminal.ansiBrightRed":"#9D0006",
+  // "terminal.ansiBrightWhite":"#282828",
+  // "terminal.ansiBrightYellow":"#B57614",
+  // "terminal.ansiCyan":"#427B58",
+  // "terminal.ansiGreen":"#79740E",
+  // "terminal.ansiMagenta":"#8F3F71",
+  // "terminal.ansiRed":"#9D0006",
+  // "terminal.ansiWhite":"#504945",
+  // "terminal.ansiYellow":"#B57614"
+  // },
+  
+  // "workbench.colorCustomizations": {
+  // "terminal.background": "#282828",
+  // "terminal.foreground": "#D5C4A1",
+  // "terminalCursor.background": "#D5C4A1",
+  // "terminalCursor.foreground": "#D5C4A1",
+  // "terminal.ansiBlack": "#282828",
+  // "terminal.ansiBlue": "#83A598",
+  // "terminal.ansiBrightBlack": "#665C54",
+  // "terminal.ansiBrightBlue": "#83A598",
+  // "terminal.ansiBrightCyan": "#8EC07C",
+  // "terminal.ansiBrightGreen": "#B8BB26",
+  // "terminal.ansiBrightMagenta": "#D3869B",
+  // "terminal.ansiBrightRed": "#FB4934",
+  // "terminal.ansiBrightWhite": "#FBF1C7",
+  // "terminal.ansiBrightYellow": "#FABD2F",
+  // "terminal.ansiCyan": "#8EC07C",
+  // "terminal.ansiGreen": "#B8BB26",
+  // "terminal.ansiMagenta": "#D3869B",
+  // "terminal.ansiRed": "#FB4934",
+  // "terminal.ansiWhite": "#D5C4A1",
+  // "terminal.ansiYellow": "#FABD2F"
+  // },
+  
+  // Liked
+  // "workbench.colorCustomizations": {
+  // "terminal.background": "#2E3435",
+  // "terminal.foreground": "#D5C4A1",
+  // "terminalCursor.background": "#D5C4A1",
+  // "terminalCursor.foreground": "#D5C4A1",
+  // "terminal.ansiBlack": "#282828",
+  // "terminal.ansiBlue": "#83A598",
+  // "terminal.ansiBrightBlack": "#665C54",
+  // "terminal.ansiBrightBlue": "#83A598",
+  // "terminal.ansiBrightCyan": "#8EC07C",
+  // "terminal.ansiBrightGreen": "#B8BB26",
+  // "terminal.ansiBrightMagenta": "#D3869B",
+  // "terminal.ansiBrightRed": "#FB4934",
+  // "terminal.ansiBrightWhite": "#FBF1C7",
+  // "terminal.ansiBrightYellow": "#FABD2F",
+  // "terminal.ansiCyan": "#8EC07C",
+  // "terminal.ansiGreen": "#B8BB26",
+  // "terminal.ansiMagenta": "#D3869B",
+  // "terminal.ansiRed": "#FB4934",
+  // "terminal.ansiWhite": "#D5C4A1",
+  // "terminal.ansiYellow": "#FABD2F"
+  // },
 
-    //----------------------------------------------------//
-    // Misc settings for other extensions.
-    //----------------------------------------------------//
+  //----------------------------------------------------//
+  // Misc settings for other extensions.
+  //----------------------------------------------------//
 
-    "security.workspace.trust.untrustedFiles": "open",
-    
-    //----------------------------------------------------//
-    // Other settings for other extensions.
-    //----------------------------------------------------//
+  "security.workspace.trust.untrustedFiles": "open",
+  
+  //----------------------------------------------------//
+  // Other settings for other extensions.
+  //----------------------------------------------------//
 }
