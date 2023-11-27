@@ -9,7 +9,7 @@
 if !has("nvim")
 " ------------------------------------------------------------------------------------- 
 " Plugins installation with vim-plug
-call plug#begin('$VIM_BUNDLE_PATH')
+call plug#begin('~/.vim/dotplugged')
 " The default plugin directory will be as follows:
 "   - Vim (Linux/macOS): '~/.vim/plugged'
 "   - Vim (Windows): '~/vimfiles/plugged'
