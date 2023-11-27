@@ -115,6 +115,10 @@ if [ ! "$(which vim)" = "" ]; then
 #     c_echo "yellow" "-------------------------------------------------------------------------------"
 #   fi
 
+  c_echo "yellow" "-------------------------------------------------------------------------------"
+  echo Removing VIM Plugins...
+  c_echo "yellow" "-------------------------------------------------------------------------------"
+
   rm -rf ~/.vim/dotplugged
   rm -rf $vimplug_path # Remove vim-plug
   unset vimplug_path url vimrc_path
