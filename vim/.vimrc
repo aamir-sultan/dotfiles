@@ -98,10 +98,6 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " nnoremap <C-t> :NERDTreeToggle<CR>
  nnoremap <C-n> :NERDTreeToggle<CR>
  nnoremap <C-f> :NERDTreeFind<CR>
- nnoremap <C-S-Left> :tabprevious<CR>                                                                            
- nnoremap <C-S-Right> :tabnext<CR>
- nnoremap <C-S-h> :tabprevious<CR>                                                                            
- nnoremap <C-S-l> :tabnext<CR>
  " in NERDTree, to open-silently file in newtab with Enter, instead of default pressing "T" (same for not silently with Tab instead of t). To restore the comment the following two lines.
 let NERDTreeMapOpenInTab='<C-t>'
 let NERDTreeMapOpenInTabSilent='<S-t>'
@@ -304,13 +300,18 @@ set autoindent
   " nnoremap <Leader>f <Plug>(easymotion-s)
   nnoremap <leader><leader> <Plug>(easymotion-s)
 
+" Shortcuts for tab select.
+  nnoremap <C-S-Left> :tabprevious<CR>                                                                            
+  nnoremap <C-S-Right> :tabnext<CR>
+  nnoremap <C-S-h> :tabprevious<CR>                                                                            
+  nnoremap <C-S-l> :tabnext<CR>
 " Close the current buffer not the tab or window.
  nnoremap <leader><leader>k :bd<cr>
  nnoremap <leader><leader>K :bd!<cr>
 
 " Go to next buffer or previous -- Other shortcuts like Ctrl+Alt+Shift have conflicts. Be carefull and check.
- nnoremap <leader>n :bnext<CR>
- nnoremap <leader>b :bprev<CR>
+ nnoremap <tab> :bnext<CR>
+ nnoremap <S-tab> :bprev<CR>
 
 " View scrolling for the buffer
  nnoremap <C-d> <C-d>zz
@@ -364,7 +365,7 @@ au FocusLost * :wa
 set noswapfile
 
 " Switch between the last two files
-nnoremap <leader><leader> <c-^>
+nnoremap <leader><leader><leader> <c-^>
 
 " Get off my lawn --  disable the arrow keys in vim
 nnoremap <Left> :echoe "Use h"<CR>

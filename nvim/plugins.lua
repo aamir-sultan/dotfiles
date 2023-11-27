@@ -25,6 +25,7 @@ local plugins = {
   { 'tpope/vim-sensible' },
   { 'tpope/vim-fugitive' },
   { 'WeiChungWu/vim-SystemVerilog' },
+  { 'nachumk/systemverilog.vim' },
   { 'airblade/vim-gitgutter' },
   { 'tmux-plugins/vim-tmux' },
   { 'djoshea/vim-autoread' },
