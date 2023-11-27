@@ -189,7 +189,7 @@ config.background = {
 	--   repeat_x 	= 'Mirror',
 		repeat_x 	= 'NoRepeat',
 	  hsb 		  = hsb_dimmer,
-    opacity   = 0.98,
+	  opacity   = 0.98,
 	  -- When the viewport scrolls, move this layer 10% of the number of
 	  -- pixels moved by the main viewport. This makes it appear to be
 	  -- further behind the text.
