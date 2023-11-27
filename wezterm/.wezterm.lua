@@ -116,12 +116,14 @@ config.color_scheme = "Hardcore"
 config.cell_width	= 1.01  -- Set this to in/decrease the charachter spacing in the terminal.
 config.line_height	= 1.0  -- Set this to in/decrease the charachter height in the terminal.
 config.font_size 	= 11.0
+local fontstyle = "Italic"
+-- local fontstyle = "Normal"
 config.font = wezterm.font_with_fallback {
 	{
 		family = 'Monaspace Argon',
 		weight = 'Medium',
 		-- weight = 'Bold',
-		style = 'Italic',
+		style = fontstyle,
 		-- stretch = 'UltraExpanded',
 		-- stretch = 'Expanded',
 		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
@@ -129,31 +131,31 @@ config.font = wezterm.font_with_fallback {
 	{
 	    family = 'Monaspace Neon',
 	    weight = 'Medium',
-	    style = 'Italic',
+	    style = fontstyle,
 	    harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	},
 	{
 		family = 'Monaspace Xenon',
 		weight = 'Medium',
-		style = 'Italic',
+		style = fontstyle,
 		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	},
 	{
 		family = 'Monaspace Radon',
 		weight = 'Medium',
-		style = 'Italic',
+		style = fontstyle,
 		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	},
 	{
 		family = 'Monaspace Krypton',
 		weight = 'Medium',
-		style = 'Italic',
+		style = fontstyle,
 		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	},
 	{
 		family = 'JetBrains Mono',
 		weight = 'Medium',
-		style = 'Italic',
+		style = fontstyle,
 		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	}, {
 		family = 'Terminus',
@@ -162,8 +164,8 @@ config.font = wezterm.font_with_fallback {
 
 -- Background Settings
 -- config.window_background_image = 'D://Mega//backgrounds//2184.jpg' -- Background image path
-config.window_background_opacity = .98 -- Background transparency = 0 and opacity = 1
-config.text_background_opacity = 0.3 -- The image content can have relatively low contrast with respect to the text.
+-- config.window_background_opacity = .98 -- Background transparency = 0 and opacity = 1
+-- config.text_background_opacity = 0.3 -- The image content can have relatively low contrast with respect to the text.
 -- config.window_background_image_hsb = { -- Will implicitly prepend a layer to the background configuration
 --     brightness = 0.1, -- Darken the background image by reducing it to 1/3rd
 --     hue = 1.0, -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
