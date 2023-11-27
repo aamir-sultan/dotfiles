@@ -18,7 +18,19 @@ call plug#begin('~/.vim/dotplugged')
 "   - e.g. `call plug#begin('~/.vim/plugged')`
 "   - Avoid using standard Vim directory names like 'plugin'
 
-" Plug 'arcticicestudio/nord-vim' 
+" Plug 'arcticicestudio/nord-vim'
+
+Plug 'ghifarit53/tokyonight-vim'
+
+" Start screen for Vim and Neovim.
+Plug 'mhinz/vim-startify'
+
+" Insert or delete brackets, parens, quotes in pair.
+Plug 'jiangmiao/auto-pairs'
+
+" Rooter changes the working directory to the project root when you open a file or directory.
+Plug 'airblade/vim-rooter'
+
 Plug 'noahfrederick/vim-noctu'
 Plug 'frazrepo/vim-rainbow'
 Plug 'preservim/nerdcommenter'
@@ -29,16 +41,22 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'AxolotlC/Fox.vim'
 Plug 'jdkanani/vim-material-theme'
+" Nerdtree + Git plugin (shows git status in nerdtree)
 Plug 'preservim/nerdtree',
+Plug 'xuyuanp/nerdtree-git-plugin'
+
 Plug 'morhetz/gruvbox'
 " Plug 'jnurmine/Zenburn'
 Plug 'airblade/vim-gitgutter'
 Plug 'gosukiwi/vim-atom-dark'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'rust-lang/rust.vim'
-Plug 'WeiChungWu/vim-SystemVerilog'
-Plug 'nachumk/systemverilog.vim'
+
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+
+Plug 'WeiChungWu/vim-SystemVerilog', { 'for': 'systemverilog' }
+Plug 'nachumk/systemverilog.vim', { 'for': 'systemverilog' }
+
 Plug 'tmux-plugins/vim-tmux'
 " Plug 'djoshea/vim-autoread'
 Plug 'lambdalisue/nerdfont.vim'
@@ -60,12 +78,24 @@ call plug#end()
   " let mapleader=","
   let mapleader = "\<Space>"
 
+  set termguicolors
+
 " Gruvbox related settings
   set bg=dark
-  let g:gruvbox_contrast_dark = 'medium'
-  let g:gruvbox_transparent_bg = '1'
-  " let g:gruvbox_italic = '1'
-  silent! colorscheme gruvbox
+
+  " let g:gruvbox_contrast_dark = 'medium'
+  " let g:gruvbox_transparent_bg = '1'
+  " " let g:gruvbox_italic = '1'
+  " silent! colorscheme gruvbox
+
+" tokyonight-vim settings
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+let g:tokyonight_transparent_background = 1
+" 'auto', 'red', 'green', 'blue'
+let g:tokyonight_cursor = 'auto'
+
+silent! colorscheme tokyonight
 
 " Nerdtree Settings
  let NERDTreeShowHidden=1
@@ -105,6 +135,12 @@ let NERDTreeMapOpenInTabSilent='<S-t>'
 " Position the nerdtree on the right side of the vim window.
 let g:NERDTreeWinPos = "right"
 
+" nerdtree-git-plugin settings
+" you should install nerdfonts by yourself. default: 0
+let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:NERDTreeGitStatusShowClean = 1 " default: 0
+let g:NERDTreeGitStatusConcealBrackets = 1 " default: 0
+
  "airline and airline theme settings
  let g:airline#extensions#tabline#enabled = 1
  let g:airline#extensions#tabline#left_sep = ' '
@@ -116,13 +152,15 @@ let g:NERDTreeWinPos = "right"
 "  let g:airline_theme='deus'
 "  let g:airline_theme='night_owl'
 "  let g:airline_theme='onedark'
- "let g:airline_theme='papercolor'
+"  let g:airline_theme='papercolor'
  let g:airline_theme='raven'
  "let g:airline_theme='simple'
- "let g:airline_theme='soda
+"  let g:airline_theme='soda'
  "let g:airline_theme='solarized'
  "let g:airline_theme='zenburn'
- "let g:airline_theme='understand'
+"  let g:airline_theme='understand'
+"  Only available when tokyonight theme is installed
+"  let g:airline_theme = 'tokyonight'
 
  "GitGutter Settings
  " This will set the sign column to true by default. Set it no if the column
@@ -338,6 +376,9 @@ set colorcolumn=110
 " ignorecase and smartcase together make Vim deal with case-sensitive search intelligently. If you search for an all-lowercase string your search will be case-insensitive, but if one or more characters is uppercase the search will be case-sensitive. Most of the time this does what you want.
 set ignorecase
 set smartcase
+
+" buffer screen updates instead of updating all the time (speeds up scrolling)
+set lazyredraw
 
 " undofile tells Vim to create <FILENAME>.un~ files whenever you edit a file. These files contain undo information so you can undo previous actions even after you close and reopen a file.
 set undofile
