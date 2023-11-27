@@ -28,55 +28,55 @@ M.hopkeys = {
   }
 }
 
-M.userkeys = {
-  n = {
-    -- opts is an optional parameter
-    -- ["keys"] = {"action", "description", opts = {}},
+-- M.userkeys = {
+--   n = {
+--     -- opts is an optional parameter
+--     -- ["keys"] = {"action", "description", opts = {}},
 
-    -- [";"] = { ":", "enter command mode", opts = { nowait = true } },
-    -- cycle through buffers
-    ["<C-l>"] = {
-      function()
-        require("nvchad_ui.tabufline").tabuflineNext()
-      end,
-      "Goto next buffer",
-    },
+--     -- [";"] = { ":", "enter command mode", opts = { nowait = true } },
+--     -- cycle through buffers
+--     ["<C-l>"] = {
+--       function()
+--         require("nvchad_ui.tabufline").tabuflineNext()
+--       end,
+--       "Goto next buffer",
+--     },
 
-    ["<C-h>"] = {
-      function()
-        require("nvchad_ui.tabufline").tabuflinePrev()
-      end,
-      "Goto prev buffer",
-    },
+--     ["<C-h>"] = {
+--       function()
+--         require("nvchad_ui.tabufline").tabuflinePrev()
+--       end,
+--       "Goto prev buffer",
+--     },
 
-    ["<C-Right>"] = {
-      function()
-        require("nvchad_ui.tabufline").tabuflineNext()
-      end,
-      "Goto next buffer",
-    },
+--     ["<C-Right>"] = {
+--       function()
+--         require("nvchad_ui.tabufline").tabuflineNext()
+--       end,
+--       "Goto next buffer",
+--     },
 
-    ["<C-Left>"] = {
-      function()
-        require("nvchad_ui.tabufline").tabuflinePrev()
-      end,
-      "Goto prev buffer",
-    },
-    -- cycle through buffers
-    -- ["<C-S-Right>"] = {
-    --   function()
-    --     require("nvchad_ui.tabufline").tabuflineNext()
-    --   end,
-    --   "Goto next buffer",
-    -- },
-    --
-    -- ["<C-S-left>"] = {
-    --   function()
-    --     require("nvchad_ui.tabufline").tabuflinePrev()
-    --   end,
-    --   "Goto prev buffer",
-    -- },
-  }
-}
+--     ["<C-Left>"] = {
+--       function()
+--         require("nvchad_ui.tabufline").tabuflinePrev()
+--       end,
+--       "Goto prev buffer",
+--     },
+--     -- cycle through buffers
+--     -- ["<C-S-Right>"] = {
+--     --   function()
+--     --     require("nvchad_ui.tabufline").tabuflineNext()
+--     --   end,
+--     --   "Goto next buffer",
+--     -- },
+--     --
+--     -- ["<C-S-left>"] = {
+--     --   function()
+--     --     require("nvchad_ui.tabufline").tabuflinePrev()
+--     --   end,
+--     --   "Goto prev buffer",
+--     -- },
+--   }
+-- }
 
 return M
