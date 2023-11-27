@@ -86,35 +86,68 @@ while IFS= read -r line; do
   sed -i "/$escaped_line/d" "$file_to_modify"
 done <"$file_to_check"
 
-cd $VIM_BUNDLE_PATH
+# Install the Vim-Plug plugin manager and Remove Plugins via it
+if [ ! "$(which vim)" = "" ]; then
+  vimplug_path="$VIM_AUTOLOAD_PATH/plug.vim"
+  url="\
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  vimrc_path="$VIMRC_PATH"
 
-while read line; do
-  if [[ "$line" =~ ^#.*$ ]] || [[ -z "$line" ]]; then
-    continue
-  fi
-  PLUGIN_NAME=$(echo $line | awk -F'CMD=' '{print $1}' | awk -F'[[:space:]]' '{print $1}')
-  CLONE_URL=$(echo $line | awk -F'CMD=' '{print $1}' | awk -F'[[:space:]]' '{print $2}')
-  DIR_NAME=$(echo $line | awk -F'CMD=' '{print $1}' | awk -F'[[:space:]]' '{print $3}')
-  CMD=$(echo $line | awk -F'CMD=' '{print $2}')
-  if [ -z "$DIR_NAME" ]; then
-    DIR_NAME=$PLUGIN_NAME
-    CLONE_PATH=$(eval "echo $VIM_BUNDLE_PATH/$DIR_NAME")
-  else
-    if echo $DIR_NAME | grep -q "CMD="; then
-      DIR_NAME=$PLUGIN_NAME
-      CLONE_PATH=$(eval "echo $VIM_BUNDLE_PATH/$DIR_NAME")
+  alias vi="vim"
+  if [ ! -f "$vimplug_path" ]; then
+    if [ ! "$(which curl)" = "" ]; then
+      c_echo "yellow" "-------------------------------------------------------------------------------"
+      curl -fLo "$vimplug_path" \
+        --create-dirs \
+        "$url" &
+      wait $!
+
+    c_echo "yellow" "-------------------------------------------------------------------------------"
+    [ -f "$vimrc_path" ] && echo 'Removing VIM Plugins...' && vim -es -u $VIMRC_PATH -i NONE -c "PlugClean" -c "qa"
+    c_echo "yellow" "-------------------------------------------------------------------------------"
     else
-      CLONE_PATH=$(eval "echo $DIR_NAME")
+      echo "[ ERROR ] missing curl. Cant't install plug.vim"
     fi
+  else
+    c_echo "yellow" "-------------------------------------------------------------------------------"
+    echo Removing VIM Plugins...
+    vim -es -u $VIMRC_PATH -i NONE -c "PlugClean" -c "qa"
+    c_echo "yellow" "-------------------------------------------------------------------------------"
   fi
 
-  if [ -d $CLONE_PATH ]; then
-    echo -------------------------------------------------------------------------------
-    echo Removing $DIR_NAME plugin for Vim
-    rm -rf $CLONE_PATH
-    echo Removed: $CLONE_PATH
-    echo -------------------------------------------------------------------------------
-  fi
-done <$VIM_DEP_FILE_PATH
+  rm -rf $vimplug_path # Remove vim-plug
+  unset vimplug_path url vimrc_path
+fi
 
-cd -
+# cd $VIM_BUNDLE_PATH
+
+# while read line; do
+#   if [[ "$line" =~ ^#.*$ ]] || [[ -z "$line" ]]; then
+#     continue
+#   fi
+#   PLUGIN_NAME=$(echo $line | awk -F'CMD=' '{print $1}' | awk -F'[[:space:]]' '{print $1}')
+#   CLONE_URL=$(echo $line | awk -F'CMD=' '{print $1}' | awk -F'[[:space:]]' '{print $2}')
+#   DIR_NAME=$(echo $line | awk -F'CMD=' '{print $1}' | awk -F'[[:space:]]' '{print $3}')
+#   CMD=$(echo $line | awk -F'CMD=' '{print $2}')
+#   if [ -z "$DIR_NAME" ]; then
+#     DIR_NAME=$PLUGIN_NAME
+#     CLONE_PATH=$(eval "echo $VIM_BUNDLE_PATH/$DIR_NAME")
+#   else
+#     if echo $DIR_NAME | grep -q "CMD="; then
+#       DIR_NAME=$PLUGIN_NAME
+#       CLONE_PATH=$(eval "echo $VIM_BUNDLE_PATH/$DIR_NAME")
+#     else
+#       CLONE_PATH=$(eval "echo $DIR_NAME")
+#     fi
+#   fi
+
+#   if [ -d $CLONE_PATH ]; then
+#     echo -------------------------------------------------------------------------------
+#     echo Removing $DIR_NAME plugin for Vim
+#     rm -rf $CLONE_PATH
+#     echo Removed: $CLONE_PATH
+#     echo -------------------------------------------------------------------------------
+#   fi
+# done <$VIM_DEP_FILE_PATH
+
+# cd -
