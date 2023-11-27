@@ -18,7 +18,7 @@ call plug#begin()
 "   - e.g. `call plug#begin('~/.vim/plugged')`
 "   - Avoid using standard Vim directory names like 'plugin'
 
-Plug 'arcticicestudio/nord-vim'
+" Plug 'arcticicestudio/nord-vim' 
 Plug 'noahfrederick/vim-noctu'
 Plug 'frazrepo/vim-rainbow'
 Plug 'preservim/nerdcommenter'
@@ -31,18 +31,20 @@ Plug 'AxolotlC/Fox.vim'
 Plug 'jdkanani/vim-material-theme'
 Plug 'preservim/nerdtree',
 Plug 'morhetz/gruvbox'
-Plug 'jnurmine/Zenburn'
+" Plug 'jnurmine/Zenburn'
 Plug 'airblade/vim-gitgutter'
 Plug 'gosukiwi/vim-atom-dark'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rust-lang/rust.vim'
 Plug 'WeiChungWu/vim-SystemVerilog'
+Plug 'nachumk/systemverilog.vim'
 Plug 'tmux-plugins/vim-tmux'
 " Plug 'djoshea/vim-autoread'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'ervandew/supertab', { 'dir': '~/.vim/pack/plugins/start/supertab' }
 Plug 'easymotion/vim-easymotion'
+Plug 'christoomey/vim-tmux-navigator'
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
@@ -98,8 +100,8 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
  nnoremap <C-f> :NERDTreeFind<CR>
  nnoremap <C-S-Left> :tabprevious<CR>                                                                            
  nnoremap <C-S-Right> :tabnext<CR>
- nnoremap <C-h> :tabprevious<CR>                                                                            
- nnoremap <C-l> :tabnext<CR>
+ nnoremap <C-S-h> :tabprevious<CR>                                                                            
+ nnoremap <C-S-l> :tabnext<CR>
  " in NERDTree, to open-silently file in newtab with Enter, instead of default pressing "T" (same for not silently with Tab instead of t). To restore the comment the following two lines.
 let NERDTreeMapOpenInTab='<C-t>'
 let NERDTreeMapOpenInTabSilent='<S-t>'
@@ -230,19 +232,27 @@ endif
 
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
     let g:NERDToggleCheckAllLines = 1
+
 " Keymapping for the comment and uncomment
+" Set the leader+forwardSlash to comment -- C-m is just another way of saying carriage return
+" https://stackoverflow.com/a/2630579/16941779
+  inoremap <leader>/ <C-o>:call NERDComment(0,"toggle")<C-m>
 
 " Setting for the syntastic plugin
-    " set statusline+=%#warningmsg#
-    " set statusline+=%{SyntasticStatuslineFlag()}
-    " set statusline+=%*
-    "
-    " let g:syntastic_always_populate_loc_list = 1
-    " let g:syntastic_auto_loc_list = 1
-    " let g:syntastic_check_on_open = 1
-    " let g:syntastic_check_on_wq = 0
+  " set statusline+=%#warningmsg#
+  " set statusline+=%{SyntasticStatuslineFlag()}
+  " set statusline+=%*
+  "
+  " let g:syntastic_always_populate_loc_list = 1
+  " let g:syntastic_auto_loc_list = 1
+  " let g:syntastic_check_on_open = 1
+  " let g:syntastic_check_on_wq = 0
+
+" nachumk/systemverilog.vim Setting to activate tokens like begin end and others.
+" Enable matchit -- Although this is provided by vim-sensible also. So commented.
+" runtime macros/matchit.vim 
     
-    filetype plugin indent on
+filetype plugin indent on
 "  To automatically indent lines    
 set autoindent
  " On pressing tab, insert 2 spaces
@@ -295,8 +305,12 @@ set autoindent
   nnoremap <leader><leader> <Plug>(easymotion-s)
 
 " Close the current buffer not the tab or window.
- nnoremap <leader>bd :bd<cr>
- nnoremap <leader>bD :bd!<cr>
+ nnoremap <leader><leader>k :bd<cr>
+ nnoremap <leader><leader>K :bd!<cr>
+
+" Go to next buffer or previous -- Other shortcuts like Ctrl+Alt+Shift have conflicts. Be carefull and check.
+ nnoremap <leader>n :bnext<CR>
+ nnoremap <leader>b :bprev<CR>
 
 " View scrolling for the buffer
  nnoremap <C-d> <C-d>zz
