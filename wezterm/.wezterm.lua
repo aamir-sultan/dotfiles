@@ -266,7 +266,7 @@ config.window_padding = { -- Controls the amount of padding between the window b
 }
 config.use_fancy_tab_bar = false -- When true, the tab bar is rendered in a native style with proportional fonts.
 config.exit_behavior = "CloseOnCleanExit" -- if the shell program exited with a successful status, close the pane else keep it open.
-config.tab_bar_at_bottom = false -- When true, the tab bar will be rendered at the bottom of the window.
+config.tab_bar_at_bottom = true -- When true, the tab bar will be rendered at the bottom of the window.
 config.window_close_confirmation = "AlwaysPrompt" -- Set this to "NeverPrompt" if you don't like confirming closing windows every time.
 -- config.enable_csi_u_key_encoding = true -- Not recommended to enable this option as it does change the behavior of some keys in backwards incompatible ways
 config.allow_win32_input_mode = true -- Not recommended to enable this option as it does change the behavior of some keys in backwards incompatible ways
@@ -338,7 +338,6 @@ local wsl_domains = wezterm.default_wsl_domains()
 for idx, dom in ipairs(wsl_domains) do
     if dom.name == 'WSL:Ubuntu' then
         dom.default_prog = {'bash'}
-        dom.default_cwd = "~"
     end
 end
 
