@@ -38,6 +38,12 @@ c_echo() {
   esac
 }
 
+echo_pwd() {
+c_echo "yellow" "-------------------------------------------------------------------------------"
+echo "Back to `pwd`"
+c_echo "yellow" "-------------------------------------------------------------------------------"
+}
+
 # Setup the initial environment for the total setup
 source $DOTFILES/system/.variables
 
@@ -61,6 +67,7 @@ fi
 #    source ./setup/dependencies_installer.sh
 # Vim plugin installer script run
 source $DOTFILES/setup/vim_plugin_installer.sh
+echo_pwd
 
 #Set the path of the bashrc in the ~/.vimrc if already not exists otherwise print the information
 touch ~/.tmux.conf
@@ -73,12 +80,16 @@ fi
 
 # tmux plugin installer script run
 source $(realpath ${DOTFILES})"/setup/tmux_plugin_installer.sh"
+echo_pwd
+
 # Nvim Installation and setup
 source $(realpath ${DOTFILES})"/setup/nvim_setup.sh"
+echo_pwd
 
 # Setups the git aliases
 touch ~/.gitconfig
 source $DOTFILES/setup/git_setup.sh
+echo_pwd
 
 # Setup the .dircolors file
 DIRCOLORS=.dircolors
@@ -89,3 +100,4 @@ else
   echo "Copying $DIRCOLORS to $FILE_PATH"
   cp $DOTFILES/system/$DIRCOLORS ~/
 fi
+echo_pwd
