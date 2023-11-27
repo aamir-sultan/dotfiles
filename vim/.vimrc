@@ -300,11 +300,12 @@ set autoindent
   " nnoremap <Leader>f <Plug>(easymotion-s)
   nnoremap <leader><leader> <Plug>(easymotion-s)
 
-" Shortcuts for tab select.
+" Shortcuts for tab select -- alternatives are gt and gT by default for tab switching.
   nnoremap <C-S-Left> :tabprevious<CR>                                                                            
   nnoremap <C-S-Right> :tabnext<CR>
-  nnoremap <C-S-h> :tabprevious<CR>                                                                            
-  nnoremap <C-S-l> :tabnext<CR>
+  " nnoremap <C-S-h> :tabprevious<CR> " Ctrl and Ctrl+Shift and not differentiated by VIM and Ctrl+h has conflicts with window switching                                                                            
+  " nnoremap <C-S-l> :tabnext<CR>
+
 " Close the current buffer not the tab or window.
  nnoremap <leader><leader>k :bd<cr>
  nnoremap <leader><leader>K :bd!<cr>
