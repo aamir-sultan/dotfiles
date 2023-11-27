@@ -32,5 +32,7 @@ echo "VIM_BUNDLE_PATH:    $VIM_BUNDLE_PATH"
 echo "VIM_AUTOLOAD_PATH:  $VIM_AUTOLOAD_PATH"
 echo "VIM_PLUGINS_PATH:   $VIM_PLUGINS_PATH"
 
-TMUX_TPM_PATH=$(eval "echo ~/.tmux/plugins/tpm")
+TMUX_PLUGINS_PATH=$(eval "echo ~/.tmux/plugins")
+TMUX_TPM_PATH=$(eval "echo $TMUX_PLUGINS_PATH/tpm")
+echo "TMUX_PLUGINS_PATH:  $TMUX_PLUGINS_PATH"
 echo "TMUX_TPM_PATH:      $TMUX_TPM_PATH"

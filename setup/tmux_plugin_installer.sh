@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
 # Install the tmux plugin manager
-mkdir -p $TMUX_TPM_PATH &&
-  cd $TMUX_TPM_PATH
+mkdir -p $TMUX_PLUGINS_PATH &&
+  cd $TMUX_PLUGINS_PATH
 
 while read line; do
   if [[ "$line" =~ ^#.*$ ]] || [[ -z "$line" ]]; then
@@ -32,13 +32,13 @@ while read line; do
     # echo "DIR_NAME is empty"
     DIR_NAME=$PLUGIN_NAME
     echo "DIR_NAME empty. Corrected to: $DIR_NAME"
-    CLONE_PATH=$(eval "echo $TMUX_TPM_PATH/$DIR_NAME")
+    CLONE_PATH=$(eval "echo $TMUX_PLUGINS_PATH/$DIR_NAME")
   else
     if echo $DIR_NAME | grep -q "CMD="; then
       # echo "DIR_NAME is wrong: $DIR_NAME"
       DIR_NAME=$PLUGIN_NAME
       echo "DIR_NAME Wrong. Corrected to: $DIR_NAME"
-      CLONE_PATH=$(eval "echo $TMUX_TPM_PATH/$DIR_NAME")
+      CLONE_PATH=$(eval "echo $TMUX_PLUGINS_PATH/$DIR_NAME")
     else
       echo "DIR_NAME is not empty and is set to: $DIR_NAME"
       CLONE_PATH=$(eval "echo $DIR_NAME")
