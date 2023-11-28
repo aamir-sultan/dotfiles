@@ -446,7 +446,7 @@ key_bindings = {
 -- bashrc has the kill-backward commands now which covers us in most terminals. Should not be made specific to
 -- wezterm. The shortcuts are here incase needed in future.
 -- { key = 'Backspace', mods = 'CTRL', action = act.SendKey {key = 'Backspace', mods = 'ALT'} } -- most Linux shells use Alt + backspace instead for word backspace
--- { key = 'Backspace', mods = 'CTRL', action = act.SendKey {key = 'w', mods = 'CTRL'} } -- most Linux shells use Alt + backspace instead for word backspace
+{ key = 'Backspace', mods = 'CTRL', action = act.SendKey {key = 'w', mods = 'CTRL'} } -- most Linux shells use Alt + backspace instead for word backspace
 }
 
 function create_keybinds()
