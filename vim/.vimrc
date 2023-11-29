@@ -64,6 +64,9 @@ if !has("nvim")
   Plug 'ervandew/supertab', { 'dir': '~/.vim/pack/plugins/start/supertab' }
   Plug 'easymotion/vim-easymotion'
   Plug 'christoomey/vim-tmux-navigator'
+  
+  " For Buffer management
+  Plug 'ctrlpvim/ctrlp.vim'
   " Initialize plugin system
   " - Automatically executes `filetype plugin indent on` and `syntax enable`.
   call plug#end()
