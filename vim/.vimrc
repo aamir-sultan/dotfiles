@@ -305,6 +305,9 @@ set backspace=indent,eol,start
 " Change for key presses timeout default is 1000 or comment it for default
 set timeoutlen=600
 
+" To deactivate that pre-historic freezing feature.
+silent !stty -ixon
+
 set number
 " Toggle line numbering leader+n
 nnoremap <leader>n :set nornu! nonu!<CR>
