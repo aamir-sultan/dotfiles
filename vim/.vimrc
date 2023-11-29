@@ -41,6 +41,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'AxolotlC/Fox.vim'
 Plug 'jdkanani/vim-material-theme'
+
 " Nerdtree + Git plugin (shows git status in nerdtree)
 Plug 'preservim/nerdtree',
 " Plug 'xuyuanp/nerdtree-git-plugin' " Creating issue in VIM 7.0
@@ -323,8 +324,8 @@ set autoindent
  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
  
  " Remove the highlight from searched item
- set nohlsearch
- nnoremap <leader>h :set hlsearch!<CR>
+ set hlsearch
+ nnoremap <leader>h :set nohlsearch!<CR>
 
 " Keymap for leaving insert mode to normal
   " inoremap jk <esc>
