@@ -306,7 +306,7 @@ set autoindent
 
   set number
   " Remove all numbering on the left side with " "n
-  nnoremap <leader>n :set nornu nonu<CR>
+  nnoremap <leader>n :set nornu! nonu!<CR>
 
  augroup numbertoggle
    autocmd!
