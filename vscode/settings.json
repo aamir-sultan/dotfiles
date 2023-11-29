@@ -53,7 +53,8 @@
   
   // Enable/Disable ligatures -- https://github.com/githubnext/monaspace#coding-ligatures
   // "editor.fontLigatures": true, // Font ligatures
-  "editor.fontLigatures": "'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'",
+  // "editor.fontLigatures": "'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'",
+  "editor.fontLigatures": "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'",
   
   // Enable smooth scrolling in the editor
   "editor.smoothScrolling": true,
