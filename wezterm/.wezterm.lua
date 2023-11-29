@@ -122,6 +122,7 @@ local fontStyle = "Normal"
 
 -- local fontWeight = "Medium"
 local fontWeight = "Bold"
+local harfbazz_feat = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 
 config.font = wezterm.font_with_fallback {
 	{
@@ -130,37 +131,37 @@ config.font = wezterm.font_with_fallback {
 		style = fontStyle,
 		-- stretch = 'UltraExpanded',
 		-- stretch = 'Expanded',
-		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
+		harfbuzz_features = harfbazz_feat
 	},
 	{
 	    family = 'Monaspace Neon',
 	    weight = 'Medium',
 	    style = fontStyle,
-	    harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
+	    harfbuzz_features = harfbazz_feat
 	},
 	{
 		family = 'Monaspace Xenon',
 		weight = 'Medium',
 		style = fontStyle,
-		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
+		harfbuzz_features = harfbazz_feat
 	},
 	{
 		family = 'Monaspace Radon',
 		weight = 'Medium',
 		style = fontStyle,
-		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
+		harfbuzz_features = harfbazz_feat
 	},
 	{
 		family = 'Monaspace Krypton',
 		weight = 'Medium',
 		style = fontStyle,
-		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
+		harfbuzz_features = harfbazz_feat
 	},
 	{
 		family = 'JetBrains Mono',
 		weight = 'Medium',
 		style = fontStyle,
-		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
+		harfbuzz_features = harfbazz_feat
 	}, {
 		family = 'Terminus',
 		weight = fontWeight
