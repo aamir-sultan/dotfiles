@@ -328,6 +328,8 @@ set splitbelow splitright
 " Disable automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+nnoremap <leader>cbg :let &bg=(&bg=='light'?'dark':'light')<cr>
+
 " Remove the highlight from searched item
 set hlsearch
 nnoremap <leader>h :set nohlsearch!<CR>
