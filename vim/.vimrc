@@ -457,10 +457,10 @@ set noswapfile
 nnoremap <leader><leader><leader> <c-^>
 
 " Get off my lawn --  disable the arrow keys in vim
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+" nnoremap <Left> :echoe "Use h"<CR>
+" nnoremap <Right> :echoe "Use l"<CR>
+" nnoremap <Up> :echoe "Use k"<CR>
+" nnoremap <Down> :echoe "Use j"<CR>
 
 " Local config -- For addtional settings.
 if filereadable($HOME . "/.vimrc.local")
