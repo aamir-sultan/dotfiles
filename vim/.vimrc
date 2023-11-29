@@ -85,19 +85,18 @@ call plug#end()
 " Gruvbox related settings
   set bg=dark
 
-  " let g:gruvbox_contrast_dark = 'medium'
-  " let g:gruvbox_transparent_bg = '1'
-  " " let g:gruvbox_italic = '1'
-  " silent! colorscheme gruvbox
+  let g:gruvbox_contrast_dark = 'medium'
+  let g:gruvbox_transparent_bg = '1'
+  " let g:gruvbox_italic = '1'
+  silent! colorscheme gruvbox " Silent is used so that it does not throw errors when the gruuvbox is not available
 
-" tokyonight-vim settings
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1
-let g:tokyonight_transparent_background = 1
-" 'auto', 'red', 'green', 'blue'
-let g:tokyonight_cursor = 'auto'
-
-silent! colorscheme tokyonight
+" " tokyonight-vim settings
+" let g:tokyonight_style = 'night' " available: night, storm
+" let g:tokyonight_enable_italic = 1
+" let g:tokyonight_transparent_background = 1
+" " 'auto', 'red', 'green', 'blue'
+" let g:tokyonight_cursor = 'auto'
+" silent! colorscheme tokyonight
 
 " Nerdtree Settings
  let NERDTreeShowHidden=1
@@ -152,10 +151,10 @@ let g:NERDTreeGitStatusConcealBrackets = 1 " default: 0
  "Futher available list of the themes can be seen from https://github.com/vim-airline/vim-airline-themes/tree/master/autoload/airline/themes
 "  let g:airline_theme='cool'
 "  let g:airline_theme='deus'
-"  let g:airline_theme='night_owl'
+ let g:airline_theme='night_owl'
 "  let g:airline_theme='onedark'
 "  let g:airline_theme='papercolor'
- let g:airline_theme='raven'
+"  let g:airline_theme='raven'
  "let g:airline_theme='simple'
 "  let g:airline_theme='soda'
  "let g:airline_theme='solarized'
