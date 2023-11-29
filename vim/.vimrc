@@ -64,7 +64,7 @@ if !has("nvim")
   Plug 'ervandew/supertab', { 'dir': '~/.vim/pack/plugins/start/supertab' }
   Plug 'easymotion/vim-easymotion'
   Plug 'christoomey/vim-tmux-navigator'
-  
+
   " For Buffer management
   Plug 'ctrlpvim/ctrlp.vim'
   " Initialize plugin system
@@ -88,18 +88,19 @@ if !has("nvim")
   " Gruvbox related settings
   set bg=dark
 
-  let g:gruvbox_contrast_dark = 'medium'
-  let g:gruvbox_transparent_bg = '1'
-  " let g:gruvbox_italic = '1'
-  silent! colorscheme gruvbox " Silent is used so that it does not throw errors when the gruuvbox is not available
+  " let g:gruvbox_contrast_dark = 'medium'
+  " let g:gruvbox_transparent_bg = '1'
+  " " let g:gruvbox_italic = '1'
+  " silent! colorscheme gruvbox " Silent is used so that it does not throw errors when the gruuvbox is not available
 
-  " " tokyonight-vim settings
+  " tokyonight-vim settings
   " let g:tokyonight_style = 'night' " available: night, storm
-  " let g:tokyonight_enable_italic = 1
-  " let g:tokyonight_transparent_background = 1
-  " " 'auto', 'red', 'green', 'blue'
-  " let g:tokyonight_cursor = 'auto'
-  " silent! colorscheme tokyonight
+  let g:tokyonight_style = 'storm' " available: night, storm
+  let g:tokyonight_enable_italic = 1
+  let g:tokyonight_transparent_background = 1
+  " 'auto', 'red', 'green', 'blue'
+  let g:tokyonight_cursor = 'auto'
+  silent! colorscheme tokyonight
 
   " Nerdtree Settings
   let NERDTreeShowHidden=1
@@ -302,7 +303,7 @@ set shiftwidth=2
 " Set the backspace to work on anything when in insert mode
 set backspace=indent,eol,start
 " Change for key presses timeout default is 1000 or comment it for default
-set timeoutlen=500
+set timeoutlen=600
 
 set number
 " Toggle line numbering leader+n
