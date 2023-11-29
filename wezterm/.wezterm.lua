@@ -243,7 +243,7 @@ config.warn_about_missing_glyphs = false
 -- 	}
 	
 -- Cursor Settings
-config.default_cursor_style = 'SteadyUnderline' -- Acceptable values are SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, and BlinkingBar
+config.default_cursor_style = 'SteadyBlock' -- Acceptable values are SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, and BlinkingBar
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 0
@@ -253,6 +253,17 @@ config.animation_fps = 1 -- Controls the maximum frame rate used when rendering 
 --   fade_out_duration_ms = 75,
 --   target = 'CursorColor',
 -- }
+-- local cursor_background = "#D5C4A1" -- Yellowish
+-- local cursor_background = "#00ccff" -- Cyan
+-- local cursor_background = "#0099cc" -- Cyan Darkish
+-- local cursor_background = "#ccff00" -- Green light
+local cursor_background = "#ffcc00" -- Mustard
+-- local cursor_foreground	=	"#2E3435" -- Black+Brown
+local cursor_foreground	=	"#343235" -- Black+Brown
+config.colors = {
+	cursor_bg 		= cursor_background,-- Changes the cursor box color
+	cursor_fg 		= cursor_foreground, -- Changes the text chararchter color inside the cursor box.
+}
 
 -- config.color_scheme_dirs = { os.getenv("HOME") .. "/.config/wezterm/colors/" }
 config.hide_tab_bar_if_only_one_tab = false -- When there is only a single tab, the tab bar is hidden from the display
