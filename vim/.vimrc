@@ -303,7 +303,7 @@ set shiftwidth=2
 " Set the backspace to work on anything when in insert mode
 set backspace=indent,eol,start
 " Change for key presses timeout default is 1000 or comment it for default
-set timeoutlen=600
+set timeoutlen=600 ttimeoutlen=0
 
 " To deactivate that pre-historic freezing feature.
 silent !stty -ixon
