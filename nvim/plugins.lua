@@ -37,6 +37,7 @@ local plugins = {
   { 'mg979/vim-visual-multi' },
   { 'christoomey/vim-tmux-navigator', lazy = true },
   { 'ctrlpvim/ctrlp.vim', lazy = false },
+  { 'nvim-zh/better-escape.vim', lazy = false },
   { 'MunifTanjim/nui.nvim' },
   {
     "numToStr/Comment.nvim",
