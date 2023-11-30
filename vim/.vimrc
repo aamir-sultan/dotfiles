@@ -337,7 +337,8 @@ nnoremap <leader>h :set nohlsearch!<CR>
 " Keymap for leaving insert mode to normal
 " inoremap jk <esc>
 " inoremap kj <esc>
-inoremap jf <esc>
+" inoremap jf <esc>
+inoremap jf <esc><esc>
 
 " Mapping for Easymotion
 " Remaping the leader key for easymotion
