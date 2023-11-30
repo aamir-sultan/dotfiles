@@ -67,6 +67,11 @@ if !has("nvim")
 
   " For Buffer management
   Plug 'ctrlpvim/ctrlp.vim'
+
+  " Remove wait on the first key of escape sequence like jk
+  Plug 'nvim-zh/better-escape.vim'
+  
+  
   " Initialize plugin system
   " - Automatically executes `filetype plugin indent on` and `syntax enable`.
   call plug#end()
@@ -178,6 +183,8 @@ highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 let g:gitgutter_map_keys = 0
+
+
 " ------------------------------------------------------------------------------------- 
 endif " End of the Only VIM Related Settings
 " =====================================================================================
@@ -291,6 +298,22 @@ inoremap <leader>/ <C-o>:call NERDComment(0,"toggle")<C-m>
 " Enable matchit -- Although this is provided by vim-sensible also. So commented.
 " runtime macros/matchit.vim 
 
+
+" better-escape.vim Settings
+" non-ASCII shortcuts are also supported for non-English keyboard.
+" let g:better_escape_shortcut = ['jk', 'jj', 'kj', 'лл']
+" Press Shift-Space (may not work on your system).
+" :imap <S-Space> <Esc>
+" Try the following so Shift-Space also enters insert mode.
+" :nmap <S-Space> i " Currenly space is being used as leader key
+" Or just Space to enter insert mode.
+" :nmap <Space> i " Currenly space is being used as leader key
+let g:better_escape_shortcut = ['jj', 'ii', 'jf']
+" set time interval to 200 ms
+let g:better_escape_interval = 200
+
+cnoremap ii <C-C>
+vnoremap ii <C-C>
 filetype plugin indent on
 "  To automatically indent lines    
 set autoindent
@@ -335,10 +358,12 @@ set hlsearch
 nnoremap <leader>h :set nohlsearch!<CR>
 
 " Keymap for leaving insert mode to normal
+" This is being controlled by better-escape.vim plugin now
 " inoremap jk <esc>
 " inoremap kj <esc>
 " inoremap jf <esc>
-inoremap jf <esc><esc>
+" inoremap jf <esc><esc>
+
 
 " Mapping for Easymotion
 " Remaping the leader key for easymotion

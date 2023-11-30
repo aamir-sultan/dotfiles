@@ -42,5 +42,11 @@
   # Reword the previous commit
   rwc = commit -v — amend
 
+  # Takes 2 arguments and put the first argument as feat, chore and next argument as message
+  committ = "!f(){ \
+        git add .; \
+        git commit -m \"$1: $2\"; \
+        }; f"
+
 [pull]
   rebase = false
