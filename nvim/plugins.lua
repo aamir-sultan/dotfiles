@@ -4,21 +4,10 @@ local plugins = {
   -- { "junegunn/fzf.vim", lazy = false },
   -- { 'arcticicestudio/nord-vim' },
   -- { 'noahfrederick/vim-noctu' },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
-  {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-  },
+  -- Start screen for Vim and Neovim.
+  { "mhinz/vim-startify", lazy = false, },
+  { "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {}, },
+  { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = {} },
   { 'ThePrimeagen/vim-be-good', lazy = false },
   { 'frazrepo/vim-rainbow' },
   { 'preservim/nerdcommenter', lazy = false },
@@ -338,24 +327,24 @@ end,
     require('hop').setup()
   end,
 },
-{ "nvim-tree/nvim-tree.lua", enabled = false,
-opts = {
-  git = {
-    enable = true,
-  },
-  renderer = {
-    highlight_git = true,
-    icons = {
-      show = {
-        git = true,
-      },
-    },
-  },
-  view = {
-    side = "right",
-  },
-},
-  },
+-- { "nvim-tree/nvim-tree.lua", enabled = false,
+-- opts = {
+--   git = {
+--     enable = true,
+--   },
+--   renderer = {
+--     highlight_git = true,
+--     icons = {
+--       show = {
+--         git = true,
+--       },
+--     },
+--   },
+--   view = {
+--     side = "right",
+--   },
+-- },
+--   },
 
 }
 return plugins
