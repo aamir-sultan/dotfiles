@@ -69,7 +69,7 @@ if !has("nvim")
   Plug 'ctrlpvim/ctrlp.vim'
 
   " Remove wait on the first key of escape sequence like jk
-  Plug 'nvim-zh/better-escape.vim'
+  " Plug 'nvim-zh/better-escape.vim' " Does not work on VIM 7
   
   
   " Initialize plugin system
