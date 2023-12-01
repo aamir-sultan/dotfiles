@@ -122,7 +122,6 @@ local fontStyle = "Normal"
 
 -- local fontWeight = "Medium"
 local fontWeight = "Bold"
-local harfbazz_feat = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 
 config.font = wezterm.font_with_fallback {
 	{
@@ -131,37 +130,37 @@ config.font = wezterm.font_with_fallback {
 		style = fontStyle,
 		-- stretch = 'UltraExpanded',
 		-- stretch = 'Expanded',
-		harfbuzz_features = harfbazz_feat
+		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	},
 	{
 	    family = 'Monaspace Neon',
 	    weight = 'Medium',
 	    style = fontStyle,
-	    harfbuzz_features = harfbazz_feat
+	    harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	},
 	{
 		family = 'Monaspace Xenon',
 		weight = 'Medium',
 		style = fontStyle,
-		harfbuzz_features = harfbazz_feat
+		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	},
 	{
 		family = 'Monaspace Radon',
 		weight = 'Medium',
 		style = fontStyle,
-		harfbuzz_features = harfbazz_feat
+		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	},
 	{
 		family = 'Monaspace Krypton',
 		weight = 'Medium',
 		style = fontStyle,
-		harfbuzz_features = harfbazz_feat
+		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	},
 	{
 		family = 'JetBrains Mono',
 		weight = 'Medium',
 		style = fontStyle,
-		harfbuzz_features = harfbazz_feat
+		harfbuzz_features = {'calt=1', 'clig=1', 'liga=1', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'}
 	}, {
 		family = 'Terminus',
 		weight = fontWeight
@@ -170,6 +169,7 @@ config.font = wezterm.font_with_fallback {
 -- Background Settings
 -- config.window_background_image = 'D://Mega//backgrounds//2184.jpg' -- Background image path
 -- config.window_background_opacity = .98 -- Background transparency = 0 and opacity = 1
+-- config.win32_system_backdrop = 'Tabbed' -- Creates blurred effects when combined with window_background_opacity -- 'Acrylic', 'Mica', 'Tabbed'
 -- config.text_background_opacity = 0.3 -- The image content can have relatively low contrast with respect to the text.
 -- config.window_background_image_hsb = { -- Will implicitly prepend a layer to the background configuration
 --     brightness = 0.1, -- Darken the background image by reducing it to 1/3rd
@@ -202,27 +202,27 @@ config.background = {
 	  -- further behind the text.
 	  attachment = "Fixed",
 	},
-	-- Subsequent layers are rendered over the top of each other
-	{
-	  source  = {
-		File    = 'D://Mega//backgrounds//assets//blob_blue.gif',
-	  },
-	  width 	    = '100%',
-	  repeat_x 	  = 'NoRepeat',
+	-- -- Subsequent layers are rendered over the top of each other
+	-- {
+	--   source  = {
+	-- 	File    = 'D://Mega//backgrounds//assets//blob_blue.gif',
+	--   },
+	--   width 	    = '100%',
+	--   repeat_x 	  = 'NoRepeat',
   
-	  -- position the spins starting at the bottom, and repeating every
-	  -- two screens.
-	  vertical_align 	  = 'Middle',
-	  -- repeat_y_size 	  = '300%',
-	  hsb 				      = hsb_dimmer,
-    opacity           = 0.2,
-    height            = 'Contain',
+	--   -- position the spins starting at the bottom, and repeating every
+	--   -- two screens.
+	--   vertical_align 	  = 'Middle',
+	--   -- repeat_y_size 	  = '300%',
+	--   hsb 				      = hsb_dimmer,
+  --   opacity           = 0.2,
+  --   height            = 'Contain',
   
-	  -- The parallax factor is higher than the background layer, so this
-	  -- one will appear to be closer when we scroll
-	  -- attachment = { Parallax = 0.1 },
-    attachment = "Fixed",
-	},
+	--   -- The parallax factor is higher than the background layer, so this
+	--   -- one will appear to be closer when we scroll
+	--   -- attachment = { Parallax = 0.1 },
+  --   attachment = "Fixed",
+	-- },
 }
 
 -- Additional Settings
@@ -258,7 +258,9 @@ config.animation_fps = 1 -- Controls the maximum frame rate used when rendering 
 -- local cursor_background = "#00ccff" -- Cyan
 -- local cursor_background = "#0099cc" -- Cyan Darkish
 -- local cursor_background = "#ccff00" -- Green light
-local cursor_background = "#ffcc00" -- Mustard
+-- local cursor_background = "#ffcc00" -- Mustard
+local cursor_background = "#FBC02D" -- Mustard
+-- local cursor_background = "#FF5733" -- Orange
 -- local cursor_foreground	=	"#2E3435" -- Black+Brown
 local cursor_foreground	=	"#343235" -- Black+Brown
 config.colors = {
