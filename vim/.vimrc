@@ -371,6 +371,7 @@ nnoremap N Nzzzv
 nnoremap <leader>k :bd<cr>
 " Forced Buffer close
 nnoremap <leader><leader>k :bd!<cr>
+nnoremap <leader><leader><Leader>k :bd!<cr>
 
 " Vim Closing shortcuts
 " ZQ is same is :q!
@@ -378,6 +379,7 @@ nnoremap <leader><leader>k :bd!<cr>
 " 2 times leader is supposed to be creating and enforced mode.
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader><Leader>w :w!<CR>
+nnoremap <Leader><Leader><Leader>w :w!<CR>
 
 " ctrl+q for quit or same as :q+Enter
 nnoremap <C-q> <esc>:q<CR>
@@ -385,6 +387,7 @@ nnoremap <Leader>q :q<CR>
 " Shift+q or "Leader Leader q" for quit or same as :q!+Enter
 nnoremap Q ZQ
 nnoremap <Leader><Leader>q ZQ
+nnoremap <Leader><Leader><Leader>q ZQ
 
 " ctrl+wq for write and quit or same as :wq but only write, if the file is modified.
 nnoremap <C-w><C-q> <esc>ZZ
@@ -392,6 +395,7 @@ nnoremap <Leader>wq ZZ
 " "Leader Leader wq" for forced write and quit
 nnoremap WQ :wq!<CR>
 nnoremap <Leader><Leader>wq :wq!<CR>
+nnoremap <Leader><Leader><Leader>wq :wq!<CR>
 
 " Close all windows.
 nnoremap <C-q><C-a> <esc>:qall<CR>
@@ -399,6 +403,7 @@ nnoremap <Leader>qa :qall<CR>
 " "Leader Leader qa" Close all windows forcefully.
 nnoremap QA :qall!<CR>
 nnoremap <Leader><Leader>qa :qall!<CR>
+nnoremap <Leader><Leader><Leader>qa :qall!<CR>
 
 "Write and close all windows
 nnoremap <C-w><C-q><C-a> <esc>:wqall<CR>
@@ -406,6 +411,7 @@ nnoremap <Leader>wqa :wqall<CR>
 ""Leader Leader wqa" Write and close all windows forcefully
 nnoremap WQA :wqall!<CR>
 nnoremap <Leader><Leader>wqa :wqall!<CR>
+nnoremap <Leader><Leader><Leader>wqa :wqall!<CR>
 
 " Fugitive Conflict Resolution
 nnoremap <leader>gd :Gvdiff<CR>
