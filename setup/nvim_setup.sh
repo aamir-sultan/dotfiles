@@ -58,8 +58,9 @@ if [ -d $NVIM_PATH ]; then
   echo $(basename $NVIM_PATH) already available at $(dirname $NVIM_PATH)
 
   if [[ "$CONFIG_NAME" != "$NVIM_CONFIG_DEFAULT" ]]; then
-    echo "Creating Backup of older copy on configuration"
-    mv -f $NVIM_PATH $NVIM_BAK
+    echo "Removing older copy of configuration"
+    # mv -f $NVIM_PATH $NVIM_BAK
+    rm -rf $NVIM_PATH
     get_new_clones
   else
     update_clones
