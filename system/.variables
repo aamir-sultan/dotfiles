@@ -6,6 +6,15 @@ if [ -z "$DOTFILES" ]; then
     DOTFILES="$(dirname -- "${BASH_SOURCE[0]}")/../"
 fi
 
+NVIM_CONFIG_DEFAULT="lazyvim" # Other options are KickStart, NvChad, or LazyVim
+echo "NVIM_CONFIG_DEFAULT:$NVIM_CONFIG_DEFAULT"
+# Check if the NVIM_CONFIG is not set
+if [ -z "$NVIM_CONFIG" ]; then
+NVIM_CONFIG=$NVIM_CONFIG_DEFAULT # Other options are KickStart, NvChad, or LazyVim
+else
+echo "NVIM_CONFIG:        $NVIM_CONFIG"
+fi
+
 VIMRC_PATH=$(eval "echo ~/.vimrc")
 BASHRC_PATH=$(eval "echo ~/.bashrc")
 TMUXCONF_PATH=$(eval "echo ~/.tmux.conf")
