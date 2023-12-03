@@ -70,6 +70,7 @@ source $DOTFILES/system/.variables
 rm -rf ~/.config/nvim
 rm -rf ~/.config/nvim.bak
 rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
 # rm -rf ~/.gitconfig
 rm -rf ~/.dircolors
 rm -rf ~/.tmux
