@@ -460,7 +460,7 @@ set ignorecase
 set smartcase
 
 " buffer screen updates instead of updating all the time (speeds up scrolling)
-set lazyredraw
+" set lazyredraw
 
 " undofile tells Vim to create <FILENAME>.un~ files whenever you edit a file. These files contain undo information so you can undo previous actions even after you close and reopen a file.
 set undofile
