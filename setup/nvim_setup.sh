@@ -19,13 +19,13 @@ if [ -d $NVIM_PATH ]; then
   elif [[ "$CONFIG_NAME" == "LazyVim" ]]; then
     echo "Updating the $CONFIG_NAME -- Removing older symlinks"
     rm -rf $HOME/.config/nvim
-    echo Creating new simlinks for $CONFIG_NAME
+    echo Creating new symlinks for $CONFIG_NAME
     ln -s $DOTFILES/nvim/lazyvim $HOME/.config/nvim
 
   else
     echo "Updating the $CONFIG_NAME -- Removing older symlinks"
     rm -rf $HOME/.config/nvim
-    echo Creating new simlinks for $CONFIG_NAME
+    echo Creating new symlinks for $CONFIG_NAME
     ln -s $DOTFILES/nvim/lazyvim $HOME/.config/nvim
   fi
 
