@@ -7,7 +7,7 @@ CONFIG_NAME="$NVIM_CONFIG"
 get_new_clones(){
   if [[ "$CONFIG_NAME" == "nvchad" ]]; then
     echo Cloning $CONFIG_NAME to $(basename $NVIM_PATH) ...
-    git clone --depth 1 clone https://github.com/aamir-sultan/NvChad $NVIM_PATH
+    git clone --depth 1 https://github.com/aamir-sultan/NvChad $NVIM_PATH
     echo "Removing the custom dir from the $HOME/.config/nvim/lua/custom"
     rm -rf $HOME/.config/nvim/lua/custom
     echo "Symbolic linking $DOTFILES/nvim/nvchad to $HOME/.config/nvim/lua/custom"
@@ -59,7 +59,7 @@ if [ -d $NVIM_PATH ]; then
 
   if [[ "$CONFIG_NAME" != "$NVIM_CONFIG_DEFAULT" ]]; then
     echo "Creating Backup of older copy on configuration"
-    mv $HOME/.config/nvim $HOME/.config/nvim.bak
+    mv $NVIM_PATH $NVIM_BAK
     get_new_clones
   else
     update_clones
