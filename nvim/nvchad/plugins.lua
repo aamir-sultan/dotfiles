@@ -28,6 +28,7 @@ local plugins = {
   { 'ctrlpvim/ctrlp.vim', lazy = false },
   { 'nvim-zh/better-escape.vim', lazy = false },
   { 'MunifTanjim/nui.nvim' },
+  -- { 'beauwilliams/statusline.lua' },
   {
     "numToStr/Comment.nvim",
     -- keys = { "gcc", "gbc" },
