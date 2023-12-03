@@ -125,7 +125,7 @@ function getcertnames() {
 	if [[ "${tmp}" = *"-----BEGIN CERTIFICATE-----"* ]]; then
 		local certText=$(echo "${tmp}" |
 			openssl x509 -text -certopt "no_aux, no_header, no_issuer, no_pubkey, \
-			no_serial, no_sigdump, no_signame, no_validity, no_version")
+      no_serial, no_sigdump, no_signame, no_validity, no_version")
 		echo "Common Name:"
 		echo "" # newline
 		echo "${certText}" | grep "Subject:" | sed -e "s/^.*CN=//" | sed -e "s/\/emailAddress=.*//"
@@ -216,8 +216,8 @@ up() {
 function fawk() {
 	USAGE="\
     usage:  fawk [<awk_args>] <field_no>
-  Ex: getent passwd | grep andy | fawk -F: 5
-  "
+      Ex: getent passwd | grep andy | fawk -F: 5
+      "
 	if [ $# -eq 0 ]; then
 		echo -e "$USAGE" >&2
 		return
@@ -281,4 +281,18 @@ extract() {
 # usage: cheat bash/sed
 cheat() {
 	curl cht.sh/"$1"
+}
+
+function lsth() {
+	if command -v vivid &>/dev/null; then
+		for theme in $(vivid themes); do
+			echo "Theme: $theme"
+			LS_COLORS=$(vivid generate $theme)
+			ls
+			echo
+		done
+	else
+		echo "vivid tool is not available int the path"
+		echo -e "vivid can be download from \nhttps://github.com/sharkdp/vivid.git"
+	fi
 }
