@@ -282,7 +282,7 @@ let g:NERDToggleCheckAllLines = 1
 " Keymapping for the comment and uncomment
 " Set the leader+forwardSlash to comment -- C-m is just another way of saying carriage return
 " https://stackoverflow.com/a/2630579/16941779
-inoremap <leader>/ <C-o>:call NERDComment(0,"toggle")<C-m>
+nnoremap <leader>/ <C-o>:call NERDComment(0,"toggle")<C-m>
 
 " Setting for the syntastic plugin
 " set statusline+=%#warningmsg#
