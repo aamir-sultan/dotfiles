@@ -1,29 +1,30 @@
 return {
   -- { "junegunn/fzf", run = ":call fzf#install()", lazy = false },
   -- { "junegunn/fzf.vim", lazy = false },
-  {'BlakeJC94/alpha-nvim-fortune', lazy = false }, -- Is used for the quote in the start screen
-  { 'ThePrimeagen/vim-be-good', lazy = true },
+  {'BlakeJC94/alpha-nvim-fortune', lazy = true, event = "VimEnter", }, -- Is used for the quote in the start screen
+  { 'ThePrimeagen/vim-be-good', event = { "LazyFile", "VeryLazy" }, },
   { 'frazrepo/vim-rainbow', lazy = true},
-  { 'tpope/vim-sensible', lazy = true },
-  { 'tpope/vim-fugitive', lazy = true },
-  { 'WeiChungWu/vim-SystemVerilog', lazy = true },
-  { 'nachumk/systemverilog.vim', lazy = true },
-  { 'airblade/vim-gitgutter', lazy = true },
-  { 'tmux-plugins/vim-tmux', lazy = true },
-  { 'djoshea/vim-autoread', lazy = true },
-  { 'lambdalisue/nerdfont.vim', lazy = true },
-  { 'ryanoasis/vim-devicons', lazy = true },
-  { 'bagrat/vim-buffet', lazy = true },
-  { 'vim-scripts/SearchComplete', lazy = true },
-  { 'ervandew/supertab', lazy = true },
-  { 'mg979/vim-visual-multi', lazy = true },
-  { 'christoomey/vim-tmux-navigator', lazy = true },
-  { 'ctrlpvim/ctrlp.vim', lazy = false },
-  { 'nvim-zh/better-escape.vim', lazy = false },
+  { 'tpope/vim-sensible', event = { "LazyFile", "VeryLazy" }, },
+  { 'tpope/vim-fugitive', event = { "LazyFile", "VeryLazy" }, },
+  { 'WeiChungWu/vim-SystemVerilog', event = { "LazyFile", "VeryLazy" }, },
+  { 'nachumk/systemverilog.vim', event = { "LazyFile", "VeryLazy" }, },
+  { 'airblade/vim-gitgutter', event = { "LazyFile", "VeryLazy" }, },
+  { 'tmux-plugins/vim-tmux', event = { "LazyFile", "VeryLazy" }, },
+  { 'djoshea/vim-autoread', event = { "LazyFile", "VeryLazy" }, },
+  { 'lambdalisue/nerdfont.vim', event = { "LazyFile", "VeryLazy" }, },
+  -- { 'ryanoasis/vim-devicons', event = { "LazyFile", "VeryLazy" }, },
+  { 'bagrat/vim-buffet', event = { "LazyFile", "VeryLazy" }, },
+  { 'vim-scripts/SearchComplete', event = { "LazyFile", "VeryLazy" }, },
+  { 'ervandew/supertab', lazy = true, },
+  { 'mg979/vim-visual-multi', event = { "LazyFile", "VeryLazy" }, },
+  -- { 'christoomey/vim-tmux-navigator', event = { "LazyFile", "VeryLazy" }, },
+  { 'christoomey/vim-tmux-navigator', event = { "LazyFile", "VeryLazy" }, },
+  { 'ctrlpvim/ctrlp.vim', lazy = true, event = "VimEnter", },
+  { 'nvim-zh/better-escape.vim', lazy = true, event = "VimEnter", },
   -- { 'MunifTanjim/nui.nvim', lazy = true },
   -- { 'beauwilliams/statusline.lua' },
   {
-    "numToStr/Comment.nvim", lazy = true,
+    "numToStr/Comment.nvim", event = { "LazyFile", "VeryLazy" },
     -- keys = { "gcc", "gbc" },
     -- init = function()
     --   require("core.utils").load_mappings "comment"
@@ -34,17 +35,17 @@ return {
       ft.systemverilog = {'//%s', '/*%s*/'}
     end,
   },
-  -- { 'echasnovski/mini.animate', lazy = true, version = '*',
+  -- { 'echasnovski/mini.animate', event = { "LazyFile", "VeryLazy" }, version = '*',
   --   init = function()
   --     require('mini.animate').setup()
   --   end,
   -- },
-  { 'echasnovski/mini.cursorword', lazy = true, version = '*',
+  { 'echasnovski/mini.cursorword', event = { "LazyFile", "VeryLazy" }, version = '*',
     init = function()
       require('mini.cursorword').setup()
     end,
   },
-  { 'echasnovski/mini.indentscope', lazy = true, version = '*',
+  { 'echasnovski/mini.indentscope', event = { "LazyFile", "VeryLazy" }, version = '*',
     init = function()
       require('mini.indentscope').setup()
     end,

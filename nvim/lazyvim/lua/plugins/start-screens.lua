@@ -56,8 +56,8 @@ return {
            \/     \/                       \/    
     ]]
     
-    local combined = logo .. "" .. fortune()
-    -- local combined = logo .. "" .. qoute
+    -- local combined = logo .. fortune()
+    local combined = logo .. qoute
     -- local combined = qoute .. "\n" .. logo
     -- logo = string.rep("\n", 8) .. combined .. "\n" -- This line adds padding at the top
     logo = combined .. "\n"
