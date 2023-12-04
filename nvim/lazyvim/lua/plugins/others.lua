@@ -5,6 +5,7 @@ return {
   { 'ThePrimeagen/vim-be-good',       event = { "LazyFile", "VeryLazy" }, },
   { 'xiyaowong/transparent.nvim',     event = "VimEnter", },
   { 'frazrepo/vim-rainbow',           lazy = true },
+  { 'wellle/targets.vim',             event = { "LazyFile", "VeryLazy" }, }, -- Provides additional targets for commands
   { 'tpope/vim-sensible',             event = { "LazyFile", "VeryLazy" }, },
   { 'tpope/vim-fugitive',             event = { "LazyFile", "VeryLazy" }, },
   -- { 'WeiChungWu/vim-SystemVerilog', event = { "LazyFile", "VeryLazy" }, },  -- Creating issues with tabs of LazyVim
