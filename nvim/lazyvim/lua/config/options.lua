@@ -18,5 +18,6 @@ opt.expandtab = true
 opt.autoindent = true
 opt.smartindent = true
 
+vim.g.transparent_groups = vim.list_extend(vim.g.transparent_groups or {}, { "ExtraGroup" })
 vim.o.background = "dark" -- or "light" for light mode
 -- vim.cmd([[colorscheme gruvbox]])

@@ -3,6 +3,7 @@ return {
   -- -- { "junegunn/fzf.vim", lazy = false },
   { 'BlakeJC94/alpha-nvim-fortune',   lazy = true,                        event = "VimEnter", }, -- Is used for the quote in the start screen
   { 'ThePrimeagen/vim-be-good',       event = { "LazyFile", "VeryLazy" }, },
+  { 'xiyaowong/transparent.nvim',     event = "VimEnter", },
   { 'frazrepo/vim-rainbow',           lazy = true },
   { 'tpope/vim-sensible',             event = { "LazyFile", "VeryLazy" }, },
   { 'tpope/vim-fugitive',             event = { "LazyFile", "VeryLazy" }, },
