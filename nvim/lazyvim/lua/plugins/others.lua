@@ -1,11 +1,10 @@
 return {
-  -- -- { "junegunn/fzf", run = ":call fzf#install()", lazy = false },
-  -- -- { "junegunn/fzf.vim", lazy = false },
-  { 'BlakeJC94/alpha-nvim-fortune',   lazy = true,                        event = "VimEnter", }, -- Is used for the quote in the start screen
+  -- { "junegunn/fzf", run = ":call fzf#install()", lazy = false },
+  -- { "junegunn/fzf.vim", lazy = false },
   { 'ThePrimeagen/vim-be-good',       event = { "LazyFile", "VeryLazy" }, },
-  { 'xiyaowong/transparent.nvim',     event = "VimEnter", },
-  { 'frazrepo/vim-rainbow',           lazy = true },
-  { 'wellle/targets.vim',             event = { "LazyFile", "VeryLazy" }, }, -- Provides additional targets for commands
+  { 'xiyaowong/transparent.nvim',     event = { "LazyFile", "VeryLazy" }, },
+  { 'frazrepo/vim-rainbow',           event = { "LazyFile", "VeryLazy" }, },
+  -- { 'wellle/targets.vim',             event = { "LazyFile", "VeryLazy" }, }, -- Provides additional targets for commands
   { 'tpope/vim-sensible',             event = { "LazyFile", "VeryLazy" }, },
   { 'tpope/vim-fugitive',             event = { "LazyFile", "VeryLazy" }, },
   -- { 'WeiChungWu/vim-SystemVerilog', event = { "LazyFile", "VeryLazy" }, },  -- Creating issues with tabs of LazyVim
@@ -25,19 +24,19 @@ return {
   { 'nvim-zh/better-escape.vim',      lazy = true,                        event = "VimEnter", },
   -- { 'MunifTanjim/nui.nvim', lazy = true },
   -- { 'beauwilliams/statusline.lua' },
-  {
-    "numToStr/Comment.nvim",
-    event = { "LazyFile", "VeryLazy" },
-    -- keys = { "gcc", "gbc" },
-    -- init = function()
-    --   require("core.utils").load_mappings "comment"
-    -- end,
-    config = function(_, opts)
-      require("Comment").setup(opts)
-      local ft = require('Comment.ft')
-      ft.systemverilog = { '//%s', '/*%s*/' }
-    end,
-  },
+  -- {
+  --   "numToStr/Comment.nvim",
+  --   event = { "LazyFile", "VeryLazy" },
+  --   -- keys = { "gcc", "gbc" },
+  --   -- init = function()
+  --   --   require("core.utils").load_mappings "comment"
+  --   -- end,
+  --   config = function(_, opts)
+  --     require("Comment").setup(opts)
+  --     local ft = require('Comment.ft')
+  --     ft.systemverilog = { '//%s', '/*%s*/' }
+  --   end,
+  -- },
   -- { 'echasnovski/mini.animate', event = { "LazyFile", "VeryLazy" }, version = '*',
   --   init = function()
   --     require('mini.animate').setup()
@@ -51,18 +50,12 @@ return {
       require('mini.cursorword').setup()
     end,
   },
-  {
-    'echasnovski/mini.indentscope',
-    event = { "LazyFile", "VeryLazy" },
-    version = '*',
-    init = function()
-      require('mini.indentscope').setup()
-    end,
-  },
-  {
-    -- "strash/everybody-wants-that-line.nvim", lazy = true,
-    -- config = function()
-    -- [your configuration here]
-    -- end
-  }
+  -- {
+  --   'echasnovski/mini.indentscope',
+  --   event = { "LazyFile", "VeryLazy" },
+  --   version = '*',
+  --   init = function()
+  --     require('mini.indentscope').setup()
+  --   end,
+  -- },
 }
