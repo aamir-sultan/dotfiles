@@ -148,17 +148,34 @@ symbolStyle="${bold}${green}"
 # symbolStyle="${bold}${yellow}"
 # symbolStyle="${bold}${black}"
 
+promptConnectorStyle="${bold}${green}"
+# promptConnectorOpen="┌─ "
+# promptConnectorClose="└──"
+# promptConnectorOpen="┏━━ "
+# promptConnectorClose="┗━━━"
+promptConnectorOpen="╭── "
+promptConnectorClose="╰───╌╌"
+# promptConnectorOpen=""
+# promptConnectorClose=""
+
 # Prompt Symbol
 # promptSymbol="❯"
 promptSymbol=">"
+# promptSymbol="»"
+# promptSymbol="⨔"
+# promptSymbol="⌇"
+# promptSymbol="⁂"
+# promptSymbol="➲"
 # promptSymbol="\$"
 
 # Set the terminal title and prompt.
+PS1="\[\033]0;\W\007\]"
 # PS1="\[${italic}\]\n"; # Italic the PS1
-PS1="\[\033]0;\W\007\]" # working directory base name
 # PS1+="\[${bold}\]"; # No newline at the top and after the command text
-PS1+="\[${bold}\]\n"      # newline
-PS1+="\[${userStyle}\]\u" # username
+PS1+="\[${bold}\]\n"                                     # newline
+PS1+="\[${promptConnectorStyle}\]${promptConnectorOpen}" # newline
+PS1+="\[${bold}\]"                                       # newline
+PS1+="\[${userStyle}\]\u"                                # username
 PS1+="\[${white}\] at "
 PS1+="\[${hostStyle}\]\h (\t)" # host
 PS1+="\[${white}\] in "
@@ -166,8 +183,9 @@ PS1+="\[${blue}\]\w"                                                    # workin
 PS1+="\$(prompt_git \"\[${white}\] on \[${orange}\]\" \"\[${cyan}\]\")" # Git repository details
 PS1+="\n"
 # PS1+="\[${white}\]${promptSymbol} \[${reset}\]"; # `$` (and reset color)
-PS1+="\[${symbolStyle}\]${promptSymbol} \[${reset}\]" # `$` (and reset color)
-PS1+="\[${yellow}\]"                                  # Terminal stdout color
+PS1+="\[${promptConnectorStyle}\]${promptConnectorClose}" # Terminal stdout color
+PS1+="\[${symbolStyle}\]${promptSymbol} \[${reset}\]"     # `$` (and reset color)
+PS1+="\[${yellow}\]"                                      # Terminal stdout color
 # PS1+="\[${green}\]"; # Terminal stdout color
 export PS1
 
