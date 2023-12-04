@@ -7,6 +7,7 @@ return {
 
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
+  dependencies = {'BlakeJC94/alpha-nvim-fortune'},
   requires = {'BlakeJC94/alpha-nvim-fortune'},
   opts = function()
     local fortune = require("alpha.fortune")
