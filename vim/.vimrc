@@ -490,6 +490,14 @@ if !isdirectory($HOME . "/.vim/swp")
 endif
 set directory=.swp/,~/.vim/swp/,/tmp//
 
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+" https://medium.com/@schtoeffel/you-don-t-need-more-than-one-cursor-in-vim-2c44117d51db
+" Apply the macro to all lines in visual mode and skip the ones which do not match.
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
 
 " I can't remember a time when I didn't want to save a file after tabbing away from my editor (especially with version control and Vim's persistent undo):
 au FocusLost * :wa

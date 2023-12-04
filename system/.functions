@@ -2,164 +2,164 @@
 
 # Create a new directory and enter it
 function mkd() {
-	mkdir -p "$@" && cd "$_"
+  mkdir -p "$@" && cd "$_"
 }
 
 # Change working directory to the top-most Finder window location
 function cdf() { # short for `cdfinder`
-	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
+  cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
 }
 
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 function targz() {
-	local tmpFile="${@%/}.tar"
-	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1
+  local tmpFile="${@%/}.tar"
+  tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1
 
-	size=$(
-		stat -f"%z" "${tmpFile}" 2>/dev/null # macOS `stat`
-		stat -c"%s" "${tmpFile}" 2>/dev/null # GNU `stat`
-	)
+  size=$(
+  stat -f"%z" "${tmpFile}" 2>/dev/null # macOS `stat`
+  stat -c"%s" "${tmpFile}" 2>/dev/null # GNU `stat`
+)
 
-	local cmd=""
-	if ((size < 52428800)) && hash zopfli 2>/dev/null; then
-		# the .tar file is smaller than 50 MB and Zopfli is available; use it
-		cmd="zopfli"
-	else
-		if hash pigz 2>/dev/null; then
-			cmd="pigz"
-		else
-			cmd="gzip"
-		fi
-	fi
+local cmd=""
+if ((size < 52428800)) && hash zopfli 2>/dev/null; then
+  # the .tar file is smaller than 50 MB and Zopfli is available; use it
+  cmd="zopfli"
+else
+  if hash pigz 2>/dev/null; then
+    cmd="pigz"
+  else
+    cmd="gzip"
+  fi
+fi
 
-	echo "Compressing .tar ($((size / 1000)) kB) using \`${cmd}\`…"
-	"${cmd}" -v "${tmpFile}" || return 1
-	[ -f "${tmpFile}" ] && rm "${tmpFile}"
+echo "Compressing .tar ($((size / 1000)) kB) using \`${cmd}\`…"
+"${cmd}" -v "${tmpFile}" || return 1
+[ -f "${tmpFile}" ] && rm "${tmpFile}"
 
-	zippedSize=$(
-		stat -f"%z" "${tmpFile}.gz" 2>/dev/null # macOS `stat`
-		stat -c"%s" "${tmpFile}.gz" 2>/dev/null # GNU `stat`
-	)
+zippedSize=$(
+stat -f"%z" "${tmpFile}.gz" 2>/dev/null # macOS `stat`
+stat -c"%s" "${tmpFile}.gz" 2>/dev/null # GNU `stat`
+)
 
-	echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully."
+echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully."
 }
 
 # Determine size of a file or total size of a directory
 function fs() {
-	if du -b /dev/null >/dev/null 2>&1; then
-		local arg=-sbh
-	else
-		local arg=-sh
-	fi
-	if [[ -n "$@" ]]; then
-		du $arg -- "$@"
-	else
-		du $arg .[^.]* ./*
-	fi
+  if du -b /dev/null >/dev/null 2>&1; then
+    local arg=-sbh
+  else
+    local arg=-sh
+  fi
+  if [[ -n "$@" ]]; then
+    du $arg -- "$@"
+  else
+    du $arg .[^.]* ./*
+  fi
 }
 
 # Use Git’s colored diff when available
 hash git &>/dev/null
 if [ $? -eq 0 ]; then
-	function diff() {
-		git diff --no-index --color-words "$@"
-	}
+  function diff() {
+    git diff --no-index --color-words "$@"
+  }
 fi
 
 # Create a data URL from a file
 function dataurl() {
-	local mimeType=$(file -b --mime-type "$1")
-	if [[ $mimeType == text/* ]]; then
-		mimeType="${mimeType};charset=utf-8"
-	fi
-	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
+  local mimeType=$(file -b --mime-type "$1")
+  if [[ $mimeType == text/* ]]; then
+    mimeType="${mimeType};charset=utf-8"
+  fi
+  echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
-	local port="${1:-8000}"
-	sleep 1 && open "http://localhost:${port}/" &
-	# Set the default Content-Type to `text/plain` instead of `application/octet-stream`
-	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
-	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
+  local port="${1:-8000}"
+  sleep 1 && open "http://localhost:${port}/" &
+  # Set the default Content-Type to `text/plain` instead of `application/octet-stream`
+  # And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
+  python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
 }
 
 # Start a PHP server from a directory, optionally specifying the port
 # (Requires PHP 5.4.0+.)
 function phpserver() {
-	local port="${1:-4000}"
-	local ip=$(ipconfig getifaddr en1)
-	sleep 1 && open "http://${ip}:${port}/" &
-	php -S "${ip}:${port}"
+  local port="${1:-4000}"
+  local ip=$(ipconfig getifaddr en1)
+  sleep 1 && open "http://${ip}:${port}/" &
+  php -S "${ip}:${port}"
 }
 
 # Compare original and gzipped file size
 function gz() {
-	local origsize=$(wc -c <"$1")
-	local gzipsize=$(gzip -c "$1" | wc -c)
-	local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l)
-	printf "orig: %d bytes\n" "$origsize"
-	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
+  local origsize=$(wc -c <"$1")
+  local gzipsize=$(gzip -c "$1" | wc -c)
+  local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l)
+  printf "orig: %d bytes\n" "$origsize"
+  printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
 }
 
 # Run `dig` and display the most useful info
 function digga() {
-	dig +nocmd "$1" any +multiline +noall +answer
+  dig +nocmd "$1" any +multiline +noall +answer
 }
 
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
 function getcertnames() {
-	if [ -z "${1}" ]; then
-		echo "ERROR: No domain specified."
-		return 1
-	fi
+  if [ -z "${1}" ]; then
+    echo "ERROR: No domain specified."
+    return 1
+  fi
 
-	local domain="${1}"
-	echo "Testing ${domain}…"
-	echo "" # newline
+  local domain="${1}"
+  echo "Testing ${domain}…"
+  echo "" # newline
 
-	local tmp=$(echo -e "GET / HTTP/1.0\nEOT" |
-		openssl s_client -connect "${domain}:443" -servername "${domain}" 2>&1)
+  local tmp=$(echo -e "GET / HTTP/1.0\nEOT" |
+    openssl s_client -connect "${domain}:443" -servername "${domain}" 2>&1)
 
-	if [[ "${tmp}" = *"-----BEGIN CERTIFICATE-----"* ]]; then
-		local certText=$(echo "${tmp}" |
-			openssl x509 -text -certopt "no_aux, no_header, no_issuer, no_pubkey, \
+  if [[ "${tmp}" = *"-----BEGIN CERTIFICATE-----"* ]]; then
+    local certText=$(echo "${tmp}" |
+      openssl x509 -text -certopt "no_aux, no_header, no_issuer, no_pubkey, \
       no_serial, no_sigdump, no_signame, no_validity, no_version")
-		echo "Common Name:"
-		echo "" # newline
-		echo "${certText}" | grep "Subject:" | sed -e "s/^.*CN=//" | sed -e "s/\/emailAddress=.*//"
-		echo "" # newline
-		echo "Subject Alternative Name(s):"
-		echo "" # newline
-		echo "${certText}" | grep -A 1 "Subject Alternative Name:" |
-			sed -e "2s/DNS://g" -e "s/ //g" | tr "," "\n" | tail -n +2
-		return 0
-	else
-		echo "ERROR: Certificate not found."
-		return 1
-	fi
+          echo "Common Name:"
+          echo "" # newline
+          echo "${certText}" | grep "Subject:" | sed -e "s/^.*CN=//" | sed -e "s/\/emailAddress=.*//"
+          echo "" # newline
+          echo "Subject Alternative Name(s):"
+          echo "" # newline
+          echo "${certText}" | grep -A 1 "Subject Alternative Name:" |
+            sed -e "2s/DNS://g" -e "s/ //g" | tr "," "\n" | tail -n +2
+                      return 0
+                    else
+                      echo "ERROR: Certificate not found."
+                      return 1
+  fi
 }
 
 # Normalize `open` across Linux, macOS, and Windows.
 # This is needed to make the `o` function (see below) cross-platform.
 if [ ! $(uname -s) = 'Darwin' ]; then
-	if grep -q Microsoft /proc/version; then
-		# Ubuntu on Windows using the Linux subsystem
-		alias open='explorer.exe'
-	else
-		alias open='xdg-open'
-	fi
+  if grep -q Microsoft /proc/version; then
+    # Ubuntu on Windows using the Linux subsystem
+    alias open='explorer.exe'
+  else
+    alias open='xdg-open'
+  fi
 fi
 
 # `o` with no arguments opens the current directory, otherwise opens the given
 # location
 function o() {
-	if [ $# -eq 0 ]; then
-		open .
-	else
-		open "$@"
-	fi
+  if [ $# -eq 0 ]; then
+    open .
+  else
+    open "$@"
+  fi
 }
 
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
@@ -167,132 +167,182 @@ function o() {
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
 function tre() {
-	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
+  tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
 }
 
 function cl() {
-	DIR="$*"
-	# if no DIR given, go home
-	if [ $# -lt 1 ]; then
-		DIR=$HOME
-	fi
-	builtin cd "${DIR}" &&
-		# use your preferred ls command
-		ls -F --color=auto
-}
+  DIR="$*"
+  # if no DIR given, go home
+  if [ $# -lt 1 ]; then
+    DIR=$HOME
+  fi
+  builtin cd "${DIR}" &&
+    # use your preferred ls command
+      ls -F --color=auto
+    }
 
 # Prints a smiley to the terminal on basis of last command
 function smiley() {
-	RC=$?
-	[[ ${RC} == 0 ]] && echo '😊' || echo "😠 ${RC}"
+  RC=$?
+  [[ ${RC} == 0 ]] && echo '😊' || echo "😠 ${RC}"
 }
 # Prints a smiley to the terminal on basis of last command
 function mushroom() {
-	RC=$?
-	[[ ${RC} == 0 ]] && echo '🍄' || echo "😠 ${RC}"
+  RC=$?
+  [[ ${RC} == 0 ]] && echo '🍄' || echo "😠 ${RC}"
 }
 
 function success() {
-	MSG="$1"
-	echo -e "\e[01;32m* $MSG\e[0m"
+  MSG="$1"
+  echo -e "\e[01;32m* $MSG\e[0m"
 }
 
 # Variant for cd .. Now use up 2 or up 3 to go three dirs up
 up() {
-	local d=""
-	limit=$1
-	for ((i = 1; i <= limit; i++)); do
-		d=$d/..
-	done
-	d=$(echo $d | sed 's/^\///')
-	if [ -z "$d" ]; then
-		d=..
-	fi
-	cd $d
+  local d=""
+  limit=$1
+  for ((i = 1; i <= limit; i++)); do
+    d=$d/..
+  done
+  d=$(echo $d | sed 's/^\///')
+  if [ -z "$d" ]; then
+    d=..
+  fi
+  cd $d
 }
 
 # A Bash shell function to save your fingers from typing "awk '{ print $5 }'" all the time
 # Inspiration: http://serverfault.com/a/5551 (but basically rewritten)
 function fawk() {
-	USAGE="\
+  USAGE="\
     usage:  fawk [<awk_args>] <field_no>
       Ex: getent passwd | grep andy | fawk -F: 5
       "
-	if [ $# -eq 0 ]; then
-		echo -e "$USAGE" >&2
-		return
-		#exit 1 # whoops! that would quit the shell!
-	fi
+      if [ $# -eq 0 ]; then
+        echo -e "$USAGE" >&2
+        return
+        #exit 1 # whoops! that would quit the shell!
+      fi
 
-	# bail if the *last* argument isn't a number (source:
-	# http://stackoverflow.com/a/808740)
-	last=${@:(-1)}
-	if ! [ $last -eq $last ] &>/dev/null; then
-		echo "FAWK! Last argument (awk field) must be numeric." >&2
-		echo -e "$USAGE" >&2
-		return
-	fi
+  # bail if the *last* argument isn't a number (source:
+  # http://stackoverflow.com/a/808740)
+  last=${@:(-1)}
+  if ! [ $last -eq $last ] &>/dev/null; then
+    echo "FAWK! Last argument (awk field) must be numeric." >&2
+    echo -e "$USAGE" >&2
+    return
+  fi
 
-	if [ $# -gt 1 ]; then
-		# Source:
-		# http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
-		rest=${@:1:$(($# - 1))}
-	else
-		rest='' # just to be sure
-	fi
-	awk $rest "{ print  \$$last }"
+  if [ $# -gt 1 ]; then
+    # Source:
+    # http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
+    rest=${@:1:$(($# - 1))}
+  else
+    rest='' # just to be sure
+  fi
+  awk $rest "{ print  \$$last }"
 } # fawk                                                                                                                                              } # fawk
 
 t() {
-	find "${1:-.}" -maxdepth "${2:-3}" \
-		-not -regex ".*\/((.idea|.git|.venv|node_modules|venv)\/.*|.DS_Store)" |
-		sort | sed \
-		-e "s/[^-][^\/]*\// ├ /g" \
-		-e "s/├ \//├ /g" \
-		-e "s/├  ├/│  ├/g" \
-		-e "s/├  ├/│  ├/g" \
-		-e "s/├  │/│  │/g" \
-		-e '$s/├/└/'
-}
+  find "${1:-.}" -maxdepth "${2:-3}" \
+    -not -regex ".*\/((.idea|.git|.venv|node_modules|venv)\/.*|.DS_Store)" |
+    sort | sed \
+    -e "s/[^-][^\/]*\// ├ /g" \
+    -e "s/├ \//├ /g" \
+    -e "s/├  ├/│  ├/g" \
+    -e "s/├  ├/│  ├/g" \
+    -e "s/├  │/│  │/g" \
+    -e '$s/├/└/'
+  }
 
 # Bash Function To Extract File Archives Of Various Types
 extract() {
-	if [ -f $1 ]; then
-		case $1 in
-		*.tar.bz2) tar xjf $1 ;;
-		*.tar.gz) tar xzf $1 ;;
-		*.bz2) bunzip2 $1 ;;
-		*.rar) rar x $1 ;;
-		*.gz) gunzip $1 ;;
-		*.tar) tar xf $1 ;;
-		*.tbz2) tar xjf $1 ;;
-		*.tgz) tar xzf $1 ;;
-		*.zip) unzip $1 ;;
-		*.Z) uncompress $1 ;;
-		*.7z) 7z x $1 ;;
-		*) echo "'$1' cannot be extracted via extract()" ;;
-		esac
-	else
-		echo "'$1' is not a valid file"
-	fi
+  if [ -f $1 ]; then
+    case $1 in
+      *.tar.bz2) tar xjf $1 ;;
+      *.tar.gz) tar xzf $1 ;;
+      *.bz2) bunzip2 $1 ;;
+      *.rar) rar x $1 ;;
+      *.gz) gunzip $1 ;;
+      *.tar) tar xf $1 ;;
+      *.tbz2) tar xjf $1 ;;
+      *.tgz) tar xzf $1 ;;
+      *.zip) unzip $1 ;;
+      *.Z) uncompress $1 ;;
+      *.7z) 7z x $1 ;;
+      *) echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
 }
 
 # cheat for curl cht.sh/
 # usage: cheat bash/sed
 cheat() {
-	curl cht.sh/"$1"
+  curl cht.sh/"$1"
 }
 
 function lsth() {
-	if command -v vivid &>/dev/null; then
-		for theme in $(vivid themes); do
-			echo "Theme: $theme"
-			LS_COLORS=$(vivid generate $theme)
-			ls
-			echo
-		done
-	else
-		echo "vivid tool is not available int the path"
-		echo -e "vivid can be download from \nhttps://github.com/sharkdp/vivid.git"
-	fi
+  if command -v vivid &>/dev/null; then
+    for theme in $(vivid themes); do
+      echo "Theme: $theme"
+      LS_COLORS=$(vivid generate $theme)
+      ls
+      echo
+    done
+  else
+    echo "vivid tool is not available int the path"
+    echo -e "vivid can be download from \nhttps://github.com/sharkdp/vivid.git"
+  fi
+}
+
+# Print colors
+# ==============================================================================
+function print_colors() {
+  for clbg in {40..47} {100..107} 49 ; do
+    for clfg in {30..37} {90..97} 39 ; do
+      for attr in {0..9} ; do
+        echo -en "\e[${attr};${clbg};${clfg}m ^[${attr};${clbg};${clfg}m \e[0m"
+      done
+      echo
+    done
+  done
+}
+
+function print_colors_256() {
+  for fgbg in 38 48 ; do
+    for color in {0..255} ; do
+      printf "\e[${fgbg};5;%sm  %3s  \e[0m" "$color" "$color"
+      if [ $(((color + 1) % 6)) == 4 ] ; then
+        echo
+      fi
+    done
+    echo
+  done
+}
+
+function print_colors_spectrum() {
+  awk -v term_cols="${width:-$(tput cols || echo 80)}" 'BEGIN{
+  s="/\\";
+  for (colnum = 0; colnum<term_cols; colnum++) {
+    r = 255-(colnum*255/term_cols);
+    g = (colnum*510/term_cols);
+    b = (colnum*255/term_cols);
+    if (g>255) g = 510-g;
+      printf "\033[48;2;%d;%d;%dm", r,g,b;
+      printf "\033[38;2;%d;%d;%dm", 255-r,255-g,255-b;
+      printf "%s\033[0m", substr(s,colnum%2+1,1);
+    }
+    printf "\n";
+  }'
+}
+
+function smoke_test_font() {
+  echo -e "Normal"
+  echo -e "\033[1mBold\033[22m"
+  echo -e "\033[3mItalic\033[23m"
+  echo -e "\033[3;1mBold Italic\033[0m"
+  echo -e "\033[4mUnderline\033[24m"
+  echo -e "== === !== >= <= =>"
 }
