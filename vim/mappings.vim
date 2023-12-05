@@ -23,7 +23,7 @@ let g:better_escape_shortcut = ['jj', 'ii', 'jf']
 let g:better_escape_interval = 200
 
 " vnoremap ii :norm<esc><CR>
-cnoremap ii <C-c>
+" cnoremap ii <C-c>
 vnoremap ii <C-c>
 " cnoremap jj <C-c>
 " vnoremap jj <C-c>
