@@ -1,15 +1,17 @@
 return {
   -- { "junegunn/fzf", run = ":call fzf#install()", lazy = false },
   -- { "junegunn/fzf.vim", lazy = false },
-  { 'ThePrimeagen/vim-be-good',       event = { "LazyFile", "VeryLazy" }, },
-  { 'xiyaowong/transparent.nvim',     event = { "LazyFile", "VeryLazy" }, },
-  { 'frazrepo/vim-rainbow',           event = { "LazyFile", "VeryLazy" }, },
-  -- { 'wellle/targets.vim',             event = { "LazyFile", "VeryLazy" }, }, -- Provides additional targets for commands
-  { 'tpope/vim-sensible',             event = { "LazyFile", "VeryLazy" }, },
-  { 'tpope/vim-fugitive',             event = { "LazyFile", "VeryLazy" }, },
-  -- { 'WeiChungWu/vim-SystemVerilog', event = { "LazyFile", "VeryLazy" }, },  -- Creating issues with tabs of LazyVim
-  { 'nachumk/systemverilog.vim',      event = { "LazyFile", "VeryLazy" }, },
-  { 'airblade/vim-gitgutter',         event = { "LazyFile", "VeryLazy" }, },
+  { 'ThePrimeagen/vim-be-good',       event = { "LazyFile", "VeryLazy" }, }, -- Game for getting better at Vim
+  { 'xiyaowong/transparent.nvim',     event = { "LazyFile", "VeryLazy" }, }, -- Enable Transparent theming of different theme
+  { 'frazrepo/vim-rainbow',           event = { "LazyFile", "VeryLazy" }, }, -- Add the indentation colors to different indentation level
+  { 'wellle/targets.vim',             event = { "LazyFile", "VeryLazy" }, }, -- Provides additional targets for commands
+  { 'tpope/vim-sensible',             event = { "LazyFile", "VeryLazy" }, }, -- Sensible mappings for Vim
+  { 'tpope/vim-fugitive',             event = { "LazyFile", "VeryLazy" }, }, -- Provides Git wrapper just like using git at terminal
+  { 'WeiChungWu/vim-SystemVerilog',   event = { "LazyFile", "VeryLazy" }, }, -- Provides colors for System Verilog
+  { 'nachumk/systemverilog.vim',      event = { "LazyFile", "VeryLazy" }, }, -- Provides colors for System Verilog
+  { 'airblade/vim-gitgutter',         event = { "LazyFile", "VeryLazy" }, }, -- Shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
+  { 'preservim/tagbar',               event = { "LazyFile", "VeryLazy" }, }, -- Creates tags for files on fly
+  { 'ludovicchabant/vim-gutentags',   event = { "LazyFile", "VeryLazy" }, }, -- Creates tags for all files in the directory based on .sg or .git hooks or similar can be defined also. 
   { 'tmux-plugins/vim-tmux',          event = { "LazyFile", "VeryLazy" }, },
   { 'djoshea/vim-autoread',           event = { "LazyFile", "VeryLazy" }, },
   { 'lambdalisue/nerdfont.vim',       event = { "LazyFile", "VeryLazy" }, },
