@@ -1,6 +1,8 @@
 return {
   -- Better `movements`
-  { 'phaazon/hop.nvim', Verylazy = true,
+  {
+    'phaazon/hop.nvim',
+    Verylazy = true,
     opts = {
       -- Options would go here
     },
@@ -8,9 +10,9 @@ return {
       -- disable the keymap to grep files
       -- {"<leader>/", false},
       -- change a keymap
-      { "s", "<cmd> HopChar2<CR>", desc = "Find and Jump to two consecutive charachter" },
-      { "ss", "<cmd> HopChar1<CR>", desc = "Find and Jump to single charachter" },
-      { "sw", "<cmd> HopWord<CR>", desc = "Find and Jump to single word" },
+      { "s",  "<cmd> HopChar2<CR>",    desc = "Find and Jump to two consecutive charachter" },
+      { "ss", "<cmd> HopChar1<CR>",    desc = "Find and Jump to single charachter" },
+      { "sw", "<cmd> HopWord<CR>",     desc = "Find and Jump to single word" },
       { "sa", "<cmd> HopAnywhere<CR>", desc = "Find and where" },
     },
 
@@ -20,3 +22,4 @@ return {
     -- end,
   }
 }
+
