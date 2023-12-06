@@ -30,6 +30,9 @@ if has("nvim")
 " ------------------------------------------------------------------------------------- 
 endif
 " =====================================================================================
+"
+"
+"
 
 "   ___  __   _  _  _  _   __   __ _    ____  ____  ____  ____  __  __ _   ___  ____
 "  / __)/  \ ( \/ )( \/ ) /  \ (  ( \  / ___)(  __)(_  _)(_  _)(  )(  ( \ / __)/ ___)
@@ -42,6 +45,7 @@ endif
 source <sfile>:h/common.vim
 source <sfile>:h/mappings.vim
 source <sfile>:h/options.vim
+source <sfile>:h/autocommands.vim
 
 " Local config -- For addtional settings.
 if filereadable($HOME . "/.vimrc.local")
