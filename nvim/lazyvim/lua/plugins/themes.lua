@@ -28,10 +28,10 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "gruvbox",
-      -- colorscheme = "gruvbox-baby",
+      colorscheme = "gruvbox-baby",
       -- colorscheme = "nvim-quietlight",
       -- colorscheme = "kanagawa",
-      colorscheme = "kanagawa-dragon",
+      -- colorscheme = "kanagawa-dragon",
       -- colorscheme = "kanagawa-wave",
       -- colorscheme = "kanagawa-lotus",
       -- colorscheme = "nord",
