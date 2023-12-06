@@ -41,3 +41,7 @@ map('i', '<C-A>', '<C-o>^', {desc = "Jump to line Start -- Mimic shell movement"
 -- Shortcut to yank register
 map({ 'n', 'x' }, '<leader>p', '"0p', {desc = "Paste from yank register"})
 
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
+map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
