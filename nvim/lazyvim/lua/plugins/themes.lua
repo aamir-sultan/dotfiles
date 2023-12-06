@@ -4,6 +4,12 @@ return {
   { 'arcticicestudio/nord-vim', lazy = true, event = "VimEnter" },
   { 'noahfrederick/vim-noctu',  lazy = true, event = "VimEnter" },
   { 'navarasu/onedark.nvim',  lazy = true, event = "VimEnter" },
+  { 'HUAHUAI23/nvim-quietlight',  lazy = true, event = "VimEnter" },
+  { 'luisiacc/gruvbox-baby',  lazy = true, event = "VimEnter" },
+  { 'rose-pine/neovim',  lazy = true, event = "VimEnter" },
+  { 'RRethy/nvim-base16',  lazy = true, event = "VimEnter" },
+  { 'NTBBloodbath/doom-one.nvim',  lazy = true, event = "VimEnter" },
+  { 'navarasu/onedark.nvim',  lazy = true, event = "VimEnter" },
   -- { "folke/tokyonight.nvim",    lazy = true, event = "VimEnter" , priority = 1000, opts = {}, },
   {
     "mcchrish/zenbones.nvim",
@@ -22,6 +28,8 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "gruvbox",
+      -- colorscheme = "gruvbox-baby",
+      -- colorscheme = "nvim-quietlight",
       -- colorscheme = "kanagawa",
       colorscheme = "kanagawa-dragon",
       -- colorscheme = "kanagawa-wave",
