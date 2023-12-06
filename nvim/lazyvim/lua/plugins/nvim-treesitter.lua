@@ -12,6 +12,7 @@ return {
         "markdown_inline",
         "python",
         "regex",
+        "verilog",
         "vim",
       },
     },
