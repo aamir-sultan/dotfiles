@@ -1,7 +1,7 @@
 " Vim Settings
 
-  source <sfile>:h/plugins.vim
-  
+source <sfile>:h/plugins.vim
+
 "filetype plugin indent on
 " colorscheme darkblue
 " colorscheme koehler
@@ -18,19 +18,19 @@ let mapleader = "\<Space>"
 " Gruvbox related settings
 set bg=dark
 
-" let g:gruvbox_contrast_dark = 'medium'
-" let g:gruvbox_transparent_bg = '1'
-" " let g:gruvbox_italic = '1'
-" silent! colorscheme gruvbox " Silent is used so that it does not throw errors when the gruuvbox is not available
+let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_transparent_bg = '1'
+" let g:gruvbox_italic = '1'
+silent! colorscheme gruvbox " Silent is used so that it does not throw errors when the gruuvbox is not available
 
-" tokyonight-vim settings
-" let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_style = 'storm' " available: night, storm
-let g:tokyonight_enable_italic = 1
-let g:tokyonight_transparent_background = 1
-" 'auto', 'red', 'green', 'blue'
-let g:tokyonight_cursor = 'auto'
-silent! colorscheme tokyonight
+" " tokyonight-vim settings
+" " let g:tokyonight_style = 'night' " available: night, storm
+" let g:tokyonight_style = 'storm' " available: night, storm
+" let g:tokyonight_enable_italic = 1
+" let g:tokyonight_transparent_background = 1
+" " 'auto', 'red', 'green', 'blue'
+" let g:tokyonight_cursor = 'auto'
+" silent! colorscheme tokyonight
 
 " Nerdtree Settings
 let NERDTreeShowHidden=1
