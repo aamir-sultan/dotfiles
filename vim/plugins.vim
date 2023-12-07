@@ -27,6 +27,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-sensible'
 " Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'AxolotlC/Fox.vim'
