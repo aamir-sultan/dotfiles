@@ -1,7 +1,6 @@
 return {
   -- { "junegunn/fzf", run = ":call fzf#install()", lazy = false },
   -- { "junegunn/fzf.vim", lazy = false },
-  { 'm4xshen/hardtime.nvim',          event = { "LazyFile", "VeryLazy" }, }, -- Enable Transparent theming of different theme
   { 'xiyaowong/transparent.nvim',     event = { "LazyFile", "VeryLazy" }, }, -- Enable Transparent theming of different theme
   { 'ThePrimeagen/vim-be-good',       event = { "LazyFile", "VeryLazy" }, }, -- Game for getting better at Vim
   { 'frazrepo/vim-rainbow',           event = { "LazyFile", "VeryLazy" }, }, -- Add the indentation colors to different indentation level
@@ -21,17 +20,8 @@ return {
   { 'vim-scripts/SearchComplete',     event = { "LazyFile", "VeryLazy" }, }, -- Tab completion of words inside of a search ('/')
   { 'mg979/vim-visual-multi',         event = { "LazyFile", "VeryLazy" }, },
   { 'christoomey/vim-tmux-navigator', event = { "LazyFile", "VeryLazy" }, },
-  -- { 'gen740/SmoothCursor.nvim',       event = { "LazyFile", "VeryLazy" }, }, -- Add sub-cursor to show scroll direction
-  -- { 'ervandew/supertab',              lazy = true, event = "VimEnter", }, -- Having issues with it in neovim startup
   { 'ctrlpvim/ctrlp.vim',             lazy = true,                        event = "VimEnter", },
   { 'nvim-zh/better-escape.vim',      lazy = true,                        event = "VimEnter", },
-  -- { 'MunifTanjim/nui.nvim', lazy = true },
-  -- { 'beauwilliams/statusline.lua' },
-  -- { 'echasnovski/mini.animate', event = { "LazyFile", "VeryLazy" }, version = '*',
-  --   init = function()
-  --     require('mini.animate').setup()
-  --   end,
-  -- },
   {
     'echasnovski/mini.cursorword',
     event = { "LazyFile", "VeryLazy" },
