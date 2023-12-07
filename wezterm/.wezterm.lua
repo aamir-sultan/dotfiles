@@ -465,11 +465,10 @@ config.leader = { -- leader key is a a modal modifier key. Just like vi/Vim/Nvim
   mods = "CTRL|SHIFT",
 }
 
-tmux_keybinds = {
+local tmux_keybinds = {
   -- Idea is to use ALT key with wezterm and CTRL+ALT in TMUX but some exceptions are there.
   -- { key = "j", mods = "ALT", action = act({ SpawnTab = "CurrentPaneDomain" }) }, -- Alternative is ALT+t and has a conflict with Neovim Keybindin for line moving below
   -- { key = "k", mods = "ALT", action = act({ CloseCurrentTab = { confirm = true } }) }, -- k for kill
-  { key = "c",          mods = "ALT", action = act({ CloseCurrentTab = { confirm = true } }) }, -- k for kill
   { key = "h",          mods = "ALT", action = act({ ActivateTabRelative = -1 }) },
   { key = "l",          mods = "ALT", action = act({ ActivateTabRelative = 1 }) },
   { key = "LeftArrow",  mods = "ALT", action = act({ ActivateTabRelative = -1 }) },
@@ -507,7 +506,12 @@ tmux_keybinds = {
   { key = "m",     mods = "ALT",            action = act.ToggleFullScreen },
 }
 
-default_keybinds = {
+local other_keybinds = {
+  { key = "q", mods = "ALT",       action = act({ CloseCurrentTab = { confirm = true } }) },  -- k for kill
+  { key = "Q", mods = "ALT|SHIFT", action = act({ CloseCurrentTab = { confirm = false } }) }, -- k for kill
+}
+
+local default_keybinds = {
   { key = "c",        mods = "CTRL|SHIFT", action = act({ CopyTo = "Clipboard" }) },
   { key = "v",        mods = "CTRL|SHIFT", action = act({ PasteFrom = "Clipboard" }) },
   { key = "Insert",   mods = "SHIFT",      action = act({ PasteFrom = "PrimarySelection" }) },
@@ -573,6 +577,7 @@ function create_keybinds()
   local merged_table
   merged_table = merge_lists(default_keybinds, tmux_keybinds)
   merged_table = merge_lists(merged_table, key_bindings)
+  merged_table = merge_lists(merged_table, other_keybinds)
   return merged_table
 end
 
