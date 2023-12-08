@@ -36,10 +36,11 @@
 inoremap ii <esc><esc>
 
 " Toggle line numbering leader+n
-nnoremap <leader>tn <cmd>set nornu! nonu!<CR> "Toggle Numbers"
-nnoremap <leader>tbg <cmd>let &bg=(&bg=='light'?'dark':'light')<cr> "Toggle Background"
+nnoremap <leader>tn <cmd>set nornu! nonu!<CR>
+" Toggle background
+nnoremap <F6> :let &bg=(&bg=='light'?'dark':'light')<cr>
 " Remove the highlight from searched item
-nnoremap <leader>ths <cmd>set nohlsearch!<CR> "Toggle Highlighting"
+nnoremap <leader>th <cmd>set nohlsearch!<CR>
 
 " Mapping for Easymotion
 " Remaping the leader key for easymotion
