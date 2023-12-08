@@ -11,6 +11,7 @@ augroup END
 " I can't remember a time when I didn't want to save a file after tabbing away from my editor (especially with version control and Vim's persistent undo):
 au FocusLost * :wa
 
+" Add file types and comment string for the files here.
 " Set the filetype to SystemVerilog for files with .sv or .svh extension
 autocmd BufNewFile,BufRead *.sv,*.svh set filetype=systemverilog
 " Set commentstring based on filetype
