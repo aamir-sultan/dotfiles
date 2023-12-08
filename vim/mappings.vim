@@ -4,35 +4,35 @@
 " nnoremap <Up> :echoe "Use k"<CR>
 " nnoremap <Down> :echoe "Use j"<CR>
 
-" Keymapping for the comment and uncomment
-" Set the leader+forwardSlash to comment -- C-m is just another way of saying carriage return
-" https://stackoverflow.com/a/2630579/16941779
-nnoremap <leader>/ <C-o>:call NERDComment(0,"toggle")<C-m>
+" " Keymapping for the comment and uncomment
+" " Set the leader+forwardSlash to comment -- C-m is just another way of saying carriage return
+" " https://stackoverflow.com/a/2630579/16941779
+" nnoremap <leader>/ <C-o>:call NERDComment(0,"toggle")<C-m>
 
-" better-escape.vim Settings
-" non-ASCII shortcuts are also supported for non-English keyboard.
-" let g:better_escape_shortcut = ['jk', 'jj', 'kj', 'лл']
-" Press Shift-Space (may not work on your system).
-" :imap <S-Space> <Esc>
-" Try the following so Shift-Space also enters insert mode.
-" :nmap <S-Space> i " Currenly space is being used as leader key
-" Or just Space to enter insert mode.
-" :nmap <Space> i " Currenly space is being used as leader key
-let g:better_escape_shortcut = ['jj', 'ii', 'jf']
-" set time interval to 200 ms
-let g:better_escape_interval = 200
-
-" vnoremap ii :norm<esc><CR>
-" cnoremap ii <C-c>
-vnoremap ii <C-c>
-" cnoremap jj <C-c>
-" vnoremap jj <C-c>
-" Keymap for leaving insert mode to normal
-" This is being controlled by better-escape.vim plugin now
-" inoremap jk <esc>
-" inoremap kj <esc>
-" inoremap jf <esc>
-" inoremap jf <esc><esc>
+" " better-escape.vim Settings
+" " non-ASCII shortcuts are also supported for non-English keyboard.
+" " let g:better_escape_shortcut = ['jk', 'jj', 'kj', 'лл']
+" " Press Shift-Space (may not work on your system).
+" " :imap <S-Space> <Esc>
+" " Try the following so Shift-Space also enters insert mode.
+" " :nmap <S-Space> i " Currenly space is being used as leader key
+" " Or just Space to enter insert mode.
+" " :nmap <Space> i " Currenly space is being used as leader key
+" let g:better_escape_shortcut = ['jj', 'ii']
+" " set time interval to 200 ms
+" let g:better_escape_interval = 200
+"
+" " vnoremap ii :norm<esc><CR>
+" " cnoremap ii <C-c>
+" vnoremap ii <C-c>
+" " cnoremap jj <C-c>
+" " vnoremap jj <C-c>
+" " Keymap for leaving insert mode to normal
+" " This is being controlled by better-escape.vim plugin now
+" " inoremap jk <esc>
+" " inoremap kj <esc>
+" " inoremap jf <esc>
+" " inoremap jf <esc><esc>
 
 " Toggle line numbering leader+n
 nnoremap <leader>tn :set nornu! nonu!<CR> "Toggle Numbers"
