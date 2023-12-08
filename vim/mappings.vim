@@ -33,6 +33,7 @@
 " " inoremap kj <esc>
 " " inoremap jf <esc>
 " " inoremap jf <esc><esc>
+inoremap ii <esc><esc>
 
 " Toggle line numbering leader+n
 nnoremap <leader>tn <cmd>set nornu! nonu!<CR> "Toggle Numbers"
