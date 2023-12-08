@@ -20,8 +20,7 @@ return {
   { 'vim-scripts/SearchComplete',     event = { "LazyFile", "VeryLazy" }, }, -- Tab completion of words inside of a search ('/')
   { 'mg979/vim-visual-multi',         event = { "LazyFile", "VeryLazy" }, },
   { 'christoomey/vim-tmux-navigator', event = { "LazyFile", "VeryLazy" }, },
-  { 'ctrlpvim/ctrlp.vim',             lazy = true,                        event = "VimEnter", },
-  { 'nvim-zh/better-escape.vim',      lazy = true,                        event = "VimEnter", },
+  -- { 'ctrlpvim/ctrlp.vim',             lazy = true,                        event = "VimEnter", }, -- Buffer are already available via telescope <leade>fb
   {
     'echasnovski/mini.cursorword',
     event = { "LazyFile", "VeryLazy" },
