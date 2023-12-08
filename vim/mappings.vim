@@ -1,13 +1,13 @@
 " Get off my lawn --  disable the arrow keys in vim
-" nnoremap <Left> :echoe "Use h"<CR>
-" nnoremap <Right> :echoe "Use l"<CR>
-" nnoremap <Up> :echoe "Use k"<CR>
-" nnoremap <Down> :echoe "Use j"<CR>
+" nnoremap <Left> <cmd>echoe "Use h"<CR>
+" nnoremap <Right> <cmd>echoe "Use l"<CR>
+" nnoremap <Up> <cmd>echoe "Use k"<CR>
+" nnoremap <Down> <cmd>echoe "Use j"<CR>
 
 " " Keymapping for the comment and uncomment
 " " Set the leader+forwardSlash to comment -- C-m is just another way of saying carriage return
 " " https://stackoverflow.com/a/2630579/16941779
-" nnoremap <leader>/ <C-o>:call NERDComment(0,"toggle")<C-m>
+" nnoremap <leader>/ <C-o><cmd>call NERDComment(0,"toggle")<C-m>
 
 " " better-escape.vim Settings
 " " non-ASCII shortcuts are also supported for non-English keyboard.
@@ -22,7 +22,7 @@
 " " set time interval to 200 ms
 " let g:better_escape_interval = 200
 "
-" " vnoremap ii :norm<esc><CR>
+" " vnoremap ii <cmd>norm<esc><CR>
 " " cnoremap ii <C-c>
 " vnoremap ii <C-c>
 " " cnoremap jj <C-c>
@@ -35,10 +35,10 @@
 " " inoremap jf <esc><esc>
 
 " Toggle line numbering leader+n
-nnoremap <leader>tn :set nornu! nonu!<CR> "Toggle Numbers"
-nnoremap <leader>tbg :let &bg=(&bg=='light'?'dark':'light')<cr> "Toggle Background"
+nnoremap <leader>tn <cmd>set nornu! nonu!<CR> "Toggle Numbers"
+nnoremap <leader>tbg <cmd>let &bg=(&bg=='light'?'dark':'light')<cr> "Toggle Background"
 " Remove the highlight from searched item
-nnoremap <leader>ths :set nohlsearch!<CR> "Toggle Highlighting"
+nnoremap <leader>ths <cmd>set nohlsearch!<CR> "Toggle Highlighting"
 
 " Mapping for Easymotion
 " Remaping the leader key for easymotion
@@ -49,14 +49,14 @@ nnoremap <leader>ths :set nohlsearch!<CR> "Toggle Highlighting"
 nnoremap <leader><leader> <Plug>(easymotion-s)
 
 " Shortcuts for tab select -- alternatives are gt and gT by default for tab switching.
-nnoremap <C-S-Left> :tabprevious<CR>                                                                            
-nnoremap <C-S-Right> :tabnext<CR>
-" nnoremap <C-S-h> :tabprevious<CR> " Ctrl and Ctrl+Shift and not differentiated by VIM and Ctrl+h has conflicts with window switching                                                                            
-" nnoremap <C-S-l> :tabnext<CR>
+nnoremap <C-S-Left> <cmd>tabprevious<CR>                                                                            
+nnoremap <C-S-Right> <cmd>tabnext<CR>
+" nnoremap <C-S-h> <cmd>tabprevious<CR> " Ctrl and Ctrl+Shift and not differentiated by VIM and Ctrl+h has conflicts with window switching                                                                            
+" nnoremap <C-S-l> <cmd>tabnext<CR>
 
 " Go to next buffer or previous -- Other shortcuts like Ctrl+Alt+Shift have conflicts. Be carefull and check.
-nnoremap <tab> :bnext<CR>
-nnoremap <S-tab> :bprev<CR>
+nnoremap <tab> <cmd>bnext<CR>
+nnoremap <S-tab> <cmd>bprev<CR>
 
 " View scrolling for the buffer
 nnoremap <C-d> <C-d>zz
@@ -68,61 +68,65 @@ nnoremap N Nzzzv
 
 " Close the current buffer not the tab or window.
 " Normal Buffer close
-nnoremap <leader>k :bd<cr>
+nnoremap <leader>k <cmd>bd<cr>
 " Forced Buffer close
-" nnoremap <leader><leader>k :bd!<cr>
-nnoremap <leader>kk :bd!<cr>
+" nnoremap <leader><leader>k <cmd>bd!<cr>
+nnoremap <leader>kk <cmd>bd!<cr>
 
 " Vim Closing shortcuts
 " ZQ is same is :q!
 " ZZ is same is :wq but if the file is modified then write and close, otherwise just close.
 " 2 times leader is supposed to be creating and enforced mode.
-nnoremap <Leader>w :w<CR>
-" nnoremap <Leader><Leader>w :w!<CR>
-nnoremap <Leader>ww :w!<CR>
+nnoremap <Leader>ww <cmd>w<CR>
+" nnoremap <Leader><Leader>w <cmd>w!<CR>
+nnoremap <Leader>wf <cmd>w!<CR>
 
-" ctrl+q for quit or same as :q+Enter
-nnoremap <C-q> <esc>:q<CR>
-nnoremap <Leader>q :q<CR>
+" ctrl+q for quit or same as <cmd>q+Enter
+nnoremap <C-q> <esc><cmd>q<CR>
+nnoremap <Leader>qt <cmd>q<CR>
 " Shift+q or "Leader Leader q" for quit or same as :q!+Enter
-nnoremap Q ZQ
-nnoremap <Leader>qq ZQ
+nnoremap Q <esc>ZQ
+nnoremap <Leader>qf <esc>ZQ
 
 " ctrl+wq for write and quit or same as :wq but only write, if the file is modified.
 nnoremap <C-w><C-q> <esc>ZZ
-nnoremap <Leader>wq ZZ
+nnoremap <Leader>wqt <esc>ZZ
 " "Leader Leader wq" for forced write and quit
-nnoremap WQ :wq!<CR>
-nnoremap <Leader>wqq :wq!<CR>
+nnoremap WQ <cmd>wq!<CR>
+nnoremap <Leader>wqf <cmd>wq!<CR>
 
 " Close all windows.
-nnoremap <C-q><C-a> <esc>:qall<CR>
-nnoremap <Leader>qa :qall<CR>
+nnoremap <C-q><C-a> <esc><cmd>qall<CR>
+nnoremap <Leader>qa <cmd>qall<CR>
+nnoremap <Leader>qq <cmd>qall<CR> "Aligned with LazyVim shortcuts"
+
 " "Leader Leader qa" Close all windows forcefully.
-nnoremap QA :qall!<CR>
-nnoremap <Leader>qaa :qall!<CR>
+nnoremap QA <cmd>qall!<CR>
+nnoremap <Leader>qaf <cmd>qall!<CR>
 
 "Write and close all windows
-nnoremap <C-w><C-q><C-a> <esc>:wqall<CR>
-nnoremap <Leader>wqa :wqall<CR>
+nnoremap <C-w><C-q><C-a> <esc><cmd>wqall<CR>
+nnoremap <Leader>wqa <cmd>wqall<CR>
+nnoremap <Leader>wqq <cmd>wqall<CR>
+
 ""Leader Leader wqa" Write and close all windows forcefully
-nnoremap WQA :wqall!<CR>
-nnoremap <Leader><Leader>wqa :wqall!<CR>
+nnoremap WQA <cmd>wqall!<CR>
+nnoremap <Leader>wqaf <cmd>wqall!<CR>
 
 " Fugitive Conflict Resolution
-nnoremap <leader>gd :Gvdiff<CR>
-nnoremap gdh :diffget //2<CR>
-nnoremap gdl :diffget //3<CR>
+nnoremap <leader>gd <cmd>Gvdiff<CR>
+nnoremap gdh <cmd>diffget //2<CR>
+nnoremap gdl <cmd>diffget //3<CR>
 
 " remap the dot command in visual mode also.
-vnoremap . :norm.<CR>
+vnoremap . <cmd>norm.<CR>
 
-" https://medium.com/@schtoeffel/you-don-t-need-more-than-one-cursor-in-vim-2c44117d51db
+" https<cmd>//medium.com/@schtoeffel/you-don-t-need-more-than-one-cursor-in-vim-2c44117d51db
 " Apply the macro to all lines in visual mode and skip the ones which do not match.
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+xnoremap @ <cmd><C-u>call ExecuteMacroOverVisualRange()<CR>
 function! ExecuteMacroOverVisualRange()
   echo "@".getcmdline()
-  execute ":'<,'>normal @".nr2char(getchar())
+  execute "<cmd>'<,'>normal @".nr2char(getchar())
 endfunction
 
 " Switch between the last two files
