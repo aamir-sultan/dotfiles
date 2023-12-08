@@ -23,7 +23,7 @@ Plug 'airblade/vim-rooter'
 
 Plug 'noahfrederick/vim-noctu'
 Plug 'frazrepo/vim-rainbow'
-Plug 'preservim/nerdcommenter'
+" Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-sensible'
 " Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-fugitive'
@@ -44,12 +44,7 @@ Plug 'gosukiwi/vim-atom-dark'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-
-Plug 'WeiChungWu/vim-SystemVerilog', { 'for': 'systemverilog' }
-Plug 'nachumk/systemverilog.vim', { 'for': 'systemverilog' }
-
-Plug 'tmux-plugins/vim-tmux'
+Plug 'tmux-plugins/vim-tmux' " Plugin for .tmux.conf file syntax
 " Plug 'djoshea/vim-autoread'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'ervandew/supertab', { 'dir': '~/.vim/pack/plugins/start/supertab' }
@@ -62,6 +57,10 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Remove wait on the first key of escape sequence like jk
 " Plug 'nvim-zh/better-escape.vim' " Does not work on VIM 7
 
+" Language specific plugins.
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'WeiChungWu/vim-SystemVerilog', { 'for': 'systemverilog' }
+Plug 'nachumk/systemverilog.vim', { 'for': 'systemverilog' }
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
