@@ -26,6 +26,7 @@ end
 
 -- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 -- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
 -- Fix * (Keep the cursor position, don't move to next match)
 Map('v', 'ii', '<C-c>', {desc = "Exits to normal mode from visual"} )
