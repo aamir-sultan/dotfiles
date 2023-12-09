@@ -51,7 +51,12 @@ return {
   { 'RRethy/nvim-base16',         lazy = true, event = "VimEnter" },
   { 'NTBBloodbath/doom-one.nvim', lazy = true, event = "VimEnter" },
   { 'navarasu/onedark.nvim',      lazy = true, event = "VimEnter" },
-  -- { "folke/tokyonight.nvim",    lazy = true, event = "VimEnter" , priority = 1000, opts = {}, },
+  { 'folke/tokyonight.nvim',
+    lazy = true,
+    event = "VimEnter",
+    priority = 1000,
+    opts = {transparent = vim.g.transparent_enabled},
+  },
   {
     "mcchrish/zenbones.nvim",
     lazy = true,
