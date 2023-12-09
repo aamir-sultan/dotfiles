@@ -1,7 +1,6 @@
 return {
   -- { "junegunn/fzf", run = ":call fzf#install()", lazy = false },
   -- { "junegunn/fzf.vim", lazy = false },
-  { 'xiyaowong/transparent.nvim',     event = { "LazyFile", "VeryLazy" }, }, -- Enable Transparent theming of different theme
   { 'ThePrimeagen/vim-be-good',       event = { "LazyFile", "VeryLazy" }, }, -- Game for getting better at Vim
   { 'frazrepo/vim-rainbow',           event = { "LazyFile", "VeryLazy" }, }, -- Add the indentation colors to different indentation level
   { 'wellle/targets.vim',             event = { "LazyFile", "VeryLazy" }, }, -- Provides additional targets for commands

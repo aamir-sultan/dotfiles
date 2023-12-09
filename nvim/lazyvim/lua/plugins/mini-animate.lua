@@ -18,6 +18,7 @@ else
   return {
     {
       'echasnovski/mini.animate',
+      enabled = false,
       event = { "LazyFile", "VeryLazy" },
       version = '*',
       init = function()
