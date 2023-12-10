@@ -18,7 +18,6 @@ return {
   -- { 'bagrat/vim-buffet',             event = { "LazyFile", "VeryLazy" }, }, -- IDE-like Vim tabline -- This is covered by LazyVim
   { 'vim-scripts/SearchComplete',     event = { "LazyFile", "VeryLazy" }, }, -- Tab completion of words inside of a search ('/')
   { 'mg979/vim-visual-multi',         event = { "LazyFile", "VeryLazy" }, },
-  { 'christoomey/vim-tmux-navigator', event = { "LazyFile", "VeryLazy" }, },
   -- { 'ctrlpvim/ctrlp.vim',             lazy = true,                        event = "VimEnter", }, -- Buffer are already available via telescope <leade>fb
   {
     'echasnovski/mini.cursorword',
