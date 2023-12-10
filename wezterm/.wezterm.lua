@@ -233,8 +233,7 @@ config.font = wezterm.font_with_fallback({
       "ss01",
       "ss02",
       "ss03",
-      "ss04",
-      "ss05",
+
       "ss06",
       "ss07",
       "ss08",
@@ -258,7 +257,7 @@ config.font = wezterm.font_with_fallback({
 --     saturation = 1.0 -- You can adjust the saturation also.
 -- }
 local hsb_dimmer = { -- Will implicitly prepend a layer to the background configuration
-  brightness = 0.1,  -- Darken the background image by reducing it to 1/3rd
+  brightness = 0.4,  -- Darken the background image by reducing it to 1/3rd
   hue = 1.0,         -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
   saturation = 1.0,  -- You can adjust the saturation also.
 }
@@ -268,20 +267,43 @@ config.background = {
   -- This is the deepest/back-most layer. It will be rendered first
   {
     source = {
-      File = "D://Mega//backgrounds//2184.jpg",
+      -- File = "D://Mega//backgrounds//2184.jpg",
+      -- File = "D://Mega//backgrounds//conepine.png",
+      -- File = "D://Mega//backgrounds//planet.jpg",
+      -- File = "D://Mega//backgrounds//kungfu-panda.jpg",
+      -- File = "D://Mega//backgrounds//bars.jpg",
+      File = "D://Mega//backgrounds//10.jpg",
+      -- File = "D://Mega//backgrounds//11.jpg",
+      -- File = "D://Mega//backgrounds//12.jpg",
+      -- File = "D://Mega//backgrounds//2163.jpg",
+      -- File = "D://Mega//backgrounds//14.jpg",
     },
     -- The texture tiles vertically but not horizontally.
     -- When we repeat it, mirror it so that it appears "more seamless".
     -- An alternative to this is to set `width = "100%"` and have
     -- it stretch across the display
+    -- Other repeat options are Mirror, Repeat, NoRepeat.
     --   repeat_x 	= 'Mirror',
     repeat_x = "NoRepeat",
+    repeat_y = "Mirror",
+    -- Other options for the horizontal align are "Center", "Right", and "Left". "Left" is default.
+    horizontal_align = "Left",
+    -- Other options for the vertical align are "Middle", "Top", and "Bottom". "Top" is default.
+    vertical_align = "Top",
+    -- -- Specify an offset from the initial vertical position
+    -- -- string of the form '123px' where 'px' is a unit
+    -- -- and can be one of 'px', '%', 'pt' or 'cell'
+    -- horizontal_offset = "0px",
+    -- vertical_offset = "0px",
+
     hsb = hsb_dimmer,
     opacity = 0.98,
     -- When the viewport scrolls, move this layer 10% of the number of
     -- pixels moved by the main viewport. This makes it appear to be
     -- further behind the text.
-    attachment = "Fixed",
+    -- attachment = { Parallax = 0.1 },
+    -- attachment = "Fixed",
+    attachment = "Scroll",
   },
   -- -- Subsequent layers are rendered over the top of each other
   -- {
@@ -443,19 +465,17 @@ for idx, dom in ipairs(wsl_domains) do
 end
 
 config.wsl_domains = wsl_domains
-config.default_domain = "WSL:Ubuntu"
+-- config.default_domain = "WSL:Ubuntu" -- Use incase of powershell not a default program
 
 --- Set Pwsh as the default on Windows
-config.default_prog = { "pwsh.exe", "-NoLogo" }
-
-table.insert(launch_menu, {
-  label = "PowerShell",
-  args = { "powershell.exe", "-NoLogo" },
-})
-table.insert(launch_menu, {
-  label = "Pwsh",
-  args = { "pwsh.exe", "-NoLogo" },
-})
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+  table.insert(launch_menu, {
+    label = 'Local:PowerShell',
+    args = { 'cmd.exe', 'powershell.exe', '-NoLogo' },
+  })
+  -- config.default_prog = { "powershell.exe", "-NoLogo", "cd" "wsl.exe", "-d", "Ubuntu" }
+  config.default_prog = { "powershell.exe", "-NoLogo", "wsl.exe", "--cd ~" } -- This will launch the dflt distro. Which is Ubuntu is our case.
+end
 
 ---------------------------------------------------------------
 --- keybinds
