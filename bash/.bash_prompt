@@ -156,7 +156,7 @@ promptConnectorStyle="${bold}${green}"
 # promptConnectorOpen="╭── "
 # promptConnectorClose="╰───╌╌"
 promptConnectorOpen="╭─ "
-promptConnectorClose="╰─╌╌"
+promptConnectorClose="╰╌╌"
 # promptConnectorOpen=""
 # promptConnectorClose=""
 
