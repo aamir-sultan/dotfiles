@@ -19,9 +19,9 @@ return {
   -- event = "VeryLazy",
   -- },
   {
-  'max397574/better-escape.nvim',
-  -- lazy = true,
-  event = "VeryLazy",
-  opts = better_comment_options,
+    'max397574/better-escape.nvim',
+    -- lazy = true,
+    event = { "VeryLazy", "LazyFile" },
+    opts = better_comment_options,
   },
 }

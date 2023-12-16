@@ -1,4 +1,3 @@
-
 return {
   -- add more treesitter parsers
   {
@@ -8,13 +7,13 @@ return {
         "bash",
         "json",
         "lua",
-        "markdown",
-        "markdown_inline",
+        -- "markdown",
+        -- "markdown_inline",
         "python",
         "regex",
         "verilog",
-        "vim",
+        -- "vim",
       },
     },
   },
-  }
+}
