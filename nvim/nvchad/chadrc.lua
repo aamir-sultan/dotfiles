@@ -1,7 +1,7 @@
 ---@type ChadrcConfig 
  local M = {}
  M.ui = {
-  theme = 'nightfox',
+  theme = 'gruvbox',
   transparency = true,
   statusline = {
     -- theme = "vscode_colored"
