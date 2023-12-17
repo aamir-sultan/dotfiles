@@ -114,19 +114,57 @@ end
 config.color_scheme = "Hardcore"
 -- config.cell_width	= 1.05  -- Set this to increase the charachter spacing in the terminal.
 config.cell_width = 1.01 -- Set this to in/decrease the charachter spacing in the terminal.
-config.line_height = 1.0 -- Set this to in/decrease the charachter height in the terminal.
-config.font_size = 11.0
+config.line_height = 1.1 -- Set this to in/decrease the charachter height in the terminal.
+config.font_size = 10.0
 
 -- local fontStyle = "Italic"
 local fontStyle = "Normal"
 
--- local fontWeight = "Medium"
-local fontWeight = "Bold"
+local fontWeight = "Medium"
+-- local fontWeight = "Bold"
 
 config.font = wezterm.font_with_fallback({
   {
+    family = "MartianMono NFM",
+    weight = fontWeight,
+    style = fontStyle,
+    harfbuzz_features = {
+      "calt=1",
+      "clig=1",
+      "liga=1",
+      "dlig",
+      "ss01",
+      "ss02",
+      "ss03",
+      "ss04",
+      "ss05",
+      "ss06",
+      "ss07",
+      "ss08",
+    },
+  },
+  {
+    family = "FiraMono Nerd Font Mono",
+    weight = fontWeight,
+    style = fontStyle,
+    harfbuzz_features = {
+      "calt=1",
+      "clig=1",
+      "liga=1",
+      "dlig",
+      "ss01",
+      "ss02",
+      "ss03",
+      "ss04",
+      "ss05",
+      "ss06",
+      "ss07",
+      "ss08",
+    },
+  },
+  {
     family = "JetBrains Mono",
-    weight = "Medium",
+    weight = fontWeight,
     style = fontStyle,
     harfbuzz_features = {
       "calt=1",
