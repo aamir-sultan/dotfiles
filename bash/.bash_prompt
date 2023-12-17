@@ -163,6 +163,7 @@ promptConnectorClose="╰╌╌"
 # Prompt Symbol
 # promptSymbol="❯"
 promptSymbol=">"
+# promptSymbol=""
 # promptSymbol="»"
 # promptSymbol="⨔"
 # promptSymbol="⌇"
