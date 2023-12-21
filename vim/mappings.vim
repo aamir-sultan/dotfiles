@@ -125,11 +125,11 @@ vnoremap . <cmd>norm.<CR>
 
 " https<cmd>//medium.com/@schtoeffel/you-don-t-need-more-than-one-cursor-in-vim-2c44117d51db
 " Apply the macro to all lines in visual mode and skip the ones which do not match.
-xnoremap @ <cmd><C-u>call ExecuteMacroOverVisualRange()<CR>
 function! ExecuteMacroOverVisualRange()
   echo "@".getcmdline()
-  execute "<cmd>'<,'>normal @".nr2char(getchar())
+  execute ":'<,'>normal @".nr2char(getchar())
 endfunction
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
 " Switch between the last two files
 nnoremap <leader><leader><leader> <c-^>
