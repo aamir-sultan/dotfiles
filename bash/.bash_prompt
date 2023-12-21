@@ -142,12 +142,14 @@ fi
 
 # Prompt Symbol Color
 # symbolStyle="${bold}${orange}"
-# symbolStyle="${bold}${white}"
+symbolStyle="${bold}${white}"
+# symbolStyle="${bold}${cyan}"
 # symbolStyle="${bold}${green}"
 # symbolStyle="${bold}${violet}"
 # symbolStyle="${bold}${yellow}"
 # symbolStyle="${bold}${black}"
-symbolStyle="${bold}${blue}"
+# symbolStyle="${bold}${blue}"
+# symbolStyle="${bold}${grey}"
 
 promptConnectorStyle="${bold}${green}"
 # promptConnectorOpen="┌─ "

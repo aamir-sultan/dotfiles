@@ -36,7 +36,7 @@
   # Adds everything to the staging area and brings up the commit info
   ca = !git add -A && git commit -av
   # Adds everything to the staging area, and amends it the most recent commit
-  aa = !git add -A && git commit — amend -av
+  aa = !git add -A && git commit --amend -av
   # Make sure you are on the branch you want to rename, then rename it whatever you want.
   rn = “!f() { git branch -m $1; }; f”
   # Reword the previous commit
