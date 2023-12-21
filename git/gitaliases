@@ -40,7 +40,7 @@
   # Make sure you are on the branch you want to rename, then rename it whatever you want.
   rn = “!f() { git branch -m $1; }; f”
   # Reword the previous commit
-  rwc = commit -v — amend
+  rwc = commit -v --amend
 
   # Takes 2 arguments and put the first argument as feat, chore and next argument as message
   committ = "!f(){ \
