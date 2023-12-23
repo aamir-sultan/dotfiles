@@ -41,6 +41,8 @@ nnoremap <leader>tn <cmd>set nornu! nonu!<CR>
 nnoremap <F6> :let &bg=(&bg=='light'?'dark':'light')<cr>
 " Remove the highlight from searched item
 nnoremap <leader>th <cmd>set nohlsearch!<CR>
+" Toggle line wrapping 
+nnoremap <leader>tw <cmd>set wrap!<CR>
 
 " Mapping for Easymotion
 " Remaping the leader key for easymotion
