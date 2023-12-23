@@ -72,7 +72,7 @@ return {
       { "<leader>fa", "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", desc = "Find All Files" },
       { "<leader>fw", "<cmd> Telescope live_grep <CR>",                                         desc = "Live grep" },
       { "<leader>fh", "<cmd> Telescope help_tags <CR>",                                         desc = "Help page" },
-      { "<leader>cth", "<cmd> Telescope colorscheme<CR>",                                        desc = "Colorscheme" },
+      { "<leader>cs", "<cmd> Telescope colorscheme<CR>",                                        desc = "Colorscheme" },
 
       -- add a keymap to browse plugin files
       {
