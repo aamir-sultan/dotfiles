@@ -45,14 +45,14 @@ local options = {
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     mappings = {
-        i = {
-            ["<C-j>"] = require("telescope.actions").move_selection_next,
-            ["<C-k>"] = require("telescope.actions").move_selection_previous,
-            ['<C-u>'] = false,
-            },
-        n = {
-            ["q"] = require("telescope.actions").close
-            },
+      i = {
+        ["<C-j>"] = require("telescope.actions").move_selection_next,
+        ["<C-k>"] = require("telescope.actions").move_selection_previous,
+        ['<C-u>'] = false,
+      },
+      n = {
+        ["q"] = require("telescope.actions").close
+      },
     },
   },
 
@@ -80,6 +80,7 @@ return {
       { "<leader>fw", "<cmd> Telescope live_grep <CR>",                                         desc = "Live grep" },
       { "<leader>fh", "<cmd> Telescope help_tags <CR>",                                         desc = "Help page" },
       { "<leader>cs", "<cmd> Telescope colorscheme<CR>",                                        desc = "Colorscheme" },
+      { "<leader>hm", "<cmd> Telescope harpoon marks<CR>",                                      desc = "[H]arpoon [M]arks" },
 
       -- add a keymap to browse plugin files
       {
@@ -90,6 +91,13 @@ return {
     },
     -- change some options
     opts = options,
+    dependencies = {
+      "theprimeagen/harpoon",
+      config = function()
+        require("telescope").load_extension('harpoon')
+      end,
+    },
+
+
   },
 }
-

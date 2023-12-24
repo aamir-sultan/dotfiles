@@ -134,4 +134,4 @@ endfunction
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
 " Switch between the last two files
-nnoremap <leader><leader><leader> <c-^>
+nnoremap -- <c-^>
