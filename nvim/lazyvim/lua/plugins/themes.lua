@@ -1,11 +1,11 @@
 onedark_options = {
   -- Main options --
-  style = 'dark',                 -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+  style = 'dark',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
   -- transparent = true,  -- Show/hide background
-  transparent = false,            -- Show/hide background
-  term_colors = true,             -- Change terminal color as per the selected theme style
-  ending_tildes = false,          -- Show the end-of-buffer tildes. By default they are hidden
-  cmp_itemkind_reverse = false,   -- reverse item kind highlights in cmp menu
+  transparent = false,          -- Show/hide background
+  term_colors = true,           -- Change terminal color as per the selected theme style
+  ending_tildes = false,        -- Show the end-of-buffer tildes. By default they are hidden
+  cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
 
   -- toggle theme style ---
   toggle_style_key = nil,                                                              -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
@@ -24,18 +24,18 @@ onedark_options = {
 
   -- Lualine options --
   lualine = {
-    transparent = false,     -- lualine center bar transparency
+    transparent = false, -- lualine center bar transparency
   },
 
   -- Custom Highlights --
-  colors = {},       -- Override default colors
-  highlights = {},   -- Override highlight groups
+  colors = {},     -- Override default colors
+  highlights = {}, -- Override highlight groups
 
   -- Plugins Config --
   diagnostics = {
-    darker = true,         -- darker colors for diagnostic
-    undercurl = true,      -- use undercurl instead of underline for diagnostics
-    background = true,     -- use background color for virtual text
+    darker = true,     -- darker colors for diagnostic
+    undercurl = true,  -- use undercurl instead of underline for diagnostics
+    background = true, -- use background color for virtual text
   },
 }
 
@@ -45,16 +45,17 @@ return {
   -- { 'noahfrederick/vim-noctu',    lazy = true, event = "VimEnter" },
   -- { 'navarasu/onedark.nvim',      lazy = true, event = "VimEnter", opts = onedark_options },
   -- { 'HUAHUAI23/nvim-quietlight',  lazy = true, event = "VimEnter" },
-  { 'luisiacc/gruvbox-baby',      lazy = true, event = "VimEnter" },
+  { 'luisiacc/gruvbox-baby', lazy = true, event = "VimEnter" },
   -- { 'rose-pine/neovim',           lazy = true, event = "VimEnter" },
   -- { 'RRethy/nvim-base16',         lazy = true, event = "VimEnter" },
   -- { 'NTBBloodbath/doom-one.nvim', lazy = true, event = "VimEnter" },
   -- { 'navarasu/onedark.nvim',      lazy = true, event = "VimEnter" },
-  { 'folke/tokyonight.nvim',
+  {
+    'folke/tokyonight.nvim',
     lazy = true,
     event = "VimEnter",
     priority = 1000,
-    opts = {transparent = vim.g.transparent_enabled},
+    opts = { transparent = vim.g.transparent_enabled },
   },
   -- {
   --   "mcchrish/zenbones.nvim",
@@ -73,7 +74,8 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox-baby",
+      colorscheme = "blue",
+      -- colorscheme = "gruvbox-baby",
       -- colorscheme = "nvim-quietlight",
       -- colorscheme = "kanagawa",
       -- colorscheme = "kanagawa-dragon",
