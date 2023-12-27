@@ -100,6 +100,32 @@ local function split_from_url(dir)
   return hostname, cwd
 end
 
+local function getRandomStringFromTable(table)
+  -- Get the number of elements in the table
+  local numElements = #table
+
+  -- Generate a random index within the table's range
+  local randomIndex = math.random(1, numElements)
+
+  -- Return the string at the randomly chosen index
+  return table[randomIndex]
+end
+
+local function getRandomBackgroundPath()
+  local backgroundsTable = {
+    "D://Mega//backgrounds//2142.jpg",
+    "D://Mega//backgrounds//planet.jpg",
+    "D://Mega//backgrounds//bars.jpg",
+    "D://Mega//backgrounds//dark_trees.jpg",
+    "D://Mega//backgrounds//star_cave.jpg",
+    "D://Mega//backgrounds//10.jpg",
+    "D://Mega//backgrounds//sand.jpg",
+    "D://Mega//backgrounds//2134.jpg",
+    "D://Mega//backgrounds//14.jpg"
+  }
+
+  return getRandomStringFromTable(backgroundsTable)
+end
 ---------------------------------------------------------------
 --- Configurations settings and switches.
 ---------------------------------------------------------------
@@ -114,19 +140,57 @@ end
 config.color_scheme = "Hardcore"
 -- config.cell_width	= 1.05  -- Set this to increase the charachter spacing in the terminal.
 config.cell_width = 1.01 -- Set this to in/decrease the charachter spacing in the terminal.
-config.line_height = 1.0 -- Set this to in/decrease the charachter height in the terminal.
-config.font_size = 11.0
+config.line_height = 1.1 -- Set this to in/decrease the charachter height in the terminal.
+config.font_size = 8.0
 
 -- local fontStyle = "Italic"
 local fontStyle = "Normal"
 
--- local fontWeight = "Medium"
-local fontWeight = "Bold"
+local fontWeight = "Medium"
+-- local fontWeight = "Bold"
 
 config.font = wezterm.font_with_fallback({
   {
+    family = "MartianMono NFM",
+    weight = fontWeight,
+    style = fontStyle,
+    harfbuzz_features = {
+      "calt=1",
+      "clig=1",
+      "liga=1",
+      "dlig",
+      "ss01",
+      "ss02",
+      "ss03",
+      "ss04",
+      "ss05",
+      "ss06",
+      "ss07",
+      "ss08",
+    },
+  },
+  {
+    family = "FiraMono Nerd Font Mono",
+    weight = fontWeight,
+    style = fontStyle,
+    harfbuzz_features = {
+      "calt=1",
+      "clig=1",
+      "liga=1",
+      "dlig",
+      "ss01",
+      "ss02",
+      "ss03",
+      "ss04",
+      "ss05",
+      "ss06",
+      "ss07",
+      "ss08",
+    },
+  },
+  {
     family = "JetBrains Mono",
-    weight = "Medium",
+    weight = fontWeight,
     style = fontStyle,
     harfbuzz_features = {
       "calt=1",
@@ -272,11 +336,14 @@ config.background = {
       -- File = "D://Mega//backgrounds//planet.jpg",
       -- File = "D://Mega//backgrounds//kungfu-panda.jpg",
       -- File = "D://Mega//backgrounds//bars.jpg",
-      File = "D://Mega//backgrounds//10.jpg",
+      -- File = "D://Mega//backgrounds//10.jpg",
+      -- File = "D://Mega//backgrounds//mountain_eagle.jpg",
+      -- File = "D://Mega//backgrounds//sand.jpg",
       -- File = "D://Mega//backgrounds//11.jpg",
       -- File = "D://Mega//backgrounds//12.jpg",
       -- File = "D://Mega//backgrounds//2163.jpg",
       -- File = "D://Mega//backgrounds//14.jpg",
+      File = getRandomBackgroundPath()
     },
     -- The texture tiles vertically but not horizontally.
     -- When we repeat it, mirror it so that it appears "more seamless".
@@ -302,8 +369,8 @@ config.background = {
     -- pixels moved by the main viewport. This makes it appear to be
     -- further behind the text.
     -- attachment = { Parallax = 0.1 },
-    -- attachment = "Fixed",
-    attachment = "Scroll",
+    attachment = "Fixed",
+    -- attachment = "Scroll",
   },
   -- -- Subsequent layers are rendered over the top of each other
   -- {
@@ -363,7 +430,8 @@ config.animation_fps = 1 -- Controls the maximum frame rate used when rendering 
 -- local cursor_background = "#0099cc" -- Cyan Darkish
 -- local cursor_background = "#ccff00" -- Green light
 -- local cursor_background = "#ffcc00" -- Mustard
-local cursor_background = "#FBC02D" -- Mustard
+-- local cursor_background = "#FBC02D" -- Mustard
+local cursor_background = "#D66924" -- Mustard-Dark
 -- local cursor_background = "#FF5733" -- Orange
 -- local cursor_foreground	=	"#2E3435" -- Black+Brown
 local cursor_foreground = "#343235" -- Black+Brown
