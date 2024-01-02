@@ -41,6 +41,8 @@
   rn = “!f() { git branch -m $1; }; f”
   # Reword the previous commit
   rwc = commit -v --amend
+  # Improved log
+  ilog = "!git log -p --submodule=log"
 
   # Takes 2 arguments and put the first argument as feat, chore and next argument as message
   committ = "!f(){ \
