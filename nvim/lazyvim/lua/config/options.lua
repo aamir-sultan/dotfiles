@@ -17,6 +17,7 @@ opt.shiftround = false
 opt.expandtab = true
 opt.autoindent = true
 opt.smartindent = true
+opt.wrap = true
 
 vim.o.background = "dark" -- or "light" for light mode
 -- vim.cmd([[colorscheme gruvbox]])
