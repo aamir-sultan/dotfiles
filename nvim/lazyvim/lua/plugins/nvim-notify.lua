@@ -5,8 +5,8 @@ return {
     opts = {
       timeout = 3000,
       -- render = "default",
-      -- render = "compact",
-      render = "wrapped-compact",
+      render = "compact",
+      -- render = "wrapped-compact",
       -- top_down = true,
       top_down = false,
       -- stages = "fade",
@@ -24,11 +24,15 @@ return {
       -- Default value will be used from core config.
       -- max_width = 1,
       max_width = function()
-        return math.floor(vim.o.columns * 0.75)
+        -- return math.floor(vim.o.columns * 0.75)
+        return math.floor(vim.o.columns * 0.99)
       end,
       on_open = function(win)
         vim.api.nvim_win_set_config(win, { zindex = 100 })
       end,
+
+      -- Is used to suppress the Highlight warning 
+      background_colour = "#000000"
     },
   }
 }

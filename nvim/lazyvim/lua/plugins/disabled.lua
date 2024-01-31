@@ -27,7 +27,7 @@ else
     -- { "goolord/alpha-nvim", enabled = false },
     -- { "nvim-lualine/lualine.nvim", enabled = false },
     -- { "rcarriga/nvim-notify", enabled = false },
-    { "TobinPalmer/Tip.nvim", enabled = false },
+    -- { "TobinPalmer/Tip.nvim", enabled = false },
     -- { "folke/noice.nvim",, enabled = false },
   }
 end
