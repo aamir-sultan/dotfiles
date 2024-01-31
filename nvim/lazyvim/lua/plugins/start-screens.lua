@@ -114,6 +114,8 @@ return {
     --           \/     \/                       \/    
     --  ]]
 
+    -- local combined = ""
+    local combined = qoute
     -- local combined = logo
     local combined = logo .. qoute
     -- local combined = logo .. fortune()
@@ -122,7 +124,8 @@ return {
     logo = combined .. "\n"
 
     local opts = {
-      theme = "doom",
+      -- theme = "doom",
+      theme = "hyper",
       hide = {
         -- this is taken care of by lualine
         -- enabling this messes up the actual laststatus setting after loading a file
