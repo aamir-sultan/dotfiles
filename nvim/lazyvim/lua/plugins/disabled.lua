@@ -1,5 +1,5 @@
 
-DISABLE_ON_LINES = 30000
+DISABLE_ON_LINES = 20000
 
 -- Function to check if the current file has more than 30000 lines
 local function is_large_file()
@@ -69,7 +69,7 @@ else
     -- { "folke/noice.nvim", enabled = false },
     -- { "folke/edgy.nvim", enabled = false },
     -- { "folke/flash.nvim", enabled = false },
-    -- { "folke/which-key.nvim", enabled = false },
+    -- { "folke/which-key.nvim", enabled = false_large },
     -- { "folke/todo-comments.nvim", enabled = false },
     -- { "folke/tokyonight.nvim", enabled = false },
     -- { "folke/trouble.nvim", enabled = false },
@@ -102,7 +102,6 @@ else
     -- { "nvim-neo-tree/neo-tree.nvim", enabled = false },
     -- { "nvim-telescope/telescope.nvim", enabled = false },
     -- { "nvim-tree/nvim-web-devicons", enabled = false },
-    -- { "nvim-treesitter/nvim-treesitter-context", enabled = false },
     -- { "nvim-pack/nvim-spectre", enabled = false },
     -- { "nvimdev/dashboard-nvim", enabled = false },
     -- { "nvimtools/none-ls.nvim", enabled = false },
@@ -121,9 +120,10 @@ else
     -- { "williamboman/mason.nvim", enabled = false },
     -- { "wookayin/semshi", enabled = false },
     -- { "zbirenbaum/copilot-cmp", enabled = false },
-
+    
     -- Disable these extension for large files.
     { "nvim-treesitter/nvim-treesitter", enabled = false_large},
     { "windwp/nvim-ts-autotag", enabled = false_large },
+    { "nvim-treesitter/nvim-treesitter-context", enabled = false_large },
   }
 end
