@@ -4,8 +4,13 @@ DISABLE_ON_LINES = 30000
 -- Function to check if the current file has more than 30000 lines
 local function is_large_file()
   -- local current_buf_lines = vim.api.nvim_buf_line_count(0)
-  local current_buf_lines = tonumber(vim.fn.system({ 'wc', '-l', vim.fn.expand('%') }):match('%d+'))
-  return current_buf_lines > DISABLE_ON_LINES
+  -- Check if buffer exists otherwise but defualt set the file size to to small
+  if vim.fn.expand('%') == '' then
+    return false
+  else
+    local current_buf_lines = tonumber(vim.fn.system({ 'wc', '-l', vim.fn.expand('%') }):match('%d+'))
+    return current_buf_lines > DISABLE_ON_LINES
+  end
 end
 
 -- Function to display a message in the status line
