@@ -27,16 +27,16 @@ autocmd('BufReadPost', {
 })
 
 -- Disable linting and syntax highlighting for large files
-autocmd('BufReadPre', {
-  callback = function()
-    if vim.fn.getfsize(vim.fn.expand('%')) > 10000000 then
-      vim.cmd('syntax off')
-      vim.g.ale_enabled = 0
-      vim.g.coc_enabled = 0
-    end
-  end,
-  group = general
-})
+-- autocmd('BufReadPre', {
+--   callback = function()
+--     if vim.fn.getfsize(vim.fn.expand('%')) > 10000000 then
+--       vim.cmd('syntax off')
+--       vim.g.ale_enabled = 0
+--       vim.g.coc_enabled = 0
+--     end
+--   end,
+--   group = general
+-- })
 
 -- http://vim.wikia.com/wiki/Speed_up_Syntax_Highlighting
 autocmd('syntax', {
@@ -91,4 +91,51 @@ autocmd('QuickFixCmdPost', {
   pattern = 'l*',
   command = 'lwindow',
   group = qf_group
+})
+
+-- Function to check if the current file has more than 30000 lines
+local function is_large_file()
+  -- local current_buf_lines = vim.api.nvim_buf_line_count(0)
+  -- Check if buffer exists otherwise but defualt set the file size to to small
+  if vim.fn.expand('%') == '' then
+    return false
+  else
+    local current_buf_lines = tonumber(vim.fn.system({ 'wc', '-l', vim.fn.expand('%') }):match('%d+'))
+    return current_buf_lines > DISABLE_ON_LINES
+  end
+end
+
+vim.g.DISABLE_ON_LINES = 20000
+autocmd({'BufRead', 'BufReadPost'}, {
+-- autocmd({'BufRead'}, {
+  callback = function()
+    -- if is_large_file() then
+    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
+    if ok and stats and (stats.size > vim.g.DISABLE_ON_LINES) then
+
+      -- if vim.fn.exists(':TSBufDisable') > 0 then
+      --   vim.cmd("TSDisable all")
+      -- end
+
+      if vim.fn.exists(':TSContextDisable') > 0 then
+        vim.cmd("TSContextDisable")
+      end
+
+    end
+  end,
+  group = general,
+  pattern = "*",
+})
+
+autocmd({ "BufReadPre" }, {
+  callback = function()
+    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
+    if ok and stats and (stats.size > vim.g.DISABLE_ON_LINES) then
+      vim.b.large_buf = true
+    else
+      vim.b.large_buf = false
+    end
+  end,
+  group = general,
+  pattern = "*",
 })
