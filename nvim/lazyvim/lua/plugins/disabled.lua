@@ -19,8 +19,10 @@ local function display_status_message(message, hl_group)
 end
 
 if is_large_file() then
+  -- local Util = require("lazyvim.util")
   -- display_status_message("Large file: Disabling some extentions due to large file size", "WarningMsg")
   display_status_message("Large file: Disabling some extentions due to large file size", "WarningMsg")
+  -- Util.info("Disabling some extentions due to large file size", { title = "Warning" })
   false_large = false
 else
   false_large = true 
