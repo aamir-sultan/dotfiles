@@ -74,7 +74,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "blue",
+      -- colorscheme = "blue",
       -- colorscheme = "gruvbox-baby",
       -- colorscheme = "nvim-quietlight",
       -- colorscheme = "kanagawa",
@@ -96,6 +96,7 @@ return {
       -- colorscheme = "zenburned",
       -- colorscheme = "kanagawabones",
       -- colorscheme = "randombones",
+      colorscheme = "tokyonight-moon",
     },
   },
 }
