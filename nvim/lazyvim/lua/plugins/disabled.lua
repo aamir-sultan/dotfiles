@@ -190,7 +190,6 @@ else
     -- { "tpope/vim-fugitive", enabled = false },
     -- { "WeiChungWu/vim-SystemVerilog", enabled = false },
     -- { "nachumk/systemverilog.vim", enabled = false },
-    -- { "airblade/vim-gitgutter", enabled = false },
     -- { "preservim/tagbar", enabled = false },
     -- { "ludovicchabant/vim-gutentags", enabled = false },
     -- { "tmux-plugins/vim-tmux", enabled = false },
@@ -206,6 +205,7 @@ else
     -- { "christoomey/vim-tmux-navigator", enabled = false },
     
     -- Disable these extension for large files.
+    { "airblade/vim-gitgutter", enabled = false_large },
     { "nvim-treesitter/nvim-treesitter", enabled = false_large},
     { "windwp/nvim-ts-autotag", enabled = false_large },
     { "nvim-treesitter/nvim-treesitter-context", enabled = false_large },
