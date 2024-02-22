@@ -1,20 +1,45 @@
 DISABLE_ON_LINES = 20000
 
--- Function to check if the current file has more than 30000 lines
-local function is_large_file()
-  -- local current_buf_lines = vim.api.nvim_buf_line_count(0)
-  -- Check if buffer exists otherwise but defualt set the file size to to small
-  if vim.fn.expand('%') == '' then
-    return false
-  else
-    local current_buf_lines = tonumber(vim.fn.system({ 'wc', '-l', vim.fn.expand('%') }):match('%d+'))
-    return current_buf_lines > DISABLE_ON_LINES
-  end
-end
+local Util = require("lazyvim.util")
 
 -- Function to display a message in the status line
 local function display_status_message(message, hl_group)
   vim.api.nvim_echo({ { message, hl_group } }, true, {})
+end
+
+-- local function is_large_file()
+--   -- local current_buf_lines = vim.api.nvim_buf_line_count(0)
+--   -- Check if buffer exists otherwise but defualt set the file size to to small
+--   if vim.fn.expand('%') == '' or is_buffer_empty() then
+--     return false
+--   else
+--     local current_buf_lines = tonumber(vim.fn.system({ 'wc', '-l', vim.fn.expand('%') }):match('%d+'))
+--     -- local current_buf_lines = vim.api.nvim_buf_line_count(0)
+--     display_status_message("Large file: Disabling some extentions due to large file size " .. current_buf_lines,
+--       "WarningMsg")
+--     Util.info("Disabling some extentions due to large file size" .. current_buf_lines, { title = "Warning" })
+--     return current_buf_lines > DISABLE_ON_LINES
+--   end
+-- end
+
+local function is_large_file()
+  if vim.fn.expand('%') == '' then
+    return false
+  else
+    local current_buf_lines = tonumber(vim.fn.system({ 'wc', '-l', vim.fn.expand('%') }):match('%d+'))
+    if current_buf_lines == nil then
+      -- Error occurred while getting line count, consider file as small
+      return false
+    else
+      if current_buf_lines > DISABLE_ON_LINES then
+        -- local message = "Large file: Line Count " .. current_buf_lines
+        -- vim.api.nvim_echo({ { message, "WarningMsg" } }, true, {})
+        return true
+      else
+        return false
+      end
+    end
+  end
 end
 
 if is_large_file() then
@@ -207,7 +232,7 @@ else
 
     -- Disable these extension for large files.
     -- { "nvim-treesitter/nvim-treesitter",         enabled = false_large },
-    -- { "nvim-treesitter/nvim-treesitter-context", enabled = false_large },
+    { "nvim-treesitter/nvim-treesitter-context", enabled = false_large },
     -- { "windwp/nvim-ts-autotag",                  enabled = false_large },
   }
 end
