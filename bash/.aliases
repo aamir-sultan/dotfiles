@@ -24,19 +24,20 @@ alias v="$VISUAL"
 
 # Likewise this, plus I'm always mistyping it...
 alias findy='find . -name'
+alias sb='source ~/.bashrc'
 alias vb='vim ~/.bashrc'
 alias vd='vim $DOTFILES'
-alias sb='source ~/.bashrc'
 
 # Aliases for tmux - could be moved to separate file
-alias ta='tmux a'
 # alias ta="tmux attach -t"
-alias tst='tmux source-file ~/.tmux.conf'
+alias ta='tmux a'
 alias tas='tmux a; tmux source-file ~/.tmux.conf'
-alias tn="tmux new -s"
 alias td="tmux detach"
+alias tk='tmux kill-session -t '
 alias tls='tmux ls'
-alias tk='tmux kill-session -t'
+alias tn="tmux new -s"
+alias tst='tmux source-file ~/.tmux.conf'
+alias tsa='tmux a -t '
 
 # Vim/NeoVim aliases
 alias nv='nvim'
