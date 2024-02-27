@@ -1,6 +1,8 @@
 return {
   "TobinPalmer/Tip.nvim",
-  event = "VimEnter",
+  -- event = "VimEnter",
+  event = { "LazyFile", "VeryLazy" },
+  -- event = "VeryLazy",
   init = function()
     -- Default config
     --- @type Tip.config

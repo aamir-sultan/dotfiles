@@ -46,7 +46,8 @@ return {
   -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
   {
     "echasnovski/mini.comment",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
+    event = { "LazyFile" },
     opts = {
       options = {
         custom_commentstring = function()
@@ -57,7 +58,8 @@ return {
   },
   {
     "numToStr/Comment.nvim",
-    event = { "LazyFile", "VeryLazy" },
+    -- event = { "LazyFile", "VeryLazy" },
+    event = { "LazyFile" },
     keys = { "gcc", "gbc" },
     -- init = function()
     --   require("core.utils").load_mappings "comment"

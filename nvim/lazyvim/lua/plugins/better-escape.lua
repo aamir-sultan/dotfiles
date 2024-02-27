@@ -21,7 +21,7 @@ return {
   {
     'max397574/better-escape.nvim',
     -- lazy = true,
-    event = { "VeryLazy", "LazyFile" },
+    event = { "LazyFile" },
     opts = better_comment_options,
   },
 }
