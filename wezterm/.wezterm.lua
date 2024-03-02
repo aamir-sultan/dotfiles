@@ -565,7 +565,8 @@ config.wsl_domains = wsl_domains
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	table.insert(launch_menu, {
 		label = "Local:PowerShell",
-		args = { "cmd.exe", "powershell.exe", "-NoLogo" },
+		-- args = { "cmd.exe", "powershell.exe", "-NoLogo" },
+		args = { "powershell.exe", "-NoLogo" },
 	})
 	-- config.default_prog = { "powershell.exe", "-NoLogo", "cd" "wsl.exe", "-d", "Ubuntu" }
 	config.default_prog = { "powershell.exe", "-NoLogo", "wsl.exe", "--cd ~" } -- This will launch the dflt distro. Which is Ubuntu is our case.
