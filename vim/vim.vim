@@ -59,9 +59,10 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 "Setting the shortcut for Nerdtree and others 
 noremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
+" nnoremap <C-n> :NERDTree<CR>
 " nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>e :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 " in NERDTree, to open-silently file in newtab with Enter, instead of default pressing "T" (same for not silently with Tab instead of t). To restore the comment the following two lines.
 let NERDTreeMapOpenInTab='<C-t>'
