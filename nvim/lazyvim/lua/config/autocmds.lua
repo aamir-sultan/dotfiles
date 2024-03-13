@@ -51,7 +51,7 @@ autocmd('syntax', {
 })
 
 -- Set syntax highlighting for Apraisals
-autocmd({'BufRead', 'BufNewFile'}, {
+autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = 'Appraisals',
   callback = function() vim.bo.filetype = 'ruby' end,
   group = general
@@ -106,13 +106,12 @@ local function is_large_file()
 end
 
 vim.g.DISABLE_ON_LINES = 20000
-autocmd({'BufRead', 'BufReadPost'}, {
--- autocmd({'BufRead'}, {
+autocmd({ 'BufRead', 'BufReadPost' }, {
+  -- autocmd({'BufRead'}, {
   callback = function()
     -- if is_large_file() then
     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
     if ok and stats and (stats.size > vim.g.DISABLE_ON_LINES) then
-
       -- if vim.fn.exists(':TSBufDisable') > 0 then
       --   vim.cmd("TSDisable all")
       -- end
@@ -123,7 +122,6 @@ autocmd({'BufRead', 'BufReadPost'}, {
 
       -- Disable the flash search for large files.
       require("flash").toggle(false)
-
     end
   end,
   group = general,
@@ -142,6 +140,27 @@ autocmd({ "BufReadPre" }, {
   group = general,
   pattern = "*",
 })
+
+local function changeDirectoryOnce()
+  if not vim.g.directory_changed then
+    if #vim.fn.argv() > 0 then
+      vim.cmd('execute "cd " .. vim.fn.fnameescape(vim.fn.expand("%:p:h"))')
+    else
+      vim.cmd('execute "cd " .. vim.fn.fnameescape(vim.fn.expand("%:p"))')
+    end
+    vim.g.directory_changed = true
+  end
+end
+
+-- Define an autocommand to call the function when VimEnter event is triggered
+-- autocmd({ "BufRead" }, {
+--   callback = function()
+--     ChangeDirectoryOnce()
+--   end,
+--   group = general,
+--   pattern = "*",
+-- })
+
 
 -- local group = vim.api.nvim_create_augroup("LargeFileAutocmds", {})
 -- local old_eventignore = vim.o.eventignore;
