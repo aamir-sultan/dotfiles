@@ -21,16 +21,5 @@ opt.wrap = true
 
 vim.o.background = "dark" -- or "light" for light mode
 -- vim.cmd([[colorscheme gruvbox]])
--- vim.cmd("cd %:p:h")
--- vim.cmd("cd %:p")
--- vim.o.autochdir = true
-
--- It automatically checks if the passed argument is a file then LazyVim enter to te parent directory of the file else we specifically enter that dir.
--- Check if any arguments were passed to Neovim
-if #vim.fn.argv() > 0 then
-  -- A file was passed as an argument
-  -- vim.cmd('execute "cd " .. fnameescape(expand("%:p:h"))')
-else
-  -- No file was passed, use the current file's directory
-  vim.cmd('execute "cd " .. fnameescape(expand("%:p"))')
-end
+-- Auto change the work directory to the file parent directory
+vim.o.autochdir = true
