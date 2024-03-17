@@ -7,6 +7,10 @@ vim.cmd([[
 source ~/.vimrc
 ]])
 
+-- vim.cmd([[
+-- if argc() == 1 && isdirectory(argv(0)) | cd `=argv(0)` | endif
+-- ]])
+
 local opt = vim.opt
 
 opt.winbar = "%=%m %f"
@@ -22,4 +26,4 @@ opt.wrap = true
 vim.o.background = "dark" -- or "light" for light mode
 -- vim.cmd([[colorscheme gruvbox]])
 -- Auto change the work directory to the file parent directory
-vim.o.autochdir = true
+-- vim.o.autochdir = true
