@@ -40,12 +40,15 @@ onedark_options = {
 }
 
 return {
+  require("plugins.themes.neosolarized"),
+
   -- add gruvbox
   -- { 'arcticicestudio/nord-vim',   lazy = true, event = "VimEnter" },
   -- { 'noahfrederick/vim-noctu',    lazy = true, event = "VimEnter" },
   -- { 'navarasu/onedark.nvim',      lazy = true, event = "VimEnter", opts = onedark_options },
   -- { 'HUAHUAI23/nvim-quietlight',  lazy = true, event = "VimEnter" },
   { 'luisiacc/gruvbox-baby', lazy = true, event = "VimEnter" },
+
 
   {
     'neanias/everforest-nvim',
