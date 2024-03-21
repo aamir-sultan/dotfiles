@@ -1,8 +1,8 @@
 local neotree_options = {
   window = {
-    position = "current",
+    -- position = "current",
     -- position = "right",
-    -- position = "left",
+    position = "left",
     -- width = 40,
     -- mapping_options = {
     --   noremap = true,
@@ -33,7 +33,7 @@ local neotree_options = {
       --       --".null-ls_*",
       --     },
     },
-    --   follow_current_file = false,              -- This will find and focus the file in the active buffer every
+    follow_current_file = false,   -- This will find and focus the file in the active buffer every
     --   -- time the current file is changed while the tree is open.
     --   group_empty_dirs = false,                 -- when true, empty folders will be grouped together
     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
