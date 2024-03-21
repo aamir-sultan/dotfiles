@@ -13,6 +13,10 @@ if argc() == 1 && isdirectory(argv(0)) | cd `=argv(0)` | endif
 
 local opt = vim.opt
 
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 opt.winbar = "%=%m %f"
 opt.tabstop = 2
 opt.softtabstop = 2
