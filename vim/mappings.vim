@@ -33,7 +33,7 @@
 " " inoremap kj <esc>
 " " inoremap jf <esc>
 " " inoremap jf <esc><esc>
-inoremap ii <esc><esc>
+" inoremap ii <esc><esc>
 
 " Toggle line numbering leader+n
 nnoremap <leader>tn <esc>:set nornu! nonu!<CR>
@@ -89,14 +89,14 @@ nnoremap <Leader>wf <esc>:w!<CR>
 nnoremap <C-q> <esc>:q<CR>
 nnoremap <Leader>qt <esc>:q<CR>
 " Shift+q or "Leader Leader q" for quit or same as :q!+Enter
-nnoremap Q <esc>ZQ
+" nnoremap Q <esc>ZQ
 nnoremap <Leader>qf <esc>ZQ
 
 " ctrl+wq for write and quit or same as :wq but only write, if the file is modified.
 nnoremap <C-w><C-q> <esc>ZZ
 nnoremap <Leader>wqt <esc>ZZ
 " "Leader Leader wq" for forced write and quit
-nnoremap WQ <esc>:wq!<CR>
+" nnoremap WQ <esc>:wq!<CR>
 nnoremap <Leader>wqf <esc>:wq!<CR>
 
 " Close all windows.
@@ -106,7 +106,7 @@ nnoremap <Leader>qa <esc><esc>:qall<CR>
 nnoremap <Leader>qq <esc><esc>:qall<CR>
 
 " "Leader Leader qa" Close all windows forcefully.
-nnoremap QA <esc>:qall!<CR>
+" nnoremap QA <esc>:qall!<CR>
 nnoremap <Leader>qaf <esc>:qall!<CR>
 
 "Write and close all windows
@@ -115,7 +115,7 @@ nnoremap <Leader>wqa <esc>:wqall<CR>
 nnoremap <Leader>wqq <esc>:wqall<CR>
 
 ""Leader Leader wqa" Write and close all windows forcefully
-nnoremap WQA <esc>:wqall!<CR>
+" nnoremap WQA <esc>:wqall!<CR>
 nnoremap <Leader>wqaf <esc>:wqall!<CR>
 
 " Fugitive Conflict Resolution
