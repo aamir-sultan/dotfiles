@@ -31,3 +31,5 @@ vim.o.background = "dark" -- or "light" for light mode
 -- vim.cmd([[colorscheme gruvbox]])
 -- Auto change the work directory to the file parent directory
 -- vim.o.autochdir = true
+
+-- vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
