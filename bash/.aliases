@@ -11,10 +11,10 @@ alias -- -="cd -"
 
 # Shortcuts
 #alias d="cd ~/Documents/Dropbox"
+alias cdd="cd $DOTFILES"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
-alias dd="cd $DOTFILES"
 alias g="git"
 alias cpr='cp -vr'
 alias cpf='cp -rvf'
