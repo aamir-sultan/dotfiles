@@ -69,6 +69,7 @@ if [ -d $NVIM_PATH ]; then
 
 else
 # Since the directory is not available, we need to get new clones
+  mkdir -p $HOME/.config
   get_new_clones
 fi
 
