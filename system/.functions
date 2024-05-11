@@ -522,7 +522,33 @@ f() {
 	file=$(find . -type f 2>/dev/null | fzf +m) && $EDITOR "$file"
 }
 
+# ssh to host based on fzf with names from config file
 sshf() {
 	local host
 	host=$(grep "$1" ~/.ssh/config | fzf +m | awk '{print $2}') && ssh "$host"
+}
+
+# This function displays a history of the directories you've recently been in
+function histd {
+	local i=0
+	for entry in $(history -w); do
+		if [[ $entry =~ ^cd ]]; then
+			((i++))
+			# Get directory name after "cd " (avoiding alias expansion)
+			local dir="${entry#cd }"
+			# Show only the last 10 entries by default
+			if [[ $i -le 10 ]]; then
+				echo "$i: $dir"
+			fi
+		fi
+	done
+}
+
+# Quick find with any partial text for files
+function qfind {
+	if [[ -n "$1" ]]; then
+		find . -iname "*$1*" -type f -print
+	else
+		echo "Usage: quickfind <search_pattern>"
+	fi
 }
