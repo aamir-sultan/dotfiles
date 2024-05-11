@@ -66,6 +66,10 @@ nnoremap <S-tab> <esc>:bprev<CR>
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
+" Ctrl+c should initiate esc in all modes as the toggling of the relative and normal numbers are not working
+noremap <C-c> <esc>
+noremap! <C-c> <esc>
+
 " Search and view in the middle
 nnoremap n nzzzv
 nnoremap N Nzzzv
