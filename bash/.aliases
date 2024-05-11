@@ -55,6 +55,14 @@ alias slg='< ~/.saved_commands.txt grep'
 alias fv='nvim $(fz)'
 alias fz='rg --files --hidden --follow --ignore-vcs -g "!{node_modules,.git}" | fzf'
 
+# Prints a directory tree
+if [ ! -x "$(which tree 2>/dev/null)" ]; then
+	alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+fi
+
+# This dup finder saves time by comparing size first, then md5sum, it doesn't delete anything, just lists them.
+alias fdups='find -not -empty -type f -printf "%s\n" | sort -rn | uniq -d | xargs -I{} -n1 find -type f -size {}c -print0 | xargs -0 md5sum | sort | uniq -w32 --all-repeated=separate'
+
 # Alias to list all functions loaded into bash (that don't start with _). Also shows file it's defined in.
 alias functions='shopt -s extdebug;declare -F | grep -v "declare -f _" | declare -F $(awk "{print $3}") | column -t;shopt -u extdebug'
 

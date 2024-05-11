@@ -445,13 +445,6 @@ function up() {
 	cd $d
 }
 
-# 'command help' for command name and single option - ex: ch ls -A
-# see https://github.com/learnbyexample/command_help for a better script version
-ch() {
-	whatis $1
-	man $1 | sed -n "/^\s*$2/,/^$/p"
-}
-
 # add path to filename(s)
 # usage: ap file1 file2 etc
 ap() { for f in "$@"; do echo "$PWD/$f"; done; }
@@ -479,18 +472,57 @@ function cdup {
 	fi
 }
 
+# Its a good idea but currently its not working
 # Clone a repo without all the bullshit.
 # clone gh kisslinux/kiss
 # git clone https://github.com/kisslinux/kiss
-clone() {
-	if [ -n $1 ]; then
-		service=$1
-	fi
-	case $service in
-	"gh") git clone gh:$2 ;;
-	"gist") git clone gist:$2 ;;
-	"bb") git clone bb:$2 ;;
-	"aur") git clone aur:$2 ;;
-	*) echo "clone {gh, gist, bb, aur} repo/name" ;;
-	esac
+# clone() {
+# 	if [ -n $1 ]; then
+# 		service=$1
+# 	fi
+# 	case $service in
+# 	"gh") git clone gh:$2 ;;
+# 	"gist") git clone gist:$2 ;;
+# 	"bb") git clone bb:$2 ;;
+# 	"aur") git clone aur:$2 ;;
+# 	*) echo "clone {gh, gist, bb, aur} repo/name" ;;
+# 	esac
+# }
+
+# name makes it pretty obvious
+function rar2zip() {
+	local DIR=$(pwd)
+	local TMP="/tmp/rar2zip"
+	local RAR_FILE=$(realpath "$1")
+	local ZIP_FILE=$(sed -r 's/\.rar$/.zip/' <<<"$RAR_FILE")
+	mkdir -p "$TMP/rar"
+	unrar x "$RAR_FILE" "$TMP/rar"
+	cd "$TMP/rar"
+	zip -r ../result.zip *
+	cd "$DIR"
+	cp "$TMP/result.zip" "$ZIP_FILE"
+	rm -f "$RAR_FILE"
+	rm -rf "$TMP"
+}
+
+function matrix() {
+	tr -c "[:digit:]" " " </dev/urandom | dd cbs=$COLUMNS conv=unblock | GREP_COLOR="1;32" grep --color "[^ ]"
+}
+
+# Open directory with fzf search
+# z() {
+d() {
+	local dir
+	dir=$(find . -type d 2>/dev/null | fzf +m) && cd "$dir"
+}
+
+# Open file in default editor with fzf search
+f() {
+	local file
+	file=$(find . -type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+}
+
+sshf() {
+	local host
+	host=$(grep "$1" ~/.ssh/config | fzf +m | awk '{print $2}') && ssh "$host"
 }
