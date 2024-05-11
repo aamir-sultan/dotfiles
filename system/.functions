@@ -407,3 +407,90 @@ EOT
 		;;
 	esac
 }
+
+# If tmux is running ,command "tmux" will enter it and attach.
+# If tmux is not running ,command "tmux" will start tmux and create a session named "terminal"
+# If run command with other keyword , like {"tmux" ls} will run like what orginal tmux do
+
+tmux() {
+	if [ $# -gt 0 ]; then
+		command tmux "$@"
+	else
+		if tmux ls &>/dev/null; then
+			tmux attach
+		else
+			tmux new -s terminal
+		fi
+	fi
+}
+
+tmux-kill-other() {
+	while IFS=: read -r session _; do
+		tmux kill-session -t "$session"
+	done < <(tmux list-sessions | grep -v 'attached' | cut -f1 -d:)
+}
+alias tko='tmux-kill-other'
+
+# Go back number of directories in the path
+function up() {
+	local d=""
+	limit=$1
+	for ((i = 1; i <= limit; i++)); do
+		d=$d/..
+	done
+	d=$(echo $d | sed 's/^\///')
+	if [ -z "$d" ]; then
+		d=..
+	fi
+	cd $d
+}
+
+# 'command help' for command name and single option - ex: ch ls -A
+# see https://github.com/learnbyexample/command_help for a better script version
+ch() {
+	whatis $1
+	man $1 | sed -n "/^\s*$2/,/^$/p"
+}
+
+# add path to filename(s)
+# usage: ap file1 file2 etc
+ap() { for f in "$@"; do echo "$PWD/$f"; done; }
+
+# simple case-insensitive file search based on name
+# usage: fs name
+# remove '-type f' if you want to match directories as well
+fs() { find -type f -iname '*'"$1"'*'; }
+
+# open files with default application, don't print output/error messages
+# useful for opening docs, pdfs, images, etc from command line
+o() { xdg-open "$@" &>/dev/null; }
+
+# if unix2dos and dos2unix commands aren't available by default
+unix2dos() { sed -i 's/$/\r/' "$@"; }
+dos2unix() { sed -i 's/\r$//' "$@"; }
+
+# Provides 'cdup DIR', cd up to the matching DIR
+function cdup {
+	newdir="${PWD/\/$1\/*/}/$1"
+	if [[ -d "$newdir" ]]; then
+		cd "$newdir"
+	else
+		echo "\"$newdir\" does not exist"
+	fi
+}
+
+# Clone a repo without all the bullshit.
+# clone gh kisslinux/kiss
+# git clone https://github.com/kisslinux/kiss
+clone() {
+	if [ -n $1 ]; then
+		service=$1
+	fi
+	case $service in
+	"gh") git clone gh:$2 ;;
+	"gist") git clone gist:$2 ;;
+	"bb") git clone bb:$2 ;;
+	"aur") git clone aur:$2 ;;
+	*) echo "clone {gh, gist, bb, aur} repo/name" ;;
+	esac
+}

@@ -45,6 +45,16 @@ alias nv='nvim'
 alias nvb='nvim ~/.bashrc'
 alias nvd='nvim $DOTFILES'
 
+# save last command from history to a file
+# tip, add a comment to end of command before saving, ex: ls --color=auto # colored ls output
+alias sl='fc -ln -1 | sed "s/^\s*//" >> ~/.saved_commands.txt'
+# short-cut to grep that file
+alias slg='< ~/.saved_commands.txt grep'
+
+# FZF search and edit with nvim
+alias fv='nvim $(fz)'
+alias fz='rg --files --hidden --follow --ignore-vcs -g "!{node_modules,.git}" | fzf'
+
 # Alias to list all functions loaded into bash (that don't start with _). Also shows file it's defined in.
 alias functions='shopt -s extdebug;declare -F | grep -v "declare -f _" | declare -F $(awk "{print $3}") | column -t;shopt -u extdebug'
 
@@ -204,6 +214,11 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 
 # Lock the screen (when going AFK)
 #alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# News from the around the world
+alias news='curl us.getnews.tech'
+# Moon information
+alias moon='curl wttr.in/Moon'
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
