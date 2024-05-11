@@ -513,13 +513,23 @@ function matrix() {
 # z() {
 d() {
 	local dir
-	dir=$(find . -type d 2>/dev/null | fzf +m) && cd "$dir"
+	# If fd is not available then use find as default editor
+	if [ ! -x "$(which fd 2>/dev/null)" ]; then
+		dir=$(find . -type d 2>/dev/null | fzf +m) && cd "$dir"
+	else
+		dir=$(fd -H -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
+	fi
 }
 
 # Open file in default editor with fzf search
 f() {
 	local file
-	file=$(find . -type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+	# If fd is not available then use find as default editor
+	if [ ! -x "$(which fd 2>/dev/null)" ]; then
+		file=$(find . -type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+	else
+		dir=$(fd -H -E .git --type f 2>/dev/null | fzf +m) && cd "$dir"
+	fi
 }
 
 # ssh to host based on fzf with names from config file
