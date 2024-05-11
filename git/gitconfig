@@ -4,7 +4,7 @@
   editor = /usr/bin/vim
 
 [credential]
-  helper = cache --timeout=360000
+	helper = cache --timeout=604800
 
 [include]
   path = gitaliases
