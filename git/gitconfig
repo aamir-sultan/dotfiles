@@ -1,7 +1,8 @@
 # Remember global gitignore cant use relatively the other files. It needs to used with absolute path or
 # path extended from home.
 [core]
-  editor = /usr/bin/vim
+  # editor = /usr/bin/vim
+  editor = $EDITOR
 
 [credential]
 	helper = cache --timeout=604800
