@@ -449,11 +449,6 @@ function up() {
 # usage: ap file1 file2 etc
 ap() { for f in "$@"; do echo "$PWD/$f"; done; }
 
-# simple case-insensitive file search based on name
-# usage: fs name
-# remove '-type f' if you want to match directories as well
-fs() { find -type f -iname '*'"$1"'*'; }
-
 # open files with default application, don't print output/error messages
 # useful for opening docs, pdfs, images, etc from command line
 o() { xdg-open "$@" &>/dev/null; }
@@ -517,7 +512,49 @@ d() {
 	if [ ! -x "$(which fd 2>/dev/null)" ]; then
 		dir=$(find . -type d 2>/dev/null | fzf +m) && cd "$dir"
 	else
-		dir=$(fd -H -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
+		dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
+	fi
+}
+
+jfa() {
+	local dir
+	# If fd is not available then use find as default editor
+	if [ ! -x "$(which fd 2>/dev/null)" ]; then
+		dir=$(find / -type d 2>/dev/null | fzf +m) && cd "$dir"
+	else
+		dir=$(fd . '/' -H -I -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
+	fi
+}
+
+# Open directory with fzf search
+# z() {
+jf() {
+	local dir
+	dir=$(cat $DOTFILES/.bookmarks 2>/dev/null | fzf +m | cut -d = -f 2) && cd "$dir"
+}
+
+jfz() {
+	local dir
+	dir=$(cat $DOTFILES/.bookmarks 2>/dev/null | fzf +m | cut -d = -f 2) && cd "$dir" && d
+}
+
+b() {
+	local dir
+	if [[ -n "$1" ]]; then
+		local lines
+		# lines=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | fzf +m --query=$1 --select-1 --exit-0) | head -n 1
+		lines=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | fzf --filter=$1)
+		# echo "$lines"
+		if [ -z "$lines" ]; then
+			return 1
+		elif [ $(wc -l <<<"$lines") -eq 1 ]; then
+			dir=$(echo "$lines" 2>/dev/null | head -n 1) && cd $dir
+		else
+			# Following line selects the first match
+			dir=$(echo "$lines" | head -n 1 2>/dev/null) && cd $dir
+		fi
+	else
+		dir=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | fzf +m) && cd "$dir"
 	fi
 }
 
@@ -528,7 +565,7 @@ f() {
 	if [ ! -x "$(which fd 2>/dev/null)" ]; then
 		file=$(find . -type f 2>/dev/null | fzf +m) && $EDITOR "$file"
 	else
-		file=$(fd -H -E .git --type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+		file=$(fd -H -I -E .git --type f 2>/dev/null | fzf +m) && $EDITOR "$file"
 	fi
 }
 
@@ -553,6 +590,14 @@ function histd {
 		fi
 	done
 }
+
+# ******************************************************
+# Find Functions
+# ******************************************************
+# simple case-insensitive file search based on name
+# usage: fs name
+# remove '-type f' if you want to match directories as well
+fs() { find -type f -iname '*'"$1"'*'; }
 
 # Quick find with any partial text for files
 function qfind {
