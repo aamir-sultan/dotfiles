@@ -528,7 +528,7 @@ f() {
 	if [ ! -x "$(which fd 2>/dev/null)" ]; then
 		file=$(find . -type f 2>/dev/null | fzf +m) && $EDITOR "$file"
 	else
-		dir=$(fd -H -E .git --type f 2>/dev/null | fzf +m) && cd "$dir"
+		file=$(fd -H -E .git --type f 2>/dev/null | fzf +m) && $EDITOR "$file"
 	fi
 }
 
