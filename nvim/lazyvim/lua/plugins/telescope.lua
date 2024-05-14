@@ -49,9 +49,13 @@ local options = {
         ["<C-j>"] = require("telescope.actions").move_selection_next,
         ["<C-k>"] = require("telescope.actions").move_selection_previous,
         ['<C-u>'] = false,
+        -- Exit out of insert mode in telescope
+        ['<C-c>'] = { "<esc>", type = "command" },
       },
       n = {
-        ["q"] = require("telescope.actions").close
+        ["q"] = require("telescope.actions").close,
+        -- Quit the telescope window
+        ['<C-c>'] = require("telescope.actions").close,
       },
     },
   },

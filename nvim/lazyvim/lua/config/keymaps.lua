@@ -59,6 +59,9 @@ Map({ 'n', 'x' }, '<leader>p', '"0p', { desc = "Paste from yank register" })
 -- See `:help vim.keymap.set()`
 Map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+-- Replace Ctrl+c to esc
+Map({ 'n', 'v', 'i', 'x' }, '<C-c>', '<C-[>', { silent = true })
+
 -- *************************************************-
 -- Default Disables
 -- *************************************************-
