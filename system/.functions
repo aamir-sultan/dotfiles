@@ -535,7 +535,8 @@ jf() {
 
 jfz() {
 	local dir
-	dir=$(cat $DOTFILES/.bookmarks 2>/dev/null | fzf +m | cut -d = -f 2) && cd "$dir" && d
+	# dir=$(cat $DOTFILES/.bookmarks 2>/dev/null | fzf +m | cut -d = -f 2) && cd "$dir" && d
+	dir=$(cat $DOTFILES/.bookmarks 2>/dev/null | cut -d = -f 2 | fzf +m) && cd "$dir" && d
 }
 
 b() {
