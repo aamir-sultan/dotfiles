@@ -386,7 +386,8 @@ USAGE:
   j [ARGUMENT] [OPTIONS]
 
 ARGUMENT:
-  Name of bookmark to cd into.
+  Name of bookmark to cd into or
+  with out argument fzf will be called for directory search.
 
 OPTIONS:
   -h, --help          Display usage text.
@@ -458,14 +459,17 @@ EOT
 				cd "$result"
 				;;
 			esac
-		else
-			d $1
+			# else
+			# Commented due to the reason that it gets stuck with large file systems
+			# Otherwise in completely working condition.
+			# d $1
 		fi
 		# Use j without any arguments to fuzzy search the directories
 	else
 		d
 	fi
 }
+alias jls="j -l"
 
 # If tmux is running ,command "tmux" will enter it and attach.
 # If tmux is not running ,command "tmux" will start tmux and create a session named "terminal"
