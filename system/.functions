@@ -352,11 +352,29 @@ function smoke_test_font() {
 # z() {
 d() {
 	local dir
-	# If fd is not available then use find as default editor
-	if [ ! -x "$(which fd 2>/dev/null)" ]; then
-		dir=$(find . -type d 2>/dev/null | fzf +m) && cd "$dir"
+	if [[ -n "$1" ]]; then
+		local lines
+		if [ ! -x "$(which fd 2>/dev/null)" ]; then
+			lines=$(find . -type d 2>/dev/null | fzf --filter=$1)
+		else
+			lines=$(fd -H -I -E .git --type d 2>/dev/null | fzf --filter=$1)
+		fi
+		# echo "$lines"
+		if [ -z "$lines" ]; then
+			return 1
+		elif [ $(wc -l <<<"$lines") -eq 1 ]; then
+			dir=$(echo "$lines" 2>/dev/null | head -n 1) && cd "$dir"
+		else
+			# Following line selects the first match
+			dir=$(echo "$lines" | head -n 1 2>/dev/null) && cd "$dir"
+		fi
 	else
-		dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
+		# If fd is not available then use find as default editor
+		if [ ! -x "$(which fd 2>/dev/null)" ]; then
+			dir=$(find . -type d 2>/dev/null | fzf +m) && cd "$dir"
+		else
+			dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
+		fi
 	fi
 }
 
@@ -382,13 +400,17 @@ EOT
 
 		"--help")
 			echo "$usage"
+			return
 			;;
 
 		"-h")
 			echo "$usage"
+
+			return
 			;;
 		"-l")
 			cat "$bookmarks"
+			return
 			;;
 
 		"-c")
@@ -404,6 +426,7 @@ EOT
 			else
 				echo "Bookmark '$bookmark' already exists."
 			fi
+			return
 			;;
 
 		"-d")
@@ -413,21 +436,35 @@ EOT
 			fi
 
 			local pat="$2"
-			sed -i "/^$pat=/d" "$bookmarks"
-			echo "Bookmark '$pat' removed."
-			cat "$bookmarks"
-			;;
-
-		*)
-			local target=$(grep "$1=" "$DOTFILES/.bookmarks")
-			local result=${target/$1=/}
-			cd "$result"
+			if grep -q "^$pat=" "$bookmarks"; then
+				sed -i "/^$pat=/d" "$bookmarks"
+				echo -e "Bookmark '$pat' removed.\n"
+				echo -e "Bookmarks:"
+				cat "$bookmarks"
+			else
+				echo -e "Bookmark '$pat' does not exist.\n"
+				echo -e "Bookmarks:"
+				cat "$bookmarks"
+			fi
+			return
 			;;
 		esac
+		# If the passed argument is available in the bookmarks use the bookmarks else use the fuzzy matching for directory
+		if grep -q "^$1=" "$bookmarks"; then
+			case $1 in
+			*)
+				local target=$(grep "$1=" "$DOTFILES/.bookmarks")
+				local result=${target/$1=/}
+				cd "$result"
+				;;
+			esac
+		else
+			d $1
+		fi
+		# Use j without any arguments to fuzzy search the directories
 	else
 		d
 	fi
-
 }
 
 # If tmux is running ,command "tmux" will enter it and attach.
@@ -572,11 +609,29 @@ b() {
 # Open file in default editor with fzf search
 f() {
 	local file
-	# If fd is not available then use find as default editor
-	if [ ! -x "$(which fd 2>/dev/null)" ]; then
-		file=$(find . -type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+	if [[ -n "$1" ]]; then
+		local lines
+		if [ ! -x "$(which fd 2>/dev/null)" ]; then
+			lines=$(find . -type f 2>/dev/null | fzf --filter=$1)
+		else
+			lines=$(fd -H -I -E .git --type f 2>/dev/null | fzf --filter=$1)
+		fi
+		# echo "$lines"
+		if [ -z "$lines" ]; then
+			return 1
+		elif [ $(wc -l <<<"$lines") -eq 1 ]; then
+			file=$(echo "$lines" 2>/dev/null | head -n 1) && $EDITOR "$file"
+		else
+			# Following line selects the first match
+			file=$(echo "$lines" | head -n 1 2>/dev/null) && $EDITOR "$file"
+		fi
 	else
-		file=$(fd -H -I -E .git --type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+		# If fd is not available then use find as default editor
+		if [ ! -x "$(which fd 2>/dev/null)" ]; then
+			file=$(find . -type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+		else
+			file=$(fd -H -I -E .git --type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+		fi
 	fi
 }
 
