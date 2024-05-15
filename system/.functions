@@ -348,20 +348,27 @@ function smoke_test_font() {
 	echo -e "== === !== >= <= =>"
 }
 
+# Open directory with fzf search
+# z() {
+d() {
+	local dir
+	# If fd is not available then use find as default editor
+	if [ ! -x "$(which fd 2>/dev/null)" ]; then
+		dir=$(find . -type d 2>/dev/null | fzf +m) && cd "$dir"
+	else
+		dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
+	fi
+}
+
 j() {
 	local bookmarks="$DOTFILES/.bookmarks"
 
-	if [[ ! -f "$bookmarks" ]]; then
-		touch "$bookmarks"
-	fi
-
-	if [[ "$*" =~ "(-h|--help)" ]]; then
-		read -r -d "" usage <<EOT
+	read -r -d '' usage <<'EOT'
 USAGE:
   j [ARGUMENT] [OPTIONS]
 
 ARGUMENT:
-  Name of book mark to cd into.
+  Name of bookmark to cd into.
 
 OPTIONS:
   -h, --help          Display usage text.
@@ -370,42 +377,57 @@ OPTIONS:
   -c <bookmark>       Bookmark to create.
 EOT
 
-		echo "$usage"
-		return
+	if [[ -n "$1" ]]; then
+		case $1 in
+
+		"--help")
+			echo "$usage"
+			;;
+
+		"-h")
+			echo "$usage"
+			;;
+		"-l")
+			cat "$bookmarks"
+			;;
+
+		"-c")
+			if [[ -z "$2" ]]; then
+				echo "Missing argument for -c"
+				return
+			fi
+
+			local bookmark="${2}=$(pwd)"
+			if [[ -z $(grep "$bookmark" "$bookmarks") ]]; then
+				echo $bookmark >>$bookmarks
+				echo $bookmark
+			else
+				echo "Bookmark '$bookmark' already exists."
+			fi
+			;;
+
+		"-d")
+			if [[ -z "$2" ]]; then
+				echo "Missing argument for -d"
+				return
+			fi
+
+			local pat="$2"
+			sed -i "/^$pat=/d" "$bookmarks"
+			echo "Bookmark '$pat' removed."
+			cat "$bookmarks"
+			;;
+
+		*)
+			local target=$(grep "$1=" "$DOTFILES/.bookmarks")
+			local result=${target/$1=/}
+			cd "$result"
+			;;
+		esac
+	else
+		d
 	fi
 
-	case $1 in
-	"-l")
-		cat "$bookmarks"
-		;;
-
-	"-c")
-		if [[ -z "$2" ]]; then
-			echo "Missing argument for -c"
-			return
-		fi
-
-		local bookmark="${2}=$(pwd)"
-		if [[ -z $(grep "$bookmark" "$bookmarks") ]]; then
-			echo $bookmark >>$bookmarks
-			echo $bookmark
-		else
-			echo "Bookmark '$bookmark' already exists."
-		fi
-		;;
-
-	"-d")
-		local pat="/^$2=.*/d"
-		sed -i "" "$pat" "$bookmarks"
-		cat "$bookmarks"
-		;;
-
-	*)
-		local target=$(grep "$1=" "$DOTFILES/.bookmarks")
-		local result=${target/$1=/}
-		cd "$result"
-		;;
-	esac
 }
 
 # If tmux is running ,command "tmux" will enter it and attach.
@@ -502,18 +524,6 @@ function rar2zip() {
 
 function matrix() {
 	tr -c "[:digit:]" " " </dev/urandom | dd cbs=$COLUMNS conv=unblock | GREP_COLOR="1;32" grep --color "[^ ]"
-}
-
-# Open directory with fzf search
-# z() {
-d() {
-	local dir
-	# If fd is not available then use find as default editor
-	if [ ! -x "$(which fd 2>/dev/null)" ]; then
-		dir=$(find . -type d 2>/dev/null | fzf +m) && cd "$dir"
-	else
-		dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
-	fi
 }
 
 jfa() {
