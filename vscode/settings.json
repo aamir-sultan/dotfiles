@@ -1,8 +1,4 @@
 {
-	//----------------------------------------------------//
-	// Workbench settings like themes and others.
-	//----------------------------------------------------//
-	"workbench.colorTheme": "One Monokai",
 	"workbench.editor.wrapTabs": true,
 	//----------------------------------------------------//
 	// Editor settings like fonts and rulers.
@@ -29,19 +25,15 @@
 	"editor.insertSpaces": true,
 	"editor.largeFileOptimizations": false,
 	// By default the starting font will be set or also try wrapping them in single qoutes to set
-	// "editor.fontFamily": "'Monaspace Neon', 'JetBrainsMono Nerd Font', monospace",
-	"editor.fontFamily": "'Monaspace Argon', 'JetBrainsMono Nerd Font', monospace",
-	// "editor.fontFamily": "'Monaspace Xenon', 'JetBrainsMono Nerd Font', monospace",
-	// "editor.fontFamily": "'Monaspace Radon', 'JetBrainsMono Nerd Font', monospace",
-	// "editor.fontFamily": "'Monaspace Krypton', 'JetBrainsMono Nerd Font', monospace",
+	"editor.fontFamily": "'DM Mono', 'Maple Mono', 'JuliaMono', 'JetBrainsMono Nerd Font', monospace",
 	// Set font size
-	"editor.fontSize": 13, // Font Size
+	"editor.fontSize": 14, // Font Size
 	// Set font boldness with normal or bold or some number
 	// "editor.fontWeight": "normal", // Font Weight
 	// "editor.fontWeight": "bold", // Font Weight
-	"editor.fontWeight": "600", // Font Weight -- Can use other numbers from 200 to 800
+	"editor.fontWeight": "400", // Font Weight -- Can use other numbers from 200 to 800
 	// Set letter spacing
-	"editor.letterSpacing": 0.9,
+	"editor.letterSpacing": 1.1,
 	// Enable/Disable ligatures -- https://github.com/githubnext/monaspace#coding-ligatures
 	// "editor.fontLigatures": true, // Font ligatures
 	// "editor.fontLigatures": "'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'",
@@ -116,11 +108,7 @@
 	"terminal.integrated.scrollback": 100000,
 	// By default the starting font will be set or also try wrapping them in single qoutes to set
 	// "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font, OverpassMono Nerd Font, JetBrainsMono Nerd Font Mono",
-	// "terminal.integrated.fontFamily": "'Monaspace Neon', 'JetBrainsMono Nerd Font'",
-	"terminal.integrated.fontFamily": "'Monaspace Argon', 'JetBrainsMono Nerd Font'",
-	// "terminal.integrated.fontFamily": "'Monaspace Xenon', 'JetBrainsMono Nerd Font'",
-	// "terminal.integrated.fontFamily": "'Monaspace Radon', 'JetBrainsMono Nerd Font'",
-	// "terminal.integrated.fontFamily": "'Monaspace Krypton', 'JetBrainsMono Nerd Font'",
+	"terminal.integrated.fontFamily": "DM Mono, JuliaMono, JetBrainsMono Nerd Font Mono",
 	"terminal.integrated.letterSpacing": 1, // Number of pixels to be added between charachters.
 	"terminal.integrated.lineHeight": 1.2, // Line height for the terminal charachters.
 	"terminal.integrated.fontSize": 14, // Fonts size of terminal charachters.
@@ -467,6 +455,10 @@
 	// To improve performance
 	"extensions.experimental.affinity": {
 		"vscodevim.vim": 1
-	}
-	// "workbench.activityBar.location": "top"
+	},
+	"remote.SSH.remotePlatform": {
+		"100.69.254.18": "linux"
+	},
+	"workbench.colorTheme": "Cobalt2",
+	"workbench.activityBar.location": "top"
 }
