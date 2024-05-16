@@ -480,9 +480,9 @@ tmux() {
 		command tmux "$@"
 	else
 		if tmux ls &>/dev/null; then
-			tmux new -s terminal
-		else
 			tmux attach
+		else
+			tmux new -s terminal
 		fi
 	fi
 }

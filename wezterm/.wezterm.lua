@@ -151,16 +151,23 @@ end
 -- config.color_scheme = 'Gruvbox light, soft (base16)'
 -- config.color_scheme = 'Gruvbox Material (Gogh)'
 -- config.color_scheme = 'GruvboxDark'
-config.color_scheme = "GruvboxDarkHard"
+-- config.color_scheme = "GruvboxDarkHard"
 -- config.color_scheme = 'GruvboxLight'
 -- config.color_scheme = "nordfox"
--- config.color_scheme = "Hardcore"
+config.color_scheme = "Hardcore"
 -- config.color_scheme = "Seti"
+
+-- Charachter Settings
 -- config.cell_width = 1.05 -- Set this to increase the charachter spacing in the terminal.
-config.cell_width = 1.01 -- Set this to in/decrease the charachter spacing in the terminal.
-config.line_height = 1.3 -- Set this to in/decrease the charachter height in the terminal.
+-- config.cell_width = 1.01 -- Set this to in/decrease the charachter spacing in the terminal.
+config.cell_width = 1.00 -- Set this to in/decrease the charachter spacing in the terminal.
+-- config.line_height = 1   -- Set this to in/decrease the charachter height in the terminal.
+config.line_height = 1.2 -- Set this to in/decrease the charachter height in the terminal.
+
+-- Font Settings
 -- config.font_size = 10.0
-config.font_size = 10.0
+config.font_size = 11.0
+-- config.font_size = 11.5
 -- config.font_size = 12.0
 -- config.font_size = 13.0
 -- config.font_size = 14.0
@@ -169,13 +176,27 @@ config.font_size = 10.0
 local fontStyle = "Normal"
 
 -- local fontWeight = "Light"
--- local fontWeight = "Regular"
-local fontWeight = "Medium"
+local fontWeight = "Regular"
+-- local fontWeight = "Medium"
 -- local fontWeight = "Bold"
+
+local font_family_name = "DM Mono"
+-- local font_family_name = "Fantasque Sans Mono"
+-- local font_family_name = "Fira Code"
+-- local font_family_name = "JetBrains Mono"
+-- local font_family_name = "JuliaMono"
+-- local font_family_name = "Maple Mono"
+-- local font_family_name = "MartianMono NFM"
+-- local font_family_name = "Monaspace Argon"
+-- local font_family_name = "Monaspace Krypton"
+-- local font_family_name = "Monaspace Neon"
+-- local font_family_name = "Monaspace Radon"
+-- local font_family_name = "Monaspace Xenon"
+-- local font_family_name = "mononoki"
 
 config.font = wezterm.font_with_fallback({
   {
-    family = "JuliaMono",
+    family = font_family_name,
     weight = fontWeight,
     style = fontStyle,
     harfbuzz_features = {
@@ -191,159 +212,6 @@ config.font = wezterm.font_with_fallback({
       -- "ss06",
       -- "ss07",
       -- "ss08",
-    },
-  },
-  --  {
-  --    family = "MartianMono NFM",
-  --    weight = fontWeight,
-  --    style = fontStyle,
-  --    harfbuzz_features = {
-  --      "calt=1",
-  --      "clig=1",
-  --      "liga=1",
-  --      "dlig",
-  --      "ss01",
-  --      "ss02",
-  --      "ss03",
-  --      "ss04",
-  --      "ss05",
-  --      "ss06",
-  --      "ss07",
-  --      "ss08",
-  --    },
-  --  },
-  -- {
-  --   family = "FiraMono Nerd Font Mono",
-  --   weight = fontWeight,
-  --   style = fontStyle,
-  --   harfbuzz_features = {
-  --     "calt=1",
-  --     "clig=1",
-  --     "liga=1",
-  -- "dlig",
-  --   "ss01",
-  --   "ss02",
-  --   "ss03",
-  --   "ss04",
-  --   "ss05",
-  --   "ss06",
-  --   "ss07",
-  --   "ss08",
-  --   },
-  -- },
-  --  {
-  --    family = "JetBrains Mono",
-  --    weight = fontWeight,
-  --    style = fontStyle,
-  --    harfbuzz_features = {
-  --      "calt=1",
-  --      "clig=1",
-  --      "liga=1",
-  --      "dlig",
-  --      "ss01",
-  --      "ss02",
-  --      "ss03",
-  --      "ss04",
-  --      "ss05",
-  --      "ss06",
-  --      "ss07",
-  --      "ss08",
-  --    },
-  --  },
-  {
-    family = "Monaspace Argon",
-    weight = fontWeight,
-    style = fontStyle,
-    -- stretch = 'UltraExpanded',
-    -- stretch = 'Expanded',
-    harfbuzz_features = {
-      "calt=1",
-      "clig=1",
-      "liga=1",
-      "dlig",
-      "ss01",
-      "ss02",
-      "ss03",
-      "ss04",
-      "ss05",
-      "ss06",
-      "ss07",
-      "ss08",
-    },
-  },
-  {
-    family = "Monaspace Neon",
-    weight = "Medium",
-    style = fontStyle,
-    harfbuzz_features = {
-      "calt=1",
-      "clig=1",
-      "liga=1",
-      "dlig",
-      "ss01",
-      "ss02",
-      "ss03",
-      "ss04",
-      "ss05",
-      "ss06",
-      "ss07",
-      "ss08",
-    },
-  },
-  {
-    family = "Monaspace Xenon",
-    weight = "Medium",
-    style = fontStyle,
-    harfbuzz_features = {
-      "calt=1",
-      "clig=1",
-      "liga=1",
-      "dlig",
-      "ss01",
-      "ss02",
-      "ss03",
-      "ss04",
-      "ss05",
-      "ss06",
-      "ss07",
-      "ss08",
-    },
-  },
-  {
-    family = "Monaspace Radon",
-    weight = "Medium",
-    style = fontStyle,
-    harfbuzz_features = {
-      "calt=1",
-      "clig=1",
-      "liga=1",
-      "dlig",
-      "ss01",
-      "ss02",
-      "ss03",
-      "ss04",
-      "ss05",
-      "ss06",
-      "ss07",
-      "ss08",
-    },
-  },
-  {
-    family = "Monaspace Krypton",
-    weight = "Medium",
-    style = fontStyle,
-    harfbuzz_features = {
-      "calt=1",
-      "clig=1",
-      "liga=1",
-      "dlig",
-      "ss01",
-      "ss02",
-      "ss03",
-
-      "ss06",
-      "ss07",
-      "ss08",
     },
   },
   {
@@ -637,9 +505,9 @@ local default_keybinds = {
   { key = "Insert",   mods = "SHIFT",      action = act({ PasteFrom = "PrimarySelection" }) },
   { key = "t",        mods = "ALT",        action = act.SpawnTab("CurrentPaneDomain") }, -- CTRL+t is set for fzf
   { key = "P",        mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
-  { key = "=",        mods = "CTRL",       action = "ResetFontSize" },
-  { key = "+",        mods = "CTRL|SHIFT", action = "IncreaseFontSize" },
-  { key = "-",        mods = "CTRL",       action = "DecreaseFontSize" },
+  { key = "=",        mods = "ALT",        action = "ResetFontSize" },
+  { key = "]",        mods = "ALT",        action = "IncreaseFontSize" },
+  { key = "[",        mods = "ALT",        action = "DecreaseFontSize" },
   { key = "PageUp",   mods = "ALT",        action = act({ ScrollByPage = -1 }) },
   { key = "PageDown", mods = "ALT",        action = act({ ScrollByPage = 1 }) },
   { key = "b",        mods = "ALT",        action = act({ ScrollByPage = -1 }) },
