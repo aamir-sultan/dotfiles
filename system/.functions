@@ -351,34 +351,117 @@ function smoke_test_font() {
 # Open directory with fzf search
 # z() {
 d() {
-	local dir
-	if [[ -n "$1" ]]; then
-		local lines
-		if [ ! -x "$(which fd 2>/dev/null)" ]; then
-			lines=$(find . -type d 2>/dev/null | fzf --filter=$1)
-		else
-			lines=$(fd -H -I -E .git --type d 2>/dev/null | fzf --filter=$1)
-		fi
-		# echo "$lines"
-		if [ -z "$lines" ]; then
+	read -r -d '' usage <<'EOT'
+USAGE:
+  d [ARGUMENT] [OPTIONS]
+
+ARGUMENT:
+  Name of bookmark to cd into or
+  with out argument fzf will be called for directory search.
+
+OPTIONS:
+  -h, --help          Display usage text.
+  -q                  Use the fzf in query mode.
+EOT
+
+	case $1 in
+
+	"--help")
+		echo "$usage"
+		return
+		;;
+
+	"-h")
+		echo "$usage"
+		return
+		;;
+
+	"-q")
+		if [[ -z "$2" ]]; then
+			echo "Missing argument for -q"
 			return 1
-		elif [ $(wc -l <<<"$lines") -eq 1 ]; then
-			dir=$(echo "$lines" 2>/dev/null | head -n 1) && cd "$dir"
-		else
-			# Following line selects the first match
-			dir=$(echo "$lines" | head -n 1 2>/dev/null) && cd "$dir"
 		fi
-	else
+
+		local dir
 		# If fd is not available then use find as default editor
 		if [ ! -x "$(which fd 2>/dev/null)" ]; then
-			dir=$(find . -type d 2>/dev/null | fzf +m) && cd "$dir"
+			dir=$(find . -type d 2>/dev/null | fzf --query=$2) && cd "$dir"
 		else
-			dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
+			dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf --query=$2) && cd "$dir"
+		fi
+		return
+		;;
+
+	*)
+		local dir
+		if [[ -n "$1" ]]; then
+			local lines
+			if [ ! -x "$(which fd 2>/dev/null)" ]; then
+				lines=$(find . -type d 2>/dev/null | fzf --filter=$1)
+			else
+				lines=$(fd -H -I -E .git --type d 2>/dev/null | fzf --filter=$1)
+			fi
+			# echo "$lines"
+			if [ -z "$lines" ]; then
+				return 1
+			elif [ $(wc -l <<<"$lines") -eq 1 ]; then
+				dir=$(echo "$lines" 2>/dev/null | head -n 1) && cd "$dir"
+			else
+				# following line selects the first match
+				dir=$(echo "$lines" | head -n 1 2>/dev/null) && cd "$dir"
+			fi
+		else
+			# If fd is not available then use find as default editor
+			if [ ! -x "$(which fd 2>/dev/null)" ]; then
+				dir=$(find . -type d 2>/dev/null | fzf +m) && cd "$dir"
+			else
+				dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
+			fi
+		fi
+		return
+		;;
+	esac
+}
+
+# Three Cases:
+#   1. If the second argument is not empty that effectively means that we want to add/delete bookmark, call bookmark
+#   function with the argument.
+#   2. If the first argument is not empty, it means we want to access some directory so first priority is to check
+#   available bookmarks and use them if the bookmark is found.
+#   3. If the bookmark is not found then use the first match by fzf (This case is commented out for now)
+#   4. If the bookmark is not found then call the d function to search over the directories via fzf.
+j() {
+	local bookmarks="$DOTFILES/.bookmarks"
+
+	if [[ -n "$2" ]]; then
+		bookmark $1 $2
+	elif [[ -n "$1" ]]; then
+
+		# If the passed argument is available in the bookmarks use the bookmarks else use the fuzzy matching for directory
+		bookmark $1
+		if [[ $? != 0 ]]; then # Check the return value of bookmark $1 command
+			if [ -x "$(which fzf 2>/dev/null)" ]; then
+				# d $1
+				d -q $1
+			else
+				echo "fzf utility not available"
+			fi
+		fi
+
+		# Commented due to the reason that it gets stuck with large file systems
+		# Otherwise in completely working condition.
+		# d $1
+	else
+		# 	# Use j without any arguments to fuzzy search the directories
+		if [ -x "$(which fzf 2>/dev/null)" ]; then
+			d
+		else
+			echo "fzf utility not available"
 		fi
 	fi
 }
 
-j() {
+bookmark() {
 	local bookmarks="$DOTFILES/.bookmarks"
 
 	read -r -d '' usage <<'EOT'
@@ -396,78 +479,79 @@ OPTIONS:
   -c <bookmark>       Bookmark to create.
 EOT
 
-	if [[ -n "$1" ]]; then
-		case $1 in
+	case $1 in
 
-		"--help")
-			echo "$usage"
-			return
-			;;
+	"--help")
+		echo "$usage"
+		return
+		;;
 
-		"-h")
-			echo "$usage"
+	"-h")
+		echo "$usage"
 
-			return
-			;;
-		"-l")
-			cat "$bookmarks"
-			return
-			;;
+		return
+		;;
 
-		"-c")
-			if [[ -z "$2" ]]; then
-				echo "Missing argument for -c"
-				return
-			fi
+	"-l")
+		cat "$bookmarks"
+		return
+		;;
 
-			local bookmark="${2}=$(pwd)"
-			if [[ -z $(grep "$bookmark" "$bookmarks") ]]; then
-				echo $bookmark >>$bookmarks
-				echo $bookmark
-			else
-				echo "Bookmark '$bookmark' already exists."
-			fi
-			return
-			;;
-
-		"-d")
-			if [[ -z "$2" ]]; then
-				echo "Missing argument for -d"
-				return
-			fi
-
-			local pat="$2"
-			if grep -q "^$pat=" "$bookmarks"; then
-				sed -i "/^$pat=/d" "$bookmarks"
-				echo -e "Bookmark '$pat' removed.\n"
-				echo -e "Bookmarks:"
-				cat "$bookmarks"
-			else
-				echo -e "Bookmark '$pat' does not exist.\n"
-				echo -e "Bookmarks:"
-				cat "$bookmarks"
-			fi
-			return
-			;;
-		esac
-		# If the passed argument is available in the bookmarks use the bookmarks else use the fuzzy matching for directory
-		if grep -q "^$1=" "$bookmarks"; then
-			case $1 in
-			*)
-				local target=$(grep "$1=" "$DOTFILES/.bookmarks")
-				local result=${target/$1=/}
-				cd "$result"
-				;;
-			esac
-			# else
-			# Commented due to the reason that it gets stuck with large file systems
-			# Otherwise in completely working condition.
-			# d $1
+	"-c")
+		if [[ -z "$2" ]]; then
+			echo "Missing argument for -c"
+			return 1
 		fi
-		# Use j without any arguments to fuzzy search the directories
-	else
-		d
-	fi
+
+		local bookmark="${2}=$(pwd)"
+		if [[ -z $(grep "$bookmark" "$bookmarks") ]]; then
+			echo $bookmark >>$bookmarks
+			echo $bookmark
+		else
+			echo "Bookmark '$bookmark' already exists."
+		fi
+		return
+		;;
+
+	"-d")
+		if [[ -z "$2" ]]; then
+			echo "Missing argument for -d"
+			return 1
+
+		fi
+
+		local pat="$2"
+		if grep -q "^$pat=" "$bookmarks"; then
+			sed -i "/^$pat=/d" "$bookmarks"
+			echo -e "Bookmark '$pat' removed.\n"
+			echo -e "Bookmarks:"
+			cat "$bookmarks"
+		else
+			echo -e "Bookmark '$pat' does not exist.\n"
+			echo -e "Bookmarks:"
+			cat "$bookmarks"
+		fi
+		return
+		;;
+
+	*)
+		# local bookmark="${1}="
+		# if [[ -z $(grep "$bookmark" "$bookmarks") ]]; then
+		# 	echo "Bookmark '$1' does not exists."
+		# 	return 1
+		# fi
+
+		local target=$(grep "$1=" "$bookmarks")
+		if [ "$target" == "" ]; then
+			# echo "Bookmark '$1' does not exists."
+			return 1
+		fi
+
+		local result=${target/$1=/}
+		cd "$result"
+		return
+		;;
+	esac
 }
 alias jls="j -l"
 
@@ -594,17 +678,45 @@ b() {
 	local dir
 	if [[ -n "$1" ]]; then
 		local lines
-		# lines=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | fzf +m --query=$1 --select-1 --exit-0) | head -n 1
-		lines=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | fzf --filter=$1)
+		# lines=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | fzf --filter=$1 | tac)
+		lines=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | tac)
 		# echo "$lines"
-		if [ -z "$lines" ]; then
-			return 1
-		elif [ $(wc -l <<<"$lines") -eq 1 ]; then
-			dir=$(echo "$lines" 2>/dev/null | head -n 1) && cd $dir
-		else
-			# Following line selects the first match
-			dir=$(echo "$lines" | head -n 1 2>/dev/null) && cd $dir
-		fi
+
+		pwd_path=$(pwd)
+
+		while read -r line; do
+			# Skip if the line matches the current working directory
+			if [ "$line" = "$pwd_path" ]; then
+				continue
+			fi
+
+			# Process each line
+			base_name=$(basename "$line")
+			if [ ! -x "$(which fzf 2>/dev/null)" ]; then
+				grep_output=$(echo "$base_name" | grep -E "^$1")
+				if [ "$grep_output" != "" ]; then
+					cd "$line"
+					break
+				fi
+			else
+				fzf_output=$(echo "$base_name" | fzf --filter="$1")
+				if [ "$fzf_output" != "" ]; then
+					cd "$line"
+					break
+				fi
+			fi
+
+		done <<<"$lines"
+
+		# if [ -z "$lines" ]; then
+		# 	return 1
+		# elif [ $(wc -l <<<"$lines") -eq 1 ]; then
+		# 	dir=$(echo "$lines" 2>/dev/null | head -n 1) && cd $dir
+		# else
+		# 	# Following line selects the first match
+		# 	dir=$(echo "$lines" | head -n 1 2>/dev/null) && cd $dir
+		# fi
+
 	else
 		dir=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | fzf +m) && cd "$dir"
 	fi
