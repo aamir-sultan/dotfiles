@@ -1,9 +1,10 @@
 local neotree_options = {
   window = {
     position = "current",
+    -- position = "float",
     -- position = "right",
     -- position = "left",
-    -- width = 40,
+    width = 40,
     -- mapping_options = {
     --   noremap = true,
     --   nowait = true,
@@ -34,9 +35,9 @@ local neotree_options = {
       --     },
     },
     follow_current_file = {
-      enabled = true,                      -- This will find and focus the file in the active buffer every time
+      enabled = true,          -- This will find and focus the file in the active buffer every time
       --               -- the current file is changed while the tree is open.
-      leave_dirs_open = false,              -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+      -- leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
     },
     -- hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
     hijack_netrw_behavior = "open_current", -- netrw disabled, opening a directory opens neo-tree
@@ -76,7 +77,7 @@ return {
   event = "VeryLazy",
   cmd = { "NeoTree toggle" },
   keys = {
-    { "<C-n>", "<cmd>NeoTree toggle<CR>", desc = "Toggle the NeoTree" },
+    -- { "<C-n>", "<cmd>NeoTree toggle<CR>", desc = "Toggle the NeoTree" },
   },
   opts = neotree_options,
 }
