@@ -76,3 +76,6 @@ Map("n", "<C-l>", ":<C-U>TmuxNavigateRight<cr>", { desc = "Go to right window ei
 Map("n", "<leader>ww", "<cmd>w<CR>", { desc = "Save Current Buffer" })
 Map("n", "<leader>wo", "<C-W>p", { desc = "Other window" })
 Map("n", "--", "<C-^>", { desc = "Toggle window to last active buffer" })
+
+-- Keymap for Neotree
+Map("n", "<leader>e", ":Neotree reveal toogle<CR>", { desc = "Toggle NeoTree" })
