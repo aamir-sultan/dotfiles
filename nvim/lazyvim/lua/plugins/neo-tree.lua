@@ -1,7 +1,7 @@
 local neotree_options = {
   window = {
-    -- position = "current",
-    position = "right",
+    position = "current",
+    -- position = "right",
     -- position = "left",
     -- width = 40,
     -- mapping_options = {
