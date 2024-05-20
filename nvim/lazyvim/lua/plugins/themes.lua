@@ -115,22 +115,22 @@ return {
   require("plugins.themes.neosolarized"),
 
   -- add gruvbox
-  -- { 'arcticicestudio/nord-vim',   lazy = true, event = "VimEnter" },
-  -- { 'noahfrederick/vim-noctu',    lazy = true, event = "VimEnter" },
-  -- { 'navarasu/onedark.nvim',      lazy = true, event = "VimEnter", opts = onedark_options },
-  -- { 'HUAHUAI23/nvim-quietlight',  lazy = true, event = "VimEnter" },
-  { 'luisiacc/gruvbox-baby', lazy = true, event = "VimEnter" },
+  -- { 'arcticicestudio/nord-vim',   lazy = true, event = "VeryLazy" },
+  -- { 'noahfrederick/vim-noctu',    lazy = true, event = "VeryLazy" },
+  -- { 'navarasu/onedark.nvim',      lazy = true, event = "VeryLazy", opts = onedark_options },
+  -- { 'HUAHUAI23/nvim-quietlight',  lazy = true, event = "VeryLazy" },
+  { 'luisiacc/gruvbox-baby', lazy = true, event = "VeryLazy" },
   {
     'marko-cerovac/material.nvim',
     lazy = true,
-    event = 'VimEnter',
+    event = 'VeryLazy',
     opts = material_options
   },
 
   {
     'neanias/everforest-nvim',
     lazy = true,
-    event = "VimEnter",
+    event = "VeryLazy",
     priority = 1000,
 
     config = function()
@@ -145,30 +145,30 @@ return {
       })
     end
   },
-  -- { 'rose-pine/neovim',           lazy = true, event = "VimEnter" },
-  -- { 'RRethy/nvim-base16',         lazy = true, event = "VimEnter" },
-  -- { 'NTBBloodbath/doom-one.nvim', lazy = true, event = "VimEnter" },
-  -- { 'navarasu/onedark.nvim',      lazy = true, event = "VimEnter" },
+  -- { 'rose-pine/neovim',           lazy = true, event = "VeryLazy" },
+  -- { 'RRethy/nvim-base16',         lazy = true, event = "VeryLazy" },
+  -- { 'NTBBloodbath/doom-one.nvim', lazy = true, event = "VeryLazy" },
+  -- { 'navarasu/onedark.nvim',      lazy = true, event = "VeryLazy" },
   {
     'folke/tokyonight.nvim',
     lazy = true,
-    event = "VimEnter",
+    event = "VeryLazy",
     priority = 1000,
     opts = { transparent = vim.g.transparent_enabled },
   },
   -- {
   --   "mcchrish/zenbones.nvim",
   --   lazy = true,
-  --   event = "VimEnter",
+  --   event = "VeryLazy",
   --   -- Optionally install Lush. Allows for more configuration or extending the colorscheme
   --   -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
   --   -- In Vim, compat mode is turned on as Lush only works in Neovim.
-  --   dependencies = { "rktjmp/lush.nvim", lazy = true, event = "VimEnter" },
+  --   dependencies = { "rktjmp/lush.nvim", lazy = true, event = "VeryLazy" },
   --   requires = { "rktjmp/lush.nvim" }
   -- },
-  -- { 'rebelot/kanagawa.nvim',       lazy = true, event = "VimEnter", opts = { theme = "dragon", } },
-  -- { 'marko-cerovac/material.nvim', lazy = true, event = "VimEnter" },
-  -- { 'NLKNguyen/papercolor-theme',  lazy = true, event = "VimEnter" },
+  -- { 'rebelot/kanagawa.nvim',       lazy = true, event = "VeryLazy", opts = { theme = "dragon", } },
+  -- { 'marko-cerovac/material.nvim', lazy = true, event = "VeryLazy" },
+  -- { 'NLKNguyen/papercolor-theme',  lazy = true, event = "VeryLazy" },
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
