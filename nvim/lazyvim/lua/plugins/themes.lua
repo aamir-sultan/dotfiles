@@ -112,14 +112,14 @@ material_options = {
 }
 
 return {
-  require("plugins.themes.neosolarized"),
+  -- require("plugins.themes.neosolarized"),
 
   -- add gruvbox
   -- { 'arcticicestudio/nord-vim',   lazy = true, event = "VeryLazy" },
   -- { 'noahfrederick/vim-noctu',    lazy = true, event = "VeryLazy" },
   -- { 'navarasu/onedark.nvim',      lazy = true, event = "VeryLazy", opts = onedark_options },
   -- { 'HUAHUAI23/nvim-quietlight',  lazy = true, event = "VeryLazy" },
-  { 'luisiacc/gruvbox-baby', lazy = true, event = "VeryLazy" },
+  -- { 'luisiacc/gruvbox-baby', lazy = true, event = "VeryLazy" },
   {
     'marko-cerovac/material.nvim',
     lazy = true,
@@ -127,24 +127,24 @@ return {
     opts = material_options
   },
 
-  {
-    'neanias/everforest-nvim',
-    lazy = true,
-    event = "VeryLazy",
-    priority = 1000,
-
-    config = function()
-      require("everforest").setup({
-        -- Your config here
-        background = 'soft',
-        -- background = 'medium',
-        -- background = 'hard',
-        ---How much of the background should be transparent. 2 will have more UI
-        ---components be transparent (e.g. status line background)
-        transparent_background_level = 0,
-      })
-    end
-  },
+  -- {
+  --   'neanias/everforest-nvim',
+  --   lazy = true,
+  --   event = "VeryLazy",
+  --   priority = 1000,
+  --
+  --   config = function()
+  --     require("everforest").setup({
+  --       -- Your config here
+  --       background = 'soft',
+  --       -- background = 'medium',
+  --       -- background = 'hard',
+  --       ---How much of the background should be transparent. 2 will have more UI
+  --       ---components be transparent (e.g. status line background)
+  --       transparent_background_level = 0,
+  --     })
+  --   end
+  -- },
   -- { 'rose-pine/neovim',           lazy = true, event = "VeryLazy" },
   -- { 'RRethy/nvim-base16',         lazy = true, event = "VeryLazy" },
   -- { 'NTBBloodbath/doom-one.nvim', lazy = true, event = "VeryLazy" },
@@ -168,7 +168,7 @@ return {
   -- },
   -- { 'rebelot/kanagawa.nvim',       lazy = true, event = "VeryLazy", opts = { theme = "dragon", } },
   -- { 'marko-cerovac/material.nvim', lazy = true, event = "VeryLazy" },
-  -- { 'NLKNguyen/papercolor-theme',  lazy = true, event = "VeryLazy" },
+  -- { 'NLKNguyen/papercolor-theme',  lazy = true, event = "VimEnter" },
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
