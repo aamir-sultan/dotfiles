@@ -17,17 +17,3 @@ autocmd BufNewFile,BufRead *.sv,*.svh set filetype=systemverilog
 " Set commentstring based on filetype
 autocmd FileType systemverilog setlocal commentstring=//\ %s
 " Add more file types and commentstrings in similar way
-
-augroup gzip
- autocmd!
- autocmd BufReadPre,FileReadPre *.gz set bin
- autocmd BufReadPost,FileReadPost   *.gz '[,']!gunzip
- autocmd BufReadPost,FileReadPost   *.gz set nobin
- autocmd BufReadPost,FileReadPost   *.gz execute ":doautocmd BufReadPost " . expand("%:r")
- autocmd BufWritePost,FileWritePost *.gz !mv <afile> <afile>:r
- autocmd BufWritePost,FileWritePost *.gz !gzip <afile>:r
- autocmd FileAppendPre      *.gz !gunzip <afile>
- autocmd FileAppendPre      *.gz !mv <afile>:r <afile>
- autocmd FileAppendPost     *.gz !mv <afile> <afile>:r
- autocmd FileAppendPost     *.gz !gzip <afile>:r
-augroup END
