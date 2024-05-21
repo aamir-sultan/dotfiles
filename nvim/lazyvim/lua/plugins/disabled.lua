@@ -233,5 +233,17 @@ else
     -- { "nvim-treesitter/nvim-treesitter",         enabled = false_large },
     { "nvim-treesitter/nvim-treesitter-context", enabled = false_large },
     -- { "windwp/nvim-ts-autotag",                  enabled = false_large },
+    -- Others
+    -- { "nvim-treesitter/nvim-treesitter-textobjects",                  enabled = false },
+    -- { "folke/neoconf.nvim",                  enabled = false },
+    -- { "folke/neodev.nvim",                  enabled = false },
+    -- { "williamboman/mason.nvim",                  enabled = false },
+    -- { "williamboman/mason-lspconfig.nvim",                  enabled = false },
+    -- { "nvim-telescope/telescope-fzf-native.nvim",                  enabled = false },
+    -- { "hrsh7th/cmp-nvim-lsp",                  enabled = false },
+    -- { "hrsh7th/cmp-buffer",                  enabled = false },
+    -- { "hrsh7th/cmp-path",                  enabled = false },
+    -- { "rafamadriz/friendly-snippets",                  enabled = false },
+    -- { "garymjr/nvim-snippets",                  enabled = false },
   }
 end
