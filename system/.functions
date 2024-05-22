@@ -376,6 +376,7 @@ EOT
 		return
 		;;
 
+		# Query mode
 	"-q")
 		if [[ -z "$2" ]]; then
 			echo "Missing argument for -q"
@@ -386,8 +387,10 @@ EOT
 		# If fd is not available then use find as default editor
 		if [ ! -x "$(which fd 2>/dev/null)" ]; then
 			dir=$(find . -type d 2>/dev/null | fzf --query=$2) && cd "$dir"
+			echo "$dir"
 		else
 			dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf --query=$2) && cd "$dir"
+			echo "$dir"
 		fi
 		return
 		;;
@@ -406,16 +409,20 @@ EOT
 				return 1
 			elif [ $(wc -l <<<"$lines") -eq 1 ]; then
 				dir=$(echo "$lines" 2>/dev/null | head -n 1) && cd "$dir"
+				echo "$dir"
 			else
 				# following line selects the first match
 				dir=$(echo "$lines" | head -n 1 2>/dev/null) && cd "$dir"
+				echo "$dir"
 			fi
 		else
 			# If fd is not available then use find as default editor
 			if [ ! -x "$(which fd 2>/dev/null)" ]; then
 				dir=$(find . -type d 2>/dev/null | fzf +m) && cd "$dir"
+				echo "$dir"
 			else
 				dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
+				echo "$dir"
 			fi
 		fi
 		return
@@ -461,8 +468,26 @@ j() {
 	fi
 }
 
+ef() {
+	if [[ -n "$1" ]]; then
+		if [ -x "$(which fzf 2>/dev/null)" ]; then
+			f -q $1
+		else
+			echo "fzf utility not available"
+		fi
+	else
+		# Use ef without any arguments to fuzzy search the directories
+		if [ -x "$(which fzf 2>/dev/null)" ]; then
+			f
+		else
+			echo "fzf utility not available"
+		fi
+	fi
+}
+
 bookmark() {
 	local bookmarks="$DOTFILES/.bookmarks"
+	touch $bookmarks
 
 	read -r -d '' usage <<'EOT'
 USAGE:
@@ -724,31 +749,79 @@ b() {
 
 # Open file in default editor with fzf search
 f() {
-	local file
-	if [[ -n "$1" ]]; then
-		local lines
-		if [ ! -x "$(which fd 2>/dev/null)" ]; then
-			lines=$(find . -type f 2>/dev/null | fzf --filter=$1)
-		else
-			lines=$(fd -H -I -E .git --type f 2>/dev/null | fzf --filter=$1)
-		fi
-		# echo "$lines"
-		if [ -z "$lines" ]; then
+	read -r -d '' usage <<'EOT'
+USAGE:
+  f [ARGUMENT] [OPTIONS]
+
+ARGUMENT:
+  Name a file to open in the editor
+  Fzf will be used for the search
+
+OPTIONS:
+  -h, --help          Display usage text.
+  -q                  Use the fzf in query mode.
+EOT
+
+	case $1 in
+
+	"--help")
+		echo "$usage"
+		return
+		;;
+
+	"-h")
+		echo "$usage"
+		return
+		;;
+
+		# Query mode
+	"-q")
+		if [[ -z "$2" ]]; then
+			echo "Missing argument for -q"
 			return 1
-		elif [ $(wc -l <<<"$lines") -eq 1 ]; then
-			file=$(echo "$lines" 2>/dev/null | head -n 1) && $EDITOR "$file"
-		else
-			# Following line selects the first match
-			file=$(echo "$lines" | head -n 1 2>/dev/null) && $EDITOR "$file"
 		fi
-	else
+
+		local file
 		# If fd is not available then use find as default editor
 		if [ ! -x "$(which fd 2>/dev/null)" ]; then
-			file=$(find . -type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+			file=$(find . -type f 2>/dev/null | fzf --query=$2) && $EDITOR "$file"
+			echo "$EDITOR $file"
 		else
-			file=$(fd -H -I -E .git --type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+			file=$(fd -H -I -E .git --type f 2>/dev/null | fzf --query=$2) && $EDITOR "$file"
+			echo "$EDITOR $file"
 		fi
-	fi
+		return
+		;;
+
+	*)
+		local file
+		if [[ -n "$1" ]]; then
+			local lines
+			if [ ! -x "$(which fd 2>/dev/null)" ]; then
+				lines=$(find . -type f 2>/dev/null | fzf --filter=$1)
+			else
+				lines=$(fd -H -I -E .git --type f 2>/dev/null | fzf --filter=$1)
+			fi
+			# echo "$lines"
+			if [ -z "$lines" ]; then
+				return 1
+			elif [ $(wc -l <<<"$lines") -eq 1 ]; then
+				file=$(echo "$lines" 2>/dev/null | head -n 1) && $EDITOR "$file"
+			else
+				# Following line selects the first match
+				file=$(echo "$lines" | head -n 1 2>/dev/null) && $EDITOR "$file"
+			fi
+		else
+			# If fd is not available then use find as default editor
+			if [ ! -x "$(which fd 2>/dev/null)" ]; then
+				file=$(find . -type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+			else
+				file=$(fd -H -I -E .git --type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+			fi
+		fi
+		return
+		;;
+	esac
 }
 
 # ssh to host based on fzf with names from config file
