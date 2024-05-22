@@ -593,7 +593,7 @@ tmux() {
 		if tmux ls &>/dev/null; then
 			tmux attach
 		else
-			tmux new -s terminal
+			tmux new -s Term
 		fi
 	fi
 }

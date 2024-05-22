@@ -44,6 +44,14 @@ return {
       end,
       desc = "harpoon quick menu",
     },
+    {
+      "<C-c>",
+      function()
+        local harpoon = require("harpoon")
+        harpoon.ui:close_menu()
+      end,
+      desc = "harpoon close window",
+    },
     { "<leader>1", function() require("harpoon"):list():select(1) end, desc = "harpoon to file 1", },
     { "-j",        function() require("harpoon"):list():select(1) end, desc = "harpoon to file 1", },
     { "<leader>2", function() require("harpoon"):list():select(2) end, desc = "harpoon to file 2", },
