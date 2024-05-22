@@ -25,7 +25,7 @@ alias v="$VISUAL"
 
 # Likewise this, plus I'm always mistyping it...
 alias findy='find . -name'
-alias sb='source ~/.bashrc'
+alias sb='current_path=$(pwd); source ~/.bashrc; cd $current_path'
 alias vb='vim ~/.bashrc'
 alias vd='vim $DOTFILES'
 

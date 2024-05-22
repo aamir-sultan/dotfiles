@@ -437,7 +437,8 @@ EOT
 #   available bookmarks and use them if the bookmark is found.
 #   3. If the bookmark is not found then use the first match by fzf (This case is commented out for now)
 #   4. If the bookmark is not found then call the d function to search over the directories via fzf.
-j() {
+# j() {
+cdj() {
 	local bookmarks="$DOTFILES/.bookmarks"
 
 	if [[ -n "$2" ]]; then
@@ -491,7 +492,7 @@ bookmark() {
 
 	read -r -d '' usage <<'EOT'
 USAGE:
-  j [ARGUMENT] [OPTIONS]
+  bookmark [ARGUMENT] [OPTIONS]
 
 ARGUMENT:
   Name of bookmark to cd into or
@@ -578,6 +579,7 @@ EOT
 		;;
 	esac
 }
+alias j="cdj"
 alias jls="j -l"
 
 # If tmux is running ,command "tmux" will enter it and attach.
