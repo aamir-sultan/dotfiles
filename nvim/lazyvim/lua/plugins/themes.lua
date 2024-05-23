@@ -1,6 +1,52 @@
+local solarized_options = {
+  transparent = vim.g.transparent_enabled, -- enable transparent background
+  palette = 'solarized',                   -- or selenized
+  -- palette = 'selenized',                   -- or selenized
+  styles = {
+    comments = {},
+    functions = {},
+    variables = {},
+    numbers = {},
+    constants = {},
+    parameters = {},
+    keywords = {},
+    types = {},
+  },
+  enables = {
+    bufferline = true,
+    cmp = true,
+    diagnostic = true,
+    dashboard = true,
+    editor = true,
+    gitsign = true,
+    hop = true,
+    indentblankline = true,
+    lsp = true,
+    lspsaga = true,
+    navic = true,
+    neogit = true,
+    neotree = true,
+    notify = true,
+    noice = true,
+    semantic = true,
+    syntax = true,
+    telescope = true,
+    tree = true,
+    treesitter = true,
+    todo = true,
+    whichkey = true,
+    mini = true,
+  },
+  highlights = {},
+  colors = {},
+  theme = 'default', -- or 'neo'
+  -- theme = 'neo', -- or 'neo'
+  autocmd = true,
+}
+
 local onedark_options = {
   -- Main options --
-  style = 'warmer',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+  style = 'warmer', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
   -- style = 'dark',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
   -- style = 'warm',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
   -- style = 'darker',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
@@ -140,6 +186,16 @@ return {
   --   }
   -- },
   {
+    'maxmx03/solarized.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = solarized_options,
+    config = function()
+      -- vim.o.background = 'dark' -- or 'light'
+      vim.o.background = 'light'
+    end,
+  },
+  {
     'marko-cerovac/material.nvim',
     lazy = true,
     event = 'VeryLazy',
@@ -203,7 +259,8 @@ return {
       -- colorscheme = "kanagawa-lotus",
       -- colorscheme = "kanagawa-wave",
       -- colorscheme = "kanagawabones",
-      colorscheme = "material-darker",
+      -- colorscheme = "material-darker",
+      colorscheme = "solarized",
       -- colorscheme = "neobones",
       -- colorscheme = "noctu",
       -- colorscheme = "nord",
