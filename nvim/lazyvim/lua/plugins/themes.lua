@@ -1,6 +1,10 @@
 local onedark_options = {
   -- Main options --
-  style = 'dark',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+  style = 'warmer',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+  -- style = 'dark',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+  -- style = 'warm',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+  -- style = 'darker',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+  -- style = 'light',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
   -- transparent = true,  -- Show/hide background
   transparent = false,          -- Show/hide background
   term_colors = true,           -- Change terminal color as per the selected theme style
@@ -16,15 +20,15 @@ local onedark_options = {
   -- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
   code_style = {
     comments = 'italic',
-    keywords = 'none',
-    functions = 'none',
+    keywords = 'bold',
+    functions = 'bold',
     strings = 'none',
     variables = 'none'
   },
 
   -- Lualine options --
   lualine = {
-    transparent = false, -- lualine center bar transparency
+    transparent = true, -- lualine center bar transparency
   },
 
   -- Custom Highlights --
@@ -117,9 +121,24 @@ return {
   -- add gruvbox
   -- { 'arcticicestudio/nord-vim',   lazy = true, event = "VeryLazy" },
   -- { 'noahfrederick/vim-noctu',    lazy = true, event = "VeryLazy" },
-  -- { 'navarasu/onedark.nvim',      lazy = true, event = "VeryLazy", opts = onedark_options },
+  -- { 'navarasu/onedark.nvim', lazy = true, event = "VeryLazy", opts = onedark_options },
   -- { 'HUAHUAI23/nvim-quietlight',  lazy = true, event = "VeryLazy" },
   -- { 'luisiacc/gruvbox-baby', lazy = true, event = "VeryLazy" },
+  -- {
+  --   'sainnhe/gruvbox-material',
+  --   lazy = true,
+  --   event = "VeryLazy",
+  --   opts = {
+  --     -- foreground option can be material, mix, or original
+  --     -- gruvbox_material_foreground = "material",
+  --     gruvbox_material_foreground = "mix",
+  --     -- gruvbox_material_foreground = "original",
+  --     --background option can be hard, medium, soft
+  --     gruvbox_material_background = "soft",
+  --     gruvbox_material_enable_italic = 1,
+  --     gruvbox_material_better_performance = 1,
+  --   }
+  -- },
   {
     'marko-cerovac/material.nvim',
     lazy = true,
@@ -173,6 +192,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
+      -- colorscheme = "onedark",
       -- colorscheme = "blue",
       -- colorscheme = "duckbones",
       -- colorscheme = "doom-one",
