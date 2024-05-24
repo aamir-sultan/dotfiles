@@ -26,6 +26,7 @@ local harpoon_options = {
   },
   width = vim.api.nvim_win_get_width(0) - 4,
 }
+
 return {
   "theprimeagen/harpoon",
   branch = "harpoon2",
@@ -35,7 +36,7 @@ return {
     require("harpoon"):setup(_, opts)
   end,
   keys = {
-    { "<leader>A", function() require("harpoon"):list():add() end,  desc = "harpoon file", },
+    { "<leader>A", function() require("harpoon"):list():add() end,     desc = "harpoon file", },
     {
       "<leader>a",
       function()

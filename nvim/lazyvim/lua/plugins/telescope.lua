@@ -71,6 +71,26 @@ local options = {
   },
 }
 
+local harpoon = require('harpoon')
+harpoon:setup({})
+-- basic telescope configuration
+local conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+  local file_paths = {}
+  for _, item in ipairs(harpoon_files.items) do
+    table.insert(file_paths, item.value)
+  end
+
+  require("telescope.pickers").new({}, {
+    prompt_title = "Harpoon",
+    finder = require("telescope.finders").new_table({
+      results = file_paths,
+    }),
+    previewer = conf.file_previewer({}),
+    sorter = conf.generic_sorter({}),
+  }):find()
+end
+
 -- return options
 return {
   -- change some telescope options and a keymap to browse plugin files
@@ -87,6 +107,7 @@ return {
       { "<leader>hm", "<cmd> Telescope harpoon marks<CR>",                                      desc = "[H]arpoon [M]arks" },
 
       -- add a keymap to browse plugin files
+    -- { "<C-e>",     function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window" } },
       {
         "<leader>fp",
         function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,

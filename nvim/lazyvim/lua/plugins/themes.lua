@@ -15,7 +15,8 @@ return {
   -- require("plugins.themes.nvim-base16"), -- Lots of themes with all major names
   -- require("plugins.themes.doom-one"),
   -- require("plugins.themes.material-nvim"),
-  -- require("plugins.themes.papercolor-theme"),
+  require("plugins.themes.papercolor-theme"), -- For better readability of the code in different languages.
+  require("plugins.themes.readable-nvim"),    -- For better readability of the code in different languages.
 
 
 
@@ -52,6 +53,7 @@ return {
       -- colorscheme = "nordbones",
       -- colorscheme = "nvim-quietlight",
       -- colorscheme = "onedark",
+      -- colorscheme = "PaperColor",
       -- colorscheme = "randombones",
       -- colorscheme = "rosebones",
       -- colorscheme = "seoulbones",
