@@ -185,9 +185,21 @@ return {
   --     gruvbox_material_better_performance = 1,
   --   }
   -- },
+
+  {
+    'lalitmee/cobalt2.nvim',
+    lazy = true,
+    -- priority = 1000,
+    event = { "ColorSchemePre" }, -- if you want to lazy load
+    dependencies = { "tjdevries/colorbuddy.nvim", tag = "v1.0.0" },
+    config = function()
+      require("colorbuddy").colorscheme("cobalt2")
+    end,
+  },
+
   {
     'maxmx03/solarized.nvim',
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = solarized_options,
     config = function()
@@ -260,7 +272,8 @@ return {
       -- colorscheme = "kanagawa-wave",
       -- colorscheme = "kanagawabones",
       -- colorscheme = "material-darker",
-      colorscheme = "solarized",
+      -- colorscheme = "solarized",
+      colorscheme = "cobalt2",
       -- colorscheme = "neobones",
       -- colorscheme = "noctu",
       -- colorscheme = "nord",
