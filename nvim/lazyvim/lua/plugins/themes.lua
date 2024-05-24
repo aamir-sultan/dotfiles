@@ -191,8 +191,8 @@ return {
     priority = 1000,
     opts = solarized_options,
     config = function()
-      -- vim.o.background = 'dark' -- or 'light'
-      vim.o.background = 'light'
+      vim.o.background = 'dark' -- or 'light'
+      -- vim.o.background = 'light'
     end,
   },
   {
