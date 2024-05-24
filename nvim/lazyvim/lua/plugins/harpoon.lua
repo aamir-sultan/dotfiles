@@ -35,7 +35,7 @@ return {
     require("harpoon"):setup(_, opts)
   end,
   keys = {
-    { "<leader>A", function() require("harpoon"):list():append() end,  desc = "harpoon file", },
+    { "<leader>A", function() require("harpoon"):list():add() end,  desc = "harpoon file", },
     {
       "<leader>a",
       function()
