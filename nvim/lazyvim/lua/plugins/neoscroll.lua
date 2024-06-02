@@ -9,11 +9,11 @@ local neoscroll_opts = {
   stop_eof = true,             -- Stop at <EOF> when scrolling downwards
   respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
   cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-  -- easing = 'quadratic',           -- Default easing function
+  easing = 'quadratic',        -- Default easing function
   -- easing = 'cubic',            -- Default easing function
   -- easing = 'quartic', -- Default easing function
   -- easing = 'quintic', -- Default easing function
-  easing = 'circular', -- Default easing function
+  -- easing = 'circular', -- Default easing function
   -- easing = 'sine',           -- Default easing function
   -- easing = 'linear',        -- Default easing function
   pre_hook = nil,           -- Function to run before the scrolling animation starts
@@ -21,9 +21,9 @@ local neoscroll_opts = {
   performance_mode = false, -- Disable "Performance Mode" on all buffers.
 }
 return {
-  -- "karb94/neoscroll.nvim",
-  -- version = "*",
-  -- lazy = true,
-  -- event = "VimEnter",
-  -- opts = neoscroll_opts,
+  "karb94/neoscroll.nvim",
+  version = "*",
+  lazy = true,
+  event = "VimEnter",
+  opts = neoscroll_opts,
 }
