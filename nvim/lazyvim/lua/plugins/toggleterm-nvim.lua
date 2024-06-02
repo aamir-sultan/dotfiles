@@ -1,0 +1,28 @@
+return {
+  'akinsho/toggleterm.nvim',
+  version = "*",
+  event = "VeryLazy",
+  lazy = true,
+  config = true,
+  cmd = "ToggleTerm",
+  build = ":ToggleTerm",
+  -- keys = { { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle floating terminal" } },
+  keys = { 
+    -- { "<leader>tt", "<cmd>ToggleTerm size=20 dir=~/Desktop direction=horizontal <cr>", desc = "Toggle floating terminal" },
+    { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle floating terminal" },
+  },
+  opts = {
+    open_mapping = [[<leader>tt]],
+    -- direction = "horizontal",
+    direction = "float",
+    -- direction = "tab",
+    -- direction = "vertical",
+    shade_filetypes = {},
+    hide_numbers = true,
+    insert_mappings = true,
+    terminal_mappings = true,
+    start_in_insert = true,
+    close_on_exit = true,
+    hidden = true,
+  },
+}
