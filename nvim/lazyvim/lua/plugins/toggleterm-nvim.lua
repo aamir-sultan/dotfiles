@@ -6,13 +6,8 @@ return {
   config = true,
   cmd = "ToggleTerm",
   build = ":ToggleTerm",
-  -- keys = { { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle floating terminal" } },
-  keys = { 
-    -- { "<leader>tt", "<cmd>ToggleTerm size=20 dir=~/Desktop direction=horizontal <cr>", desc = "Toggle floating terminal" },
-    { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle floating terminal" },
-  },
   opts = {
-    open_mapping = [[<leader>tt]],
+    -- open_mapping = [[<leader>tt]],
     -- direction = "horizontal",
     direction = "float",
     -- direction = "tab",

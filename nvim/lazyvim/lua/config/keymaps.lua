@@ -79,3 +79,8 @@ Map("n", "--", "<C-^>", { desc = "Toggle window to last active buffer" })
 
 -- Neotree Keympas
 Map("n", "<leader>e", ":Neotree reveal toggle<CR>", { desc = "Toggle Neotree" })
+
+
+-- ToggleTerm Keympas
+Map({ 'n' }, "<leader>tt", ":ToggleTerm<CR>", { desc = "Toggle floating terminal" })
+Map({ 't' }, "<leader>tt", "<Esc><cmd>ToggleTerm<CR>", { desc = "Toggle floating terminal" })
