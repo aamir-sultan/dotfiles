@@ -85,14 +85,13 @@ Map("n", "<leader>e", ":Neotree reveal toggle<CR>", { desc = "Toggle Neotree" })
 Map({ 'n' }, "<leader>tt", ":ToggleTerm<CR>", { desc = "Toggle floating terminal" })
 Map({ 't' }, "<leader>tt", "<Esc><cmd>ToggleTerm<CR>", { desc = "Toggle floating terminal" })
 
--- NeoScroll Settings
--- Map('n', '<C-d>', function() require("neoscroll").ctrl_d({ duration = 100 }) end, { desc = "Middle of screen" })
+-- -- NeoScroll Settings
 Map({ 'n', 'v', 'x' }, '<C-d>', function() require("neoscroll").ctrl_d({ duration = 100 }) end, { desc = "Ctrl+d half screen down scroll" })
 Map({ 'n', 'v', 'x' }, '<C-u>', function() require("neoscroll").ctrl_u({ duration = 100 }) end, { desc = "Ctrl+u half screen up scroll" })
 Map({ 'n', 'v', 'x' }, '<C-f>', function() require("neoscroll").ctrl_f({ duration = 100 }) end, { desc = "Ctrl+f full screen down scroll" })
 Map({ 'n', 'v', 'x' }, '<C-b>', function() require("neoscroll").ctrl_b({ duration = 100 }) end, { desc = "Ctrl+b full screen up scroll" })
-Map({ 'n', 'v', 'x' }, '<C-y>', function() require("neoscroll").scroll(-0.1, { move_cursor=false; duration = 100 }) end, { desc = "Few Lines up scroll" })
-Map({ 'n', 'v', 'x' }, '<C-e>', function() require("neoscroll").scroll(0.1, { move_cursor=false; duration = 100 }) end, { desc = "Few Lines down scroll" })
+Map({ 'n', 'v', 'x' }, '<C-y>', function() require("neoscroll").scroll(-0.1, { move_cursor = false, duration = 100 }) end, { desc = "Few Lines up scroll" })
+Map({ 'n', 'v', 'x' }, '<C-e>', function() require("neoscroll").scroll(0.1, { move_cursor = false, duration = 100 }) end, { desc = "Few Lines down scroll" })
 Map({ 'n', 'v', 'x' }, 'zz', function() require("neoscroll").zz({ half_win_duration = 50 }) end, { desc = "Reposition cursor to the middle of the screen" })
 Map({ 'n', 'v', 'x' }, 'zt', function() require("neoscroll").zt({ half_win_duration = 50 }) end, { desc = "Reposition cursor to the top of the screen" })
 Map({ 'n', 'v', 'x' }, 'zb', function() require("neoscroll").zb({ half_win_duration = 50 }) end, { desc = "Reposition cursor to the bottom of the screen" })
