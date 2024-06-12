@@ -469,7 +469,7 @@ cdj() {
 	fi
 }
 
-ef() {
+fe() {
 	if [[ -n "$1" ]]; then
 		if [ -x "$(which fzf 2>/dev/null)" ]; then
 			f -q $1
