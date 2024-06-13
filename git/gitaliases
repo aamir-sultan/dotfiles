@@ -16,11 +16,12 @@
   local = !git show --pretty="" --name-only `git cherry --abbrev=7 -v @{upstream} | awk '{print $2}'`
   sup = !cd `git rev-parse --show-toplevel`; git mup; br=`git branch | grep "*" | awk '{print $2}'`; if [[ -f .gittrees ]]; then while read l; do set -- $l; git subtree pull --prefix=$1 $2 $br; done < .gittrees; fi;
   spush = !git push; cd `git rev-parse --show-toplevel`; br=`git branch | grep "*" | awk '{print $2}'`; if [[ -f .gittrees ]]; then while read l; do set -- $l; git subtree push --prefix=$1 $2 $br; done < .gittrees; fi;
+  srpush = !git push; cd `git rev-parse --show-toplevel`; br=`git branch | grep "*" | awk '{print $2}'`; if [[ -f .gitsubrepos ]]; then while read l; do set -- $l; git subrepo push $1; done < .gitsubrepos; fi;
   sbtest = !cd `git rev-parse --show-toplevel`; br=`git branch | grep "*" | awk '{print $2}'`; if [[ -f .gittrees ]]; then while read l; do set -- $l; echo "$1 $2 $br" ; done < .gittrees; fi;
   alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
   br = branch
   l = log
-  ch = !git checkout $1; git br #
+  ch = checkout
   st = status
   co = !git checkout $1 && git submodule update --recursive; git br #
   info = log -1
