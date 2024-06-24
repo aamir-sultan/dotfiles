@@ -6,6 +6,7 @@
     ssync = submodule sync
     conflicts = !git ls-files -u | cut -f 2 | sort -u
     mup = !git pull --recurse-submodules && git submodule update --init --recursive
+    mup2 = "!cd `git rev-parse --show-toplevel`; br=`git branch | grep '*' | awk '{print $2}'`; git pull --recurse-submodules origin $br && git submodule update --init --recursive;"
     main = !git checkout main && git pull
     top = !git rev-parse --show-toplevel
     slist = "!if [[ -f `git top`/.gittrees ]]; then cat `git top`/.gittrees; fi"
@@ -14,8 +15,29 @@
     muplink = "!git mup; for l in $(git submodule status | awk '{print $2}'); do cd $l; git main; cd ../; git add $l; done;"
     mpush = "!git spush; export SUBM=`basename $PWD`; git rev-parse --show-toplevel; cd ../ ; git rev-parse --show-toplevel; git sup; git add $SUBM; git st; git commit -m \"Updated submodule $SUBM to latest rev\"; git spush; export SUBM= ; "
     local ="!git show --pretty=\"\" --name-only `git cherry --abbrev=7 -v @{upstream} | awk '{print $2}'`"
-    sup = "!cd `git rev-parse --show-toplevel`; git mup; br=`git branch | grep \"*\" | awk '{print $2}'`; if [[ -f .gittrees ]]; then while read l; do set -- $l; git subtree pull --prefix=$1 $2 $br; done < .gittrees; fi;"
-    spush = "!git push; cd `git rev-parse --show-toplevel`; br=`git branch | grep \"*\" | awk '{print $2}'`; if [[ -f .gittrees ]]; then while read l; do set -- $l; git subtree push --prefix=$1 $2 $br; done < .gittrees; fi;"
+    sup = "!cd `git rev-parse --show-toplevel`; git mup; br=`git branch | grep \"*\" | awk '{print $2}'`; if [ -f .gittrees ]; then while read l; do set -- $l; git subtree pull --prefix=$1 $2 $br; done < .gittrees; fi;"
+    spush = "!git push; cd `git rev-parse --show-toplevel`; br=`git branch | grep \"*\" | awk '{print $2}'`; if [ -f .gittrees ]; then while read l; do set -- $l; git subtree push --prefix=$1 $2 $br; done < .gittrees; fi;"
+
+    # Get the branch name
+    # thisbr = "!git branch | grep \"*\" | awk '{print $2}'"
+    thisbr = "!git symbolic-ref --short HEAD"
+    # Get the default remote name (prioritize 'origin')
+    thisremote = "!git remote | grep '^origin$' || git remote | head -n 1"
+    # Get root directory based on the .git dir
+    root = "!git rev-parse --show-toplevel"
+    # Check if the current checked out branch exist on remote
+    upbrexist = "!REMOTE_NAME=`git thisremote`; BR=`git thisbr`; git ls-remote --exit-code --heads $REMOTE_NAME $BR;"
+
+    # Faster vesion of spush with git-subtree.
+    sp2step = "!cd `git root`; REMOTE_NAME=`git thisremote`; BR=`git thisbr`; if [ -f .gittrees ]; then while read l; do set -- $l; git subtree split --annotate='(split) ' --rejoin --prefix=$1; git subtree push --prefix=$1 $2 $BR; done < .gittrees; fi; if git upbrexist >> /dev/null 2>&1; then git push; else git push --set-upstream $REMOTE_NAME $BR; fi;"
+    spfetch = "!cd `git rev-parse --show-toplevel`; br=`git branch | grep \"*\" | awk '{print $2}'`; if [ -f .gitsubrepos ]; then while read l; do set -- $l; git subrepo fetch $1; done < .gitsubrepos; fi;"
+    spfast = "!cd `git root`; REMOTE_NAME=`git thisremote`; BR=`git thisbr`; if [ -f .gittrees ]; then while read l; do set -- $l; git subtree push --annotate='(split) ' --rejoin --prefix=$1 $2 $BR; done < .gittrees; fi; if git upbrexist >> /dev/null 2>&1; then git push; else git push --set-upstream $REMOTE_NAME $BR; fi;"
+
+    # Aliases for git-subrepo. sget2 might not work.
+    sget = "!cd `git rev-parse --show-toplevel`; git mup2; br=`git branch | grep '*' | awk '{print $2}'`; echo "Target Branch=$br"; if [ -f .gitsubrepos ]; then while read l; do set -- $l; echo "Target Subrepo=$1";  git subrepo pull $1 --branch=$br; done < .gitsubrepos; fi;"
+    sget2 = "!cd `git rev-parse --show-toplevel`; git mup; br=`git branch | grep '*' | awk '{print $2}'`; echo "Target Branch=$br"; if [ -f .gitsubrepos ]; then while read l; do set -- $l; echo "Target Subrepo=$1";  git subrepo pull $1 --branch=$br; done < .gitsubrepos; fi;"
+    sgo = "!cd `git rev-parse --show-toplevel`; remote=`git remote | head -n 1`; br=`git branch | grep '*' | awk '{print $2}'`; echo "Target Branch=$br"; if [ -f .gitsubrepos ]; then while read l; do set -- $l; echo "Target Subrepo=$1"; git subrepo push $1 --branch=$br; done < .gitsubrepos; fi; git push origin $br;"
+
     sbtest = "!cd `git rev-parse --show-toplevel`; br=`git branch | grep \"*\" | awk '{print $2}'`; if [[ -f .gittrees ]]; then while read l; do set -- $l; echo \"$1 $2 $br\" ; done < .gittrees; fi;"
     alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
     br = branch
