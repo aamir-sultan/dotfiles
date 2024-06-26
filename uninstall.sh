@@ -95,6 +95,12 @@ sed -i "/$ESC_PATTERN/d" $TMUXCONF_PATH
 PATTERN=$(echo -e "  path = $DOTFILES/git/gitconfig\n")
 ESC_PATTERN=$(escape_for_regex "$PATTERN")
 sed -i "/$ESC_PATTERN/d" $GITCONFIG_PATH
+PATTERN=$(echo -e "  path = $DOTFILES/git/ssh_aliases\n")
+ESC_PATTERN=$(escape_for_regex "$PATTERN")
+sed -i "/$ESC_PATTERN/d" $GITCONFIG_PATH
+PATTERN=$(echo -e "  path = $DOTFILES/git/non_ssh_aliases\n")
+ESC_PATTERN=$(escape_for_regex "$PATTERN")
+sed -i "/$ESC_PATTERN/d" $GITCONFIG_PATH
 PATTERN=$(echo -e "  excludesfile = $DOTFILES/git/gitignore_global\n")
 ESC_PATTERN=$(escape_for_regex "$PATTERN")
 sed -i "/$ESC_PATTERN/d" $GITCONFIG_PATH

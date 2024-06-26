@@ -8,5 +8,5 @@
 	helper = cache --timeout=604800
 
 [include]
-  path = gitaliases
+  path = common_aliases
   path = ~/.gitconfig.local

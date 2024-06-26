@@ -864,3 +864,12 @@ function qfind {
 		echo "Usage: quickfind <search_pattern>"
 	fi
 }
+
+vivid_theme() {
+	for theme in $(vivid themes); do
+		echo "Theme: $theme"
+		LS_COLORS=$(vivid generate $theme)
+		ls -a
+		echo
+	done
+}
