@@ -1,3 +1,42 @@
-
 [pull]
-  rebase = false
+    rebase = false
+
+[alias]
+    alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+    br = branch
+    l = log
+    ch = checkout
+    st = status
+    co = !git checkout $1 && git submodule update --recursive; git br #
+    info = log -1
+    message = show -s
+    undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
+    cleanup = !git remote prune origin && git repack && git prune-packed && git reflog expire --expire=1.month.ago && git gc --aggressive
+    lol = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    last = log -1 HEAD --stat
+    mergetest = "!f(){ git merge --no-commit --no-ff \"$1\"; git merge --abort; echo \"Merge aborted\"; };f "
+    subsyncmain = !git pull --recurse-submodules && git submodule update --init --recursive && git submodule foreach 'git checkout main && git pull origin main'
+# push new branch - push a branch to origin and set upstream
+    pnb = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
+# show all deleted files in the repo
+    deleted = "!git log --diff-filter=D --summary | grep delete"
+# create an empty commit
+    empty = commit --allow-empty
+# Stops you from pushing without having rebased first
+    pls = push — force-with-lease
+# Adds everything to the staging area and brings up the commit info
+    ca = !git add -A && git commit -av
+# Adds everything to the staging area, and amends it the most recent commit
+    aa = !git add -A && git commit --amend -av
+# Make sure you are on the branch you want to rename, then rename it whatever you want.
+    rn = “!f() { git branch -m $1; }; f”
+# Reword the previous commit
+    rwc = commit -v --amend
+# Improved log
+    ilog = "!git log -p --submodule=log"
+
+# Takes 2 arguments and put the first argument as feat, chore and next argument as message
+    committ = "!f(){ \
+        git add .; \
+        git commit -m \"$1: $2\"; \
+      }; f"
