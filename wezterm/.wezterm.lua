@@ -6,6 +6,7 @@ local act = wezterm.action                -- Actions table for wezterm different
 local keys = {}                           -- This table will hold the keybindings.
 local mouse_bindings = {}                 -- This table will hold the mouse bindings.
 local launch_menu = {}                    -- This table will hold the launch menu options.
+local images_dir = "D://Mega//backgrounds"
 
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
@@ -113,19 +114,92 @@ end
 
 local function getRandomBackgroundPath()
   local backgroundsTable = {
-    -- "D://Mega//backgrounds//2142.jpg",
-    "D://Mega//backgrounds//planet.jpg",
-    "D://Mega//backgrounds//bars.jpg",
-    "D://Mega//backgrounds//dark_trees.jpg",
-    -- "D://Mega//backgrounds//star_cave.jpg",
-    -- "D://Mega//backgrounds//10.jpg",
-    "D://Mega//backgrounds//sand.jpg",
-    "D://Mega//backgrounds//21842.jpg",
-    -- "D://Mega//backgrounds//lone_tree.jpg",
+    -- "D://Mega//backgrounds//planet.jpg",
+    -- "D://Mega//backgrounds//bars.jpg",
+    -- "D://Mega//backgrounds//dark_trees.jpg",
+    -- "D://Mega//backgrounds//sand.jpg",
+    -- "D://Mega//backgrounds//21842.jpg",
+    -- "D://Mega//backgrounds//570.jpg",
+    -- "D://Mega//backgrounds//samurai.jpg",
+    -- "D://Mega//backgrounds//samurai_1.jpg",
+    -- "D://Mega//backgrounds//samurai_2.jpg",
+    -- "D://Mega//backgrounds//samurai_3.jpg",
+    -- "D://Mega//backgrounds//samurai_4.jpg",
+    -- "D://Mega//backgrounds//samurai_5.jpg",
+    -- "D://Mega//backgrounds//samurai_6.jpg",
+    -- "D://Mega//backgrounds//samurai_7.jpg",
+    -- "D://Mega//backgrounds//samurai_8.jpg",
+    -- "D://Mega//backgrounds//swordsman.jpg",
+    -- "D://Mega//backgrounds//swordsman_1.jpg",
+    -- "D://Mega//backgrounds//swordsman_2.jpg",
+    -- "D://Mega//backgrounds//swordsman_3.jpg",
+    -- "D://Mega//backgrounds//swordsman_4.jpg",
+    -- "D://Mega//backgrounds//swordsman_5.jpg",
+    -- "D://Mega//backgrounds//swordsman_6.jpg",
+    -- "D://Mega//backgrounds//swordsman_7.jpg",
+    -- "D://Mega//backgrounds//swordsman_9.jpg",
+    -- "D://Mega//backgrounds//swordsman_11.jpg",
+    -- "D://Mega//backgrounds//swordsman_12.jpg",
+    -- "D://Mega//backgrounds//swordsman_13.jpg",
+    -- "D://Mega//backgrounds//swordsman_14.jpg",
+    -- "D://Mega//backgrounds//swordsman_15.jpg",
+    -- "D://Mega//backgrounds//swordsman_16.jpg",
+    -- "D://Mega//backgrounds//swordsman_17.jpg",
+    -- "D://Mega//backgrounds//swordsman_18.jpg",
+    -- "D://Mega//backgrounds//swordsman_19.jpg",
+    -- "D://Mega//backgrounds//ghostblade_1.jpg",
+    -- "D://Mega//backgrounds//simple//snake.png",
+    -- "D://Mega//backgrounds//simple//what_wrong.png",
+    -- "D://Mega//backgrounds//simple//flow-top.jpg",
+    -- "D://Mega//backgrounds//simple//the-depths.png",
+    -- "D://Mega//backgrounds//simple//the-depths-invert.png",
+    "D://Mega//backgrounds//simple//the-depths-resize.jpg",
+    -- "D://Mega//backgrounds//simple//wp_ants.png",
   }
 
   return getRandomStringFromTable(backgroundsTable)
 end
+
+-- Function to get a list of files in a directory
+local function get_files_in_dir(dir_path)
+  local files = {}
+  local dir = io.popen('ls "' .. dir_path .. '"')
+
+  for file in dir:lines() do
+    table.insert(files, file)
+  end
+
+  dir:close()
+  return files
+end
+
+-- Function to check if a file has a valid image extension
+local function is_valid_image_file(file_name)
+  local ext = file_name:match("%.(%a+)$")
+  return ext and (ext == "jpg" or ext == "png" or ext == "bmp" or ext == "gif")
+end
+
+-- Function to get a random image path from a directory
+function get_random_image_path(dir_path)
+  local files = get_files_in_dir(dir_path)
+  local image_files = {}
+
+  -- Filter valid image files
+  for _, file_name in ipairs(files) do
+    if is_valid_image_file(file_name) then
+      table.insert(image_files, dir_path .. "/" .. file_name)
+    end
+  end
+
+  -- If there are no valid image files, return nil
+  if #image_files == 0 then
+    return nil
+  end
+
+  -- Return a random image path from the image_files table
+  return image_files[math.random(#image_files)]
+end
+
 ---------------------------------------------------------------
 --- Configurations settings and switches.
 ---------------------------------------------------------------
@@ -149,13 +223,14 @@ end
 -- config.color_scheme = 'Gruvbox light, hard (base16)'
 -- config.color_scheme = 'Gruvbox light, medium (base16)'
 -- config.color_scheme = 'Gruvbox light, soft (base16)'
--- config.color_scheme = 'Gruvbox Material (Gogh)'
+config.color_scheme = 'Gruvbox Material (Gogh)'
 -- config.color_scheme = 'GruvboxDark'
 -- config.color_scheme = "GruvboxDarkHard"
 -- config.color_scheme = 'GruvboxLight'
 -- config.color_scheme = "nordfox"
-config.color_scheme = "Hardcore"
+-- config.color_scheme = "Hardcore"
 -- config.color_scheme = "Seti"
+-- config.color_scheme = "Solarized"
 
 -- Charachter Settings
 -- config.cell_width = 1.05 -- Set this to increase the charachter spacing in the terminal.
@@ -226,15 +301,10 @@ config.font = wezterm.font_with_fallback({
 -- config.window_background_opacity = .98 -- Background transparency = 0 and opacity = 1
 -- config.win32_system_backdrop = 'Tabbed' -- Creates blurred effects when combined with window_background_opacity -- 'Acrylic', 'Mica', 'Tabbed'
 -- config.text_background_opacity = 0.3 -- The image content can have relatively low contrast with respect to the text.
--- config.window_background_image_hsb = { -- Will implicitly prepend a layer to the background configuration
---     brightness = 0.1, -- Darken the background image by reducing it to 1/3rd
---     hue = 1.0, -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
---     saturation = 1.0 -- You can adjust the saturation also.
--- }
-local hsb_dimmer = { -- Will implicitly prepend a layer to the background configuration
-  brightness = 0.4,  -- Darken the background image by reducing it to 1/3rd
-  hue = 1.0,         -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
-  saturation = 1.0,  -- You can adjust the saturation also.
+config.window_background_image_hsb = { -- Will implicitly prepend a layer to the background configuration
+    brightness = 0.1, -- Darken the background image by reducing it to 1/3rd
+    hue = 1.0, -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
+    saturation = 1.0 -- You can adjust the saturation also.
 }
 -- config.window_background_image_hsb = hsb_dimmer -- Will implicitly prepend a layer to the background configuration
 
@@ -243,6 +313,7 @@ config.background = {
   {
     source = {
       File = getRandomBackgroundPath(),
+      -- File = get_random_image_path("D://Mega//backgrounds"),
     },
     -- The texture tiles vertically but not horizontally.
     -- When we repeat it, mirror it so that it appears "more seamless".
@@ -251,11 +322,15 @@ config.background = {
     -- Other repeat options are Mirror, Repeat, NoRepeat.
     --   repeat_x 	= 'Mirror',
     repeat_x = "NoRepeat",
-    repeat_y = "Mirror",
+    repeat_y = "NoRepeat",
+    -- repeat_y = "Mirror",
     -- Other options for the horizontal align are "Center", "Right", and "Left". "Left" is default.
-    horizontal_align = "Left",
+    -- horizontal_align = "Left",
+    horizontal_align = "Right",
+    -- horizontal_align = "Center",
     -- Other options for the vertical align are "Middle", "Top", and "Bottom". "Top" is default.
     vertical_align = "Top",
+    -- vertical_align = "Bottom",
     -- -- Specify an offset from the initial vertical position
     -- -- string of the form '123px' where 'px' is a unit
     -- -- and can be one of 'px', '%', 'pt' or 'cell'
@@ -294,6 +369,60 @@ config.background = {
   -- },
 }
 
+-- config.window_background_gradient = {
+--   -- Can be "Vertical" or "Horizontal".  Specifies the direction
+--   -- in which the color gradient varies.  The default is "Horizontal",
+--   -- with the gradient going from left-to-right.
+--   -- Linear and Radial gradients are also supported; see the other
+--   -- examples below
+--   -- orientation = 'Vertical',
+--   orientation = {Linear = {angle = -45.0 }},
+--
+--   -- Specifies the set of colors that are interpolated in the gradient.
+--   -- Accepts CSS style color specs, from named colors, through rgb
+--   -- strings and more
+--   -- colors = {
+--   --   '#0f0c29',
+--   --   '#302b63',
+--   --   '#24243e',
+--   -- },
+--   colors = { '#300924', '#300924' },
+--   -- colors = { '#300924', '#2E3436' },
+--
+--   -- Instead of specifying `colors`, you can use one of a number of
+--   -- predefined, preset gradients.
+--   -- A list of presets is shown in a section below.
+--   -- preset = "Warm",
+--
+--   -- Specifies the interpolation style to be used.
+--   -- "Linear", "Basis" and "CatmullRom" as supported.
+--   -- The default is "Linear".
+--   interpolation = 'Linear',
+--
+--   -- How the colors are blended in the gradient.
+--   -- "Rgb", "LinearRgb", "Hsv" and "Oklab" are supported.
+--   -- The default is "Rgb".
+--   blend = 'Rgb',
+--
+--   -- To avoid vertical color banding for horizontal gradients, the
+--   -- gradient position is randomly shifted by up to the `noise` value
+--   -- for each pixel.
+--   -- Smaller values, or 0, will make bands more prominent.
+--   -- The default value is 64 which gives decent looking results
+--   -- on a retina macbook pro display.
+--   -- noise = 64,
+--
+--   -- By default, the gradient smoothly transitions between the colors.
+--   -- You can adjust the sharpness by specifying the segment_size and
+--   -- segment_smoothness parameters.
+--   -- segment_size configures how many segments are present.
+--   -- segment_smoothness is how hard the edge is; 0.0 is a hard edge,
+--   -- 1.0 is a soft edge.
+--
+--   -- segment_size = 11,
+--   -- segment_smoothness = 0.0,
+-- }
+
 -- Additional Settings
 config.automatically_reload_config = true  -- reload it automatically when detected change - Default = true
 config.enable_scroll_bar = true            -- Enable the scrollbar. This is currently disabled by default
@@ -319,6 +448,7 @@ config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 0
 config.animation_fps = 1 -- Controls the maximum frame rate used when rendering easing effects for blinking cursors, blinking text and visual bell.
+-- config.force_reverse_video_cursor = true -- Reverse the cursor color for the terminal
 -- config.visual_bell = {
 --   fade_in_duration_ms = 75,
 --   fade_out_duration_ms = 75,
