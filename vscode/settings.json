@@ -19,6 +19,9 @@
 	"[typescript]": {
 		"editor.tabSize": 2
 	},
+	"[rust]": {
+		"editor.tabSize": 2
+	},
 	// Default tabsize
 	"editor.tabSize": 2,
 	// insert spaces when pressing Tab
