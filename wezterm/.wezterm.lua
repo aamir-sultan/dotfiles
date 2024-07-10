@@ -243,7 +243,8 @@ config.line_height = 1.4 -- Set this to in/decrease the charachter height in the
 
 -- Font Settings
 -- config.font_size = 10.0
-config.font_size = 11.0
+config.font_size = 10.5
+-- config.font_size = 11.0
 -- config.font_size = 11.5
 -- config.font_size = 12.0
 -- config.font_size = 13.0
@@ -304,12 +305,17 @@ config.font = wezterm.font_with_fallback({
 -- config.window_background_opacity = .98 -- Background transparency = 0 and opacity = 1
 -- config.win32_system_backdrop = 'Tabbed' -- Creates blurred effects when combined with window_background_opacity -- 'Acrylic', 'Mica', 'Tabbed'
 -- config.text_background_opacity = 0.3 -- The image content can have relatively low contrast with respect to the text.
-config.window_background_image_hsb = { -- Will implicitly prepend a layer to the background configuration
-    brightness = 0.1, -- Darken the background image by reducing it to 1/3rd
-    hue = 1.0, -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
-    saturation = 1.0 -- You can adjust the saturation also.
-}
+-- config.window_background_image_hsb = { -- Will implicitly prepend a layer to the background configuration
+--     brightness = 0.1, -- Darken the background image by reducing it to 1/3rd
+--     hue = 1.0, -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
+--     saturation = 1.0 -- You can adjust the saturation also.
+-- }
 -- config.window_background_image_hsb = hsb_dimmer -- Will implicitly prepend a layer to the background configuration
+hsb_dimmer = { -- Will implicitly prepend a layer to the background configuration
+    brightness = 1.3, -- Darken the background image by reducing it to 1/3rd
+    hue = 0.9, -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
+    saturation = 0.8 -- You can adjust the saturation also.
+}
 
 config.background = {
   -- This is the deepest/back-most layer. It will be rendered first
