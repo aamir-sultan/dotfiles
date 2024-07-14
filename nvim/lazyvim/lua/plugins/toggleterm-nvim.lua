@@ -5,7 +5,7 @@ return {
   lazy = true,
   config = true,
   cmd = "ToggleTerm",
-  build = ":ToggleTerm",
+  -- build = ":ToggleTerm",
   opts = {
     -- open_mapping = [[<leader>tt]],
     -- direction = "horizontal",
