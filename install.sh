@@ -33,11 +33,11 @@ echo_pwd() {
 source $DOTFILES/system/.variables
 
 #Set the path of the bashrc in the ~/.bashrc if already not exists otherwise print the information
-if grep -q "source $DOTFILES/bash/.bashrc" ~/.bashrc; then
+if grep -q "[ -f $DOTFILES/bash/.bashrc ] && source $DOTFILES/bash/.bashrc" ~/.bashrc; then
 	echo Path already set in $HOME/.bashrc
 else
 	echo Setting the dotfiles bashrc path into ~/.bashrc
-	echo "source $DOTFILES/bash/.bashrc" >>~/.bashrc
+	echo "[ -f $DOTFILES/bash/.bashrc ] && source $DOTFILES/bash/.bashrc" >>~/.bashrc
 fi
 
 #Set the path of the dotfiles/.vimrc in the ~/.vimrc if already not exists otherwise print the information
