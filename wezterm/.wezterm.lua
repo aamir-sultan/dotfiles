@@ -216,14 +216,14 @@ end
 -- config.color_scheme = 'Google Dark (Gogh)'
 -- config.color_scheme = 'Gruvbox (Gogh)'
 -- config.color_scheme = 'Gruvbox Dark (Gogh)'
--- config.color_scheme = 'Gruvbox dark, hard (base16)'
+config.color_scheme = 'Gruvbox dark, hard (base16)'
 -- config.color_scheme = 'Gruvbox dark, medium (base16)'
 -- config.color_scheme = 'Gruvbox dark, pale (base16)'
 -- config.color_scheme = 'Gruvbox dark, soft (base16)'
 -- config.color_scheme = 'Gruvbox light, hard (base16)'
 -- config.color_scheme = 'Gruvbox light, medium (base16)'
 -- config.color_scheme = 'Gruvbox light, soft (base16)'
-config.color_scheme = 'Gruvbox Material (Gogh)'
+-- config.color_scheme = 'Gruvbox Material (Gogh)'
 -- config.color_scheme = 'GruvboxDark'
 -- config.color_scheme = "GruvboxDarkHard"
 -- config.color_scheme = 'GruvboxLight'
@@ -311,10 +311,10 @@ config.font = wezterm.font_with_fallback({
 --     saturation = 1.0 -- You can adjust the saturation also.
 -- }
 -- config.window_background_image_hsb = hsb_dimmer -- Will implicitly prepend a layer to the background configuration
-hsb_dimmer = { -- Will implicitly prepend a layer to the background configuration
-    brightness = 1.3, -- Darken the background image by reducing it to 1/3rd
-    hue = 0.9, -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
-    saturation = 0.8 -- You can adjust the saturation also.
+hsb_dimmer = {      -- Will implicitly prepend a layer to the background configuration
+  brightness = 1.3, -- Darken the background image by reducing it to 1/3rd
+  hue = 0.9,        -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
+  saturation = 0.8  -- You can adjust the saturation also.
 }
 
 config.background = {
@@ -604,10 +604,10 @@ local tmux_keybinds = {
   { key = "l",          mods = "ALT|SHIFT", action = act({ ActivateTabRelative = 1 }) },
   { key = "LeftArrow",  mods = "ALT|SHIFT", action = act({ ActivateTabRelative = -1 }) },
   { key = "RightArrow", mods = "ALT|SHIFT", action = act({ ActivateTabRelative = 1 }) },
-  { key = "h",          mods = "ALT|CTRL", action = act({ ActivateTabRelative = -1 }) },
-  { key = "l",          mods = "ALT|CTRL", action = act({ ActivateTabRelative = 1 }) },
-  { key = "LeftArrow",  mods = "ALT|CTRL", action = act({ ActivateTabRelative = -1 }) },
-  { key = "RightArrow", mods = "ALT|CTRL", action = act({ ActivateTabRelative = 1 }) },
+  { key = "h",          mods = "ALT|CTRL",  action = act({ ActivateTabRelative = -1 }) },
+  { key = "l",          mods = "ALT|CTRL",  action = act({ ActivateTabRelative = 1 }) },
+  { key = "LeftArrow",  mods = "ALT|CTRL",  action = act({ ActivateTabRelative = -1 }) },
+  { key = "RightArrow", mods = "ALT|CTRL",  action = act({ ActivateTabRelative = 1 }) },
   -- { key = "h", mods = "ALT|CTRL", action = act({ MoveTabRelative = -1 }) },
   -- { key = "l", mods = "ALT|CTRL", action = act({ MoveTabRelative = 1 }) },
   --{ key = "k", mods = "ALT|CTRL", action = act.ActivateCopyMode },
