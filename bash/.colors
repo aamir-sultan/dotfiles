@@ -48,6 +48,14 @@ if tput setaf 1 &>/dev/null; then
   lOrange=$(tput setaf 208)
   lBlue=$(tput setaf 69)
   lGrey=$(tput setaf 243)
+
+  # Others
+  mustard1=$(tput setaf 220)
+  mustard2=$(tput setaf 178)
+  mustard3=$(tput setaf 214)
+  green1=$(tput setaf 118)
+  green2=$(tput setaf 119)
+
 else
   bold="\e[1m"
   italic="\e[3m"

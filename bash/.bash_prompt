@@ -26,7 +26,8 @@ source $DOTFILES/bash/.colors
 
 if tput setaf 1 &>/dev/null; then
 # Text color variable.
-  textColor="${lYellow}"
+  # textColor="${lYellow}"
+  textColor="${mustard3}"
 
 # Symbol color variable.
   symbolColor="${lGreen}"
