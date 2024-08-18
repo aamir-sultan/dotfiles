@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+
+# Most of the teminals support tput and it is the recommended way of doing it. There is a function which shows the alternative
+# escape sequences for the colors. It is not recommended but for referance, it can be ran and get the result.
+
+# Naming Conventions followed:
+# - l<color name> -> light <Color>
+# - b<color name> -> bold <Color>
+# - B<color name> -> Background <Color>
+# - F<color name> -> Foreground <Color>
+# - d<color name> -> dark <Color>
+# - s<color name> -> solarized <Color>
+# - u<color name> -> underline <Color>
+# - r<color name> -> regular <Color>
+
+if tput setaf 1 &>/dev/null; then
+  tput sgr0 # reset colors
+
+  bold=$(tput bold)
+  italic=$(tput sitm)
+  reset=$(tput sgr0)
+   
+  # Solarized colors, taken from http://git.io/solarized-colors.
+  sBlack=$(tput setaf 0)
+  sBlue=$(tput setaf 33);
+  sCyan=$(tput setaf 37)
+  sGreen=$(tput setaf 64);
+  sOrange=$(tput setaf 166);
+  sPurple=$(tput setaf 125)
+  sRed=$(tput setaf 124)
+  sViolet=$(tput setaf 61)
+  sWhite=$(tput setaf 15)
+  sYellow=$(tput setaf 136);
+
+
+
+  rBlack=$(tput setaf 0)
+  rBlue=$(tput setaf 6);
+  rCyan=$(tput setaf 4)
+  rGreen=$(tput setaf 2);
+  rPurple=$(tput setaf 5)
+  rRed=$(tput setaf 1)
+  rWhite=$(tput setaf 7)
+  rYellow=$(tput setaf 3);
+
+  lGreen=$(tput setaf 118);
+  lYellow=$(tput setaf 227)
+  lOrange=$(tput setaf 208)
+  lBlue=$(tput setaf 69)
+  lGrey=$(tput setaf 243)
+else
+  bold="\e[1m"
+  italic="\e[3m"
+
+  reset="\e[0m"
+
+  bBlack="\e[1;30m"
+  bBlue="\e[1;34m"
+  bCyan="\e[1;36m"
+  bGreen="\e[1;32m"
+  bPurple="\e[1;35m"
+  bRed="\e[1;31m"
+  bWhite="\e[1;37m"
+  bYellow="\e[1;33m";
+
+  # Other Variants, taken from https://unix.stackexchange.com/a/124409
+
+  # Regular Colors
+  rBlack="\e[0;30m";
+  rBlue="\e[0;34m";
+  rCyan="\e[0;36m";
+  rGreen="\e[0;32m";
+  rPurple="\e[0;35m";
+  rRed="\e[0;31m";
+  rWhite="\e[0;37m";
+  rYellow="\e[0;33m"
+
+# Underlined Style colors
+  uBlack="\e[4;30m";
+  uBlue="\e[4;34m";
+  uCyan="\e[4;36m";
+  uGreen="\e[4;32m";
+  uPurple="\e[4;35m";
+  uRed="\e[4;31m";
+  uWhite="\e[4;37m";
+  uYellow="\e[4;33m"
+
+# Background Style colors
+  BBlack="\e[40m";
+  BBlue="\e[44m";
+  BCyan="\e[46m";
+  BGreen="\e[42m";
+  BPurple="\e[45m";
+  BRed="\e[41m";
+  BWhite="\e[47m";
+  BYellow="\e[43m"
+fi
+

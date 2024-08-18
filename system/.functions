@@ -323,6 +323,10 @@ function print_colors_256() {
 	done
 }
 
+function print_colors_tput() {
+  for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c; done
+}
+
 function print_colors_spectrum() {
 	awk -v term_cols="${width:-$(tput cols || echo 80)}" 'BEGIN{
   s="/\\";

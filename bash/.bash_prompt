@@ -3,7 +3,6 @@
 # Shell prompt based on the Solarized Dark theme.
 # Screenshot: http://i.imgur.com/EkEtphC.png
 # Heavily inspired by @necolas’s prompt: https://github.com/necolas/dotfiles
-# iTerm → Profiles → Text → use 13pt Monaco with 1.1 vertical spacing.
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
   export TERM='gnome-256color'
@@ -14,6 +13,120 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
     export TERM=screen-256color
   fi
 fi
+
+
+source $DOTFILES/bash/.colors
+
+# ----------------------------------------------------------------------------------------
+# Color setting of the different parts of the prompt based on the available terminal
+# capabilities
+# ----------------------------------------------------------------------------------------
+
+# Abstraction layer for the colors between 8 bit terminals and tput supported 256 bit
+
+if tput setaf 1 &>/dev/null; then
+# Text color variable.
+  textColor="${lYellow}"
+
+# Symbol color variable.
+  symbolColor="${lGreen}"
+  errorColor="${rRed}"
+
+# Branch color variable.
+  branchColor="${lOrange}"
+
+# Repo Status color variable.
+  repoStatusColor="${sCyan}"
+
+# Word like at,in etc. color variable.
+  wordColor="${sWhite}"
+
+# PWD color variable.
+  pwdColor="${sBlue}"
+
+# User color variables
+  userRootColor="${lYellow}"
+  userNonRootColor="${rGreen}"
+
+# SSH color variables
+  hostSSHColor="${lYellow}"
+  hostNonSSHColor="${lOrange}"
+else
+# There is not much to do here in coloring cases. This is kind of fallback to 8-colors.
+# Orange is always mapped to Yellow as 8-colors donot have orange as such
+
+# Text color variable.
+  textColor="${rYellow}"
+
+# Symbol color variable.
+  symbolColor="${bWhite}"
+  errorColor="${bRed}"
+
+# Branch color variable.
+  branchColor="${bYellow}"
+
+# Repo Status color variable.
+  repoStatusColor="${bCyan}"
+
+# PWD color variable.
+  pwdColor="${bBlue}"
+  
+# Word like at,in etc. color variable.
+  wordColor="${bWhite}"
+
+# User color variables
+  userRootColor="${bYellow}"
+  userNonRootColor="${bGreen}"
+
+# SSH color variables
+  hostSSHColor="${bRed}"
+  hostNonSSHColor="${rYellow}"
+fi
+
+# ----------------------------------------------------------------------------------------
+# Style setting of the different parts of the prompt based on context of terminal
+# ----------------------------------------------------------------------------------------
+
+# Highlight the user name when logged in as root.
+if [[ "${USER}" == "root" ]]; then
+  userStyle="${bold}${userRootColor}"
+else
+  userStyle="${bold}${userNonRootColor}"
+fi
+
+# Highlight the hostname when connected via SSH.
+if [[ "${SSH_TTY}" ]]; then
+  hostStyle="${bold}${hostSSHColor}"
+else
+  hostStyle="${bold}${hostNonSSHColor}"
+fi
+
+textStyle="${textColor}"
+wordStyle="${wordColor}"
+branchStyle="${branchColor}"
+repoStatusStyle="${repoStatusColor}"
+pwdStyle="${pwdColor}"
+
+# Prompt Symbol Color
+defaultSymbolStyle="${bold}${symbolColor}"
+errorSymbolStyle="${bold}${errorColor}"
+ 
+# Prompt Symbol
+# ❯, >, , », ⨔, ⌇, 󰘧, λ, λ:, ⁂, ➲, \$
+promptSymbol="\>"
+
+# ----------------------------------------------------------------------------------------
+# Prompt functions for the handling last command status and git status
+# ----------------------------------------------------------------------------------------
+
+get_status() {
+  local EXIT="$?"
+  if [ $EXIT != 0 ]; then
+    symbolStyle=$errorSymbolStyle
+  else
+    symbolStyle=$defaultSymbolStyle
+  fi
+}
 
 prompt_git() {
   local s=''
@@ -61,156 +174,23 @@ prompt_git() {
   echo -e "${1}${branchName}${2}${s}"
 }
 
-if tput setaf 1 &>/dev/null; then
-  tput sgr0 # reset colors
-  bold=$(tput bold)
-  italic=$(tput sitm)
-  reset=$(tput sgr0)
-  # Solarized colors, taken from http://git.io/solarized-colors.
-  black=$(tput setaf 0)
-  # blue=$(tput setaf 33);
-  cyan=$(tput setaf 37)
-  # green=$(tput setaf 64);
-  orange=$(tput setaf 208)
-  # orange=$(tput setaf 166);
-  purple=$(tput setaf 125)
-  red=$(tput setaf 124)
-  violet=$(tput setaf 61)
-  white=$(tput setaf 15)
-  # yellow=$(tput setaf 136);
-
-  # Other Variants, taken from https://unix.stackexchange.com/a/124409
-
-  # black=$(tput setaf 010);
-  green=$(tput setaf 10)
-  yellow=$(tput setaf 227)
-  # blue=$(tput setaf 57);
-  # blue=$(tput setaf 63);
-  blue=$(tput setaf 69)
-  # grey=$(tput setaf 235);
-  # grey=$(tput setaf 236);
-  # grey=$(tput setaf 237);
-  # grey=$(tput setaf 240);
-  grey=$(tput setaf 243)
-  # grey=$(tput setaf 247);
-  # grey=$(tput setaf 248);
-  # grey=$(tput setaf 249);
-  # grey=$(tput setaf 254);
-else
-  # bold='';
-  bold="\e[1m"
-  italic="\e[3m"
-  reset="\e[0m"
-  black="\e[1;30m"
-  blue="\e[1;34m"
-  cyan="\e[1;36m"
-  green="\e[1;32m"
-  orange="\e[1;33m"
-  purple="\e[1;35m"
-  red="\e[1;31m"
-  violet="\e[1;35m"
-  white="\e[1;37m"
-  #yellow="\e[1;33m";
-
-  # Other Variants, taken from https://unix.stackexchange.com/a/124409
-
-  # black="\e[0;30m";
-  # lblue="\e[0;34m";
-  # cyan="\e[0;36m";
-  # green="\e[0;32m";
-  # orange="\e[0;33m";
-  # purple="\e[0;35m";
-  # red="\e[0;31m";
-  # violet="\e[0;35m";
-  # white="\e[0;37m";
-  yellow="\e[0;33m"
-fi
-
-# Highlight the user name when logged in as root.
-if [[ "${USER}" == "root" ]]; then
-  userStyle="${orange}"
-else
-  userStyle="${green}"
-fi
-
-# Highlight the hostname when connected via SSH.
-if [[ "${SSH_TTY}" ]]; then
-  hostStyle="${bold}${yellow}"
-else
-  hostStyle="${orange}"
-fi
-
-# Text color variable.
-textColor="${yellow}"
-
-# Prompt Symbol Color
-# defaultSymbolStyle="${bold}${orange}"
-# defaultSymbolStyle="${bold}${white}"
-defaultSymbolStyle="${bold}${cyan}"
-# defaultSymbolStyle="${bold}${green}"
-# defaultSymbolStyle="${bold}${violet}"
-# defaultSymbolStyle="${bold}${yellow}"
-# defaultSymbolStyle="${bold}${black}"
-# defaultSymbolStyle="${bold}${blue}"
-# defaultSymbolStyle="${bold}${grey}"
-
-get_status() {
-  local EXIT="$?"
-  if [ $EXIT != 0 ]; then
-    symbolStyle="${bold}${red}"
-  else
-    symbolStyle=$defaultSymbolStyle
-  fi
-}
-
-promptConnectorStyle="${bold}${green}"
-# promptConnectorOpen="┌─ "
-# promptConnectorClose="└──"
-# promptConnectorOpen="┏━━ "
-# promptConnectorClose="┗━━━"
-# promptConnectorOpen="╭── "
-# promptConnectorClose="╰───╌╌"
-# promptConnectorOpen="╭─ "
-# promptConnectorClose="╰╌╌"
-# promptConnectorOpen=""
-# promptConnectorClose=""
-
-# Prompt Symbol
-# promptSymbol="❯"
-# promptSymbol=">"
-promptSymbol="\>"
-# promptSymbol=""
-# promptSymbol="»"
-# promptSymbol="⨔"
-# promptSymbol="⌇"
-# promptSymbol="󰘧"
-# promptSymbol="λ"
-# promptSymbol="λ:"
-# promptSymbol="⁂"
-# promptSymbol="➲"
-# promptSymbol="\$"
-
-function update_prompt() {
+function prompt_update() {
   get_status # Get the last command status and set the color of the symbol based on it
   # Set the terminal title and prompt.
-  PS1="\[\033]0;\W\007\]"
-  PS1+="\[${bold}\]\n"                                     # newline
-  PS1+="\[${promptConnectorStyle}\]${promptConnectorOpen}" # newline
-  PS1+="\[${bold}\]"                                       # newline
+  PS1="\n"                                     # newline
   PS1+="\[${userStyle}\]\u"                                # username
-  PS1+="\[${white}\] at "
+  PS1+="\[${wordStyle}\] at "
   PS1+="\[${hostStyle}\]\h (\t)" # host
-  PS1+="\[${white}\] in "
-  PS1+="\[${blue}\]\w"                                                    # working directory full path
-  PS1+="\$(prompt_git \"\[${white}\] on \[${orange}\]\" \"\[${cyan}\]\")" # Git repository details
-  PS1+="\n"
-  PS1+="\[${promptConnectorStyle}\]${promptConnectorClose}" # Terminal stdout color
+  PS1+="\[${wordStyle}\] in "
+  PS1+="\[${pwdStyle}\]\w"                                                    # working directory full path
+  PS1+="\$(prompt_git \"\[${wordStyle}\] on \[${branchStyle}\]\" \"\[${repoStatusStyle}\]\")" # Git repository details
+  PS1+="\n" # newline after prompt and before symbol
   PS1+="\[${symbolStyle}\]${promptSymbol} \[${reset}\]"     # `$` (and reset color)
   PS1+="\[${textColor}\]"                                   # Terminal stdout color
   # export PS1
 }
 
-PROMPT_COMMAND=update_prompt # Updates the prompt on each command execution
+PROMPT_COMMAND=prompt_update # Updates the prompt on each command execution
 
-PS2="\[${yellow}\]→ \[${reset}\]"
+PS2="\[${rYellow}\]→ \[${reset}\]"
 export PS2
