@@ -17,6 +17,7 @@ end
 return {
   'nvim-lualine/lualine.nvim',
   lazy = true,
-  event = 'VimEnter',
+  -- event = 'VimEnter',
+  event = 'LazyFile',
   opts = opts
 }

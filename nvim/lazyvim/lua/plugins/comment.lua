@@ -46,7 +46,7 @@ return {
   -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
   {
     "echasnovski/mini.comment",
-    -- event = "VeryLazy",
+    lazy = true,
     event = { "LazyFile" },
     opts = {
       options = {
@@ -56,20 +56,20 @@ return {
       },
     },
   },
-  {
-    "numToStr/Comment.nvim",
-    -- event = { "LazyFile", "VeryLazy" },
-    event = { "LazyFile" },
-    keys = { "gcc", "gbc" },
-    -- init = function()
-    --   require("core.utils").load_mappings "comment"
-    -- end,
-    opts = Comment_options,
-    config = function(_, opts)
-      require("Comment").setup(opts)
-      local ft = require('Comment.ft')
-      ft.systemverilog = { '//%s', '/*%s*/' }
-    end,
-
-  }
+  -- {
+  --   "numToStr/Comment.nvim",
+  --   lazy = true,
+  --   event = { "LazyFile" },
+  --   keys = { "gcc", "gbc" },
+  --   -- init = function()
+  --   --   require("core.utils").load_mappings "comment"
+  --   -- end,
+  --   opts = Comment_options,
+  --   config = function(_, opts)
+  --     require("Comment").setup(opts)
+  --     local ft = require('Comment.ft')
+  --     ft.systemverilog = { '//%s', '/*%s*/' }
+  --   end,
+  --
+  -- }
 }

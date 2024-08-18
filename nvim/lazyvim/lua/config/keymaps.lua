@@ -35,7 +35,7 @@ end
 -- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 -- Toggle Transparency
-Map("n", "<F7>", "<ESC><cmd>TransparentToggle<CR>", { desc = "Toggle Transparency" })
+Map("n", "<leader>tT", "<ESC><cmd>TransparentToggle<CR>", { desc = "Toggle Transparency" })
 
 -- Fix * (Keep the cursor position, don't move to next match)
 Map('v', 'ii', '<C-c>', { desc = "Exits to normal mode from visual" })
@@ -95,3 +95,14 @@ Map({ 'n', 'v', 'x' }, '<C-e>', function() require("neoscroll").scroll(0.1, { mo
 Map({ 'n', 'v', 'x' }, 'zz', function() require("neoscroll").zz({ half_win_duration = 50 }) end, { desc = "Reposition cursor to the middle of the screen" })
 Map({ 'n', 'v', 'x' }, 'zt', function() require("neoscroll").zt({ half_win_duration = 50 }) end, { desc = "Reposition cursor to the top of the screen" })
 Map({ 'n', 'v', 'x' }, 'zb', function() require("neoscroll").zb({ half_win_duration = 50 }) end, { desc = "Reposition cursor to the bottom of the screen" })
+
+-- Harpoon Keys
+-- This setting works with lazy loading of Harpoon
+Map('n', "<leader>A", function() require("harpoon"):list():add() end,     { desc = "harpoon file" } )
+Map('n',  "<leader>a", function() local harpoon = require("harpoon") harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "harpoon quick menu"} )
+Map('n', "<C-c>", function() local harpoon = require("harpoon") harpoon.ui:close_menu() end, { desc = "harpoon close window" })
+Map('n', "<leader>1", function() require("harpoon"):list():select(1) end, { desc = "harpoon to file 1", })
+Map('n', "<leader>2", function() require("harpoon"):list():select(2) end, { desc = "harpoon to file 2", })
+Map('n', "<leader>3", function() require("harpoon"):list():select(3) end, { desc = "harpoon to file 3", })
+Map('n', "<leader>4", function() require("harpoon"):list():select(4) end, { desc = "harpoon to file 4", })
+Map('n', "<leader>5", function() require("harpoon"):list():select(5) end, { desc = "harpoon to file 5", })

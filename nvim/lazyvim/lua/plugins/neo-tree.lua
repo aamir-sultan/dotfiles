@@ -74,7 +74,8 @@ return {
   "nvim-neo-tree/neo-tree.nvim",
   -- dependencies = { 'xiyaowong/transparent.nvim', lazy = true, event = "VimEnter" },
   -- require('transparent').clear_prefix('NeoTree'),
-  event = "VeryLazy",
+  lazy = true,
+  event = { "LazyFile" },
   cmd = { "NeoTree toggle" },
   keys = {
     -- { "<C-n>", "<cmd>NeoTree toggle<CR>", desc = "Toggle the NeoTree" },

@@ -8,6 +8,8 @@ return {
   -- add more treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy=true,
+    event = "LazyFile",
     opts = {
       ensure_installed = {
         -- "bash",
@@ -35,7 +37,8 @@ return {
   -- Show context of the current function
   {
     "nvim-treesitter/nvim-treesitter-context",
-    -- event = "LazyFile",
+    lazy=true,
+    event = "LazyFile",
     -- enabled = true,
     -- opts = { mode = "cursor", max_lines = 3 },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
