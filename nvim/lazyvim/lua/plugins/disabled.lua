@@ -113,7 +113,7 @@ if vim.g.vscode then
     { "nvimdev/dashboard-nvim",                      enabled = false },
     -- { "nvimtools/none-ls.nvim",                      enabled = false },
     -- { "p00f/clangd_extensions.nvim",                 enabled = false },
-    -- { "rcarriga/nvim-notify",                        enabled = false },
+    { "rcarriga/nvim-notify",                        enabled = false },
     -- { "simrat39/rust-tools.nvim",                    enabled = false },
     -- { "simrat39/symbols-outline.nvim",               enabled = false },
     -- { "stevearc/aerial.nvim",                        enabled = false },
