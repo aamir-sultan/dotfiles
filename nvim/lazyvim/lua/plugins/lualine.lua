@@ -5,14 +5,10 @@ local local_opts = {
   section_separators = { left = '', right = '' },
 }
 
-opts = function()
-  return {
-    options = {
-      component_separators = { left = '', right = '' },
-      section_separators = { left = '', right = '' },
-    },
-  }
-end
+opts = {
+  component_separators = { left = '', right = '' },
+  section_separators = { left = '', right = '' },
+}
 
 return {
   'nvim-lualine/lualine.nvim',

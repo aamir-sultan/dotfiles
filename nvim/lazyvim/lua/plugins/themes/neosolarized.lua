@@ -1,9 +1,11 @@
 return {
   "Tsuzat/NeoSolarized.nvim",
-  lazy = false, -- make sure we load this during startup if it is your main colorscheme
+  -- lazy = false, -- make sure we load this during startup if it is your main colorscheme
+  lazy = true, -- make sure we load this during startup if it is your main colorscheme
 
-  event = "VimEnter",
-  priority = 1000, -- make sure to load this before all the other start plugins }
+  -- event = "VimEnter",
+  event = "VeryLazy",
+  priority = 1000,          -- make sure to load this before all the other start plugins }
   opts = {
     style = "dark",         -- "dark" or "light"
     -- style = "light",        -- "dark" or "light"
