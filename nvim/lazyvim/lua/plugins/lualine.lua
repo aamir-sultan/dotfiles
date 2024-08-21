@@ -5,9 +5,12 @@ local local_opts = {
   section_separators = { left = '', right = '' },
 }
 
-opts = {
-  component_separators = { left = '', right = '' },
-  section_separators = { left = '', right = '' },
+local opts = -- Keep the outer brackets of options otherwise won't work
+{
+  options = {
+    component_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
+  }
 }
 
 return {
