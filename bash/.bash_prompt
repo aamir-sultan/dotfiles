@@ -14,7 +14,6 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
   fi
 fi
 
-
 source $DOTFILES/bash/.colors
 
 # ----------------------------------------------------------------------------------------
@@ -25,61 +24,61 @@ source $DOTFILES/bash/.colors
 # Abstraction layer for the colors between 8 bit terminals and tput supported 256 bit
 
 if tput setaf 1 &>/dev/null; then
-# Text color variable.
+  # Text color variable.
   # textColor="${lYellow}"
   textColor="${mustard3}"
 
-# Symbol color variable.
+  # Symbol color variable.
   symbolColor="${lGreen}"
   errorColor="${rRed}"
 
-# Branch color variable.
+  # Branch color variable.
   branchColor="${lOrange}"
 
-# Repo Status color variable.
+  # Repo Status color variable.
   repoStatusColor="${sCyan}"
 
-# Word like at,in etc. color variable.
+  # Word like at,in etc. color variable.
   wordColor="${sWhite}"
 
-# PWD color variable.
+  # PWD color variable.
   pwdColor="${sBlue}"
 
-# User color variables
+  # User color variables
   userRootColor="${lYellow}"
   userNonRootColor="${rGreen}"
 
-# SSH color variables
+  # SSH color variables
   hostSSHColor="${lYellow}"
   hostNonSSHColor="${lOrange}"
 else
-# There is not much to do here in coloring cases. This is kind of fallback to 8-colors.
-# Orange is always mapped to Yellow as 8-colors donot have orange as such
+  # There is not much to do here in coloring cases. This is kind of fallback to 8-colors.
+  # Orange is always mapped to Yellow as 8-colors donot have orange as such
 
-# Text color variable.
+  # Text color variable.
   textColor="${rYellow}"
 
-# Symbol color variable.
+  # Symbol color variable.
   symbolColor="${bWhite}"
   errorColor="${bRed}"
 
-# Branch color variable.
+  # Branch color variable.
   branchColor="${bYellow}"
 
-# Repo Status color variable.
+  # Repo Status color variable.
   repoStatusColor="${bCyan}"
 
-# PWD color variable.
+  # PWD color variable.
   pwdColor="${bBlue}"
-  
-# Word like at,in etc. color variable.
+
+  # Word like at,in etc. color variable.
   wordColor="${bWhite}"
 
-# User color variables
+  # User color variables
   userRootColor="${bYellow}"
   userNonRootColor="${bGreen}"
 
-# SSH color variables
+  # SSH color variables
   hostSSHColor="${bRed}"
   hostNonSSHColor="${rYellow}"
 fi
@@ -111,7 +110,7 @@ pwdStyle="${pwdColor}"
 # Prompt Symbol Color
 defaultSymbolStyle="${bold}${symbolColor}"
 errorSymbolStyle="${bold}${errorColor}"
- 
+
 # Prompt Symbol
 # ❯, >, , », ⨔, ⌇, 󰘧, λ, λ:, ⁂, ➲, \$
 promptSymbol="\>"
@@ -120,14 +119,14 @@ promptSymbol="\>"
 # Prompt functions for the handling last command status and git status
 # ----------------------------------------------------------------------------------------
 
-get_status() {
-  local EXIT="$?"
-  if [ $EXIT != 0 ]; then
-    symbolStyle=$errorSymbolStyle
-  else
-    symbolStyle=$defaultSymbolStyle
-  fi
-}
+# get_status() {
+#   local EXIT="$?"
+#   if [ $EXIT != 0 ]; then
+#     symbolStyle=$errorSymbolStyle
+#   else
+symbolStyle=$defaultSymbolStyle
+#   fi
+# }
 
 prompt_git() {
   local s=''
@@ -175,23 +174,23 @@ prompt_git() {
   echo -e "${1}${branchName}${2}${s}"
 }
 
-function prompt_update() {
-  get_status # Get the last command status and set the color of the symbol based on it
-  # Set the terminal title and prompt.
-  PS1="\n"                                     # newline
-  PS1+="\[${userStyle}\]\u"                                # username
-  PS1+="\[${wordStyle}\] at "
-  PS1+="\[${hostStyle}\]\h (\t)" # host
-  PS1+="\[${wordStyle}\] in "
-  PS1+="\[${pwdStyle}\]\w"                                                    # working directory full path
-  PS1+="\$(prompt_git \"\[${wordStyle}\] on \[${branchStyle}\]\" \"\[${repoStatusStyle}\]\")" # Git repository details
-  PS1+="\n" # newline after prompt and before symbol
-  PS1+="\[${symbolStyle}\]${promptSymbol} \[${reset}\]"     # `$` (and reset color)
-  PS1+="\[${textColor}\]"                                   # Terminal stdout color
-  # export PS1
-}
+# function prompt_update() {
+#   get_status # Get the last command status and set the color of the symbol based on it
+#   # Set the terminal title and prompt.
+PS1="\n"                  # newline
+PS1+="\[${userStyle}\]\u" # username
+PS1+="\[${wordStyle}\] at "
+PS1+="\[${hostStyle}\]\h (\t)" # host
+PS1+="\[${wordStyle}\] in "
+PS1+="\[${pwdStyle}\]\w"                                                                    # working directory full path
+PS1+="\$(prompt_git \"\[${wordStyle}\] on \[${branchStyle}\]\" \"\[${repoStatusStyle}\]\")" # Git repository details
+PS1+="\n"                                                                                   # newline after prompt and before symbol
+PS1+="\[${symbolStyle}\]${promptSymbol} \[${reset}\]"                                       # `$` (and reset color)
+PS1+="\[${textColor}\]"                                                                     # Terminal stdout color
+export PS1
+# }
 
-PROMPT_COMMAND=prompt_update # Updates the prompt on each command execution
+# PROMPT_COMMAND=prompt_update # Updates the prompt on each command execution
 
 PS2="\[${rYellow}\]→ \[${reset}\]"
 export PS2
