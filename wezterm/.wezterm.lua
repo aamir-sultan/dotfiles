@@ -114,47 +114,11 @@ end
 
 local function getRandomBackgroundPath()
   local backgroundsTable = {
-    -- "D://Mega//backgrounds//planet.jpg",
-    -- "D://Mega//backgrounds//bars.jpg",
-    -- "D://Mega//backgrounds//dark_trees.jpg",
-    -- "D://Mega//backgrounds//sand.jpg",
-    -- "D://Mega//backgrounds//21842.jpg",
-    -- "D://Mega//backgrounds//570.jpg",
-    -- "D://Mega//backgrounds//samurai.jpg",
-    -- "D://Mega//backgrounds//samurai_1.jpg",
-    -- "D://Mega//backgrounds//samurai_2.jpg",
-    -- "D://Mega//backgrounds//samurai_3.jpg",
-    -- "D://Mega//backgrounds//samurai_4.jpg",
-    -- "D://Mega//backgrounds//samurai_5.jpg",
-    -- "D://Mega//backgrounds//samurai_6.jpg",
-    -- "D://Mega//backgrounds//samurai_7.jpg",
-    -- "D://Mega//backgrounds//samurai_8.jpg",
-    -- "D://Mega//backgrounds//swordsman.jpg",
-    -- "D://Mega//backgrounds//swordsman_1.jpg",
-    -- "D://Mega//backgrounds//swordsman_2.jpg",
-    -- "D://Mega//backgrounds//swordsman_3.jpg",
-    -- "D://Mega//backgrounds//swordsman_4.jpg",
-    -- "D://Mega//backgrounds//swordsman_5.jpg",
-    -- "D://Mega//backgrounds//swordsman_6.jpg",
-    -- "D://Mega//backgrounds//swordsman_7.jpg",
-    -- "D://Mega//backgrounds//swordsman_9.jpg",
-    -- "D://Mega//backgrounds//swordsman_11.jpg",
-    -- "D://Mega//backgrounds//swordsman_12.jpg",
-    -- "D://Mega//backgrounds//swordsman_13.jpg",
-    -- "D://Mega//backgrounds//swordsman_14.jpg",
-    -- "D://Mega//backgrounds//swordsman_15.jpg",
-    -- "D://Mega//backgrounds//swordsman_16.jpg",
-    -- "D://Mega//backgrounds//swordsman_17.jpg",
-    -- "D://Mega//backgrounds//swordsman_18.jpg",
-    -- "D://Mega//backgrounds//swordsman_19.jpg",
-    -- "D://Mega//backgrounds//ghostblade_1.jpg",
-    -- "D://Mega//backgrounds//simple//snake.png",
-    -- "D://Mega//backgrounds//simple//what_wrong.png",
-    -- "D://Mega//backgrounds//simple//flow-top.jpg",
-    -- "D://Mega//backgrounds//simple//the-depths.png",
-    -- "D://Mega//backgrounds//simple//the-depths-invert.png",
     "D://Mega//backgrounds//simple//the-depths-resize.jpg",
-    -- "D://Mega//backgrounds//simple//wp_ants.png",
+    -- "D://Mega//backgrounds//white2.jpg",
+    -- "D://Mega//backgrounds//pale.jpg",
+    "D://Mega//backgrounds//greenish.jpg",
+    -- "D://Mega//backgrounds//greenish2.jpg",
   }
 
   return getRandomStringFromTable(backgroundsTable)
@@ -209,14 +173,17 @@ end
 -- config.color_scheme = 'AdventureTime'
 -- config.color_scheme = 'Ayu Dark'
 -- config.color_scheme = 'ayu'
+-- config.color_scheme = 'ayu Light'
 -- config.color_scheme = 'Batman'
+-- config.color_scheme = 'Catppuccin Latte'
+config.color_scheme = 'ENCOM'
 -- config.color_scheme = 'Gogh (Gogh)'
 -- config.color_scheme = 'Google (dark) (terminal.sexy)'
 -- config.color_scheme = 'Google Dark (base16)'
 -- config.color_scheme = 'Google Dark (Gogh)'
 -- config.color_scheme = 'Gruvbox (Gogh)'
 -- config.color_scheme = 'Gruvbox Dark (Gogh)'
-config.color_scheme = 'Gruvbox dark, hard (base16)'
+-- config.color_scheme = 'Gruvbox dark, hard (base16)'
 -- config.color_scheme = 'Gruvbox dark, medium (base16)'
 -- config.color_scheme = 'Gruvbox dark, pale (base16)'
 -- config.color_scheme = 'Gruvbox dark, soft (base16)'
@@ -228,6 +195,7 @@ config.color_scheme = 'Gruvbox dark, hard (base16)'
 -- config.color_scheme = "GruvboxDarkHard"
 -- config.color_scheme = 'GruvboxLight'
 -- config.color_scheme = "nordfox"
+-- config.color_scheme = "Dayfox"
 -- config.color_scheme = "Hardcore"
 -- config.color_scheme = "Seti"
 -- config.color_scheme = "Solarized"
