@@ -35,7 +35,9 @@ if tput setaf 1 &>/dev/null; then
   # textColor="${rRed}"
   # textColor="${reset}"
   # textColor="${sepia1}"
-  textColor="${sepia2}"
+  # textColor="${sepia2}"
+  # textColor="${dYellow}"
+  textColor="${blue1}"
 
   # Symbol color variable.
   # symbolColor="${sBlue}"

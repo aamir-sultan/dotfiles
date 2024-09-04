@@ -115,9 +115,9 @@ end
 local function getRandomBackgroundPath()
   local backgroundsTable = {
     "D://Mega//backgrounds//simple//the-depths-resize.jpg",
-    -- "D://Mega//backgrounds//white2.jpg",
+    "D://Mega//backgrounds//white2.jpg",
     -- "D://Mega//backgrounds//pale.jpg",
-    "D://Mega//backgrounds//greenish.jpg",
+    -- "D://Mega//backgrounds//greenish.jpg",
     -- "D://Mega//backgrounds//greenish2.jpg",
   }
 
@@ -176,7 +176,7 @@ end
 -- config.color_scheme = 'ayu Light'
 -- config.color_scheme = 'Batman'
 -- config.color_scheme = 'Catppuccin Latte'
-config.color_scheme = 'ENCOM'
+-- config.color_scheme = 'ENCOM'
 -- config.color_scheme = 'Gogh (Gogh)'
 -- config.color_scheme = 'Google (dark) (terminal.sexy)'
 -- config.color_scheme = 'Google Dark (base16)'

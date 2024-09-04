@@ -65,6 +65,7 @@ if tput setaf 1 &>/dev/null; then
   orange1=$(tput setaf 203)
   orange2=$(tput setaf 210)
   yellow1=$(tput setaf 214)
+  blue1=$(tput setaf 39)
 
 else
   bold="\e[1m"
