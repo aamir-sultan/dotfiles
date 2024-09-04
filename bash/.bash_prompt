@@ -30,8 +30,12 @@ if tput setaf 1 &>/dev/null; then
   # textColor="${lGrey}"
   # textColor="${rBlack}"
   # textColor="${sBlue}"
-  textColor="${sCyan}"
+  # textColor="${sCyan}"
   # textColor="${green3}"
+  # textColor="${rRed}"
+  # textColor="${reset}"
+  # textColor="${sepia1}"
+  textColor="${sepia2}"
 
   # Symbol color variable.
   # symbolColor="${sBlue}"
@@ -52,12 +56,12 @@ if tput setaf 1 &>/dev/null; then
   pwdColor="${sBlue}"
 
   # User color variables
-  userRootColor="${lYellow}"
+  userRootColor="${lRed}"
   userNonRootColor="${rGreen}"
 
   # SSH color variables
-  hostSSHColor="${lYellow}"
-  hostNonSSHColor="${lOrange}"
+  hostSSHColor="${dYellow}"
+  hostNonSSHColor="${dOrange}"
 else
   # There is not much to do here in coloring cases. This is kind of fallback to 8-colors.
   # Orange is always mapped to Yellow as 8-colors donot have orange as such

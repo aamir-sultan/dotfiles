@@ -42,10 +42,14 @@ if tput setaf 1 &>/dev/null; then
   rYellow=$(tput setaf 3)
 
   lGreen=$(tput setaf 118)
+  lRed=$(tput setaf 196)
   lYellow=$(tput setaf 227)
   lOrange=$(tput setaf 208)
   lBlue=$(tput setaf 69)
   lGrey=$(tput setaf 243)
+
+  dOrange=$(tput setaf 202)
+  dYellow=$(tput setaf 214)
 
   # Others
   mustard1=$(tput setaf 220)
@@ -54,6 +58,12 @@ if tput setaf 1 &>/dev/null; then
   green1=$(tput setaf 118)
   green2=$(tput setaf 119)
   green3=$(tput setaf 36)
+  sepia1=$(tput setaf 94)
+  sepia2=$(tput setaf 100)
+  blue1=$(tput setaf 57)
+  orange1=$(tput setaf 203)
+  orange2=$(tput setaf 210)
+  yellow1=$(tput setaf 214)
 
 else
   bold="\e[1m"
