@@ -50,6 +50,7 @@ if tput setaf 1 &>/dev/null; then
 
   dOrange=$(tput setaf 202)
   dYellow=$(tput setaf 214)
+  dGreen=$(tput setaf 40)
 
   # Others
   mustard1=$(tput setaf 220)

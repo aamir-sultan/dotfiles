@@ -57,7 +57,8 @@ if tput setaf 1 &>/dev/null; then
 
   # User color variables
   userRootColor="${lRed}"
-  userNonRootColor="${rGreen}"
+  # userNonRootColor="${rGreen}"
+  userNonRootColor="${dGreen}"
 
   # SSH color variables
   hostSSHColor="${dYellow}"
