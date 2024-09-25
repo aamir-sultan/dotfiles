@@ -2,164 +2,164 @@
 
 # Create a new directory and enter it
 function mkd() {
-	mkdir -p "$@" && cd "$_"
+  mkdir -p "$@" && cd "$_"
 }
 
 # Change working directory to the top-most Finder window location
 function cdf() { # short for `cdfinder`
-	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
+  cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
 }
 
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 function targz() {
-	local tmpFile="${@%/}.tar"
-	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1
+  local tmpFile="${@%/}.tar"
+  tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1
 
-	size=$(
-		stat -f"%z" "${tmpFile}" 2>/dev/null # macOS `stat`
-		stat -c"%s" "${tmpFile}" 2>/dev/null # GNU `stat`
-	)
+  size=$(
+    stat -f"%z" "${tmpFile}" 2>/dev/null # macOS `stat`
+    stat -c"%s" "${tmpFile}" 2>/dev/null # GNU `stat`
+  )
 
-	local cmd=""
-	if ((size < 52428800)) && hash zopfli 2>/dev/null; then
-		# the .tar file is smaller than 50 MB and Zopfli is available; use it
-		cmd="zopfli"
-	else
-		if hash pigz 2>/dev/null; then
-			cmd="pigz"
-		else
-			cmd="gzip"
-		fi
-	fi
+  local cmd=""
+  if ((size < 52428800)) && hash zopfli 2>/dev/null; then
+    # the .tar file is smaller than 50 MB and Zopfli is available; use it
+    cmd="zopfli"
+  else
+    if hash pigz 2>/dev/null; then
+      cmd="pigz"
+    else
+      cmd="gzip"
+    fi
+  fi
 
-	echo "Compressing .tar ($((size / 1000)) kB) using \`${cmd}\`…"
-	"${cmd}" -v "${tmpFile}" || return 1
-	[ -f "${tmpFile}" ] && rm "${tmpFile}"
+  echo "Compressing .tar ($((size / 1000)) kB) using \`${cmd}\`…"
+  "${cmd}" -v "${tmpFile}" || return 1
+  [ -f "${tmpFile}" ] && rm "${tmpFile}"
 
-	zippedSize=$(
-		stat -f"%z" "${tmpFile}.gz" 2>/dev/null # macOS `stat`
-		stat -c"%s" "${tmpFile}.gz" 2>/dev/null # GNU `stat`
-	)
+  zippedSize=$(
+    stat -f"%z" "${tmpFile}.gz" 2>/dev/null # macOS `stat`
+    stat -c"%s" "${tmpFile}.gz" 2>/dev/null # GNU `stat`
+  )
 
-	echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully."
+  echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully."
 }
 
 # Determine size of a file or total size of a directory
 function fs() {
-	if du -b /dev/null >/dev/null 2>&1; then
-		local arg=-sbh
-	else
-		local arg=-sh
-	fi
-	if [[ -n "$@" ]]; then
-		du $arg -- "$@"
-	else
-		du $arg .[^.]* ./*
-	fi
+  if du -b /dev/null >/dev/null 2>&1; then
+    local arg=-sbh
+  else
+    local arg=-sh
+  fi
+  if [[ -n "$@" ]]; then
+    du $arg -- "$@"
+  else
+    du $arg .[^.]* ./*
+  fi
 }
 
 # Use Git’s colored diff when available
 hash git &>/dev/null
 if [ $? -eq 0 ]; then
-	function diff() {
-		git diff --no-index --color-words "$@"
-	}
+  function diff() {
+    git diff --no-index --color-words "$@"
+  }
 fi
 
 # Create a data URL from a file
 function dataurl() {
-	local mimeType=$(file -b --mime-type "$1")
-	if [[ $mimeType == text/* ]]; then
-		mimeType="${mimeType};charset=utf-8"
-	fi
-	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
+  local mimeType=$(file -b --mime-type "$1")
+  if [[ $mimeType == text/* ]]; then
+    mimeType="${mimeType};charset=utf-8"
+  fi
+  echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
-	local port="${1:-8000}"
-	sleep 1 && open "http://localhost:${port}/" &
-	# Set the default Content-Type to `text/plain` instead of `application/octet-stream`
-	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
-	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
+  local port="${1:-8000}"
+  sleep 1 && open "http://localhost:${port}/" &
+  # Set the default Content-Type to `text/plain` instead of `application/octet-stream`
+  # And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
+  python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
 }
 
 # Start a PHP server from a directory, optionally specifying the port
 # (Requires PHP 5.4.0+.)
 function phpserver() {
-	local port="${1:-4000}"
-	local ip=$(ipconfig getifaddr en1)
-	sleep 1 && open "http://${ip}:${port}/" &
-	php -S "${ip}:${port}"
+  local port="${1:-4000}"
+  local ip=$(ipconfig getifaddr en1)
+  sleep 1 && open "http://${ip}:${port}/" &
+  php -S "${ip}:${port}"
 }
 
 # Compare original and gzipped file size
 function gz() {
-	local origsize=$(wc -c <"$1")
-	local gzipsize=$(gzip -c "$1" | wc -c)
-	local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l)
-	printf "orig: %d bytes\n" "$origsize"
-	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
+  local origsize=$(wc -c <"$1")
+  local gzipsize=$(gzip -c "$1" | wc -c)
+  local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l)
+  printf "orig: %d bytes\n" "$origsize"
+  printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
 }
 
 # Run `dig` and display the most useful info
 function digga() {
-	dig +nocmd "$1" any +multiline +noall +answer
+  dig +nocmd "$1" any +multiline +noall +answer
 }
 
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
 function getcertnames() {
-	if [ -z "${1}" ]; then
-		echo "ERROR: No domain specified."
-		return 1
-	fi
+  if [ -z "${1}" ]; then
+    echo "ERROR: No domain specified."
+    return 1
+  fi
 
-	local domain="${1}"
-	echo "Testing ${domain}…"
-	echo "" # newline
+  local domain="${1}"
+  echo "Testing ${domain}…"
+  echo "" # newline
 
-	local tmp=$(echo -e "GET / HTTP/1.0\nEOT" |
-		openssl s_client -connect "${domain}:443" -servername "${domain}" 2>&1)
+  local tmp=$(echo -e "GET / HTTP/1.0\nEOT" |
+    openssl s_client -connect "${domain}:443" -servername "${domain}" 2>&1)
 
-	if [[ "${tmp}" = *"-----BEGIN CERTIFICATE-----"* ]]; then
-		local certText=$(echo "${tmp}" |
-			openssl x509 -text -certopt "no_aux, no_header, no_issuer, no_pubkey, \
+  if [[ "${tmp}" = *"-----BEGIN CERTIFICATE-----"* ]]; then
+    local certText=$(echo "${tmp}" |
+      openssl x509 -text -certopt "no_aux, no_header, no_issuer, no_pubkey, \
       no_serial, no_sigdump, no_signame, no_validity, no_version")
-		echo "Common Name:"
-		echo "" # newline
-		echo "${certText}" | grep "Subject:" | sed -e "s/^.*CN=//" | sed -e "s/\/emailAddress=.*//"
-		echo "" # newline
-		echo "Subject Alternative Name(s):"
-		echo "" # newline
-		echo "${certText}" | grep -A 1 "Subject Alternative Name:" |
-			sed -e "2s/DNS://g" -e "s/ //g" | tr "," "\n" | tail -n +2
-		return 0
-	else
-		echo "ERROR: Certificate not found."
-		return 1
-	fi
+    echo "Common Name:"
+    echo "" # newline
+    echo "${certText}" | grep "Subject:" | sed -e "s/^.*CN=//" | sed -e "s/\/emailAddress=.*//"
+    echo "" # newline
+    echo "Subject Alternative Name(s):"
+    echo "" # newline
+    echo "${certText}" | grep -A 1 "Subject Alternative Name:" |
+      sed -e "2s/DNS://g" -e "s/ //g" | tr "," "\n" | tail -n +2
+    return 0
+  else
+    echo "ERROR: Certificate not found."
+    return 1
+  fi
 }
 
 # Normalize `open` across Linux, macOS, and Windows.
 # This is needed to make the `o` function (see below) cross-platform.
 if [ ! $(uname -s) = 'Darwin' ]; then
-	if grep -q Microsoft /proc/version; then
-		# Ubuntu on Windows using the Linux subsystem
-		alias open='explorer.exe'
-	else
-		alias open='xdg-open'
-	fi
+  if grep -q Microsoft /proc/version; then
+    # Ubuntu on Windows using the Linux subsystem
+    alias open='explorer.exe'
+  else
+    alias open='xdg-open'
+  fi
 fi
 
 # `o` with no arguments opens the current directory, otherwise opens the given
 # location
 function o() {
-	if [ $# -eq 0 ]; then
-		open .
-	else
-		open "$@"
-	fi
+  if [ $# -eq 0 ]; then
+    open .
+  else
+    open "$@"
+  fi
 }
 
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
@@ -167,164 +167,172 @@ function o() {
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
 function tre() {
-	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
+  tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
 }
 
 function cl() {
-	DIR="$*"
-	# if no DIR given, go home
-	if [ $# -lt 1 ]; then
-		DIR=$HOME
-	fi
-	builtin cd "${DIR}" &&
-		# use your preferred ls command
-		ls -F --color=auto
+  DIR="$*"
+  # if no DIR given, go home
+  if [ $# -lt 1 ]; then
+    DIR=$HOME
+  fi
+  builtin cd "${DIR}" &&
+    # use your preferred ls command
+    ls -F --color=auto
 }
 
 # Prints a smiley to the terminal on basis of last command
 function smiley() {
-	RC=$?
-	[[ ${RC} == 0 ]] && echo '😊' || echo "😠 ${RC}"
+  RC=$?
+  [[ ${RC} == 0 ]] && echo '😊' || echo "😠 ${RC}"
 }
 # Prints a smiley to the terminal on basis of last command
 function mushroom() {
-	RC=$?
-	[[ ${RC} == 0 ]] && echo '🍄' || echo "😠 ${RC}"
+  RC=$?
+  [[ ${RC} == 0 ]] && echo '🍄' || echo "😠 ${RC}"
 }
 
 function success() {
-	MSG="$1"
-	echo -e "\e[01;32m* $MSG\e[0m"
+  MSG="$1"
+  echo -e "\e[01;32m* $MSG\e[0m"
 }
 
 # Variant for cd .. Now use up 2 or up 3 to go three dirs up
 up() {
-	local d=""
-	limit=$1
-	for ((i = 1; i <= limit; i++)); do
-		d=$d/..
-	done
-	d=$(echo $d | sed 's/^\///')
-	if [ -z "$d" ]; then
-		d=..
-	fi
-	cd $d
+  local d=""
+  limit=$1
+  for ((i = 1; i <= limit; i++)); do
+    d=$d/..
+  done
+  d=$(echo $d | sed 's/^\///')
+  if [ -z "$d" ]; then
+    d=..
+  fi
+  cd $d
 }
 
 # A Bash shell function to save your fingers from typing "awk '{ print $5 }'" all the time
 # Inspiration: http://serverfault.com/a/5551 (but basically rewritten)
 function fawk() {
-	USAGE="\
+  USAGE="\
     usage:  fawk [<awk_args>] <field_no>
       Ex: getent passwd | grep andy | fawk -F: 5
       "
-	if [ $# -eq 0 ]; then
-		echo -e "$USAGE" >&2
-		return
-		#exit 1 # whoops! that would quit the shell!
-	fi
+  if [ $# -eq 0 ]; then
+    echo -e "$USAGE" >&2
+    return
+    #exit 1 # whoops! that would quit the shell!
+  fi
 
-	# bail if the *last* argument isn't a number (source:
-	# http://stackoverflow.com/a/808740)
-	last=${@:(-1)}
-	if ! [ $last -eq $last ] &>/dev/null; then
-		echo "FAWK! Last argument (awk field) must be numeric." >&2
-		echo -e "$USAGE" >&2
-		return
-	fi
+  # bail if the *last* argument isn't a number (source:
+  # http://stackoverflow.com/a/808740)
+  last=${@:(-1)}
+  if ! [ $last -eq $last ] &>/dev/null; then
+    echo "FAWK! Last argument (awk field) must be numeric." >&2
+    echo -e "$USAGE" >&2
+    return
+  fi
 
-	if [ $# -gt 1 ]; then
-		# Source:
-		# http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
-		rest=${@:1:$(($# - 1))}
-	else
-		rest='' # just to be sure
-	fi
-	awk $rest "{ print  \$$last }"
+  if [ $# -gt 1 ]; then
+    # Source:
+    # http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
+    rest=${@:1:$(($# - 1))}
+  else
+    rest='' # just to be sure
+  fi
+  awk $rest "{ print  \$$last }"
 } # fawk                                                                                                                                              } # fawk
 
 t() {
-	find "${1:-.}" -maxdepth "${2:-3}" \
-		-not -regex ".*\/((.idea|.git|.venv|node_modules|venv)\/.*|.DS_Store)" |
-		sort | sed \
-		-e "s/[^-][^\/]*\// ├ /g" \
-		-e "s/├ \//├ /g" \
-		-e "s/├  ├/│  ├/g" \
-		-e "s/├  ├/│  ├/g" \
-		-e "s/├  │/│  │/g" \
-		-e '$s/├/└/'
+  find "${1:-.}" -maxdepth "${2:-3}" \
+    -not -regex ".*\/((.idea|.git|.venv|node_modules|venv)\/.*|.DS_Store)" |
+    sort | sed \
+    -e "s/[^-][^\/]*\// ├ /g" \
+    -e "s/├ \//├ /g" \
+    -e "s/├  ├/│  ├/g" \
+    -e "s/├  ├/│  ├/g" \
+    -e "s/├  │/│  │/g" \
+    -e '$s/├/└/'
 }
 
 # Bash Function To Extract File Archives Of Various Types
 extract() {
-	if [ -f $1 ]; then
-		case $1 in
-		*.tar.bz2) tar xjf $1 ;;
-		*.tar.gz) tar xzf $1 ;;
-		*.tar.xz) tar xf $1 ;;
-		*.bz2) bunzip2 $1 ;;
-		*.rar) rar x $1 ;;
-		*.gz) gunzip $1 ;;
-		*.tar) tar xf $1 ;;
-		*.tbz2) tar xjf $1 ;;
-		*.tgz) tar xzf $1 ;;
-		*.zip) unzip $1 ;;
-		*.Z) uncompress $1 ;;
-		*.7z) 7z x $1 ;;
-		*) echo "'$1' cannot be extracted via extract()" ;;
-		esac
-	else
-		echo "'$1' is not a valid file"
-	fi
+  if [ -f $1 ]; then
+    case $1 in
+    *.tar.bz2) tar xjf $1 ;;
+    *.tar.gz) tar xzf $1 ;;
+    *.tar.xz) tar xf $1 ;;
+    *.bz2) bunzip2 $1 ;;
+    *.rar) rar x $1 ;;
+    *.gz) gunzip $1 ;;
+    *.tar) tar xf $1 ;;
+    *.tbz2) tar xjf $1 ;;
+    *.tgz) tar xzf $1 ;;
+    *.zip) unzip $1 ;;
+    *.Z) uncompress $1 ;;
+    *.7z) 7z x $1 ;;
+    *) echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
 }
 
 # cheat for curl cht.sh/
 # usage: cheat bash/sed
 cheat() {
-	curl cht.sh/"$1"
+  curl cht.sh/"$1"
 }
 
 function lsth() {
-	if command -v vivid &>/dev/null; then
-		for theme in $(vivid themes); do
-			echo "Theme: $theme"
-			LS_COLORS=$(vivid generate $theme)
-			ls
-			echo
-		done
-	else
-		echo "vivid tool is not available int the path"
-		echo -e "vivid can be download from \nhttps://github.com/sharkdp/vivid.git"
-	fi
+  if command -v vivid &>/dev/null; then
+    for theme in $(vivid themes); do
+      echo "Theme: $theme"
+      LS_COLORS=$(vivid generate $theme)
+      ls
+      echo
+    done
+  else
+    echo "vivid tool is not available int the path"
+    echo -e "vivid can be download from \nhttps://github.com/sharkdp/vivid.git"
+  fi
 }
 
 # Print colors
 # ==============================================================================
 function print_colors() {
-	for clbg in {40..47} {100..107} 49; do
-		for clfg in {30..37} {90..97} 39; do
-			for attr in {0..9}; do
-				echo -en "\e[${attr};${clbg};${clfg}m ^[${attr};${clbg};${clfg}m \e[0m"
-			done
-			echo
-		done
-	done
+  for clbg in {40..47} {100..107} 49; do
+    for clfg in {30..37} {90..97} 39; do
+      for attr in {0..9}; do
+        echo -en "\e[${attr};${clbg};${clfg}m ^[${attr};${clbg};${clfg}m \e[0m"
+      done
+      echo
+    done
+  done
 }
 
 function print_colors_256() {
-	for fgbg in 38 48; do
-		for color in {0..255}; do
-			printf "\e[${fgbg};5;%sm  %3s  \e[0m" "$color" "$color"
-			if [ $(((color + 1) % 6)) == 4 ]; then
-				echo
-			fi
-		done
-		echo
-	done
+  for fgbg in 38 48; do
+    for color in {0..255}; do
+      printf "\e[${fgbg};5;%sm  %3s  \e[0m" "$color" "$color"
+      if [ $(((color + 1) % 6)) == 4 ]; then
+        echo
+      fi
+    done
+    echo
+  done
+}
+
+function print_colors_tput() {
+  for c in {0..255}; do
+    tput setaf $c
+    tput setaf $c | cat -v
+    echo =$c
+  done
 }
 
 function print_colors_spectrum() {
-	awk -v term_cols="${width:-$(tput cols || echo 80)}" 'BEGIN{
+  awk -v term_cols="${width:-$(tput cols || echo 80)}" 'BEGIN{
   s="/\\";
   for (colnum = 0; colnum<term_cols; colnum++) {
     r = 255-(colnum*255/term_cols);
@@ -340,18 +348,18 @@ function print_colors_spectrum() {
 }
 
 function smoke_test_font() {
-	echo -e "Normal"
-	echo -e "\033[1mBold\033[22m"
-	echo -e "\033[3mItalic\033[23m"
-	echo -e "\033[3;1mBold Italic\033[0m"
-	echo -e "\033[4mUnderline\033[24m"
-	echo -e "== === !== >= <= =>"
+  echo -e "Normal"
+  echo -e "\033[1mBold\033[22m"
+  echo -e "\033[3mItalic\033[23m"
+  echo -e "\033[3;1mBold Italic\033[0m"
+  echo -e "\033[4mUnderline\033[24m"
+  echo -e "== === !== >= <= =>"
 }
 
 # Open directory with fzf search
 # z() {
 d() {
-	read -r -d '' usage <<'EOT'
+  read -r -d '' usage <<'EOT'
 USAGE:
   d [ARGUMENT] [OPTIONS]
 
@@ -364,70 +372,70 @@ OPTIONS:
   -q                  Use the fzf in query mode.
 EOT
 
-	case $1 in
+  case $1 in
 
-	"--help")
-		echo "$usage"
-		return
-		;;
+  "--help")
+    echo "$usage"
+    return
+    ;;
 
-	"-h")
-		echo "$usage"
-		return
-		;;
+  "-h")
+    echo "$usage"
+    return
+    ;;
 
-		# Query mode
-	"-q")
-		if [[ -z "$2" ]]; then
-			echo "Missing argument for -q"
-			return 1
-		fi
+    # Query mode
+  "-q")
+    if [[ -z "$2" ]]; then
+      echo "Missing argument for -q"
+      return 1
+    fi
 
-		local dir
-		# If fd is not available then use find as default editor
-		if [ ! -x "$(which fd 2>/dev/null)" ]; then
-			dir=$(find . -type d 2>/dev/null | fzf --query=$2) && cd "$dir"
-			echo "$dir"
-		else
-			dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf --query=$2) && cd "$dir"
-			echo "$dir"
-		fi
-		return
-		;;
+    local dir
+    # If fd is not available then use find as default editor
+    if [ ! -x "$(which fd 2>/dev/null)" ]; then
+      dir=$(find . -type d 2>/dev/null | fzf --query=$2) && cd "$dir"
+      echo "$dir"
+    else
+      dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf --query=$2) && cd "$dir"
+      echo "$dir"
+    fi
+    return
+    ;;
 
-	*)
-		local dir
-		if [[ -n "$1" ]]; then
-			local lines
-			if [ ! -x "$(which fd 2>/dev/null)" ]; then
-				lines=$(find . -type d 2>/dev/null | fzf --filter=$1)
-			else
-				lines=$(fd -H -I -E .git --type d 2>/dev/null | fzf --filter=$1)
-			fi
-			# echo "$lines"
-			if [ -z "$lines" ]; then
-				return 1
-			elif [ $(wc -l <<<"$lines") -eq 1 ]; then
-				dir=$(echo "$lines" 2>/dev/null | head -n 1) && cd "$dir"
-				echo "$dir"
-			else
-				# following line selects the first match
-				dir=$(echo "$lines" | head -n 1 2>/dev/null) && cd "$dir"
-				echo "$dir"
-			fi
-		else
-			# If fd is not available then use find as default editor
-			if [ ! -x "$(which fd 2>/dev/null)" ]; then
-				dir=$(find . -type d 2>/dev/null | fzf +m) && cd "$dir"
-				echo "$dir"
-			else
-				dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
-				echo "$dir"
-			fi
-		fi
-		return
-		;;
-	esac
+  *)
+    local dir
+    if [[ -n "$1" ]]; then
+      local lines
+      if [ ! -x "$(which fd 2>/dev/null)" ]; then
+        lines=$(find . -type d 2>/dev/null | fzf --filter=$1)
+      else
+        lines=$(fd -H -I -E .git --type d 2>/dev/null | fzf --filter=$1)
+      fi
+      # echo "$lines"
+      if [ -z "$lines" ]; then
+        return 1
+      elif [ $(wc -l <<<"$lines") -eq 1 ]; then
+        dir=$(echo "$lines" 2>/dev/null | head -n 1) && cd "$dir"
+        echo "$dir"
+      else
+        # following line selects the first match
+        dir=$(echo "$lines" | head -n 1 2>/dev/null) && cd "$dir"
+        echo "$dir"
+      fi
+    else
+      # If fd is not available then use find as default editor
+      if [ ! -x "$(which fd 2>/dev/null)" ]; then
+        dir=$(find . -type d 2>/dev/null | fzf +m) && cd "$dir"
+        echo "$dir"
+      else
+        dir=$(fd -H -I -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
+        echo "$dir"
+      fi
+    fi
+    return
+    ;;
+  esac
 }
 
 # Three Cases:
@@ -439,58 +447,58 @@ EOT
 #   4. If the bookmark is not found then call the d function to search over the directories via fzf.
 # j() {
 cdj() {
-	local bookmarks="$DOTFILES/.bookmarks"
+  local bookmarks="$DOTFILES/.bookmarks"
 
-	if [[ -n "$2" ]]; then
-		bookmark $1 $2
-	elif [[ -n "$1" ]]; then
+  if [[ -n "$2" ]]; then
+    bookmark $1 $2
+  elif [[ -n "$1" ]]; then
 
-		# If the passed argument is available in the bookmarks use the bookmarks else use the fuzzy matching for directory
-		bookmark $1
-		if [[ $? != 0 ]]; then # Check the return value of bookmark $1 command
-			if [ -x "$(which fzf 2>/dev/null)" ]; then
-				# d $1
-				d -q $1
-			else
-				echo "fzf utility not available"
-			fi
-		fi
+    # If the passed argument is available in the bookmarks use the bookmarks else use the fuzzy matching for directory
+    bookmark $1
+    if [[ $? != 0 ]]; then # Check the return value of bookmark $1 command
+      if [ -x "$(which fzf 2>/dev/null)" ]; then
+        # d $1
+        d -q $1
+      else
+        echo "fzf utility not available"
+      fi
+    fi
 
-		# Commented due to the reason that it gets stuck with large file systems
-		# Otherwise in completely working condition.
-		# d $1
-	else
-		# 	# Use j without any arguments to fuzzy search the directories
-		if [ -x "$(which fzf 2>/dev/null)" ]; then
-			d
-		else
-			echo "fzf utility not available"
-		fi
-	fi
+    # Commented due to the reason that it gets stuck with large file systems
+    # Otherwise in completely working condition.
+    # d $1
+  else
+    # 	# Use j without any arguments to fuzzy search the directories
+    if [ -x "$(which fzf 2>/dev/null)" ]; then
+      d
+    else
+      echo "fzf utility not available"
+    fi
+  fi
 }
 
 fe() {
-	if [[ -n "$1" ]]; then
-		if [ -x "$(which fzf 2>/dev/null)" ]; then
-			f -q $1
-		else
-			echo "fzf utility not available"
-		fi
-	else
-		# Use ef without any arguments to fuzzy search the directories
-		if [ -x "$(which fzf 2>/dev/null)" ]; then
-			f
-		else
-			echo "fzf utility not available"
-		fi
-	fi
+  if [[ -n "$1" ]]; then
+    if [ -x "$(which fzf 2>/dev/null)" ]; then
+      f -q $1
+    else
+      echo "fzf utility not available"
+    fi
+  else
+    # Use ef without any arguments to fuzzy search the directories
+    if [ -x "$(which fzf 2>/dev/null)" ]; then
+      f
+    else
+      echo "fzf utility not available"
+    fi
+  fi
 }
 
 bookmark() {
-	local bookmarks="$DOTFILES/.bookmarks"
-	touch $bookmarks
+  local bookmarks="$DOTFILES/.bookmarks"
+  touch $bookmarks
 
-	read -r -d '' usage <<'EOT'
+  read -r -d '' usage <<'EOT'
 USAGE:
   bookmark [ARGUMENT] [OPTIONS]
 
@@ -505,79 +513,79 @@ OPTIONS:
   -c <bookmark>       Bookmark to create.
 EOT
 
-	case $1 in
+  case $1 in
 
-	"--help")
-		echo "$usage"
-		return
-		;;
+  "--help")
+    echo "$usage"
+    return
+    ;;
 
-	"-h")
-		echo "$usage"
+  "-h")
+    echo "$usage"
 
-		return
-		;;
+    return
+    ;;
 
-	"-l")
-		cat "$bookmarks"
-		return
-		;;
+  "-l")
+    cat "$bookmarks"
+    return
+    ;;
 
-	"-c")
-		if [[ -z "$2" ]]; then
-			echo "Missing argument for -c"
-			return 1
-		fi
+  "-c")
+    if [[ -z "$2" ]]; then
+      echo "Missing argument for -c"
+      return 1
+    fi
 
-		local bookmark="${2}=$(pwd)"
-		if [[ -z $(grep "$bookmark" "$bookmarks") ]]; then
-			echo $bookmark >>$bookmarks
-			echo $bookmark
-		else
-			echo "Bookmark '$bookmark' already exists."
-		fi
-		return
-		;;
+    local bookmark="${2}=$(pwd)"
+    if [[ -z $(grep "$bookmark" "$bookmarks") ]]; then
+      echo $bookmark >>$bookmarks
+      echo $bookmark
+    else
+      echo "Bookmark '$bookmark' already exists."
+    fi
+    return
+    ;;
 
-	"-d")
-		if [[ -z "$2" ]]; then
-			echo "Missing argument for -d"
-			return 1
+  "-d")
+    if [[ -z "$2" ]]; then
+      echo "Missing argument for -d"
+      return 1
 
-		fi
+    fi
 
-		local pat="$2"
-		if grep -q "^$pat=" "$bookmarks"; then
-			sed -i "/^$pat=/d" "$bookmarks"
-			echo -e "Bookmark '$pat' removed.\n"
-			echo -e "Bookmarks:"
-			cat "$bookmarks"
-		else
-			echo -e "Bookmark '$pat' does not exist.\n"
-			echo -e "Bookmarks:"
-			cat "$bookmarks"
-		fi
-		return
-		;;
+    local pat="$2"
+    if grep -q "^$pat=" "$bookmarks"; then
+      sed -i "/^$pat=/d" "$bookmarks"
+      echo -e "Bookmark '$pat' removed.\n"
+      echo -e "Bookmarks:"
+      cat "$bookmarks"
+    else
+      echo -e "Bookmark '$pat' does not exist.\n"
+      echo -e "Bookmarks:"
+      cat "$bookmarks"
+    fi
+    return
+    ;;
 
-	*)
-		# local bookmark="${1}="
-		# if [[ -z $(grep "$bookmark" "$bookmarks") ]]; then
-		# 	echo "Bookmark '$1' does not exists."
-		# 	return 1
-		# fi
+  *)
+    # local bookmark="${1}="
+    # if [[ -z $(grep "$bookmark" "$bookmarks") ]]; then
+    # 	echo "Bookmark '$1' does not exists."
+    # 	return 1
+    # fi
 
-		local target=$(grep "$1=" "$bookmarks")
-		if [ "$target" == "" ]; then
-			# echo "Bookmark '$1' does not exists."
-			return 1
-		fi
+    local target=$(grep "$1=" "$bookmarks")
+    if [ "$target" == "" ]; then
+      # echo "Bookmark '$1' does not exists."
+      return 1
+    fi
 
-		local result=${target/$1=/}
-		cd "$result"
-		return
-		;;
-	esac
+    local result=${target/$1=/}
+    cd "$result"
+    return
+    ;;
+  esac
 }
 alias j="cdj"
 alias jls="j -l"
@@ -587,36 +595,36 @@ alias jls="j -l"
 # If run command with other keyword , like {"tmux" ls} will run like what orginal tmux do
 
 tmux() {
-	if [ $# -gt 0 ]; then
-		command tmux "$@"
-	else
-		if tmux ls &>/dev/null; then
-			tmux attach
-		else
-			tmux new -s Term
-		fi
-	fi
+  if [ $# -gt 0 ]; then
+    command tmux "$@"
+  else
+    if tmux ls &>/dev/null; then
+      tmux attach
+    else
+      tmux new -s Term
+    fi
+  fi
 }
 
 tmux-kill-other() {
-	while IFS=: read -r session _; do
-		tmux kill-session -t "$session"
-	done < <(tmux list-sessions | grep -v 'attached' | cut -f1 -d:)
+  while IFS=: read -r session _; do
+    tmux kill-session -t "$session"
+  done < <(tmux list-sessions | grep -v 'attached' | cut -f1 -d:)
 }
 alias tko='tmux-kill-other'
 
 # Go back number of directories in the path
 function up() {
-	local d=""
-	limit=$1
-	for ((i = 1; i <= limit; i++)); do
-		d=$d/..
-	done
-	d=$(echo $d | sed 's/^\///')
-	if [ -z "$d" ]; then
-		d=..
-	fi
-	cd $d
+  local d=""
+  limit=$1
+  for ((i = 1; i <= limit; i++)); do
+    d=$d/..
+  done
+  d=$(echo $d | sed 's/^\///')
+  if [ -z "$d" ]; then
+    d=..
+  fi
+  cd $d
 }
 
 # add path to filename(s)
@@ -633,12 +641,12 @@ dos2unix() { sed -i 's/\r$//' "$@"; }
 
 # Provides 'cdup DIR', cd up to the matching DIR
 function cdup {
-	newdir="${PWD/\/$1\/*/}/$1"
-	if [[ -d "$newdir" ]]; then
-		cd "$newdir"
-	else
-		echo "\"$newdir\" does not exist"
-	fi
+  newdir="${PWD/\/$1\/*/}/$1"
+  if [[ -d "$newdir" ]]; then
+    cd "$newdir"
+  else
+    echo "\"$newdir\" does not exist"
+  fi
 }
 
 # Its a good idea but currently its not working
@@ -660,98 +668,98 @@ function cdup {
 
 # name makes it pretty obvious
 function rar2zip() {
-	local DIR=$(pwd)
-	local TMP="/tmp/rar2zip"
-	local RAR_FILE=$(realpath "$1")
-	local ZIP_FILE=$(sed -r 's/\.rar$/.zip/' <<<"$RAR_FILE")
-	mkdir -p "$TMP/rar"
-	unrar x "$RAR_FILE" "$TMP/rar"
-	cd "$TMP/rar"
-	zip -r ../result.zip *
-	cd "$DIR"
-	cp "$TMP/result.zip" "$ZIP_FILE"
-	rm -f "$RAR_FILE"
-	rm -rf "$TMP"
+  local DIR=$(pwd)
+  local TMP="/tmp/rar2zip"
+  local RAR_FILE=$(realpath "$1")
+  local ZIP_FILE=$(sed -r 's/\.rar$/.zip/' <<<"$RAR_FILE")
+  mkdir -p "$TMP/rar"
+  unrar x "$RAR_FILE" "$TMP/rar"
+  cd "$TMP/rar"
+  zip -r ../result.zip *
+  cd "$DIR"
+  cp "$TMP/result.zip" "$ZIP_FILE"
+  rm -f "$RAR_FILE"
+  rm -rf "$TMP"
 }
 
 function matrix() {
-	tr -c "[:digit:]" " " </dev/urandom | dd cbs=$COLUMNS conv=unblock | GREP_COLOR="1;32" grep --color "[^ ]"
+  tr -c "[:digit:]" " " </dev/urandom | dd cbs=$COLUMNS conv=unblock | GREP_COLOR="1;32" grep --color "[^ ]"
 }
 
 jfa() {
-	local dir
-	# If fd is not available then use find as default editor
-	if [ ! -x "$(which fd 2>/dev/null)" ]; then
-		dir=$(find / -type d 2>/dev/null | fzf +m) && cd "$dir"
-	else
-		dir=$(fd . '/' -H -I -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
-	fi
+  local dir
+  # If fd is not available then use find as default editor
+  if [ ! -x "$(which fd 2>/dev/null)" ]; then
+    dir=$(find / -type d 2>/dev/null | fzf +m) && cd "$dir"
+  else
+    dir=$(fd . '/' -H -I -E .git --type d 2>/dev/null | fzf +m) && cd "$dir"
+  fi
 }
 
 # Open directory with fzf search
 # z() {
 jf() {
-	local dir
-	dir=$(cat $DOTFILES/.bookmarks 2>/dev/null | cut -d = -f 2 | fzf +m) && cd "$dir"
+  local dir
+  dir=$(cat $DOTFILES/.bookmarks 2>/dev/null | cut -d = -f 2 | fzf +m) && cd "$dir"
 }
 
 jfz() {
-	local dir
-	# dir=$(cat $DOTFILES/.bookmarks 2>/dev/null | fzf +m | cut -d = -f 2) && cd "$dir" && d
-	dir=$(cat $DOTFILES/.bookmarks 2>/dev/null | cut -d = -f 2 | fzf +m) && cd "$dir" && d
+  local dir
+  # dir=$(cat $DOTFILES/.bookmarks 2>/dev/null | fzf +m | cut -d = -f 2) && cd "$dir" && d
+  dir=$(cat $DOTFILES/.bookmarks 2>/dev/null | cut -d = -f 2 | fzf +m) && cd "$dir" && d
 }
 
 b() {
-	local dir
-	if [[ -n "$1" ]]; then
-		local lines
-		# lines=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | fzf --filter=$1 | tac)
-		lines=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | tac)
-		# echo "$lines"
+  local dir
+  if [[ -n "$1" ]]; then
+    local lines
+    # lines=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | fzf --filter=$1 | tac)
+    lines=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | tac)
+    # echo "$lines"
 
-		pwd_path=$(pwd)
+    pwd_path=$(pwd)
 
-		while read -r line; do
-			# Skip if the line matches the current working directory
-			if [ "$line" = "$pwd_path" ]; then
-				continue
-			fi
+    while read -r line; do
+      # Skip if the line matches the current working directory
+      if [ "$line" = "$pwd_path" ]; then
+        continue
+      fi
 
-			# Process each line
-			base_name=$(basename "$line")
-			if [ ! -x "$(which fzf 2>/dev/null)" ]; then
-				grep_output=$(echo "$base_name" | grep -E "^$1")
-				if [ "$grep_output" != "" ]; then
-					cd "$line"
-					break
-				fi
-			else
-				fzf_output=$(echo "$base_name" | fzf --filter="$1")
-				if [ "$fzf_output" != "" ]; then
-					cd "$line"
-					break
-				fi
-			fi
+      # Process each line
+      base_name=$(basename "$line")
+      if [ ! -x "$(which fzf 2>/dev/null)" ]; then
+        grep_output=$(echo "$base_name" | grep -E "^$1")
+        if [ "$grep_output" != "" ]; then
+          cd "$line"
+          break
+        fi
+      else
+        fzf_output=$(echo "$base_name" | fzf --filter="$1")
+        if [ "$fzf_output" != "" ]; then
+          cd "$line"
+          break
+        fi
+      fi
 
-		done <<<"$lines"
+    done <<<"$lines"
 
-		# if [ -z "$lines" ]; then
-		# 	return 1
-		# elif [ $(wc -l <<<"$lines") -eq 1 ]; then
-		# 	dir=$(echo "$lines" 2>/dev/null | head -n 1) && cd $dir
-		# else
-		# 	# Following line selects the first match
-		# 	dir=$(echo "$lines" | head -n 1 2>/dev/null) && cd $dir
-		# fi
+    # if [ -z "$lines" ]; then
+    # 	return 1
+    # elif [ $(wc -l <<<"$lines") -eq 1 ]; then
+    # 	dir=$(echo "$lines" 2>/dev/null | head -n 1) && cd $dir
+    # else
+    # 	# Following line selects the first match
+    # 	dir=$(echo "$lines" | head -n 1 2>/dev/null) && cd $dir
+    # fi
 
-	else
-		dir=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | fzf +m) && cd "$dir"
-	fi
+  else
+    dir=$(echo $(pwd) | awk -F'/' '{path="/"; print path; for (i=2; i<=NF; i++) {if (i != 2) {path=path "/"} path=path $i; print path}}' | sed '$!s#/$##' | sed '1!b; s#$#/#' 2>/dev/null | fzf +m) && cd "$dir"
+  fi
 }
 
 # Open file in default editor with fzf search
 f() {
-	read -r -d '' usage <<'EOT'
+  read -r -d '' usage <<'EOT'
 USAGE:
   f [ARGUMENT] [OPTIONS]
 
@@ -764,88 +772,88 @@ OPTIONS:
   -q                  Use the fzf in query mode.
 EOT
 
-	case $1 in
+  case $1 in
 
-	"--help")
-		echo "$usage"
-		return
-		;;
+  "--help")
+    echo "$usage"
+    return
+    ;;
 
-	"-h")
-		echo "$usage"
-		return
-		;;
+  "-h")
+    echo "$usage"
+    return
+    ;;
 
-		# Query mode
-	"-q")
-		if [[ -z "$2" ]]; then
-			echo "Missing argument for -q"
-			return 1
-		fi
+    # Query mode
+  "-q")
+    if [[ -z "$2" ]]; then
+      echo "Missing argument for -q"
+      return 1
+    fi
 
-		local file
-		# If fd is not available then use find as default editor
-		if [ ! -x "$(which fd 2>/dev/null)" ]; then
-			file=$(find . -type f 2>/dev/null | fzf --query=$2) && $EDITOR "$file"
-			echo "$EDITOR $file"
-		else
-			file=$(fd -H -I -E .git --type f 2>/dev/null | fzf --query=$2) && $EDITOR "$file"
-			echo "$EDITOR $file"
-		fi
-		return
-		;;
+    local file
+    # If fd is not available then use find as default editor
+    if [ ! -x "$(which fd 2>/dev/null)" ]; then
+      file=$(find . -type f 2>/dev/null | fzf --query=$2) && $EDITOR "$file"
+      echo "$EDITOR $file"
+    else
+      file=$(fd -H -I -E .git --type f 2>/dev/null | fzf --query=$2) && $EDITOR "$file"
+      echo "$EDITOR $file"
+    fi
+    return
+    ;;
 
-	*)
-		local file
-		if [[ -n "$1" ]]; then
-			local lines
-			if [ ! -x "$(which fd 2>/dev/null)" ]; then
-				lines=$(find . -type f 2>/dev/null | fzf --filter=$1)
-			else
-				lines=$(fd -H -I -E .git --type f 2>/dev/null | fzf --filter=$1)
-			fi
-			# echo "$lines"
-			if [ -z "$lines" ]; then
-				return 1
-			elif [ $(wc -l <<<"$lines") -eq 1 ]; then
-				file=$(echo "$lines" 2>/dev/null | head -n 1) && $EDITOR "$file"
-			else
-				# Following line selects the first match
-				file=$(echo "$lines" | head -n 1 2>/dev/null) && $EDITOR "$file"
-			fi
-		else
-			# If fd is not available then use find as default editor
-			if [ ! -x "$(which fd 2>/dev/null)" ]; then
-				file=$(find . -type f 2>/dev/null | fzf +m) && $EDITOR "$file"
-			else
-				file=$(fd -H -I -E .git --type f 2>/dev/null | fzf +m) && $EDITOR "$file"
-			fi
-		fi
-		return
-		;;
-	esac
+  *)
+    local file
+    if [[ -n "$1" ]]; then
+      local lines
+      if [ ! -x "$(which fd 2>/dev/null)" ]; then
+        lines=$(find . -type f 2>/dev/null | fzf --filter=$1)
+      else
+        lines=$(fd -H -I -E .git --type f 2>/dev/null | fzf --filter=$1)
+      fi
+      # echo "$lines"
+      if [ -z "$lines" ]; then
+        return 1
+      elif [ $(wc -l <<<"$lines") -eq 1 ]; then
+        file=$(echo "$lines" 2>/dev/null | head -n 1) && $EDITOR "$file"
+      else
+        # Following line selects the first match
+        file=$(echo "$lines" | head -n 1 2>/dev/null) && $EDITOR "$file"
+      fi
+    else
+      # If fd is not available then use find as default editor
+      if [ ! -x "$(which fd 2>/dev/null)" ]; then
+        file=$(find . -type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+      else
+        file=$(fd -H -I -E .git --type f 2>/dev/null | fzf +m) && $EDITOR "$file"
+      fi
+    fi
+    return
+    ;;
+  esac
 }
 
 # ssh to host based on fzf with names from config file
 sshf() {
-	local host
-	host=$(grep "$1" ~/.ssh/config | fzf +m | awk '{print $2}') && ssh "$host"
+  local host
+  host=$(grep "$1" ~/.ssh/config | fzf +m | awk '{print $2}') && ssh "$host"
 }
 
 # This function displays a history of the directories you've recently been in
 function histd {
-	local i=0
-	for entry in $(history -w); do
-		if [[ $entry =~ ^cd ]]; then
-			((i++))
-			# Get directory name after "cd " (avoiding alias expansion)
-			local dir="${entry#cd }"
-			# Show only the last 10 entries by default
-			if [[ $i -le 10 ]]; then
-				echo "$i: $dir"
-			fi
-		fi
-	done
+  local i=0
+  for entry in $(history -w); do
+    if [[ $entry =~ ^cd ]]; then
+      ((i++))
+      # Get directory name after "cd " (avoiding alias expansion)
+      local dir="${entry#cd }"
+      # Show only the last 10 entries by default
+      if [[ $i -le 10 ]]; then
+        echo "$i: $dir"
+      fi
+    fi
+  done
 }
 
 # ******************************************************
@@ -856,20 +864,55 @@ function histd {
 # remove '-type f' if you want to match directories as well
 fs() { find -type f -iname '*'"$1"'*'; }
 
-# Quick find with any partial text for files
-function qfind {
-	if [[ -n "$1" ]]; then
-		find . -iname "*$1*" -type f -print
-	else
-		echo "Usage: quickfind <search_pattern>"
-	fi
+# Quick find file with any partial text for files
+function qff {
+  if [[ -n "$1" ]]; then
+    find . -iname "*$1*" -type f -print
+  else
+    echo "Usage: quickfind <search_pattern>"
+  fi
+}
+
+# Quick find dir with any partial text for files
+function qfd {
+  if [[ -n "$1" ]]; then
+    find . -iname "*$1*" -type d -print
+  else
+    echo "Usage: quickfind <search_pattern>"
+  fi
 }
 
 vivid_theme() {
-	for theme in $(vivid themes); do
-		echo "Theme: $theme"
-		LS_COLORS=$(vivid generate $theme)
-		ls -a
-		echo
-	done
+  for theme in $(vivid themes); do
+    echo "Theme: $theme"
+    LS_COLORS=$(vivid generate $theme)
+    ls -a
+    echo
+  done
+}
+
+function sshx {
+  if [ -z "$1" ]; then
+    echo '''
+          Please also provide ssh connection details.
+          '''
+    exit 1
+  fi
+  retries=0
+  repeat=true
+  today=$(date)
+  while "$repeat"; do
+    ((retries += 1)) &&
+      echo "Try number $retries..." &&
+      today=$(date) &&
+      ssh "$@" &&
+      repeat=false
+    sleep 5
+  done
+  echo """
+          Disconnected sshx after a successful login.
+          Total number of tries = $retries
+          Connected at:
+          $today
+  """
 }

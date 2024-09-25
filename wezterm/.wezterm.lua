@@ -6,6 +6,7 @@ local act = wezterm.action                -- Actions table for wezterm different
 local keys = {}                           -- This table will hold the keybindings.
 local mouse_bindings = {}                 -- This table will hold the mouse bindings.
 local launch_menu = {}                    -- This table will hold the launch menu options.
+local images_dir = "D://Mega//backgrounds"
 
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
@@ -113,19 +114,57 @@ end
 
 local function getRandomBackgroundPath()
   local backgroundsTable = {
-    -- "D://Mega//backgrounds//2142.jpg",
-    "D://Mega//backgrounds//planet.jpg",
-    "D://Mega//backgrounds//bars.jpg",
-    "D://Mega//backgrounds//dark_trees.jpg",
-    -- "D://Mega//backgrounds//star_cave.jpg",
-    -- "D://Mega//backgrounds//10.jpg",
-    "D://Mega//backgrounds//sand.jpg",
-    "D://Mega//backgrounds//21842.jpg",
-    -- "D://Mega//backgrounds//lone_tree.jpg",
+    -- "D://Mega//backgrounds//simple//the-depths-resize.jpg",
+    -- "D://Mega//backgrounds//white2.jpg",
+    -- "D://Mega//backgrounds//grey.png",
+    -- "D://Mega//backgrounds//pale.jpg",
+    -- "D://Mega//backgrounds//greenish.jpg",
+    -- "D://Mega//backgrounds//greenish2.jpg",
   }
 
   return getRandomStringFromTable(backgroundsTable)
 end
+
+-- Function to get a list of files in a directory
+local function get_files_in_dir(dir_path)
+  local files = {}
+  local dir = io.popen('ls "' .. dir_path .. '"')
+
+  for file in dir:lines() do
+    table.insert(files, file)
+  end
+
+  dir:close()
+  return files
+end
+
+-- Function to check if a file has a valid image extension
+local function is_valid_image_file(file_name)
+  local ext = file_name:match("%.(%a+)$")
+  return ext and (ext == "jpg" or ext == "png" or ext == "bmp" or ext == "gif")
+end
+
+-- Function to get a random image path from a directory
+function get_random_image_path(dir_path)
+  local files = get_files_in_dir(dir_path)
+  local image_files = {}
+
+  -- Filter valid image files
+  for _, file_name in ipairs(files) do
+    if is_valid_image_file(file_name) then
+      table.insert(image_files, dir_path .. "/" .. file_name)
+    end
+  end
+
+  -- If there are no valid image files, return nil
+  if #image_files == 0 then
+    return nil
+  end
+
+  -- Return a random image path from the image_files table
+  return image_files[math.random(#image_files)]
+end
+
 ---------------------------------------------------------------
 --- Configurations settings and switches.
 ---------------------------------------------------------------
@@ -135,7 +174,10 @@ end
 -- config.color_scheme = 'AdventureTime'
 -- config.color_scheme = 'Ayu Dark'
 -- config.color_scheme = 'ayu'
+-- config.color_scheme = 'ayu Light'
 -- config.color_scheme = 'Batman'
+-- config.color_scheme = 'Catppuccin Latte'
+-- config.color_scheme = 'ENCOM'
 -- config.color_scheme = 'Gogh (Gogh)'
 -- config.color_scheme = 'Google (dark) (terminal.sexy)'
 -- config.color_scheme = 'Google Dark (base16)'
@@ -154,19 +196,24 @@ end
 -- config.color_scheme = "GruvboxDarkHard"
 -- config.color_scheme = 'GruvboxLight'
 -- config.color_scheme = "nordfox"
-config.color_scheme = "Hardcore"
+-- config.color_scheme = "Dayfox"
+-- config.color_scheme = "Hardcore"
 -- config.color_scheme = "Seti"
+-- config.color_scheme = "Solarized"
 
 -- Charachter Settings
--- config.cell_width = 1.05 -- Set this to increase the charachter spacing in the terminal.
+-- config.cell_width = 1.00 -- Set this to in/decrease the charachter spacing in the terminal.
 -- config.cell_width = 1.01 -- Set this to in/decrease the charachter spacing in the terminal.
-config.cell_width = 1.00 -- Set this to in/decrease the charachter spacing in the terminal.
+-- config.cell_width = 1.05 -- Set this to increase the charachter spacing in the terminal.
+config.cell_width = 1.2 -- Set this to increase the charachter spacing in the terminal.
 -- config.line_height = 1   -- Set this to in/decrease the charachter height in the terminal.
-config.line_height = 1.2 -- Set this to in/decrease the charachter height in the terminal.
+-- config.line_height = 1.2 -- Set this to in/decrease the charachter height in the terminal.
+config.line_height = 1.4 -- Set this to in/decrease the charachter height in the terminal.
 
 -- Font Settings
 -- config.font_size = 10.0
-config.font_size = 11.0
+config.font_size = 10.5
+-- config.font_size = 11.0
 -- config.font_size = 11.5
 -- config.font_size = 12.0
 -- config.font_size = 13.0
@@ -180,7 +227,8 @@ local fontWeight = "Regular"
 -- local fontWeight = "Medium"
 -- local fontWeight = "Bold"
 
-local font_family_name = "DM Mono"
+-- local font_family_name = "DM Mono"
+local font_family_name = "UbuntuSansMono NF"
 -- local font_family_name = "Fantasque Sans Mono"
 -- local font_family_name = "Fira Code"
 -- local font_family_name = "JetBrains Mono"
@@ -231,67 +279,107 @@ config.font = wezterm.font_with_fallback({
 --     hue = 1.0, -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
 --     saturation = 1.0 -- You can adjust the saturation also.
 -- }
-local hsb_dimmer = { -- Will implicitly prepend a layer to the background configuration
-  brightness = 0.4,  -- Darken the background image by reducing it to 1/3rd
-  hue = 1.0,         -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
-  saturation = 1.0,  -- You can adjust the saturation also.
-}
 -- config.window_background_image_hsb = hsb_dimmer -- Will implicitly prepend a layer to the background configuration
+hsb_dimmer = {      -- Will implicitly prepend a layer to the background configuration
+  brightness = 1.3, -- Darken the background image by reducing it to 1/3rd
+  hue = 0.9,        -- You can adjust the hue by scaling its value. A multiplier of 1.0 leaves the value unchanged.
+  saturation = 0.8  -- You can adjust the saturation also.
+}
 
-config.background = {
-  -- This is the deepest/back-most layer. It will be rendered first
-  {
-    source = {
-      File = getRandomBackgroundPath(),
-    },
-    -- The texture tiles vertically but not horizontally.
-    -- When we repeat it, mirror it so that it appears "more seamless".
-    -- An alternative to this is to set `width = "100%"` and have
-    -- it stretch across the display
-    -- Other repeat options are Mirror, Repeat, NoRepeat.
-    --   repeat_x 	= 'Mirror',
-    repeat_x = "NoRepeat",
-    repeat_y = "Mirror",
-    -- Other options for the horizontal align are "Center", "Right", and "Left". "Left" is default.
-    horizontal_align = "Left",
-    -- Other options for the vertical align are "Middle", "Top", and "Bottom". "Top" is default.
-    vertical_align = "Top",
-    -- -- Specify an offset from the initial vertical position
-    -- -- string of the form '123px' where 'px' is a unit
-    -- -- and can be one of 'px', '%', 'pt' or 'cell'
-    -- horizontal_offset = "0px",
-    -- vertical_offset = "0px",
+-- config.background = {
+--   -- This is the deepest/back-most layer. It will be rendered first
+--   {
+--     source = {
+--       File = getRandomBackgroundPath(),
+--       -- File = get_random_image_path("D://Mega//backgrounds"),
+--     },
+--     -- The texture tiles vertically but not horizontally.
+--     -- When we repeat it, mirror it so that it appears "more seamless".
+--     -- An alternative to this is to set `width = "100%"` and have
+--     -- it stretch across the display
+--     -- Other repeat options are Mirror, Repeat, NoRepeat.
+--     --   repeat_x 	= 'Mirror',
+--     repeat_x = "NoRepeat",
+--     repeat_y = "NoRepeat",
+--     -- repeat_y = "Mirror",
+--     -- Other options for the horizontal align are "Center", "Right", and "Left". "Left" is default.
+--     -- horizontal_align = "Left",
+--     horizontal_align = "Right",
+--     -- horizontal_align = "Center",
+--     -- Other options for the vertical align are "Middle", "Top", and "Bottom". "Top" is default.
+--     vertical_align = "Top",
+--     -- vertical_align = "Bottom",
+--     -- -- Specify an offset from the initial vertical position
+--     -- -- string of the form '123px' where 'px' is a unit
+--     -- -- and can be one of 'px', '%', 'pt' or 'cell'
+--     -- horizontal_offset = "0px",
+--     -- vertical_offset = "0px",
+--
+--     hsb = hsb_dimmer,
+--     -- opacity = 0.98,
+--     -- When the viewport scrolls, move this layer 10% of the number of
+--     -- pixels moved by the main viewport. This makes it appear to be
+--     -- further behind the text.
+--     -- attachment = { Parallax = 0.1 },
+--     attachment = "Fixed",
+--     -- attachment = "Scroll",
+--   },
+-- }
 
-    hsb = hsb_dimmer,
-    -- opacity = 0.98,
-    -- When the viewport scrolls, move this layer 10% of the number of
-    -- pixels moved by the main viewport. This makes it appear to be
-    -- further behind the text.
-    -- attachment = { Parallax = 0.1 },
-    attachment = "Fixed",
-    -- attachment = "Scroll",
-  },
-  -- -- Subsequent layers are rendered over the top of each other
-  -- {
-  --   source  = {
-  -- 	File    = 'D://Mega//backgrounds//assets//blob_blue.gif',
-  --   },
-  --   width 	    = '100%',
-  --   repeat_x 	  = 'NoRepeat',
+config.window_background_gradient = {
+  -- Can be "Vertical" or "Horizontal".  Specifies the direction
+  -- in which the color gradient varies.  The default is "Horizontal",
+  -- with the gradient going from left-to-right.
+  -- Linear and Radial gradients are also supported; see the other
+  -- examples below
+  -- orientation = 'Vertical',
+  orientation = { Linear = { angle = -45.0 } },
 
-  --   -- position the spins starting at the bottom, and repeating every
-  --   -- two screens.
-  --   vertical_align 	  = 'Middle',
-  --   -- repeat_y_size 	  = '300%',
-  --   hsb 				      = hsb_dimmer,
-  --   opacity           = 0.2,
-  --   height            = 'Contain',
-
-  --   -- The parallax factor is higher than the background layer, so this
-  --   -- one will appear to be closer when we scroll
-  --   -- attachment = { Parallax = 0.1 },
-  --   attachment = "Fixed",
+  -- Specifies the set of colors that are interpolated in the gradient.
+  -- Accepts CSS style color specs, from named colors, through rgb
+  -- strings and more
+  -- colors = {
+  --   '#0f0c29',
+  --   '#302b63',
+  --   '#24243e',
   -- },
+  colors = { '#300924' }, -- Ubuntu Terminal Colors
+  -- colors = { '#300924', '#2E3436' },
+  -- colors = { '#fdf6e3' },
+  -- colors = { '#dfca88' },
+
+  -- Instead of specifying `colors`, you can use one of a number of
+  -- predefined, preset gradients.
+  -- A list of presets is shown in a section below.
+  -- preset = "Warm",
+
+  -- Specifies the interpolation style to be used.
+  -- "Linear", "Basis" and "CatmullRom" as supported.
+  -- The default is "Linear".
+  interpolation = 'Linear',
+
+  -- How the colors are blended in the gradient.
+  -- "Rgb", "LinearRgb", "Hsv" and "Oklab" are supported.
+  -- The default is "Rgb".
+  blend = 'Rgb',
+
+  -- To avoid vertical color banding for horizontal gradients, the
+  -- gradient position is randomly shifted by up to the `noise` value
+  -- for each pixel.
+  -- Smaller values, or 0, will make bands more prominent.
+  -- The default value is 64 which gives decent looking results
+  -- on a retina macbook pro display.
+  -- noise = 64,
+
+  -- By default, the gradient smoothly transitions between the colors.
+  -- You can adjust the sharpness by specifying the segment_size and
+  -- segment_smoothness parameters.
+  -- segment_size configures how many segments are present.
+  -- segment_smoothness is how hard the edge is; 0.0 is a hard edge,
+  -- 1.0 is a soft edge.
+
+  -- segment_size = 11,
+  -- segment_smoothness = 0.0,
 }
 
 -- Additional Settings
@@ -319,6 +407,7 @@ config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 0
 config.animation_fps = 1 -- Controls the maximum frame rate used when rendering easing effects for blinking cursors, blinking text and visual bell.
+-- config.force_reverse_video_cursor = true -- Reverse the cursor color for the terminal
 -- config.visual_bell = {
 --   fade_in_duration_ms = 75,
 --   fade_out_duration_ms = 75,
@@ -457,10 +546,18 @@ local tmux_keybinds = {
   -- Idea is to use ALT key with wezterm and CTRL+ALT in TMUX but some exceptions are there.
   -- { key = "j", mods = "ALT", action = act({ SpawnTab = "CurrentPaneDomain" }) }, -- Alternative is ALT+t and has a conflict with Neovim Keybindin for line moving below
   -- { key = "k", mods = "ALT", action = act({ CloseCurrentTab = { confirm = true } }) }, -- k for kill
-  { key = "h",          mods = "ALT", action = act({ ActivateTabRelative = -1 }) },
-  { key = "l",          mods = "ALT", action = act({ ActivateTabRelative = 1 }) },
-  { key = "LeftArrow",  mods = "ALT", action = act({ ActivateTabRelative = -1 }) },
-  { key = "RightArrow", mods = "ALT", action = act({ ActivateTabRelative = 1 }) },
+  -- { key = "h",          mods = "ALT", action = act({ ActivateTabRelative = -1 }) },
+  -- { key = "l",          mods = "ALT", action = act({ ActivateTabRelative = 1 }) },
+  -- { key = "LeftArrow",  mods = "ALT", action = act({ ActivateTabRelative = -1 }) },
+  -- { key = "RightArrow", mods = "ALT", action = act({ ActivateTabRelative = 1 }) },
+  { key = "H",          mods = "ALT|SHIFT", action = act({ ActivateTabRelative = -1 }) },
+  { key = "L",          mods = "ALT|SHIFT", action = act({ ActivateTabRelative = 1 }) },
+  { key = "LeftArrow",  mods = "ALT|SHIFT", action = act({ ActivateTabRelative = -1 }) },
+  { key = "RightArrow", mods = "ALT|SHIFT", action = act({ ActivateTabRelative = 1 }) },
+  -- { key = "h",          mods = "ALT|CTRL",  action = act({ ActivateTabRelative = -1 }) },
+  -- { key = "l",          mods = "ALT|CTRL",  action = act({ ActivateTabRelative = 1 }) },
+  -- { key = "LeftArrow",  mods = "ALT|CTRL",  action = act({ ActivateTabRelative = -1 }) },
+  -- { key = "RightArrow", mods = "ALT|CTRL",  action = act({ ActivateTabRelative = 1 }) },
   -- { key = "h", mods = "ALT|CTRL", action = act({ MoveTabRelative = -1 }) },
   -- { key = "l", mods = "ALT|CTRL", action = act({ MoveTabRelative = 1 }) },
   --{ key = "k", mods = "ALT|CTRL", action = act.ActivateCopyMode },
@@ -481,10 +578,10 @@ local tmux_keybinds = {
   { key = "9",     mods = "ALT",            action = act({ ActivateTab = 8 }) },
   { key = "-",     mods = "ALT",            action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
   { key = "\\",    mods = "ALT",            action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
-  { key = "h",     mods = "ALT|SHIFT",      action = act({ ActivatePaneDirection = "Left" }) },
-  { key = "l",     mods = "ALT|SHIFT",      action = act({ ActivatePaneDirection = "Right" }) },
-  { key = "k",     mods = "ALT|SHIFT",      action = act({ ActivatePaneDirection = "Up" }) },
-  { key = "j",     mods = "ALT|SHIFT",      action = act({ ActivatePaneDirection = "Down" }) },
+  { key = "h",     mods = "CTRL|SHIFT",     action = act({ ActivatePaneDirection = "Left" }) },
+  { key = "l",     mods = "CTRL|SHIFT",     action = act({ ActivatePaneDirection = "Right" }) },
+  { key = "k",     mods = "CTRL|SHIFT",     action = act({ ActivatePaneDirection = "Up" }) },
+  { key = "j",     mods = "CTRL|SHIFT",     action = act({ ActivatePaneDirection = "Down" }) },
   { key = "h",     mods = "ALT|SHIFT|CTRL", action = act({ AdjustPaneSize = { "Left", 1 } }) },
   { key = "l",     mods = "ALT|SHIFT|CTRL", action = act({ AdjustPaneSize = { "Right", 1 } }) },
   { key = "k",     mods = "ALT|SHIFT|CTRL", action = act({ AdjustPaneSize = { "Up", 1 } }) },

@@ -1,11 +1,11 @@
 return {
   'akinsho/toggleterm.nvim',
   version = "*",
-  event = "VeryLazy",
+  event = "LazyFile",
   lazy = true,
   config = true,
   cmd = "ToggleTerm",
-  build = ":ToggleTerm",
+  -- build = ":ToggleTerm",
   opts = {
     -- open_mapping = [[<leader>tt]],
     -- direction = "horizontal",

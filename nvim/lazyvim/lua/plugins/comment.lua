@@ -46,30 +46,55 @@ return {
   -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
   {
     "echasnovski/mini.comment",
-    -- event = "VeryLazy",
+    lazy = true,
     event = { "LazyFile" },
     opts = {
       options = {
+        -- custom_commentstring = function()
+        --   return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+        -- end,
         custom_commentstring = function()
-          return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+          local ext = vim.fn.expand('%:e') -- Get the file extension
+
+          -- Define custom comment strings for specific file types
+          local commentstrings = {
+            -- lua = "-- %s",        -- Lua comment string
+            -- py = "# %s",          -- Python comment string
+            -- js = "// %s",         -- JavaScript comment string
+            -- html = "<!-- %s -->", -- HTML comment string
+            v = "// %s",
+            vh = "// %s",
+            sv = "// %s",
+            svh = "// %s",
+            -- Add more custom comment strings as needed
+          }
+
+          -- Return the custom comment string based on the file extension
+          local commentstring = commentstrings[ext]
+          if commentstring then
+            return commentstring
+          else
+            -- Fallback to treesitter or default commentstring
+            return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+          end
         end,
       },
     },
   },
-  {
-    "numToStr/Comment.nvim",
-    -- event = { "LazyFile", "VeryLazy" },
-    event = { "LazyFile" },
-    keys = { "gcc", "gbc" },
-    -- init = function()
-    --   require("core.utils").load_mappings "comment"
-    -- end,
-    opts = Comment_options,
-    config = function(_, opts)
-      require("Comment").setup(opts)
-      local ft = require('Comment.ft')
-      ft.systemverilog = { '//%s', '/*%s*/' }
-    end,
-
-  }
+  -- {
+  --   "numToStr/Comment.nvim",
+  --   lazy = true,
+  --   event = { "LazyFile" },
+  --   keys = { "gcc", "gbc" },
+  --   -- init = function()
+  --   --   require("core.utils").load_mappings "comment"
+  --   -- end,
+  --   opts = Comment_options,
+  --   config = function(_, opts)
+  --     require("Comment").setup(opts)
+  --     local ft = require('Comment.ft')
+  --     ft.systemverilog = { '//%s', '/*%s*/' }
+  --   end,
+  --
+  -- }
 }

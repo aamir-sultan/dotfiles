@@ -16,4 +16,10 @@ au FocusLost * :wa
 autocmd BufNewFile,BufRead *.sv,*.svh set filetype=systemverilog
 " Set commentstring based on filetype
 autocmd FileType systemverilog setlocal commentstring=//\ %s
+" Set the filetype to Verilog for files with .sv or .svh extension
+" autocmd BufNewFile,BufRead *.v,*.vh set filetype=verilog
+" " Set commentstring based on filetype
+" autocmd FileType verilog setlocal commentstring=//\ %s
 " Add more file types and commentstrings in similar way
+autocmd BufNewFile,BufRead *.v,*.vh setlocal commentstring=//\ %s " Without specifying the filetype. This does not activate the treesitter.
+

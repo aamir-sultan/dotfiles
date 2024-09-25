@@ -20,8 +20,9 @@ alias cpr='cp -vr'
 alias cpf='cp -rvf'
 
 alias mkdir="mkdir -p"
-alias e="$EDITOR"
-alias v="$VISUAL"
+# alias vi="vim"
+# alias e="$EDITOR"
+# alias v="$VISUAL"
 
 # Likewise this, plus I'm always mistyping it...
 alias findy='find . -name'
@@ -57,7 +58,7 @@ alias fz='rg --files --hidden --follow --ignore-vcs -g "!{node_modules,.git}" | 
 
 # Prints a directory tree
 if [ ! -x "$(which tree 2>/dev/null)" ]; then
-	alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+  alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 fi
 
 # This dup finder saves time by comparing size first, then md5sum, it doesn't delete anything, just lists them.
@@ -76,23 +77,28 @@ alias functions='shopt -s extdebug;declare -F | grep -v "declare -f _" | declare
 # alias cp='cp -i'
 # alias ln='ln -i'
 
+source $DOTFILES/bash/ls_color
 if command -v vivid &>/dev/null; then
-	#  User lsth function for listing themes
-	# export _LS_COLORS="$(vivid generate lava)"
-	# export _LS_COLORS="$(vivid generate snazzy)"
-	# export _LS_COLORS="$(vivid generate ayu)"
-	# _LS_COLORS="$(vivid generate nord)"
-	_LS_COLORS="$(vivid generate jellybeans)"
-else
-	_LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:tw=00;33:ow=01;33:'
+  #  User lsth function for listing themes
+  # export _LS_COLORS="$(vivid generate lava)"
+  # export _LS_COLORS="$(vivid generate snazzy)"
+  # export _LS_COLORS="$(vivid generate ayu)"
+  # _LS_COLORS="$(vivid generate nord)"
+  # _LS_COLORS="$(vivid generate jellybeans)"
+  # _LS_COLORS="$(vivid generate solarized-light)"
+  _LS_COLORS=$SOLARIZED_LIGHT # Same as the vivid theme but not using vivid.
+  unset SOLARIZED_LIGHT
+# else
+#   _LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:tw=00;33:ow=01;33:'
 fi
 # Detect which `ls` flavor is in use -- to be kept at top to so that colorflag is available
 if ls --color >/dev/null 2>&1; then # GNU `ls`
-	colorflag="--color"
-	export LS_COLORS="$_LS_COLORS"
+  colorflag="--color"
+  export LS_COLORS="$_LS_COLORS"
+  unset _LS_COLORS
 else # macOS `ls`
-	colorflag="-G"
-	export LS_COLORS='BxBxhxDxfxhxhxhxhxcxcx'
+  colorflag="-G"
+  export LS_COLORS='BxBxhxDxfxhxhxhxhxcxcx'
 fi
 
 # List all files colorized in long format
@@ -212,7 +218,7 @@ alias map="xargs -n1"
 
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-	alias "${method}"="lwp-request -m '${method}'"
+  alias "${method}"="lwp-request -m '${method}'"
 done
 
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/

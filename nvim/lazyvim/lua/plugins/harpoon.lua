@@ -29,42 +29,9 @@ local harpoon_options = {
 
 return {
   "theprimeagen/harpoon",
+  lazy = true,
+  event = "LazyFile",
   branch = "harpoon2",
   dependencies = { "nvim-lua/plenary.nvim" },
   opts = harpoon_options,
-  config = function()
-    require("harpoon"):setup(_, opts)
-  end,
-  keys = {
-    { "<leader>A", function() require("harpoon"):list():add() end,     desc = "harpoon file", },
-    {
-      "<leader>a",
-      function()
-        local harpoon = require("harpoon")
-        harpoon.ui:toggle_quick_menu(harpoon:list())
-      end,
-      desc = "harpoon quick menu",
-    },
-    {
-      "<C-c>",
-      function()
-        local harpoon = require("harpoon")
-        harpoon.ui:close_menu()
-      end,
-      desc = "harpoon close window",
-    },
-    { "<leader>1", function() require("harpoon"):list():select(1) end, desc = "harpoon to file 1", },
-    { "-j",        function() require("harpoon"):list():select(1) end, desc = "harpoon to file 1", },
-    { "<leader>2", function() require("harpoon"):list():select(2) end, desc = "harpoon to file 2", },
-    { "-k",        function() require("harpoon"):list():select(2) end, desc = "harpoon to file 2", },
-    { "<leader>3", function() require("harpoon"):list():select(3) end, desc = "harpoon to file 3", },
-    { "-l",        function() require("harpoon"):list():select(3) end, desc = "harpoon to file 3", },
-    { "<leader>4", function() require("harpoon"):list():select(4) end, desc = "harpoon to file 4", },
-    { "-;",        function() require("harpoon"):list():select(4) end, desc = "harpoon to file 4", },
-    { "<leader>5", function() require("harpoon"):list():select(5) end, desc = "harpoon to file 5", },
-    { "-'",        function() require("harpoon"):list():select(5) end, desc = "harpoon to file 5", },
-    -- Not very usefull -- as the same functionality can be achieved via harpoon list and fuzzy finding
-    -- { "<leader>hn",   function() require("harpoon"):list():next() end },
-    -- { "<leader>hp",   function() require("harpoon"):list():prev() end }
-  },
 }

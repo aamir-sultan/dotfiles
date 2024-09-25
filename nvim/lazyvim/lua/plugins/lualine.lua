@@ -5,18 +5,18 @@ local local_opts = {
   section_separators = { left = '', right = '' },
 }
 
-opts = function()
-  return {
-    options = {
-      component_separators = { left = '', right = '' },
-      section_separators = { left = '', right = '' },
-    },
+local opts = -- Keep the outer brackets of options otherwise won't work
+{
+  options = {
+    component_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
   }
-end
+}
 
 return {
   'nvim-lualine/lualine.nvim',
   lazy = true,
-  event = 'VimEnter',
+  -- event = 'VimEnter',
+  event = 'LazyFile',
   opts = opts
 }

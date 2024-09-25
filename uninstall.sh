@@ -84,7 +84,7 @@ PATTERN=$(echo "source $DOTFILES/vim/.vimrc")
 ESC_PATTERN=$(printf '%s\n' "$PATTERN" | sed -e 's/[\/&]/\\&/g')
 sed -i "/$ESC_PATTERN/d" $VIMRC_PATH
 
-PATTERN=$(echo "source $DOTFILES/bash/.bashrc")
+PATTERN=$(echo "[ -f $DOTFILES/bash/.bashrc ] && source $DOTFILES/bash/.bashrc")
 ESC_PATTERN=$(printf '%s\n' "$PATTERN" | sed -e 's/[\/&]/\\&/g')
 sed -i "/$ESC_PATTERN/d" $BASHRC_PATH
 

@@ -1,16 +1,16 @@
-" Setting only applicable to both VIM/NVIM
-" =====================================================================================
-" Turn on syntax highlighting
-syntax on
-
-" set encoding=utf-8
-
-" Setting up the FZF settings
-" This shortcut ctrl+f has a conflict with NERDTreeToggle find. 
-set rtp+=~/.vim/bundle/fzf
-nnoremap <leader>fa :Files<CR>
-
-filetype plugin indent on
+" " Setting only applicable to both VIM/NVIM
+" " =====================================================================================
+" " Turn on syntax highlighting
+" syntax on
+"
+" " set encoding=utf-8
+"
+" " Setting up the FZF settings
+" " This shortcut ctrl+f has a conflict with NERDTreeToggle find. 
+" set rtp+=~/.vim/bundle/fzf
+" nnoremap <leader>fa :Files<CR>
+"
+" filetype plugin indent on
 
 " " Settings for the Nerd Commenter
 " " Create default mappings
@@ -65,7 +65,7 @@ set shiftwidth=2
 " Set the backspace to work on anything when in insert mode
 set backspace=indent,eol,start
 " Change for key presses timeout default is 1000 or comment it for default
-set timeoutlen=1000 ttimeoutlen=0
+" set timeoutlen=1000 ttimeoutlen=0 " Creating issues in Wezterm when the vim goes to background and again to foreground. 42c command is run
 
 " To deactivate that pre-historic freezing feature.
 silent !stty -ixon

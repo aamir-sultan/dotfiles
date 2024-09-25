@@ -8,7 +8,10 @@
 	defaultBranch = main
 
 [credential]
-	helper = cache --timeout=604800
+# If you want to cache the credentials for some time (default 15 minutes)
+	# helper = cache 
+# if you want to store the credentials for ever (considered unsafe)
+	helper = store
 
 [include]
   path = common_aliases

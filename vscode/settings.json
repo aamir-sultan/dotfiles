@@ -25,15 +25,18 @@
 	"editor.insertSpaces": true,
 	"editor.largeFileOptimizations": false,
 	// By default the starting font will be set or also try wrapping them in single qoutes to set
-	"editor.fontFamily": "'DM Mono', 'Maple Mono', 'JuliaMono', 'JetBrainsMono Nerd Font', monospace",
+	"editor.fontFamily": "'UbuntuSansMono NF', 'DM Mono', 'Maple Mono', 'JuliaMono', 'JetBrainsMono Nerd Font', monospace",
+	// "editor.fontFamily": "'DM Mono', 'Maple Mono', 'JuliaMono', 'JetBrainsMono Nerd Font', monospace",
 	// Set font size
-	"editor.fontSize": 14, // Font Size
+	"editor.fontSize": 13, // Font Size
 	// Set font boldness with normal or bold or some number
 	// "editor.fontWeight": "normal", // Font Weight
 	// "editor.fontWeight": "bold", // Font Weight
-	"editor.fontWeight": "400", // Font Weight -- Can use other numbers from 200 to 800
+	// "editor.fontWeight": "400", // Font Weight -- Can use other numbers from 200 to 800
+	"editor.fontWeight": "100", // Font Weight -- Can use other numbers from 200 to 800
 	// Set letter spacing
-	"editor.letterSpacing": 1.1,
+	"editor.letterSpacing": 1.3,
+	"editor.lineHeight": 1.7, // Line height for the editor Characters.
 	// Enable/Disable ligatures -- https://github.com/githubnext/monaspace#coding-ligatures
 	// "editor.fontLigatures": true, // Font ligatures
 	// "editor.fontLigatures": "'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'",
@@ -108,11 +111,12 @@
 	"terminal.integrated.scrollback": 100000,
 	// By default the starting font will be set or also try wrapping them in single qoutes to set
 	// "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font, OverpassMono Nerd Font, JetBrainsMono Nerd Font Mono",
-	"terminal.integrated.fontFamily": "DM Mono, JuliaMono, JetBrainsMono Nerd Font Mono",
-	"terminal.integrated.letterSpacing": 1, // Number of pixels to be added between charachters.
+	"terminal.integrated.fontFamily": "'UbuntuSansMono NF', 'DM Mono', JuliaMono, JetBrainsMono Nerd Font Mono",
+	"terminal.integrated.letterSpacing": 2, // Number of pixels to be added between charachters.
 	"terminal.integrated.lineHeight": 1.2, // Line height for the terminal charachters.
-	"terminal.integrated.fontSize": 14, // Fonts size of terminal charachters.
-	"terminal.integrated.fontWeight": "700", // Weight of terminals characters -- bold, normal, or number between 200 to 800.
+	"terminal.integrated.fontSize": 13, // Fonts size of terminal charachters.
+	// "terminal.integrated.fontWeight": "700", // Weight of terminals characters -- bold, normal, or number between 200 to 800.
+	"terminal.integrated.fontWeight": "100", // Weight of terminals characters -- bold, normal, or number between 200 to 800.
 	// Terminal Cursor Settings
 	"terminal.integrated.cursorStyle": "block", // Can be block, line, underline
 	"terminal.integrated.cursorWidth": 2, // Width in pixels when the cursor style is set to line
@@ -454,11 +458,19 @@
 	},
 	// To improve performance
 	"extensions.experimental.affinity": {
-		"vscodevim.vim": 1
+		"vscodevim.vim": 1,
+		"asvetliakov.vscode-neovim": 1
 	},
 	"remote.SSH.remotePlatform": {
 		"100.69.254.18": "linux"
 	},
-	"workbench.colorTheme": "Cobalt2",
-	"workbench.activityBar.location": "top"
+	"workbench.colorTheme": "Bearded Theme Solarized Reversed",
+	"workbench.activityBar.location": "top",
+	"vscode-neovim.neovimExecutablePaths.win32": "C:\\Program Files\\Neovim\\bin\\nvim.exe",
+	"vscode-neovim.wslDistribution": "Ubuntu",
+	"vscode-neovim.neovimExecutablePaths.linux": "/home/asultan/.des/dotfiles/bash/..//bin/nvim",
+	"workbench.editorAssociations": {
+		"*.gz": "default"
+	},
+	"window.titleBarStyle": "custom"
 }

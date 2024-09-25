@@ -10,7 +10,7 @@ end
 if isNotSSH() then
   return {
     {
-      'echasnovski/mini.animate', event = { "LazyFile", "VeryLazy" }, version = '*', enabled = false
+      'echasnovski/mini.animate', lazy = true, event = { "LazyFile" }, version = '*', enabled = false
 
     }
   }
@@ -19,15 +19,12 @@ else
     {
       'echasnovski/mini.animate',
       enabled = false,
-      event = { "LazyFile", "VeryLazy" },
+      lazy = true,
+      event = { "LazyFile" },
       version = '*',
-      init = function()
-        require('mini.animate').setup()
-      end,
+      -- init = function()
+      --   require('mini.animate').setup()
+      -- end,
     },
-    -- {
-    --   'echasnovski/mini.animate', event = { "LazyFile", "VeryLazy" }, version = '*',
-    --
-    -- }
   }
 end

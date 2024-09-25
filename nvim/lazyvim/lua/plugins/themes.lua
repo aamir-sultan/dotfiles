@@ -1,15 +1,15 @@
 return {
   require("plugins.themes.neosolarized"),
-  require("plugins.themes.kanagawa"),
+  -- require("plugins.themes.kanagawa"),
   -- require("plugins.themes.gruvbox-baby"),
   -- require("plugins.themes.gruvbox-material"),
   -- require("plugins.themes.cobalt2"),
   -- require("plugins.themes.material"),
   -- require("plugins.themes.everforest-nvim"),
-  require("plugins.themes.github-nvim-theme"),
+  -- require("plugins.themes.github-nvim-theme"),
   -- require("plugins.themes.nord-nvim"),
   -- require("plugins.themes.onedark-nvim"),
-  require("plugins.themes.zenbones"),
+  -- require("plugins.themes.zenbones"),
   -- require("plugins.themes.nvim-quietlight"),
   -- require("plugins.themes.rose-pine"),
   -- require("plugins.themes.nvim-base16"), -- Lots of themes with all major names
@@ -24,7 +24,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "NeoSolarized",
+      colorscheme = "NeoSolarized",
       -- colorscheme = "blue",
       -- colorscheme = "cobalt2",
       -- colorscheme = "doom-one",
@@ -45,7 +45,7 @@ return {
       -- colorscheme = "kanagawa-dragon",
       -- colorscheme = "kanagawa-lotus",
       -- colorscheme = "kanagawa-wave",
-      colorscheme = "kanagawabones",
+      -- colorscheme = "kanagawabones",
       -- colorscheme = "material-darker",
       -- colorscheme = "neobones",
       -- colorscheme = "noctu",

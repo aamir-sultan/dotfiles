@@ -35,7 +35,7 @@ local neotree_options = {
       --     },
     },
     follow_current_file = {
-      enabled = true,          -- This will find and focus the file in the active buffer every time
+      enabled = true, -- This will find and focus the file in the active buffer every time
       --               -- the current file is changed while the tree is open.
       -- leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
     },
@@ -72,9 +72,8 @@ local neotree_options = {
 }
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  -- dependencies = { 'xiyaowong/transparent.nvim', lazy = true, event = "VimEnter" },
-  -- require('transparent').clear_prefix('NeoTree'),
-  event = "VeryLazy",
+  lazy = true,
+  event = { "VeryLazy" }, -- Keep it as VeryLazy otherwise the area for the file opened is not selected
   cmd = { "NeoTree toggle" },
   keys = {
     -- { "<C-n>", "<cmd>NeoTree toggle<CR>", desc = "Toggle the NeoTree" },

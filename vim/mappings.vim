@@ -38,7 +38,7 @@
 " Toggle line numbering leader+n
 nnoremap <leader>tn <esc>:set nornu! nonu!<CR>
 " Toggle background
-nnoremap <F6> :let &bg=(&bg=='light'?'dark':'light')<cr>
+nnoremap <leader>tb :let &bg=(&bg=='light'?'dark':'light')<cr>
 " Remove the highlight from searched item
 nnoremap <leader>th <esc>:set nohlsearch!<CR>
 " Toggle line wrapping 
