@@ -205,14 +205,15 @@ end
 -- config.cell_width = 1.00 -- Set this to in/decrease the charachter spacing in the terminal.
 -- config.cell_width = 1.01 -- Set this to in/decrease the charachter spacing in the terminal.
 -- config.cell_width = 1.05 -- Set this to increase the charachter spacing in the terminal.
-config.cell_width = 1.2 -- Set this to increase the charachter spacing in the terminal.
+config.cell_width = 1.1 -- Set this to increase the charachter spacing in the terminal.
+-- config.cell_width = 1.2 -- Set this to increase the charachter spacing in the terminal.
 -- config.line_height = 1   -- Set this to in/decrease the charachter height in the terminal.
 -- config.line_height = 1.2 -- Set this to in/decrease the charachter height in the terminal.
 config.line_height = 1.4 -- Set this to in/decrease the charachter height in the terminal.
 
 -- Font Settings
--- config.font_size = 10.0
-config.font_size = 10.5
+config.font_size = 10.0
+-- config.font_size = 10.5
 -- config.font_size = 11.0
 -- config.font_size = 11.5
 -- config.font_size = 12.0
@@ -228,10 +229,10 @@ local fontWeight = "Regular"
 -- local fontWeight = "Bold"
 
 -- local font_family_name = "DM Mono"
-local font_family_name = "UbuntuSansMono NF"
+-- local font_family_name = "UbuntuSansMono NF"
 -- local font_family_name = "Fantasque Sans Mono"
 -- local font_family_name = "Fira Code"
--- local font_family_name = "JetBrains Mono"
+local font_family_name = "JetBrains Mono"
 -- local font_family_name = "JuliaMono"
 -- local font_family_name = "Maple Mono"
 -- local font_family_name = "MartianMono NFM"
