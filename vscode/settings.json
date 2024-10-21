@@ -44,8 +44,9 @@
 	"editor.fontWeight": "550", // Font Weight -- Can use other numbers from 200 to 800
 	// "editor.fontWeight": "100", // Font Weight -- Can use other numbers from 200 to 800
 	// Set letter spacing
-	"editor.letterSpacing": 1.3,
-	"editor.lineHeight": 2, // Line height for the editor Characters.
+  "editor.letterSpacing": 1.3,
+	// "editor.letterSpacing": 1,
+	"editor.lineHeight": 1.7, // Line height for the editor Characters.
 	// Enable/Disable ligatures -- https://github.com/githubnext/monaspace#coding-ligatures
 	// "editor.fontLigatures": true, // Font ligatures
 	// "editor.fontLigatures": "'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'",
