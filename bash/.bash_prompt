@@ -127,8 +127,8 @@ defaultSymbolStyle="${bold}${symbolColor}"
 errorSymbolStyle="${bold}${errorColor}"
 
 # Prompt Symbol
-# ❯, >, , », ⨔, ⌇, 󰘧, λ, λ:, ⁂, ➲, \$
-promptSymbol="\>"
+# ❯, >, , », ⨔, ⌇, 󰘧, λ, λ:, ⁂, ➲, \$, \>
+promptSymbol=":>"
 
 # ----------------------------------------------------------------------------------------
 # Prompt functions for the handling last command status and git status
