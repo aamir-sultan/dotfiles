@@ -41,8 +41,8 @@ if tput setaf 1 &>/dev/null; then
   textColor="${dYellow}"
 
   # Symbol color variable.
-  # symbolColor="${sBlue}"
-  symbolColor="${lGrey}"
+  symbolColor="${sBlue}"
+  # symbolColor="${lGrey}"
   errorColor="${rRed}"
 
   # Branch color variable.
@@ -141,7 +141,9 @@ symbolStyle=$defaultSymbolStyle
 
 # Prompt Symbol
 # ❯, >, , », ⨔, ⌇, 󰘧, λ, λ:, ⁂, ➲, \$, \>
-promptSymbol="${hostStyle}:>"
+# promptSymbol=":>"
+promptSymbol="~>"
+# promptSymbol="]>"
 
 prompt_git() {
   local s=''
