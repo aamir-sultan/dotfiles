@@ -539,22 +539,18 @@ end
 --- keybinds
 ---------------------------------------------------------------
 config.leader = { -- leader key is a a modal modifier key. Just like vi/Vim/Nvim.
-  key = "Space",
-  mods = "CTRL|SHIFT",
+  key = "a",
+  mods = "ALT",
 }
 
 local tmux_keybinds = {
-  -- Idea is to use ALT key with wezterm and CTRL+ALT in TMUX but some exceptions are there.
+  -- Idea is to use ALT+SHIFT key with wezterm and ALT in TMUX but some exceptions are there.
   -- { key = "j", mods = "ALT", action = act({ SpawnTab = "CurrentPaneDomain" }) }, -- Alternative is ALT+t and has a conflict with Neovim Keybindin for line moving below
   -- { key = "k", mods = "ALT", action = act({ CloseCurrentTab = { confirm = true } }) }, -- k for kill
-  -- { key = "h",          mods = "ALT",            action = act({ ActivateTabRelative = -1 }) },
-  -- { key = "l",          mods = "ALT",            action = act({ ActivateTabRelative = 1 }) },
-  -- { key = "LeftArrow",  mods = "ALT",            action = act({ ActivateTabRelative = -1 }) },
-  -- { key = "RightArrow", mods = "ALT",            action = act({ ActivateTabRelative = 1 }) },
-  -- { key = "h",          mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = -1 }) },
-  -- { key = "l",          mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = 1 }) },
-  -- { key = "LeftArrow",  mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = -1 }) },
-  -- { key = "RightArrow", mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = 1 }) },
+  { key = "h",          mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = -1 }) },
+  { key = "l",          mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = 1 }) },
+  { key = "LeftArrow",  mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = -1 }) },
+  { key = "RightArrow", mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = 1 }) },
   { key = "h",          mods = "ALT|SHIFT",      action = act({ ActivateTabRelative = -1 }) },
   { key = "l",          mods = "ALT|SHIFT",      action = act({ ActivateTabRelative = 1 }) },
   { key = "LeftArrow",  mods = "ALT|SHIFT",      action = act({ ActivateTabRelative = -1 }) },
@@ -568,59 +564,62 @@ local tmux_keybinds = {
   --   action = act.Multiple({ act.CopyMode("ClearSelectionMode"), act.ActivateCopyMode, act.ClearSelection }),
   -- },
   -- { key = "j",     mods = "ALT|CTRL",       action = act({ PasteFrom = "PrimarySelection" }) },
-  { key = "1",          mods = "ALT|SHIFT",      action = act({ ActivateTab = 0 }) },
-  { key = "2",          mods = "ALT|SHIFT",      action = act({ ActivateTab = 1 }) },
-  { key = "3",          mods = "ALT|SHIFT",      action = act({ ActivateTab = 2 }) },
-  { key = "4",          mods = "ALT|SHIFT",      action = act({ ActivateTab = 3 }) },
-  { key = "5",          mods = "ALT|SHIFT",      action = act({ ActivateTab = 4 }) },
-  { key = "6",          mods = "ALT|SHIFT",      action = act({ ActivateTab = 5 }) },
-  { key = "7",          mods = "ALT|SHIFT",      action = act({ ActivateTab = 6 }) },
-  { key = "9",          mods = "ALT|SHIFT",      action = act({ ActivateTab = 8 }) },
-  { key = "-",          mods = "ALT|SHIFT",      action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
-  { key = "\\",         mods = "ALT|SHIFT",      action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
-  { key = "8",          mods = "ALT|SHIFT",      action = act({ ActivateTab = 7 }) },
+  { key = "1",          mods = "LEADER",         action = act({ ActivateTab = 0 }) },
+  { key = "2",          mods = "LEADER",         action = act({ ActivateTab = 1 }) },
+  { key = "3",          mods = "LEADER",         action = act({ ActivateTab = 2 }) },
+  { key = "4",          mods = "LEADER",         action = act({ ActivateTab = 3 }) },
+  { key = "5",          mods = "LEADER",         action = act({ ActivateTab = 4 }) },
+  { key = "6",          mods = "LEADER",         action = act({ ActivateTab = 5 }) },
+  { key = "7",          mods = "LEADER",         action = act({ ActivateTab = 6 }) },
+  { key = "8",          mods = "LEADER",         action = act({ ActivateTab = 7 }) },
+  { key = "9",          mods = "LEADER",         action = act({ ActivateTab = 8 }) },
+
+  { key = "v",          mods = "LEADER",         action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+  { key = "s",          mods = "LEADER",         action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
+
   { key = "h",          mods = "CTRL|SHIFT",     action = act({ ActivatePaneDirection = "Left" }) },
   { key = "l",          mods = "CTRL|SHIFT",     action = act({ ActivatePaneDirection = "Right" }) },
   { key = "k",          mods = "CTRL|SHIFT",     action = act({ ActivatePaneDirection = "Up" }) },
   { key = "j",          mods = "CTRL|SHIFT",     action = act({ ActivatePaneDirection = "Down" }) },
+
   { key = "h",          mods = "ALT|CTRL|SHIFT", action = act({ AdjustPaneSize = { "Left", 1 } }) },
   { key = "l",          mods = "ALT|CTRL|SHIFT", action = act({ AdjustPaneSize = { "Right", 1 } }) },
   { key = "k",          mods = "ALT|CTRL|SHIFT", action = act({ AdjustPaneSize = { "Up", 1 } }) },
   { key = "j",          mods = "ALT|CTRL|SHIFT", action = act({ AdjustPaneSize = { "Down", 1 } }) },
-  { key = "Enter",      mods = "ALT|SHIFT",      action = "QuickSelect" },
-  { key = "/",          mods = "ALT|SHIFT",      action = act.Search("CurrentSelectionOrEmptyString") },
-  { key = "m",          mods = "ALT|SHIFT",      action = act.ToggleFullScreen },
+
+  { key = "Enter",      mods = "LEADER",         action = "QuickSelect" },
+  { key = "/",          mods = "LEADER",         action = act.Search("CurrentSelectionOrEmptyString") },
+  { key = "m",          mods = "LEADER",         action = act.ToggleFullScreen },
 }
 
 local other_keybinds = {
-  -- { key = "q", mods = "ALT",       action = act({ CloseCurrentTab = { confirm = true } }) },  -- k for kill
-  { key = "q", mods = "ALT|SHIFT", action = act({ CloseCurrentTab = { confirm = false } }) }, -- k for kill
+  { key = "q", mods = "LEADER", action = act({ CloseCurrentTab = { confirm = false } }) }, -- k for kill
 }
 
 local default_keybinds = {
-  { key = "c",        mods = "CTRL|SHIFT", action = act({ CopyTo = "Clipboard" }) },
-  { key = "v",        mods = "CTRL|SHIFT", action = act({ PasteFrom = "Clipboard" }) },
-  { key = "Insert",   mods = "ALT|SHIFT",  action = act({ PasteFrom = "PrimarySelection" }) },
-  { key = "t",        mods = "ALT|SHIFT",  action = act.SpawnTab("CurrentPaneDomain") }, -- CTRL+t is set for fzf
-  { key = "P",        mods = "ALT|SHIFT",  action = act.ActivateCommandPalette },
-  { key = "=",        mods = "ALT|SHIFT",  action = "ResetFontSize" },
-  { key = "]",        mods = "ALT|SHIFT",  action = "IncreaseFontSize" },
-  { key = "[",        mods = "ALT|SHIFT",  action = "DecreaseFontSize" },
-  { key = "PageUp",   mods = "ALT|SHIFT",  action = act({ ScrollByPage = -1 }) },
-  { key = "PageDown", mods = "ALT|SHIFT",  action = act({ ScrollByPage = 1 }) },
-  { key = "b",        mods = "ALT|SHIFT",  action = act({ ScrollByPage = -1 }) },
-  { key = "f",        mods = "ALT|SHIFT",  action = act({ ScrollByPage = 1 }) },
-  { key = "z",        mods = "ALT|SHIFT",  action = "ReloadConfiguration" },
-  { key = "z",        mods = "ALT|SHIFT",  action = act({ EmitEvent = "toggle-tmux-keybinds" }) },
-  { key = "e",        mods = "ALT|SHIFT",  action = act({ EmitEvent = "trigger-nvim-with-scrollback" }) },
-  { key = "q",        mods = "ALT|SHIFT",  action = act({ CloseCurrentPane = { confirm = true } }) },
-  { key = "x",        mods = "ALT|SHIFT",  action = act({ CloseCurrentPane = { confirm = true } }) },
-  { key = "a",        mods = "ALT|SHIFT",  action = wezterm.action.ShowLauncher },
-  { key = "Space",    mods = "ALT|SHIFT",  action = wezterm.action.ShowTabNavigator },
-  { key = "d",        mods = "ALT|SHIFT",  action = wezterm.action.ShowDebugOverlay },
+  { key = "l",        mods = "LEADER",       action = wezterm.action.ShowLauncher },
+
+  { key = "c",        mods = "CTRL|SHIFT",   action = act({ CopyTo = "Clipboard" }) },
+  { key = "v",        mods = "CTRL|SHIFT",   action = act({ PasteFrom = "Clipboard" }) },
+  { key = "Insert",   mods = "LEADER",       action = act({ PasteFrom = "PrimarySelection" }) },
+  { key = "t",        mods = "LEADER",       action = act.SpawnTab("CurrentPaneDomain") }, -- CTRL+t is set for fzf
+  { key = "P",        mods = "LEADER",       action = act.ActivateCommandPalette },
+  { key = "=",        mods = "LEADER",       action = "ResetFontSize" },
+  { key = "]",        mods = "LEADER",       action = "IncreaseFontSize" },
+  { key = "[",        mods = "LEADER",       action = "DecreaseFontSize" },
+  { key = "PageUp",   mods = "LEADER",       action = act({ ScrollByPage = -1 }) },
+  { key = "PageDown", mods = "LEADER",       action = act({ ScrollByPage = 1 }) },
+  { key = "b",        mods = "LEADER",       action = act({ ScrollByPage = -1 }) },
+  { key = "f",        mods = "LEADER",       action = act({ ScrollByPage = 1 }) },
+  { key = "z",        mods = "LEADER",       action = "ReloadConfiguration" },
+  { key = "z",        mods = "LEADER|SHIFT", action = act({ EmitEvent = "toggle-tmux-keybinds" }) },
+  { key = "e",        mods = "LEADER",       action = act({ EmitEvent = "trigger-nvim-with-scrollback" }) },
+  { key = "x",        mods = "LEADER",       action = act({ CloseCurrentPane = { confirm = true } }) },
+  { key = "Space",    mods = "LEADER",       action = wezterm.action.ShowTabNavigator },
+  { key = "d",        mods = "LEADER",       action = wezterm.action.ShowDebugOverlay },
   {
     key = "r",
-    mods = "ALT|SHIFT",
+    mods = "LEADER",
     action = act({
       ActivateKeyTable = {
         name = "resize_pane",
@@ -630,12 +629,12 @@ local default_keybinds = {
       },
     }),
   },
-  { key = "s", mods = "ALT|SHIFT", action = act.PaneSelect({ alphabet = "1234567890" }) },
-  { key = "`", mods = "ALT|SHIFT", action = act.RotatePanes("CounterClockwise") },
-  { key = "`", mods = "ALT|SHIFT", action = act.RotatePanes("Clockwise") },
+  { key = "s", mods = "LEADER",         action = act.PaneSelect({ alphabet = "1234567890" }) },
+  { key = "`", mods = "LEADER",         action = act.RotatePanes("Clockwise") },
+  { key = "`", mods = "ALT|CTRL|SHIFT", action = act.RotatePanes("CounterClockwise") },
   {
     key = "E",
-    mods = "ALT|SHIFT",
+    mods = "LEADER",
     action = act.PromptInputLine({
       description = "Enter new name for tab",
       -- selene: allow(unused_variable)
@@ -652,14 +651,14 @@ local default_keybinds = {
   },
 }
 
-key_bindings = {
+local key_bindings = {
   -- bashrc has the kill-backward commands now which covers us in most terminals. Should not be made specific to
   -- wezterm. The shortcuts are here incase needed in future.
   -- { key = 'Backspace', mods = 'CTRL', action = act.SendKey {key = 'Backspace', mods = 'ALT'} } -- most Linux shells use Alt + backspace instead for word backspace
   { key = "Backspace", mods = "CTRL", action = act.SendKey({ key = "w", mods = "CTRL" }) }, -- most Linux shells use Alt + backspace instead for word backspace
 }
 
-function create_keybinds()
+local function create_keybinds()
   local merged_table
   merged_table = merge_lists(default_keybinds, tmux_keybinds)
   merged_table = merge_lists(merged_table, key_bindings)
@@ -667,7 +666,7 @@ function create_keybinds()
   return merged_table
 end
 
-key_tables = {
+local key_tables = {
   resize_pane = {
     { key = "LeftArrow",  action = act({ AdjustPaneSize = { "Left", 1 } }) },
     { key = "h",          action = act({ AdjustPaneSize = { "Left", 1 } }) },
