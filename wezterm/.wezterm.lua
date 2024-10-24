@@ -624,8 +624,8 @@ local default_keybinds = {
 
   { key = "c",        mods = "CTRL|SHIFT",   action = act({ CopyTo = "Clipboard" }) },
   { key = "v",        mods = "CTRL|SHIFT",   action = act({ PasteFrom = "Clipboard" }) },
-  { key = "y",        mods = "LEADER",       action = act({ CopyTo = "Clipboard" }) },
-  { key = "p",        mods = "LEADER",       action = act({ PasteFrom = "Clipboard" }) },
+  -- { key = "y",        mods = "LEADER",       action = act({ CopyTo = "Clipboard" }) },
+  -- { key = "p",        mods = "LEADER",       action = act({ PasteFrom = "Clipboard" }) }, -- Conflicting with
   { key = "Insert",   mods = "LEADER",       action = act({ PasteFrom = "PrimarySelection" }) },
   { key = "t",        mods = "LEADER",       action = act.SpawnTab("CurrentPaneDomain") }, -- CTRL+t is set for fzf
   { key = "c",        mods = "LEADER",       action = act.SpawnTab("CurrentPaneDomain") },
