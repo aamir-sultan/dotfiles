@@ -448,6 +448,7 @@ config.window_padding = { -- Controls the amount of padding between the window b
   bottom = 0,
 }
 config.use_fancy_tab_bar = false     -- When true, the tab bar is rendered in a native style with proportional fonts.
+config.tab_max_width = 32            -- Don't let any individual tab name take too much room
 config.exit_behavior =
 "CloseOnCleanExit"                   -- if the shell program exited with a successful status, close the pane else keep it open.
 config.tab_bar_at_bottom = true      -- When true, the tab bar will be rendered at the bottom of the window.
