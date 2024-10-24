@@ -427,6 +427,13 @@ local cursor_foreground = "#343235" -- Black+Brown
 config.colors = {
   cursor_bg = cursor_background,    -- Changes the cursor box color
   cursor_fg = cursor_foreground,    -- Changes the text chararchter color inside the cursor box.
+  tab_bar = {
+    active_tab = {
+      -- I use a solarized dark theme; this gives a teal background to the active tab
+      fg_color = '#073642',
+      bg_color = '#2aa198',
+    }
+  },
 }
 
 -- config.color_scheme_dirs = { os.getenv("HOME") .. "/.config/wezterm/colors/" }
@@ -590,6 +597,22 @@ local tmux_keybinds = {
   { key = "Enter",      mods = "LEADER",         action = "QuickSelect" },
   { key = "/",          mods = "LEADER",         action = act.Search("CurrentSelectionOrEmptyString") },
   { key = "m",          mods = "LEADER",         action = act.ToggleFullScreen },
+
+  { key = 'w',          mods = 'LEADER',         action = act.ShowTabNavigator, },
+  {
+    key = ',',
+    mods = 'LEADER',
+    action = act.PromptInputLine {
+      description = 'Enter new name for tab',
+      action = wezterm.action_callback(
+        function(window, pane, line)
+          if line then
+            window:active_tab():set_title(line)
+          end
+        end
+      ),
+    },
+  },
 }
 
 local other_keybinds = {
@@ -629,9 +652,9 @@ local default_keybinds = {
       },
     }),
   },
-  { key = "s", mods = "LEADER",         action = act.PaneSelect({ alphabet = "1234567890" }) },
-  { key = "`", mods = "LEADER",         action = act.RotatePanes("Clockwise") },
-  { key = "`", mods = "ALT|CTRL|SHIFT", action = act.RotatePanes("CounterClockwise") },
+  { key = "s", mods = "LEADER",       action = act.PaneSelect({ alphabet = "1234567890" }) },
+  { key = "`", mods = "LEADER",       action = act.RotatePanes("Clockwise") },
+  { key = "`", mods = "LEADER|SHIFT", action = act.RotatePanes("CounterClockwise") },
   {
     key = "E",
     mods = "LEADER",
