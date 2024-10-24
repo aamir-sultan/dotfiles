@@ -581,8 +581,8 @@ local tmux_keybinds = {
   { key = "8",          mods = "LEADER",         action = act({ ActivateTab = 7 }) },
   { key = "9",          mods = "LEADER",         action = act({ ActivateTab = 8 }) },
 
-  { key = "v",          mods = "LEADER",         action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
-  { key = "s",          mods = "LEADER",         action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
+  { key = "s",          mods = "LEADER",         action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+  { key = "v",          mods = "LEADER",         action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
 
   { key = "h",          mods = "CTRL|SHIFT",     action = act({ ActivatePaneDirection = "Left" }) },
   { key = "l",          mods = "CTRL|SHIFT",     action = act({ ActivatePaneDirection = "Right" }) },
@@ -628,7 +628,7 @@ local default_keybinds = {
   { key = "p",        mods = "LEADER",       action = act({ PasteFrom = "Clipboard" }) },
   { key = "Insert",   mods = "LEADER",       action = act({ PasteFrom = "PrimarySelection" }) },
   { key = "t",        mods = "LEADER",       action = act.SpawnTab("CurrentPaneDomain") }, -- CTRL+t is set for fzf
-  { key = "c",        mods = "LEADER",       action = act.SpawnTab("CurrentPaneDomain") }, -- CTRL+t is set for fzf
+  { key = "c",        mods = "LEADER",       action = act.SpawnTab("CurrentPaneDomain") },
   { key = "P",        mods = "LEADER",       action = act.ActivateCommandPalette },
   { key = "=",        mods = "LEADER",       action = "ResetFontSize" },
   { key = "]",        mods = "LEADER",       action = "IncreaseFontSize" },
@@ -655,7 +655,7 @@ local default_keybinds = {
       },
     }),
   },
-  { key = "s", mods = "LEADER",       action = act.PaneSelect({ alphabet = "1234567890" }) },
+  { key = "p", mods = "LEADER",       action = act.PaneSelect({ alphabet = "1234567890" }) },
   { key = "`", mods = "LEADER",       action = act.RotatePanes("Clockwise") },
   { key = "`", mods = "LEADER|SHIFT", action = act.RotatePanes("CounterClockwise") },
   {
