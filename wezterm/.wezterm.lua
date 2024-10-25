@@ -431,7 +431,8 @@ config.colors = {
     active_tab = {
       -- I use a solarized dark theme; this gives a teal background to the active tab
       fg_color = '#073642',
-      bg_color = '#2aa198',
+      -- bg_color = '#2AA198',
+      bg_color = '#F59C4F',
     }
   },
 }
