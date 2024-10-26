@@ -556,14 +556,18 @@ local tmux_keybinds = {
   -- Idea is to use ALT+SHIFT key with wezterm and ALT in TMUX but some exceptions are there.
   -- { key = "j", mods = "ALT", action = act({ SpawnTab = "CurrentPaneDomain" }) }, -- Alternative is ALT+t and has a conflict with Neovim Keybindin for line moving below
   -- { key = "k", mods = "ALT", action = act({ CloseCurrentTab = { confirm = true } }) }, -- k for kill
-  { key = "h",          mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = -1 }) },
-  { key = "l",          mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = 1 }) },
-  { key = "LeftArrow",  mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = -1 }) },
-  { key = "RightArrow", mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = 1 }) },
+  -- { key = "h",          mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = -1 }) },
+  -- { key = "l",          mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = 1 }) },
+  -- { key = "LeftArrow",  mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = -1 }) },
+  -- { key = "RightArrow", mods = "CTRL|SHIFT",     action = act({ ActivateTabRelative = 1 }) },
   { key = "h",          mods = "ALT|SHIFT",      action = act({ ActivateTabRelative = -1 }) },
   { key = "l",          mods = "ALT|SHIFT",      action = act({ ActivateTabRelative = 1 }) },
   { key = "LeftArrow",  mods = "ALT|SHIFT",      action = act({ ActivateTabRelative = -1 }) },
   { key = "RightArrow", mods = "ALT|SHIFT",      action = act({ ActivateTabRelative = 1 }) },
+  { key = "h",          mods = "LEADER",         action = act({ ActivateTabRelative = -1 }) },
+  { key = "l",          mods = "LEADER",         action = act({ ActivateTabRelative = 1 }) },
+  -- { key = "LeftArrow",  mods = "LEADER",         action = act({ ActivateTabRelative = -1 }) },
+  -- { key = "RightArrow", mods = "LEADER",         action = act({ ActivateTabRelative = 1 }) },
   -- { key = "h", mods = "ALT|CTRL", action = act({ MoveTabRelative = -1 }) },
   -- { key = "l", mods = "ALT|CTRL", action = act({ MoveTabRelative = 1 }) },
   -- { key = "k", mods = "ALT|CTRL", action = act.ActivateCopyMode },
@@ -622,7 +626,7 @@ local other_keybinds = {
 }
 
 local default_keybinds = {
-  { key = "l",        mods = "LEADER",       action = wezterm.action.ShowLauncher },
+  { key = "j",        mods = "LEADER",       action = wezterm.action.ShowLauncher },
 
   { key = "c",        mods = "CTRL|SHIFT",   action = act({ CopyTo = "Clipboard" }) },
   { key = "v",        mods = "CTRL|SHIFT",   action = act({ PasteFrom = "Clipboard" }) },
