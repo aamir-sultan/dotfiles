@@ -627,6 +627,8 @@ local other_keybinds = {
 
 local default_keybinds = {
   { key = "j",        mods = "LEADER",       action = wezterm.action.ShowLauncher },
+  { key = "a",        mods = "LEADER",       action = wezterm.action.ShowLauncher },
+  { key = "a",        mods = "LEADER|ALT",   action = wezterm.action.ShowLauncher },
 
   { key = "c",        mods = "CTRL|SHIFT",   action = act({ CopyTo = "Clipboard" }) },
   { key = "v",        mods = "CTRL|SHIFT",   action = act({ PasteFrom = "Clipboard" }) },
