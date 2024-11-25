@@ -5,10 +5,10 @@ return {
 
   -- event = "VimEnter",
   event = "VeryLazy",
-  priority = 1000,          -- make sure to load this before all the other start plugins }
+  priority = 1000, -- make sure to load this before all the other start plugins }
   opts = {
-    style = "dark",         -- "dark" or "light"
-    -- style = "light",        -- "dark" or "light"
+    -- style = "dark",         -- "dark" or "light"
+    style = "light",        -- "dark" or "light"
     transparent = false,    -- true/false; Enable this to disable setting the background color
     terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
     enable_italics = true,  -- Italics for different hightlight groups (eg. Statement, Condition, Comment, Include, etc.)
