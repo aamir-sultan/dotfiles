@@ -212,7 +212,8 @@ config.cell_width = 1.1 -- Set this to increase the charachter spacing in the te
 config.line_height = 1.2 -- Set this to in/decrease the charachter height in the terminal.
 
 -- Font Settings
-config.font_size = 10.0
+config.font_size = 8.0
+-- config.font_size = 10.0
 -- config.font_size = 10.5
 -- config.font_size = 11.0
 -- config.font_size = 11.5
