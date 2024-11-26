@@ -1,5 +1,5 @@
 -- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyLite/LazyLite/blob/main/lua/lazylite/config/keymaps.lua
+-- Default keymaps that are always set: https://github.com/aamir-sultan/LazyLite/blob/main/lua/lazylite/config/keymaps.lua
 -- Add any additional keymaps here
 
 function Map(mode, lhs, rhs, opts)

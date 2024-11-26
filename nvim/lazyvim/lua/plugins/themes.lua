@@ -22,7 +22,7 @@ return {
 
   -- Configure LazyLite to load gruvbox
   {
-    "LazyLite/LazyLite",
+    "aamir-sultan/LazyLite",
     opts = {
       colorscheme = "NeoSolarized",
       -- colorscheme = "blue",

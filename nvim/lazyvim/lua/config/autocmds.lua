@@ -1,5 +1,5 @@
 -- Autocmds are automatically loaded on the VeryLazy event
--- Default autocmds that are always set: https://github.com/LazyLite/LazyLite/blob/main/lua/lazylite/config/autocmds.lua
+-- Default autocmds that are always set: https://github.com/aamir-sultan/LazyLite/blob/main/lua/lazylite/config/autocmds.lua
 -- Add any additional autocmds here
 local General = require('general')
 local vim = vim or {}
