@@ -24,7 +24,7 @@ return {
       highlight = {
         enabled = true,
         -- disable = function()
-        --   local Util = require("lazyvim.util")
+        --   local Util = require("lazylite.util")
         --   -- display_status_message("Large file: Disabling Tree sitter", "WarningMsg")
         --   -- Util.info("Disabling Tree sitter due to Large file size", { title = "Warning" })
         --   return vim.b.large_buf

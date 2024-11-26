@@ -42,7 +42,7 @@ return {
     logo = combined .. "\n"
 
     local opts = {
-      -- theme = "doom", -- doom can use the buttons style which LazyVim is following
+      -- theme = "doom", -- doom can use the buttons style which LazyLite is following
       theme = "hyper",
       hide = {
         -- this is taken care of by lualine

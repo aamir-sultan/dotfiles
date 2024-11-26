@@ -1,6 +1,6 @@
 DISABLE_ON_LINES = 20000
 
-local Util = require("lazyvim.util")
+local Util = require("lazylite.util")
 
 -- Function to display a message in the status line
 local function display_status_message(message, hl_group)
@@ -43,7 +43,7 @@ local function is_large_file()
 end
 
 if is_large_file() then
-  -- local Util = require("lazyvim.util")
+  -- local Util = require("lazylite.util")
   -- display_status_message("Large file: Disabling some extentions due to large file size", "WarningMsg")
   display_status_message("Large file: Disabling some extentions due to large file size", "WarningMsg")
   -- Util.info("Disabling some extentions due to large file size", { title = "Warning" })
@@ -128,7 +128,7 @@ if vim.g.vscode then
   }
 else
   -- ordinary Neovim
-  -- bootstrap lazy.nvim, LazyVim and your plugins
+  -- bootstrap lazy.nvim, LazyLite and your plugins
 
   return {
 
