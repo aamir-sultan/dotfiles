@@ -105,28 +105,28 @@ local function is_large_file()
   end
 end
 
-vim.g.DISABLE_ON_LINES = 20000
-autocmd({ 'BufRead', 'BufReadPost' }, {
-  -- autocmd({'BufRead'}, {
-  callback = function()
-    -- if is_large_file() then
-    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
-    if ok and stats and (stats.size > vim.g.DISABLE_ON_LINES) then
-      -- if vim.fn.exists(':TSBufDisable') > 0 then
-      --   vim.cmd("TSDisable all")
-      -- end
-
-      if vim.fn.exists(':TSContextDisable') > 0 then
-        vim.cmd("TSContextDisable")
-      end
-
-      -- Disable the flash search for large files.
-      require("flash").toggle(false)
-    end
-  end,
-  group = general,
-  pattern = "*",
-})
+-- vim.g.DISABLE_ON_LINES = 20000
+-- autocmd({ 'BufRead', 'BufReadPost' }, {
+--   -- autocmd({'BufRead'}, {
+--   callback = function()
+--     -- if is_large_file() then
+--     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
+--     if ok and stats and (stats.size > vim.g.DISABLE_ON_LINES) then
+--       -- if vim.fn.exists(':TSBufDisable') > 0 then
+--       --   vim.cmd("TSDisable all")
+--       -- end
+--
+--       if vim.fn.exists(':TSContextDisable') > 0 then
+--         vim.cmd("TSContextDisable")
+--       end
+--
+--       -- Disable the flash search for large files.
+--       require("flash").toggle(false)
+--     end
+--   end,
+--   group = general,
+--   pattern = "*",
+-- })
 
 autocmd({ "BufReadPre" }, {
   callback = function()
