@@ -71,12 +71,12 @@ local neotree_options = {
   }
 }
 return {
-  "nvim-neo-tree/neo-tree.nvim",
-  lazy = true,
-  event = { "VeryLazy" }, -- Keep it as VeryLazy otherwise the area for the file opened is not selected
-  cmd = { "NeoTree toggle" },
-  keys = {
-    -- { "<C-n>", "<cmd>NeoTree toggle<CR>", desc = "Toggle the NeoTree" },
-  },
-  opts = neotree_options,
+  --  "nvim-neo-tree/neo-tree.nvim",
+  --  lazy = true,
+  --  event = { "VeryLazy" }, -- Keep it as VeryLazy otherwise the area for the file opened is not selected
+  --  cmd = { "NeoTree toggle" },
+  --  keys = {
+  --    -- { "<C-n>", "<cmd>NeoTree toggle<CR>", desc = "Toggle the NeoTree" },
+  --  },
+  --  opts = neotree_options,
 }

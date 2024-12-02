@@ -1,5 +1,5 @@
 -- Autocmds are automatically loaded on the VeryLazy event
--- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+-- Default autocmds that are always set: https://github.com/aamir-sultan/LazyLite/blob/main/lua/lazylite/config/autocmds.lua
 -- Add any additional autocmds here
 local General = require('general')
 local vim = vim or {}
@@ -105,41 +105,41 @@ local function is_large_file()
   end
 end
 
-vim.g.DISABLE_ON_LINES = 20000
-autocmd({ 'BufRead', 'BufReadPost' }, {
-  -- autocmd({'BufRead'}, {
-  callback = function()
-    -- if is_large_file() then
-    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
-    if ok and stats and (stats.size > vim.g.DISABLE_ON_LINES) then
-      -- if vim.fn.exists(':TSBufDisable') > 0 then
-      --   vim.cmd("TSDisable all")
-      -- end
+-- vim.g.DISABLE_ON_LINES = 20000
+-- autocmd({ 'BufRead', 'BufReadPost' }, {
+--   -- autocmd({'BufRead'}, {
+--   callback = function()
+--     -- if is_large_file() then
+--     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
+--     if ok and stats and (stats.size > vim.g.DISABLE_ON_LINES) then
+--       -- if vim.fn.exists(':TSBufDisable') > 0 then
+--       --   vim.cmd("TSDisable all")
+--       -- end
+--
+--       if vim.fn.exists(':TSContextDisable') > 0 then
+--         vim.cmd("TSContextDisable")
+--       end
+--
+--       -- Disable the flash search for large files.
+--       require("flash").toggle(false)
+--     end
+--   end,
+--   group = general,
+--   pattern = "*",
+-- })
 
-      if vim.fn.exists(':TSContextDisable') > 0 then
-        vim.cmd("TSContextDisable")
-      end
-
-      -- Disable the flash search for large files.
-      require("flash").toggle(false)
-    end
-  end,
-  group = general,
-  pattern = "*",
-})
-
-autocmd({ "BufReadPre" }, {
-  callback = function()
-    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
-    if ok and stats and (stats.size > vim.g.DISABLE_ON_LINES) then
-      vim.b.large_buf = true
-    else
-      vim.b.large_buf = false
-    end
-  end,
-  group = general,
-  pattern = "*",
-})
+-- autocmd({ "BufReadPre" }, {
+--   callback = function()
+--     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
+--     if ok and stats and (stats.size > vim.g.DISABLE_ON_LINES) then
+--       vim.b.large_buf = true
+--     else
+--       vim.b.large_buf = false
+--     end
+--   end,
+--   group = general,
+--   pattern = "*",
+-- })
 
 local function changeDirectoryOnce()
   if not vim.g.directory_changed then

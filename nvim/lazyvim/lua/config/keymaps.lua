@@ -1,5 +1,5 @@
 -- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+-- Default keymaps that are always set: https://github.com/aamir-sultan/LazyLite/blob/main/lua/lazylite/config/keymaps.lua
 -- Add any additional keymaps here
 
 function Map(mode, lhs, rhs, opts)
@@ -13,7 +13,7 @@ end
 local Del = vim.keymap.del
 
 function del_key(lhs, rhs, opts)
-  local default_keys = require("lazyvim.config.keymaps").get()
+  local default_keys = require("lazylite.config.keymaps").get()
   default_keys[#keys + 1] = { lhs, false }
 end
 
@@ -65,7 +65,7 @@ Map({ 'n', 'v', 'i', 'x' }, '<C-c>', '<C-[>', { silent = true })
 -- *************************************************-
 -- Default Disables
 -- *************************************************-
--- Disabled keys -- Ctrl + hjkl are disabled for original LazyVim Config instead the following will be used.
+-- Disabled keys -- Ctrl + hjkl are disabled for original LazyLite Config instead the following will be used.
 -- Move to window using the <ctrl> hjkl keys
 Map("n", "<C-h>", ":<C-U>TmuxNavigateLeft<cr>", { desc = "Go to left window either tmux or nvim" })
 Map("n", "<C-j>", ":<C-U>TmuxNavigateDown<cr>", { desc = "Go to lower window either tmux or nvim" })

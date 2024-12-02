@@ -1,5 +1,5 @@
 -- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Default options that are always set: https://github.com/aamir-sultan/LazyLite/blob/main/lua/lazylite/config/options.lua
 -- Add any additional options here
 
 -- Lines which load the legacy setting for the vim from old vimrc

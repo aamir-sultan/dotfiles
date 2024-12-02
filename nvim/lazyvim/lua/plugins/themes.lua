@@ -20,9 +20,9 @@ return {
 
 
 
-  -- Configure LazyVim to load gruvbox
+  -- Configure LazyLite to load gruvbox
   {
-    "LazyVim/LazyVim",
+    "aamir-sultan/LazyLite",
     opts = {
       colorscheme = "NeoSolarized",
       -- colorscheme = "blue",
