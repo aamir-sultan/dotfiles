@@ -128,18 +128,18 @@ end
 --   pattern = "*",
 -- })
 
-autocmd({ "BufReadPre" }, {
-  callback = function()
-    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
-    if ok and stats and (stats.size > vim.g.DISABLE_ON_LINES) then
-      vim.b.large_buf = true
-    else
-      vim.b.large_buf = false
-    end
-  end,
-  group = general,
-  pattern = "*",
-})
+-- autocmd({ "BufReadPre" }, {
+--   callback = function()
+--     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
+--     if ok and stats and (stats.size > vim.g.DISABLE_ON_LINES) then
+--       vim.b.large_buf = true
+--     else
+--       vim.b.large_buf = false
+--     end
+--   end,
+--   group = general,
+--   pattern = "*",
+-- })
 
 local function changeDirectoryOnce()
   if not vim.g.directory_changed then
