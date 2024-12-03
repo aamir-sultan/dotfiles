@@ -346,9 +346,12 @@ config.window_background_gradient = {
   --   '#24243e',
   -- },
   colors = { '#300924' }, -- Ubuntu Terminal Colors
+  -- colors = { '#EEE8D5' }, -- Solarized Background Colors
+  -- colors = { '#073642' }, -- Solarized Background Colors
   -- colors = { '#300924', '#2E3436' },
   -- colors = { '#fdf6e3' },
   -- colors = { '#dfca88' },
+  -- colors = { '#3C3836' },
 
   -- Instead of specifying `colors`, you can use one of a number of
   -- predefined, preset gradients.
