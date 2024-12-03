@@ -78,14 +78,14 @@ return {
     event = "LazyFile",
     -- change some options
     opts = options,
-    dependencies = {
-      "theprimeagen/harpoon",
-      lazy = true,
-      event = "LazyFile",
-      config = function()
-        require("telescope").load_extension('harpoon')
-      end,
-    },
+    -- dependencies = {
+    --   "theprimeagen/harpoon",
+    --   lazy = true,
+    --   event = "LazyFile",
+    --   config = function()
+    --     require("telescope").load_extension('harpoon')
+    --   end,
+    -- },
 
 
   },

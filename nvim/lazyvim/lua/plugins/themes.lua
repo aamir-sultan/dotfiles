@@ -1,7 +1,7 @@
 return {
-  require("plugins.themes.neosolarized"),
+  -- require("plugins.themes.neosolarized"),
   -- require("plugins.themes.kanagawa"),
-  -- require("plugins.themes.gruvbox-baby"),
+  require("plugins.themes.gruvbox-baby"),
   -- require("plugins.themes.gruvbox-material"),
   -- require("plugins.themes.cobalt2"),
   -- require("plugins.themes.material"),
@@ -24,7 +24,7 @@ return {
   {
     "aamir-sultan/LazyLite",
     opts = {
-      colorscheme = "NeoSolarized",
+      -- colorscheme = "NeoSolarized",
       -- colorscheme = "blue",
       -- colorscheme = "cobalt2",
       -- colorscheme = "doom-one",
@@ -40,7 +40,7 @@ return {
       -- colorscheme = "github_light_default",
       -- colorscheme = "github_light_high_contrast",
       -- colorscheme = "github_light_tritanopia",
-      -- colorscheme = "gruvbox-baby",
+      colorscheme = "gruvbox-baby",
       -- colorscheme = "kanagawa",
       -- colorscheme = "kanagawa-dragon",
       -- colorscheme = "kanagawa-lotus",

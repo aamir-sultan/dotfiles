@@ -28,10 +28,10 @@ local harpoon_options = {
 }
 
 return {
-  "theprimeagen/harpoon",
-  lazy = true,
-  event = "LazyFile",
-  branch = "harpoon2",
-  dependencies = { "nvim-lua/plenary.nvim" },
-  opts = harpoon_options,
+  -- "theprimeagen/harpoon",
+  -- lazy = true,
+  -- event = "LazyFile",
+  -- branch = "harpoon2",
+  -- dependencies = { "nvim-lua/plenary.nvim" },
+  -- opts = harpoon_options,
 }
