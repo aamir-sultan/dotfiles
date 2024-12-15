@@ -1,22 +1,23 @@
 return {
-  -- require("plugins.themes.neosolarized"),
-  -- require("plugins.themes.kanagawa"),
-  require("plugins.themes.gruvbox-baby"),
-  -- require("plugins.themes.gruvbox-material"),
   -- require("plugins.themes.cobalt2"),
-  -- require("plugins.themes.material"),
+  -- require("plugins.themes.doom-one"),
   -- require("plugins.themes.everforest-nvim"),
   -- require("plugins.themes.github-nvim-theme"),
-  -- require("plugins.themes.nord-nvim"),
-  -- require("plugins.themes.onedark-nvim"),
-  -- require("plugins.themes.zenbones"),
-  -- require("plugins.themes.nvim-quietlight"),
-  -- require("plugins.themes.rose-pine"),
-  -- require("plugins.themes.nvim-base16"), -- Lots of themes with all major names
-  -- require("plugins.themes.doom-one"),
+  require("plugins.themes.gruvbox-baby"),
+  -- require("plugins.themes.gruvbox-material"),
+  -- require("plugins.themes.kanagawa"),
+  -- require("plugins.themes.material"),
   -- require("plugins.themes.material-nvim"),
+  -- require("plugins.themes.neosolarized"),
+  -- require("plugins.themes.nord-nvim"),
+  -- require("plugins.themes.nvim-base16"), -- Lots of themes with all major names
+  -- require("plugins.themes.nvim-quietlight"),
+  -- require("plugins.themes.onedark-nvim"),
   -- require("plugins.themes.papercolor-theme"), -- For better readability of the code in different languages.
   -- require("plugins.themes.readable-nvim"),    -- For better readability of the code in different languages.
+  -- require("plugins.themes.rose-pine"),
+  require("plugins.themes.solarized-osaka-nvim"),
+  -- require("plugins.themes.zenbones"),
 
 
 
@@ -24,7 +25,6 @@ return {
   {
     "aamir-sultan/LazyLite",
     opts = {
-      -- colorscheme = "NeoSolarized",
       -- colorscheme = "blue",
       -- colorscheme = "cobalt2",
       -- colorscheme = "doom-one",
@@ -40,14 +40,15 @@ return {
       -- colorscheme = "github_light_default",
       -- colorscheme = "github_light_high_contrast",
       -- colorscheme = "github_light_tritanopia",
-      colorscheme = "gruvbox-baby",
+      -- colorscheme = "gruvbox-baby",
       -- colorscheme = "kanagawa",
+      -- colorscheme = "kanagawabones",
       -- colorscheme = "kanagawa-dragon",
       -- colorscheme = "kanagawa-lotus",
       -- colorscheme = "kanagawa-wave",
-      -- colorscheme = "kanagawabones",
       -- colorscheme = "material-darker",
       -- colorscheme = "neobones",
+      -- colorscheme = "NeoSolarized",
       -- colorscheme = "noctu",
       -- colorscheme = "nord",
       -- colorscheme = "nordbones",
@@ -58,6 +59,7 @@ return {
       -- colorscheme = "rosebones",
       -- colorscheme = "seoulbones",
       -- colorscheme = "solarized",
+      colorscheme = "solarized-osaka",
       -- colorscheme = "tokyobones",
       -- colorscheme = "tokyonight-moon",
       -- colorscheme = "vimbones",

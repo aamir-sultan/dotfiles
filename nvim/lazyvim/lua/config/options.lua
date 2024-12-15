@@ -27,8 +27,8 @@ opt.autoindent = true
 opt.smartindent = true
 opt.wrap = true
 
--- vim.o.background = "dark" -- or "light" for light mode
-vim.o.background = "light" -- or "light" for light mode
+vim.o.background = "dark" -- or "light" for light mode
+-- vim.o.background = "light" -- or "light" for light mode
 -- vim.cmd([[colorscheme gruvbox]])
 -- Auto change the work directory to the file parent directory
 -- vim.o.autochdir = true
