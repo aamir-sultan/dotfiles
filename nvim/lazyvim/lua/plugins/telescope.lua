@@ -72,21 +72,21 @@ local options = {
 }
 return {
   -- change some telescope options and a keymap to browse plugin files
-  {
-    "nvim-telescope/telescope.nvim",
-    lazy = true,
-    event = "LazyFile",
-    -- change some options
-    opts = options,
-    -- dependencies = {
-    --   "theprimeagen/harpoon",
-    --   lazy = true,
-    --   event = "LazyFile",
-    --   config = function()
-    --     require("telescope").load_extension('harpoon')
-    --   end,
-    -- },
-
-
-  },
+  -- {
+  --   "nvim-telescope/telescope.nvim",
+  --   lazy = true,
+  --   event = "LazyFile",
+  --   -- change some options
+  --   opts = options,
+  --   -- dependencies = {
+  --   --   "theprimeagen/harpoon",
+  --   --   lazy = true,
+  --   --   event = "LazyFile",
+  --   --   config = function()
+  --   --     require("telescope").load_extension('harpoon')
+  --   --   end,
+  --   -- },
+  --
+  --
+  -- },
 }
