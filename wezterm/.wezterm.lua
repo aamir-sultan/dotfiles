@@ -202,25 +202,11 @@ end
 -- config.color_scheme = "Solarized"
 
 -- Charachter Settings
--- config.cell_width = 1.00 -- Set this to in/decrease the charachter spacing in the terminal.
--- config.cell_width = 1.01 -- Set this to in/decrease the charachter spacing in the terminal.
--- config.cell_width = 1.05 -- Set this to increase the charachter spacing in the terminal.
 config.cell_width = 1.1 -- Set this to increase the charachter spacing in the terminal.
--- config.cell_width = 1.2 -- Set this to increase the charachter spacing in the terminal.
--- config.line_height = 1   -- Set this to in/decrease the charachter height in the terminal.
--- config.line_height = 1.2 -- Set this to in/decrease the charachter height in the terminal.
 config.line_height = 1.2 -- Set this to in/decrease the charachter height in the terminal.
 
 -- Font Settings
 config.font_size = 8.0
--- config.font_size = 10.0
--- config.font_size = 10.5
--- config.font_size = 11.0
--- config.font_size = 11.5
--- config.font_size = 12.0
--- config.font_size = 13.0
--- config.font_size = 14.0
---
 -- local fontStyle = "Italic"
 local fontStyle = "Normal"
 
@@ -345,7 +331,9 @@ config.window_background_gradient = {
   --   '#302b63',
   --   '#24243e',
   -- },
-  colors = { '#300924' }, -- Ubuntu Terminal Colors
+  colors = { '#00141a' }, -- Solarized Osaka Background Colors
+  -- colors = { '#161b1d' }, -- Solarized Osaka Background Colors
+  -- colors = { '#300924' }, -- Ubuntu Terminal Colors
   -- colors = { '#EEE8D5' }, -- Solarized Background Colors
   -- colors = { '#073642' }, -- Solarized Background Colors
   -- colors = { '#300924', '#2E3436' },
@@ -447,8 +435,8 @@ config.adjust_window_size_when_changing_font_size = false -- The default value i
 config.selection_word_boundary =
 " \t\n{}[]()\"'`,;:│=&!%" -- What is selected when doing a word selection with the mouse.
 config.window_padding = { -- Controls the amount of padding between the window border and the terminal cells.
-  left = 10,
-  right = 10,
+  left = 3,
+  right = 0,
   top = 0,
   bottom = 0,
 }
