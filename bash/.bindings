@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
 
+# Custom function to edit the current command without executing it
+edit-command() {
+  local tmpfile
+  tmpfile=$(mktemp)
+  printf '%s' "$READLINE_LINE" >"$tmpfile"
+  ${EDITOR:-nano} "$tmpfile"
+  READLINE_LINE=$(<"$tmpfile")
+  READLINE_POINT=${#READLINE_LINE}
+  rm "$tmpfile"
+}
+
+# Bind the function to a key sequence (e.g., Ctrl+x e)
+bind -x '"\C-x\C-v": edit-command'
 
 # bind '"\C-H":backward-kill-word' # It is such a common binding that almost every program supports it but the
 # emulator has issues with this. This backspace a complete word with ctrl+backspace.
 bind '"\C-H":"\C-w"' # This is a better alternative to above binding. It deletes a complete word till space.
+
